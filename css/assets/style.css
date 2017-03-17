@@ -6,11 +6,7 @@ CONTENTS
 * LAYOUTS.............. page layouts customize
 * HEADERS.............. header layouts customize
 * CONTENT.............. customize content
-* MEDIA QUERIES........ media queries for page layouts
 */
-
-
-
 
 /**
 RESET
@@ -20,10 +16,6 @@ RESET
 */
 /*@import url(layout-core.css);*/
 
-
-
-
-
 /**
 LAYOUTS
 -----------------------------------------
@@ -31,13 +23,9 @@ LAYOUTS
 ------------------------------------------
 */
 
-
-
 /**
 CONTENT
 ---------------------------------------------
 |NOTE: Font Color / Font / Background Color. |
 ---------------------------------------------
 */
-
-
