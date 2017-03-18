@@ -16,7 +16,7 @@
 		</div>
 		<div class="row site__navbar">
 			<?php
-			include('assets/template/navbar_2.php');
+			include('assets/template/navbar.php');
 			?>
 		</div>
 		<div class="row site__content">
@@ -31,5 +31,6 @@
 	<script src="js/jquery/jquery.min.js"></script>
 	<!-- Bootstrap JavaScript -->
 	<script src="js/bootstrap/bootstrap.min.js"></script>
+	<script src="js/bootstrap/validator.min.js"></script>
 </body>
 </html>

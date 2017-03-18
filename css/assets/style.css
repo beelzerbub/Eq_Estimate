@@ -16,6 +16,7 @@ RESET
 */
 /*@import url(layout-core.css);*/
 
+
 /**
 LAYOUTS
 -----------------------------------------
@@ -23,9 +24,155 @@ LAYOUTS
 ------------------------------------------
 */
 
+.panel-login {
+	border-color: #ccc;
+	-webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+	box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+}
+
+.panel-login>.panel-heading {
+	color: #00415d;
+	background-color: #fff;
+	border-color: #fff;
+	text-align:center;
+}
+
+.panel-login>.panel-body {
+	text-align: center;
+}
+
+
 /**
 CONTENT
 ---------------------------------------------
 |NOTE: Font Color / Font / Background Color. |
 ---------------------------------------------
 */
+.site__navbar>.navbar {
+	border-color: #ccc;
+	-webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+	box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+}
+
+.panel-login>.panel-heading a{
+	text-decoration: none;
+	color: #666;
+	font-weight: bold;
+	font-size: 15px;
+	-webkit-transition: all 0.1s linear;
+	-moz-transition: all 0.1s linear;
+	transition: all 0.1s linear;
+}
+
+.panel-login>.panel-heading a.active, .panel-login>.panel-heading>#forgot-header {
+	color: #0C4A00;
+	font-size: 18px;
+}
+
+.panel-login>.panel-heading hr{
+	margin-top: 10px;
+	margin-bottom: 0px;
+	clear: both;
+	border: 0;
+	height: 1px;
+	background-image: -webkit-linear-gradient(left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.15),rgba(0, 0, 0, 0));
+	background-image: -moz-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+	background-image: -ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+	background-image: -o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+}
+
+.btn-login {
+	background-color: #07C;
+	outline: none;
+	color: #fff;
+	font-size: 14px;
+	height: auto;
+	font-weight: normal;
+	padding: 14px 0;
+	text-transform: uppercase;
+	border-color: #59B2E6;
+}
+
+a.forgot-password {
+	text-decoration: underline;
+	color: #888;
+}
+
+.forgot-password:hover,
+.forgot-password:focus {
+	text-decoration: underline;
+	color: #666;
+}
+
+.btn-login:hover,
+.btn-login:focus {
+	color: #fff;
+	background-color: #0060A5;
+	border-color: #53A3CD;
+}
+
+.btn-register {
+	background-color: #1CB94E;
+	outline: none;
+	color: #fff;
+	font-size: 14px;
+	height: auto;
+	font-weight: normal;
+	padding: 14px 0;
+	text-transform: uppercase;
+	border-color: #1CB94A;
+}
+.btn-register:hover,
+.btn-register:focus {
+	color: #fff;
+	background-color: #1CA347;
+	border-color: #1CA347;
+}
+
+.btn-forgot {
+	background-color: #07C;
+	outline: none;
+	color: #fff;
+	font-size: 14px;
+	height: 50px;
+	width: 100px;
+	font-weight: normal;
+	padding: 14px 0;
+	text-transform: uppercase;
+	border-color: #59B2E6;
+}
+
+.btn-forgot:hover,
+.btn-forgot:focus {
+	color: #fff;
+	background-color: #0060A5;
+	border-color: #53A3CD;
+}
+
+.btn-back {
+	background-color: #999999;
+	outline: none;
+	color: #fff;
+	font-size: 14px;
+	height: 50px;
+	width: 100px;
+	font-weight: normal;
+	padding: 14px 0;
+	text-transform: uppercase;
+	border-color: #BEBEBE;
+}
+
+.btn-back:hover,
+.btn-back:focus {
+	color: #fff;
+	background-color: #909090;
+	border-color: #A5A5A5;
+}
+
+#register-form .help-block, 
+#login-form .help-block, 
+#forgot-form .help-block {
+	text-align: left;
+}
