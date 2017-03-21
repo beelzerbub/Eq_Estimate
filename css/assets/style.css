@@ -161,7 +161,6 @@ a.forgot-password {
 	font-weight: normal;
 	padding: 14px 0;
 	text-transform: uppercase;
-	border-color: #BEBEBE;
 }
 
 .btn-back:hover,
@@ -169,6 +168,10 @@ a.forgot-password {
 	color: #fff;
 	background-color: #909090;
 	border-color: #A5A5A5;
+}
+
+#insert-btn {
+	text-align: right;
 }
 
 #register-form .help-block, 

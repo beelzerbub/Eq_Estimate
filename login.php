@@ -161,7 +161,6 @@
 												<input type="submit" class="btn btn-forgot" name="forgotBtn" id="forgotBtn" tabindex="4" value="ส่ง">
 											</div>
 											<div class="col-md-6">
-												<!--<a href="#" class="button back-form-link" name="backBtn" tabindex="4">ย้อนกลับ</a>-->
 												<input type="button" class="btn btn-back" name="backBtn" id="backBtn" tabindex="4" value="ย้อนกลับ">
 											</div>
 										</div>
