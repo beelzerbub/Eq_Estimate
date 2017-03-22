@@ -19,10 +19,10 @@
 			include('assets/template/navbar.php');
 			?>
 		</div>
-		<div class="row site__content">
+		<div class="row site_content">
 			<div class="col-md-12">
-				<div class="row">
-					<form action="#" class="form-inline" role="form" method="post" data-toggle="validator" id="student-filter-form">
+				<div class="row site_content-filter">
+					<form action="#" class="form-inline" role="form" method="post" data-toggle="validator" id="student-filter_form">
 						<fieldset>
 							<legend>ข้อมูลนักเรียน</legend>
 							<div class="col-md-9">
@@ -61,14 +61,36 @@
 							</div>
 							<div class="col-md-3" id="insert-btn">
 								<div class="form-group">
-									<input type="button" class="btn btn-primary btn-insert-std" name="insert-student-form" id="insert-student-form" data-toggle="collapse" data-target="#insert-student-form" aria-expanded="false" tabindex="1" value="เพิ่มข้อมูลนักเรียน">
+									<button type="button" class="btn btn-primary btn-insert-std" name="insert-student-link" id="insert-student-link" data-toggle="modal"  data-target="#student-insert_box" tabindex="1" value="เพิ่มข้อมูลนักเรียน">เพิ่มข้อมูลนักเรียน</button>
 								</div>
 							</div>
 						</fieldset>
 					</form>
+				</div>	
+				<div class="row site_content-form">
+					<!-- Large modal -->
+					<div class="modal fade" id="student-insert_box" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+						<div class="modal-dialog modal-lg" role="document">
+							<div class="modal-content">
+								<form action="#" role="form" method="post" data-toggle="validator" id="student-insert_form">
+									<fieldset>
+										<legend><h1>เพิ่มข้อมูลนักเรียน</h1></legend>
+										<div class="form-group">
+											<label for="InputStdID"><h4>รหัสบัตรประชาชน</h4></label>
+											<input type="text" class="form-control" name="std_id" id="std_id" placeholder="รหัสบัตรประชาชน" maxlength="13" data-minlength="13" pattern="[0-9]{1,}$" data-error="( กรุณาตรวจสอบรหัสบัตรประชาชน รหัสบัตรประชาชนต้องประกอบด้วยตัวเลข 13 หลัก โดยไม่ต้องใส่ช่องว่างหรือเครื่องหมาย - )" required>
+											<div class="help-block with-errors"></div>
+										</div>
+										<div class="form-group">
+											<label for="InputStdName"><h4>ชื่อ</h4></label>
+											<input type="text" class="form-control" name="std_name" id="std_name" placeholder="ชื่อนักเรียน" maxlength="50" pattern="[ก-ฮA-z]">
+										</div>
+									</fieldset>
+								</form>
+							</div>
+						</div>
+					</div>
 				</div>
-				<br>
-				<div class="row">
+				<div class="row site_content-table">
 					<table id="student-table" class="table table-bordered table-hover">
 						<thead>
 							<tr>
