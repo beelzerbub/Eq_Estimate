@@ -76,13 +76,33 @@
 									<fieldset>
 										<legend><h1>เพิ่มข้อมูลนักเรียน</h1></legend>
 										<div class="form-group">
-											<label for="InputStdID"><h4>รหัสบัตรประชาชน</h4></label>
+											<label for="InputStdID">รหัสบัตรประชาชน</label>
 											<input type="text" class="form-control" name="std_id" id="std_id" placeholder="รหัสบัตรประชาชน" maxlength="13" data-minlength="13" pattern="[0-9]{1,}$" data-error="( กรุณาตรวจสอบรหัสบัตรประชาชน รหัสบัตรประชาชนต้องประกอบด้วยตัวเลข 13 หลัก โดยไม่ต้องใส่ช่องว่างหรือเครื่องหมาย - )" required>
 											<div class="help-block with-errors"></div>
 										</div>
-										<div class="form-group">
-											<label for="InputStdName"><h4>ชื่อ</h4></label>
-											<input type="text" class="form-control" name="std_name" id="std_name" placeholder="ชื่อนักเรียน" maxlength="50" pattern="[ก-ฮA-z]">
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="InputStdName">ชื่อ</label>
+													<input type="text" class="form-control" name="std_name" id="std_name" placeholder="ชื่อนักเรียน"  maxlength="50" data-error="กรุณาระบุชื่อนักเรียน" required>
+													<div class="help-block with-errors"></div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="InputStdSurname">นามสกุล</label>
+													<input type="text" class="form-control" name="std_surname" id="std_surname" placeholder="นามสกุลนักเรียน" maxlength="50" data-error="กรุณาระบุนามสกุลนักเรียน" required>
+													<div class="help-block with-errors"></div>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-6">
+
+											</div>
+											<div class="col-md-6">
+												
+											</div>
 										</div>
 									</fieldset>
 								</form>
