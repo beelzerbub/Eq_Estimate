@@ -11,10 +11,10 @@
 </head>
 <body>
 	<div class="container">
-		<div class="row site__header">
+		<div class="row site_header">
 			<img src="image/banner.jpg" class="img-responsive" alt="">
 		</div>
-		<div class="row site__navbar">
+		<div class="row site_navbar">
 			<?php
 			include('assets/template/navbar.php');
 			?>
@@ -209,7 +209,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="row site__footer">
+		<div class="row site_footer">
 			<hr>
 			&copy;2016 HATAICHAT SCHOOL
 		</div>
