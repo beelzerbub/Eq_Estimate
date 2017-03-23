@@ -23,8 +23,8 @@
 			<div class="col-md-12">
 				<div class="row site_content-filter">
 					<form action="#" class="form-inline" role="form" method="post" data-toggle="validator" id="student-filter_form">
-						<fieldset>
-							<legend>ข้อมูลนักเรียน</legend>
+						<fieldset class="fieldset-form">
+							<legend class="legend-form">ข้อมูลนักเรียน</legend>
 							<div class="col-md-9">
 								<div class="form-group">
 									<label for="filter-keyword" class="sr-only">Keyword</label>
@@ -59,9 +59,18 @@
 									<input type="reset"	class="btn btn-danger" name="resetBtn" id="resetBtn" tabindex="1" value="ล้างข้อมูล">
 								</div>
 							</div>
-							<div class="col-md-3" id="insert-btn">
-								<div class="form-group">
-									<button type="button" class="btn btn-primary btn-insert-std" name="insert-student-link" id="insert-student-link" data-toggle="modal"  data-target="#student-insert_box" tabindex="1" value="เพิ่มข้อมูลนักเรียน">เพิ่มข้อมูลนักเรียน</button>
+							<div class="col-md-3">
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<button type="button" class="btn btn-primary btn-insert-std" name="insert-student-link" id="insert-student-link" data-toggle="modal"  data-target="#student-insert_box" tabindex="1" value="insert_student">เพิ่มข้อมูลนักเรียน</button>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<button type="button" class="btn btn-primary btn-import-std" name="import-student-link" id="import-student-link" data-toggle="modal"  data-target="#student-import_box" tabindex="1" value="import_student">นำเข้าข้อมูลนักเรียน</button>
+										</div>
+									</div>
 								</div>
 							</div>
 						</fieldset>
@@ -73,12 +82,16 @@
 						<div class="modal-dialog modal-lg" role="document">
 							<div class="modal-content">
 								<form action="#" role="form" method="post" data-toggle="validator" id="student-insert_form">
-									<fieldset>
-										<legend><h1>เพิ่มข้อมูลนักเรียน</h1></legend>
-										<div class="form-group">
-											<label for="InputStdID">รหัสบัตรประชาชน</label>
-											<input type="text" class="form-control" name="std_id" id="std_id" placeholder="รหัสบัตรประชาชน" maxlength="13" data-minlength="13" pattern="[0-9]{1,}$" data-error="( กรุณาตรวจสอบรหัสบัตรประชาชน รหัสบัตรประชาชนต้องประกอบด้วยตัวเลข 13 หลัก โดยไม่ต้องใส่ช่องว่างหรือเครื่องหมาย - )" required>
-											<div class="help-block with-errors"></div>
+									<fieldset class="fieldset-form">
+										<legend class="legend-form"><h1>เพิ่มข้อมูลนักเรียน</h1></legend>
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="InputStdID">รหัสบัตรประชาชน</label>
+													<input type="text" class="form-control" name="std_id" id="std_id" placeholder="รหัสบัตรประชาชน" maxlength="13" data-minlength="13" pattern="[0-9]{1,}$" data-error="( กรุณาตรวจสอบรหัสบัตรประชาชน รหัสบัตรประชาชนต้องประกอบด้วยตัวเลข 13 หลัก โดยไม่ต้องใส่ช่องว่างหรือเครื่องหมาย - )" required>
+													<div class="help-block with-errors"></div>
+												</div>
+											</div>
 										</div>
 										<div class="row">
 											<div class="col-md-6">
@@ -98,10 +111,51 @@
 										</div>
 										<div class="row">
 											<div class="col-md-6">
-
+												<div class="form-group">
+													<label for="InputStdAge">อายุ</label>
+													<input type="number" class="form-control" name="std_age" id="std_age" placeholder="อายุ" required>
+												</div>
 											</div>
 											<div class="col-md-6">
-												
+												<div class="form-group">
+													<label for="InputStdGender">เพศ</label>
+													<select class="form-control" name="std_gender" id="std_gender" required>
+														<option value="" disabled selected>กรุณาเลือก</option>
+														<option value="1">หญิง</option>
+														<option value="2">ชาย</option>
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="InputClassRoom">ระดับชั้น</label>
+													<select name="classroom" id="classroom" class="form-control" required>
+														<option value="" disabled selected>กรุณาเลือก</option>
+														<option value="-1">ชั้นอนุบาลปีที่ 1</option>
+														<option value="-2">ชั้นอนุบาลปีที่ 2</option>
+														<option value="-3">ชั้นอนุบาลปีที่ 3</option>
+														<option value="1">ชั้นประถมศึกษาปีที่ 1</option>
+														<option value="2">ชั้นประถมศึกษาปีที่ 2</option>
+														<option value="3">ชั้นประถมศึกษาปีที่ 3</option>
+														<option value="4">ชั้นประถมศึกษาปีที่ 4</option>
+														<option value="5">ชั้นประถมศึกษาปีที่ 5</option>
+														<option value="6">ชั้นประถมศึกษาปีที่ 6</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="InputClassNo">เลขที่ห้อง</label>
+													<input type="number" id="classroom_number" name="classroom_number" placeholder="เลขที่ห้อง" class="form-control" required data-error="กรุณาระบุห้องเรียน">
+													<div class="help-block with-errors"></div>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-4 col-md-offset-4">
+												<input type="submit" id="AddStdBtn" name="AddStdBtn" class="form-control btn btn-add" value="เพิ่มข้อมูลนักเรียน">
 											</div>
 										</div>
 									</fieldset>
@@ -109,6 +163,30 @@
 							</div>
 						</div>
 					</div>
+					<!-- end student-insert_box -->
+					<div class="modal fade" id="student-import_box" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+						<div class="modal-dialog modal-lg" role="document">
+							<div class="modal-content">
+								<form action="#" id="student-import_form" role="form" method="post" data-toggle="validator" >
+									<fieldset class="fieldset-form">
+										<legend class="legend-form"><h1>นำเข้าข้อมูลนักเรียนด้วยไฟล์ CSV</h1></legend>
+										<div class="form-group">
+											<label for="InputFileCsv">เลือก File CSV ที่ต้องการนำเข้า : </label>
+											<input type="file" class="form-control" data-error="กรุณาเลือกไฟล์ ที่ต้องการนำเข้าข้อมูลนักเรียน" required />
+											<div class="help-block with-errors"></div>
+										</div>
+										<br>
+										<div class="row">
+											<div class="col-md-4 col-md-offset-4">
+												<input type="submit" id="ImportStdBtn" name="ImportStdBtn" tabindex="" class="form-control btn btn-add" value="นำเข้าข้อมูล">
+											</div>
+										</div>
+									</fieldset>
+								</form>
+							</div>
+						</div>
+					</div>
+					<!-- end student-import_box -->
 				</div>
 				<div class="row site_content-table">
 					<table id="student-table" class="table table-bordered table-hover">

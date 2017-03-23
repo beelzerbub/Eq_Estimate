@@ -1,6 +1,9 @@
 UI Design
 http://bootsnipp.com
 
+UI Design
+http://littlesnippets.net/
+
 CSS&CSS3
 https://www.w3schools.com/css/default.asp
 
