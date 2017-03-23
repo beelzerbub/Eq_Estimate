@@ -10,6 +10,7 @@
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="index.php">หน้าหลัก</a></li>
 				<li><a href="student.php">จัดการข้อมูลนักเรียน</a></li>
+				<li><a href="user.php">จัดการข้อมูลผู้ใช้</a></li>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">การประเมิน <span class="caret"></span></a>
 					<ul class="dropdown-menu">

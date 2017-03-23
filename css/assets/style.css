@@ -46,7 +46,7 @@ LAYOUTS
 	padding-top: 3%;
 }
 
-#student-insert_form, #student-import_form {
+#student-insert_form, #student-import_form, #insert_user-form {
 	margin: 2% 2% 2% 2%;
 }
 
@@ -149,6 +149,10 @@ legend.legend-form {
 	border-bottom:none;
 }
 
+#filter-keyword {
+	width: 210px;
+}
+
 .btn-register:hover,
 .btn-register:focus {
 	color: #fff;
@@ -193,10 +197,6 @@ legend.legend-form {
 	color: #fff;
 	background-color: #909090;
 	border-color: #A5A5A5;
-}
-
-#insert-btn-box {
-	text-align: right;
 }
 
 #register-form .help-block, 

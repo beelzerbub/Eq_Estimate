@@ -50,13 +50,13 @@
 									<input type="number" data-errors="กรุณาระบุปีการศึกษาที่ต้องการดูข้อมูล" placeholder="ปีการศึกษา" id="filter-year" class="form-control" required>
 								</div>
 								<div class="form-group">
-									<input type="submit" class="btn btn-primary" name="filterBtn" id="filterBtn" tabindex="1" value="ค้นหา">
+									<input type="submit" class="btn btn-primary" name="filterBtn" id="filterBtn" value="ค้นหา">
 								</div>
 								<div class="form-group">
-									<input type="submit" class="btn btn-primary" name="filterAllBtn" id="filterAllBtn" tabindex="1" value="เลือกทั้งหมด">
+									<input type="submit" class="btn btn-primary" name="filterAllBtn" id="filterAllBtn"  value="เลือกทั้งหมด">
 								</div>
 								<div class="form-group">
-									<input type="reset"	class="btn btn-danger" name="resetBtn" id="resetBtn" tabindex="1" value="ล้างข้อมูล">
+									<input type="reset"	class="btn btn-danger" name="resetBtn" id="resetBtn"  value="ล้างข้อมูล">
 								</div>
 							</div>
 							<div class="col-md-3">
