@@ -24,19 +24,17 @@
 				<div class="panel panel-default panel-login">
 					<div class="panel-heading">
 						<div class="row" id="forgot-header" style="display:none">
-							<label for="forgot-header">
-								กู้คืนรหัสผ่าน
-							</label>
+							<div class="col-md-4 col-md-offset-4">
+								<label for="forgot-header">
+									กู้คืนรหัสผ่าน
+								</label>
+							</div>
 						</div>
 						<div class="row">
-							<div class="col-md-6">
+							<div class="col-md-4 col-md-offset-4">
 								<a href="#" id="login-form-link" class="active">เข้าสู่ระบบ</a>
 							</div>
-							<div class="col-md-6">
-								<a href="#" id="register-form-link">สมัครสมาชิก</a>
-							</div>
 						</div>
-						<hr>
 					</div>
 					<div class="panel-body">
 						<div class="row">
