@@ -10,7 +10,6 @@
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="index.php">หน้าหลัก</a></li>
 				<li><a href="student.php">จัดการข้อมูลนักเรียน</a></li>
-				<li><a href="user.php">จัดการข้อมูลผู้ใช้</a></li>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">การประเมิน <span class="caret"></span></a>
 					<ul class="dropdown-menu">
@@ -22,6 +21,14 @@
 				</li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">จัดการข้อมูล <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="user.php">จัดการข้อมูลผู้ใช้</a></li>
+						<li><a href="student.php">จัดการข้อมูลนักเรียน</a></li>
+						<!--<li><a href="#">ดูผลการประเมิน</a></li>-->
+					</ul>
+				</li>
 				<li><a href="login.php">เข้าสู่ระบบ</a></li>
 			</ul>
 		</div><!-- /.navbar-collapse -->
