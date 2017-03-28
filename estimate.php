@@ -85,6 +85,17 @@
 							</tr>
 						</thead>
 						<tbody>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><a href="estimate_form.php">ทำแบบประเมิน</a></td>
+								<td></td>
+							</tr>
 						</tbody>
 					</table>
 				</div>

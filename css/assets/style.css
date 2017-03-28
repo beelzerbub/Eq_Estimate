@@ -248,6 +248,10 @@ legend.legend-form {
 	text-decoration: none;
 }
 
+.list-group-horizontal {
+	text-align: center;
+}
+
 .list-group-horizontal .list-group-item {
 	display: inline-block;
 }
@@ -263,4 +267,8 @@ legend.legend-form {
 .list-group-horizontal .list-group-item:last-child {
 	border-top-right-radius:4px;
 	border-bottom-left-radius:0;
+}
+
+.show_score {
+	padding-top: 5px;
 }

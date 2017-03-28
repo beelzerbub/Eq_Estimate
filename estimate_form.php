@@ -141,8 +141,9 @@
 											<fieldset class="fieldset-form">
 												<legend class="legend-form"><h1>แบบประเมิน</h1></legend>
 												<div class="row">
-													<div class="col-md-11 col-md-offset-1">
+													<div class="col-md-12">
 														<div class="list-group list-group-horizontal">
+															<a href="#" class="list-group-item estimate_form-link_previous disabled"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span></a>
 															<a href="#" class="list-group-item active estimate_form-link_1">ส่วนที่ 1</a>
 															<a href="#" class="list-group-item estimate_form-link_2">ส่วนที่ 2</a>
 															<a href="#" class="list-group-item estimate_form-link_3">ส่วนที่ 3</a>
@@ -152,6 +153,7 @@
 															<a href="#" class="list-group-item estimate_form-link_7">ส่วนที่ 7</a>
 															<a href="#" class="list-group-item estimate_form-link_8">ส่วนที่ 8</a>
 															<a href="#" class="list-group-item estimate_form-link_9">ส่วนที่ 9</a>
+															<a href="#" class="list-group-item estimate_form-link_next"><span class="glyphicon glyphicon-forward" aria-hidden="true"></span></a>
 														</div>
 													</div>
 												</div>
@@ -160,12 +162,12 @@
 														<table class="table table-bordered table-striped" id="table_estimate_1">
 															<thead>
 																<tr>
-																	<th ><p>ลำดับ</p></th>
-																	<th ><p>คำถาม</p></th>
-																	<th><p class="text-center">ไม่เป็นเลย</p></th>
-																	<th><p class="text-center">เป็นบางครั้ง</p></th>
-																	<th><p class="text-center">เป็นบ่อยครั้ง</p></th>
-																	<th><p class="text-center">เป็นประจำ</p></th>
+																	<th width="5%"><p>ลำดับ</p></th>
+																	<th width="41%"><p>คำถาม</p></th>
+																	<th width="12%"><p class="text-center">ไม่เป็นเลย</p></th>
+																	<th width="12%"><p class="text-center">เป็นบางครั้ง</p></th>
+																	<th width="12%"><p class="text-center">เป็นบ่อยครั้ง</p></th>
+																	<th width="12%"><p class="text-center">เป็นประจำ</p></th>
 																</tr>
 															</thead>
 															<tbody>
@@ -232,15 +234,11 @@
 												<div class="row">
 													<div class="col-md-6">
 														<div class="row">
-															<div class="col-md-4">
+															<div class="col-md-3">
 																<input type="submit" name="SaveBtn" class="form-control btn btn-primary SaveBtn" value="บันทึก">
 															</div>
-														</div>
-													</div>
-													<div class="col-md-6">
-														<div class="row">
-															<div class="col-md-6 col-md-offset-6">
-																<input type="submit" name="NextBtn" class="form-control btn btn-primary NextBtn" value="ถัดไป">
+															<div class="col-md-9">
+																<p class="show_score">ประวัติการประเมินส่วนที่ 1 : ยังไม่ได้ทำการประเมิน</p>
 															</div>
 														</div>
 													</div>
@@ -251,9 +249,10 @@
 										<div class="modal-content" id="estimate-edit_form_2" style="display:none">
 											<fieldset class="fieldset-form">
 												<legend class="legend-form"><h1>แบบประเมิน</h1></legend>
-												<div class="row" >
-													<div class="col-md-11 col-md-offset-1">
+												<div class="row">
+													<div class="col-md-12">
 														<div class="list-group list-group-horizontal">
+															<a href="#" class="list-group-item estimate_form-link_previous"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span></a>
 															<a href="#" class="list-group-item estimate_form-link_1">ส่วนที่ 1</a>
 															<a href="#" class="list-group-item estimate_form-link_2">ส่วนที่ 2</a>
 															<a href="#" class="list-group-item estimate_form-link_3">ส่วนที่ 3</a>
@@ -263,6 +262,7 @@
 															<a href="#" class="list-group-item estimate_form-link_7">ส่วนที่ 7</a>
 															<a href="#" class="list-group-item estimate_form-link_8">ส่วนที่ 8</a>
 															<a href="#" class="list-group-item estimate_form-link_9">ส่วนที่ 9</a>
+															<a href="#" class="list-group-item estimate_form-link_next"><span class="glyphicon glyphicon-forward" aria-hidden="true"></span></a>
 														</div>
 													</div>
 												</div>
@@ -271,12 +271,12 @@
 														<table class="table table-bordered table-striped" id="table_estimate_2">
 															<thead>
 																<tr>
-																	<th ><p>ลำดับ</p></th>
-																	<th ><p>คำถาม</p></th>
-																	<th><p class="text-center">ไม่เป็นเลย</p></th>
-																	<th><p class="text-center">เป็นบางครั้ง</p></th>
-																	<th><p class="text-center">เป็นบ่อยครั้ง</p></th>
-																	<th><p class="text-center">เป็นประจำ</p></th>
+																	<th width="5%"><p>ลำดับ</p></th>
+																	<th width="41%"><p>คำถาม</p></th>
+																	<th width="12%"><p class="text-center">ไม่เป็นเลย</p></th>
+																	<th width="12%"><p class="text-center">เป็นบางครั้ง</p></th>
+																	<th width="12%"><p class="text-center">เป็นบ่อยครั้ง</p></th>
+																	<th width="12%"><p class="text-center">เป็นประจำ</p></th>
 																</tr>
 															</thead>
 															<tbody>
@@ -359,18 +359,11 @@
 												<div class="row">
 													<div class="col-md-6">
 														<div class="row">
-															<div class="col-md-4">
+															<div class="col-md-3">
 																<input type="submit" name="SaveBtn" class="form-control btn btn-primary SaveBtn" value="บันทึก">
 															</div>
-														</div>
-													</div>
-													<div class="col-md-6">
-														<div class="row">
-															<div class="col-md-6">
-																<input type="submit" name="BeforeBtn" class="form-control btn btn-primary BeforeBtn" value="ย้อนกลับ">
-															</div>
-															<div class="col-md-6">
-																<input type="submit" name="NextBtn" class="form-control btn btn-primary NextBtn" value="ถัดไป">
+															<div class="col-md-9">
+																<p class="show_score">ประวัติการประเมินส่วนที่ 2 : ยังไม่ได้ทำการประเมิน</p>
 															</div>
 														</div>
 													</div>
@@ -381,9 +374,10 @@
 										<div class="modal-content" id="estimate-edit_form_3" style="display:none">
 											<fieldset class="fieldset-form">
 												<legend class="legend-form"><h1>แบบประเมิน</h1></legend>
-												<div class="row" >
-													<div class="col-md-11 col-md-offset-1">
+												<div class="row">
+													<div class="col-md-12">
 														<div class="list-group list-group-horizontal">
+															<a href="#" class="list-group-item estimate_form-link_previous"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span></a>
 															<a href="#" class="list-group-item estimate_form-link_1">ส่วนที่ 1</a>
 															<a href="#" class="list-group-item estimate_form-link_2">ส่วนที่ 2</a>
 															<a href="#" class="list-group-item estimate_form-link_3">ส่วนที่ 3</a>
@@ -393,6 +387,7 @@
 															<a href="#" class="list-group-item estimate_form-link_7">ส่วนที่ 7</a>
 															<a href="#" class="list-group-item estimate_form-link_8">ส่วนที่ 8</a>
 															<a href="#" class="list-group-item estimate_form-link_9">ส่วนที่ 9</a>
+															<a href="#" class="list-group-item estimate_form-link_next"><span class="glyphicon glyphicon-forward" aria-hidden="true"></span></a>
 														</div>
 													</div>
 												</div>
@@ -401,12 +396,12 @@
 														<table class="table table-bordered table-striped" id="table_estimate_3">
 															<thead>
 																<tr>
-																	<th ><p>ลำดับ</p></th>
-																	<th ><p>คำถาม</p></th>
-																	<th><p class="text-center">ไม่เป็นเลย</p></th>
-																	<th><p class="text-center">เป็นบางครั้ง</p></th>
-																	<th><p class="text-center">เป็นบ่อยครั้ง</p></th>
-																	<th><p class="text-center">เป็นประจำ</p></th>
+																	<th width="5%"><p>ลำดับ</p></th>
+																	<th width="41%"><p>คำถาม</p></th>
+																	<th width="12%"><p class="text-center">ไม่เป็นเลย</p></th>
+																	<th width="12%"><p class="text-center">เป็นบางครั้ง</p></th>
+																	<th width="12%"><p class="text-center">เป็นบ่อยครั้ง</p></th>
+																	<th width="12%"><p class="text-center">เป็นประจำ</p></th>
 																</tr>
 															</thead>
 															<tbody>
@@ -473,18 +468,11 @@
 												<div class="row">
 													<div class="col-md-6">
 														<div class="row">
-															<div class="col-md-4">
+															<div class="col-md-3">
 																<input type="submit" name="SaveBtn" class="form-control btn btn-primary SaveBtn" value="บันทึก">
 															</div>
-														</div>
-													</div>
-													<div class="col-md-6">
-														<div class="row">
-															<div class="col-md-6">
-																<input type="submit" name="BeforeBtn" class="form-control btn btn-primary BeforeBtn" value="ย้อนกลับ">
-															</div>
-															<div class="col-md-6">
-																<input type="submit" name="NextBtn" class="form-control btn btn-primary NextBtn" value="ถัดไป">
+															<div class="col-md-9">
+																<p class="show_score">ประวัติการประเมินส่วนที่ 3 : ยังไม่ได้ทำการประเมิน</p>
 															</div>
 														</div>
 													</div>
@@ -495,9 +483,10 @@
 										<div class="modal-content" id="estimate-edit_form_4" style="display:none">
 											<fieldset class="fieldset-form">
 												<legend class="legend-form"><h1>แบบประเมิน</h1></legend>
-												<div class="row" >
-													<div class="col-md-11 col-md-offset-1">
+												<div class="row">
+													<div class="col-md-12">
 														<div class="list-group list-group-horizontal">
+															<a href="#" class="list-group-item estimate_form-link_previous"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span></a>
 															<a href="#" class="list-group-item estimate_form-link_1">ส่วนที่ 1</a>
 															<a href="#" class="list-group-item estimate_form-link_2">ส่วนที่ 2</a>
 															<a href="#" class="list-group-item estimate_form-link_3">ส่วนที่ 3</a>
@@ -507,6 +496,7 @@
 															<a href="#" class="list-group-item estimate_form-link_7">ส่วนที่ 7</a>
 															<a href="#" class="list-group-item estimate_form-link_8">ส่วนที่ 8</a>
 															<a href="#" class="list-group-item estimate_form-link_9">ส่วนที่ 9</a>
+															<a href="#" class="list-group-item estimate_form-link_next"><span class="glyphicon glyphicon-forward" aria-hidden="true"></span></a>
 														</div>
 													</div>
 												</div>
@@ -515,12 +505,12 @@
 														<table class="table table-bordered table-striped" id="table_estimate_4">
 															<thead>
 																<tr>
-																	<th ><p>ลำดับ</p></th>
-																	<th ><p>คำถาม</p></th>
-																	<th><p class="text-center">ไม่เป็นเลย</p></th>
-																	<th><p class="text-center">เป็นบางครั้ง</p></th>
-																	<th><p class="text-center">เป็นบ่อยครั้ง</p></th>
-																	<th><p class="text-center">เป็นประจำ</p></th>
+																	<th width="5%"><p>ลำดับ</p></th>
+																	<th width="41%"><p>คำถาม</p></th>
+																	<th width="12%"><p class="text-center">ไม่เป็นเลย</p></th>
+																	<th width="12%"><p class="text-center">เป็นบางครั้ง</p></th>
+																	<th width="12%"><p class="text-center">เป็นบ่อยครั้ง</p></th>
+																	<th width="12%"><p class="text-center">เป็นประจำ</p></th>
 																</tr>
 															</thead>
 															<tbody>
@@ -590,18 +580,11 @@
 												<div class="row">
 													<div class="col-md-6">
 														<div class="row">
-															<div class="col-md-4">
+															<div class="col-md-3">
 																<input type="submit" name="SaveBtn" class="form-control btn btn-primary SaveBtn" value="บันทึก">
 															</div>
-														</div>
-													</div>
-													<div class="col-md-6">
-														<div class="row">
-															<div class="col-md-6">
-																<input type="submit" name="BeforeBtn" class="form-control btn btn-primary BeforeBtn" value="ย้อนกลับ">
-															</div>
-															<div class="col-md-6">
-																<input type="submit" name="NextBtn" class="form-control btn btn-primary NextBtn" value="ถัดไป">
+															<div class="col-md-9">
+																<p class="show_score">ประวัติการประเมินส่วนที่ 4 : ยังไม่ได้ทำการประเมิน</p>
 															</div>
 														</div>
 													</div>
@@ -612,9 +595,10 @@
 										<div class="modal-content" id="estimate-edit_form_5" style="display:none">
 											<fieldset class="fieldset-form">
 												<legend class="legend-form"><h1>แบบประเมิน</h1></legend>
-												<div class="row" >
-													<div class="col-md-11 col-md-offset-1">
+												<div class="row">
+													<div class="col-md-12">
 														<div class="list-group list-group-horizontal">
+															<a href="#" class="list-group-item estimate_form-link_previous"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span></a>
 															<a href="#" class="list-group-item estimate_form-link_1">ส่วนที่ 1</a>
 															<a href="#" class="list-group-item estimate_form-link_2">ส่วนที่ 2</a>
 															<a href="#" class="list-group-item estimate_form-link_3">ส่วนที่ 3</a>
@@ -624,6 +608,7 @@
 															<a href="#" class="list-group-item estimate_form-link_7">ส่วนที่ 7</a>
 															<a href="#" class="list-group-item estimate_form-link_8">ส่วนที่ 8</a>
 															<a href="#" class="list-group-item estimate_form-link_9">ส่วนที่ 9</a>
+															<a href="#" class="list-group-item estimate_form-link_next"><span class="glyphicon glyphicon-forward" aria-hidden="true"></span></a>
 														</div>
 													</div>
 												</div>
@@ -632,12 +617,12 @@
 														<table class="table table-bordered table-striped" id="table_estimate_5">
 															<thead>
 																<tr>
-																	<th ><p>ลำดับ</p></th>
-																	<th ><p>คำถาม</p></th>
-																	<th><p class="text-center">ไม่เป็นเลย</p></th>
-																	<th><p class="text-center">เป็นบางครั้ง</p></th>
-																	<th><p class="text-center">เป็นบ่อยครั้ง</p></th>
-																	<th><p class="text-center">เป็นประจำ</p></th>
+																	<th width="5%"><p>ลำดับ</p></th>
+																	<th width="41%"><p>คำถาม</p></th>
+																	<th width="12%"><p class="text-center">ไม่เป็นเลย</p></th>
+																	<th width="12%"><p class="text-center">เป็นบางครั้ง</p></th>
+																	<th width="12%"><p class="text-center">เป็นบ่อยครั้ง</p></th>
+																	<th width="12%"><p class="text-center">เป็นประจำ</p></th>
 																</tr>
 															</thead>
 															<tbody>
@@ -696,18 +681,11 @@
 												<div class="row">
 													<div class="col-md-6">
 														<div class="row">
-															<div class="col-md-4">
+															<div class="col-md-3">
 																<input type="submit" name="SaveBtn" class="form-control btn btn-primary SaveBtn" value="บันทึก">
 															</div>
-														</div>
-													</div>
-													<div class="col-md-6">
-														<div class="row">
-															<div class="col-md-6">
-																<input type="submit" name="BeforeBtn" class="form-control btn btn-primary BeforeBtn" value="ย้อนกลับ">
-															</div>
-															<div class="col-md-6">
-																<input type="submit" name="NextBtn" class="form-control btn btn-primary NextBtn" value="ถัดไป">
+															<div class="col-md-9">
+																<p class="show_score">ประวัติการประเมินส่วนที่ 5 : ยังไม่ได้ทำการประเมิน</p>
 															</div>
 														</div>
 													</div>
@@ -718,9 +696,10 @@
 										<div class="modal-content" id="estimate-edit_form_6" style="display:none">
 											<fieldset class="fieldset-form">
 												<legend class="legend-form"><h1>แบบประเมิน</h1></legend>
-												<div class="row" >
-													<div class="col-md-11 col-md-offset-1">
+												<div class="row">
+													<div class="col-md-12">
 														<div class="list-group list-group-horizontal">
+															<a href="#" class="list-group-item estimate_form-link_previous"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span></a>
 															<a href="#" class="list-group-item estimate_form-link_1">ส่วนที่ 1</a>
 															<a href="#" class="list-group-item estimate_form-link_2">ส่วนที่ 2</a>
 															<a href="#" class="list-group-item estimate_form-link_3">ส่วนที่ 3</a>
@@ -730,6 +709,7 @@
 															<a href="#" class="list-group-item estimate_form-link_7">ส่วนที่ 7</a>
 															<a href="#" class="list-group-item estimate_form-link_8">ส่วนที่ 8</a>
 															<a href="#" class="list-group-item estimate_form-link_9">ส่วนที่ 9</a>
+															<a href="#" class="list-group-item estimate_form-link_next"><span class="glyphicon glyphicon-forward" aria-hidden="true"></span></a>
 														</div>
 													</div>
 												</div>
@@ -738,12 +718,12 @@
 														<table class="table table-bordered table-striped" id="table_estimate_6">
 															<thead>
 																<tr>
-																	<th ><p>ลำดับ</p></th>
-																	<th ><p>คำถาม</p></th>
-																	<th><p class="text-center">ไม่เป็นเลย</p></th>
-																	<th><p class="text-center">เป็นบางครั้ง</p></th>
-																	<th><p class="text-center">เป็นบ่อยครั้ง</p></th>
-																	<th><p class="text-center">เป็นประจำ</p></th>
+																	<th width="5%"><p>ลำดับ</p></th>
+																	<th width="41%"><p>คำถาม</p></th>
+																	<th width="12%"><p class="text-center">ไม่เป็นเลย</p></th>
+																	<th width="12%"><p class="text-center">เป็นบางครั้ง</p></th>
+																	<th width="12%"><p class="text-center">เป็นบ่อยครั้ง</p></th>
+																	<th width="12%"><p class="text-center">เป็นประจำ</p></th>
 																</tr>
 															</thead>
 															<tbody>
@@ -802,18 +782,11 @@
 												<div class="row">
 													<div class="col-md-6">
 														<div class="row">
-															<div class="col-md-4">
+															<div class="col-md-3">
 																<input type="submit" name="SaveBtn" class="form-control btn btn-primary SaveBtn" value="บันทึก">
 															</div>
-														</div>
-													</div>
-													<div class="col-md-6">
-														<div class="row">
-															<div class="col-md-6">
-																<input type="submit" name="BeforeBtn" class="form-control btn btn-primary BeforeBtn" value="ย้อนกลับ">
-															</div>
-															<div class="col-md-6">
-																<input type="submit" name="NextBtn" class="form-control btn btn-primary NextBtn" value="ถัดไป">
+															<div class="col-md-9">
+																<p class="show_score">ประวัติการประเมินส่วนที่ 6 : ยังไม่ได้ทำการประเมิน</p>
 															</div>
 														</div>
 													</div>
@@ -824,9 +797,10 @@
 										<div class="modal-content" id="estimate-edit_form_7" style="display:none">
 											<fieldset class="fieldset-form">
 												<legend class="legend-form"><h1>แบบประเมิน</h1></legend>
-												<div class="row" >
-													<div class="col-md-11 col-md-offset-1">
+												<div class="row">
+													<div class="col-md-12">
 														<div class="list-group list-group-horizontal">
+															<a href="#" class="list-group-item estimate_form-link_previous"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span></a>
 															<a href="#" class="list-group-item estimate_form-link_1">ส่วนที่ 1</a>
 															<a href="#" class="list-group-item estimate_form-link_2">ส่วนที่ 2</a>
 															<a href="#" class="list-group-item estimate_form-link_3">ส่วนที่ 3</a>
@@ -836,6 +810,7 @@
 															<a href="#" class="list-group-item estimate_form-link_7">ส่วนที่ 7</a>
 															<a href="#" class="list-group-item estimate_form-link_8">ส่วนที่ 8</a>
 															<a href="#" class="list-group-item estimate_form-link_9">ส่วนที่ 9</a>
+															<a href="#" class="list-group-item estimate_form-link_next"><span class="glyphicon glyphicon-forward" aria-hidden="true"></span></a>
 														</div>
 													</div>
 												</div>
@@ -844,12 +819,12 @@
 														<table class="table table-bordered table-striped" id="table_estimate_7">
 															<thead>
 																<tr>
-																	<th ><p>ลำดับ</p></th>
-																	<th ><p>คำถาม</p></th>
-																	<th><p class="text-center">ไม่เป็นเลย</p></th>
-																	<th><p class="text-center">เป็นบางครั้ง</p></th>
-																	<th><p class="text-center">เป็นบ่อยครั้ง</p></th>
-																	<th><p class="text-center">เป็นประจำ</p></th>
+																	<th width="5%"><p>ลำดับ</p></th>
+																	<th width="41%"><p>คำถาม</p></th>
+																	<th width="12%"><p class="text-center">ไม่เป็นเลย</p></th>
+																	<th width="12%"><p class="text-center">เป็นบางครั้ง</p></th>
+																	<th width="12%"><p class="text-center">เป็นบ่อยครั้ง</p></th>
+																	<th width="12%"><p class="text-center">เป็นประจำ</p></th>
 																</tr>
 															</thead>
 															<tbody>
@@ -917,18 +892,11 @@
 												<div class="row">
 													<div class="col-md-6">
 														<div class="row">
-															<div class="col-md-4">
+															<div class="col-md-3">
 																<input type="submit" name="SaveBtn" class="form-control btn btn-primary SaveBtn" value="บันทึก">
 															</div>
-														</div>
-													</div>
-													<div class="col-md-6">
-														<div class="row">
-															<div class="col-md-6">
-																<input type="submit" name="BeforeBtn" class="form-control btn btn-primary BeforeBtn" value="ย้อนกลับ">
-															</div>
-															<div class="col-md-6">
-																<input type="submit" name="NextBtn" class="form-control btn btn-primary NextBtn" value="ถัดไป">
+															<div class="col-md-9">
+																<p class="show_score">ประวัติการประเมินส่วนที่ 7 : ยังไม่ได้ทำการประเมิน</p>
 															</div>
 														</div>
 													</div>
@@ -939,9 +907,10 @@
 										<div class="modal-content" id="estimate-edit_form_8" style="display:none">
 											<fieldset class="fieldset-form">
 												<legend class="legend-form"><h1>แบบประเมิน</h1></legend>
-												<div class="row" >
-													<div class="col-md-11 col-md-offset-1">
+												<div class="row">
+													<div class="col-md-12">
 														<div class="list-group list-group-horizontal">
+															<a href="#" class="list-group-item estimate_form-link_previous"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span></a>
 															<a href="#" class="list-group-item estimate_form-link_1">ส่วนที่ 1</a>
 															<a href="#" class="list-group-item estimate_form-link_2">ส่วนที่ 2</a>
 															<a href="#" class="list-group-item estimate_form-link_3">ส่วนที่ 3</a>
@@ -951,6 +920,7 @@
 															<a href="#" class="list-group-item estimate_form-link_7">ส่วนที่ 7</a>
 															<a href="#" class="list-group-item estimate_form-link_8">ส่วนที่ 8</a>
 															<a href="#" class="list-group-item estimate_form-link_9">ส่วนที่ 9</a>
+															<a href="#" class="list-group-item estimate_form-link_next"><span class="glyphicon glyphicon-forward" aria-hidden="true"></span></a>
 														</div>
 													</div>
 												</div>
@@ -959,12 +929,12 @@
 														<table class="table table-bordered table-striped" id="table_estimate_8">
 															<thead>
 																<tr>
-																	<th ><p>ลำดับ</p></th>
-																	<th ><p>คำถาม</p></th>
-																	<th><p class="text-center">ไม่เป็นเลย</p></th>
-																	<th><p class="text-center">เป็นบางครั้ง</p></th>
-																	<th><p class="text-center">เป็นบ่อยครั้ง</p></th>
-																	<th><p class="text-center">เป็นประจำ</p></th>
+																	<th width="5%"><p>ลำดับ</p></th>
+																	<th width="41%"><p>คำถาม</p></th>
+																	<th width="12%"><p class="text-center">ไม่เป็นเลย</p></th>
+																	<th width="12%"><p class="text-center">เป็นบางครั้ง</p></th>
+																	<th width="12%"><p class="text-center">เป็นบ่อยครั้ง</p></th>
+																	<th width="12%"><p class="text-center">เป็นประจำ</p></th>
 																</tr>
 															</thead>
 															<tbody>
@@ -1023,18 +993,11 @@
 												<div class="row">
 													<div class="col-md-6">
 														<div class="row">
-															<div class="col-md-4">
+															<div class="col-md-3">
 																<input type="submit" name="SaveBtn" class="form-control btn btn-primary SaveBtn" value="บันทึก">
 															</div>
-														</div>
-													</div>
-													<div class="col-md-6">
-														<div class="row">
-															<div class="col-md-6">
-																<input type="submit" name="BeforeBtn" class="form-control btn btn-primary BeforeBtn" value="ย้อนกลับ">
-															</div>
-															<div class="col-md-6">
-																<input type="submit" name="NextBtn" class="form-control btn btn-primary NextBtn" value="ถัดไป">
+															<div class="col-md-9">
+																<p class="show_score">ประวัติการประเมินส่วนที่ 8 : ยังไม่ได้ทำการประเมิน</p>
 															</div>
 														</div>
 													</div>
@@ -1045,9 +1008,10 @@
 										<div class="modal-content" id="estimate-edit_form_9" style="display:none">
 											<fieldset class="fieldset-form">
 												<legend class="legend-form"><h1>แบบประเมิน</h1></legend>
-												<div class="row" >
-													<div class="col-md-11 col-md-offset-1">
+												<div class="row">
+													<div class="col-md-12">
 														<div class="list-group list-group-horizontal">
+															<a href="#" class="list-group-item estimate_form-link_previous"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span></a>
 															<a href="#" class="list-group-item estimate_form-link_1">ส่วนที่ 1</a>
 															<a href="#" class="list-group-item estimate_form-link_2">ส่วนที่ 2</a>
 															<a href="#" class="list-group-item estimate_form-link_3">ส่วนที่ 3</a>
@@ -1057,6 +1021,7 @@
 															<a href="#" class="list-group-item estimate_form-link_7">ส่วนที่ 7</a>
 															<a href="#" class="list-group-item estimate_form-link_8">ส่วนที่ 8</a>
 															<a href="#" class="list-group-item estimate_form-link_9">ส่วนที่ 9</a>
+															<a href="#" class="list-group-item estimate_form-link_next disabled"><span class="glyphicon glyphicon-forward" aria-hidden="true"></span></a>
 														</div>
 													</div>
 												</div>
@@ -1065,12 +1030,12 @@
 														<table class="table table-bordered table-striped" id="table_estimate_9">
 															<thead>
 																<tr>
-																	<th ><p>ลำดับ</p></th>
-																	<th ><p>คำถาม</p></th>
-																	<th><p class="text-center">ไม่เป็นเลย</p></th>
-																	<th><p class="text-center">เป็นบางครั้ง</p></th>
-																	<th><p class="text-center">เป็นบ่อยครั้ง</p></th>
-																	<th><p class="text-center">เป็นประจำ</p></th>
+																	<th width="5%"><p>ลำดับ</p></th>
+																	<th width="41%"><p>คำถาม</p></th>
+																	<th width="12%"><p class="text-center">ไม่เป็นเลย</p></th>
+																	<th width="12%"><p class="text-center">เป็นบางครั้ง</p></th>
+																	<th width="12%"><p class="text-center">เป็นบ่อยครั้ง</p></th>
+																	<th width="12%"><p class="text-center">เป็นประจำ</p></th>
 																</tr>
 															</thead>
 															<tbody>
@@ -1132,18 +1097,11 @@
 												<div class="row">
 													<div class="col-md-6">
 														<div class="row">
-															<div class="col-md-4">
+															<div class="col-md-3">
 																<input type="submit" name="SaveBtn" class="form-control btn btn-primary SaveBtn" value="บันทึก">
 															</div>
-														</div>
-													</div>
-													<div class="col-md-6">
-														<div class="row">
-															<div class="col-md-6">
-																<input type="submit" name="BeforeBtn" class="form-control btn btn-primary BeforeBtn" value="ย้อนกลับ">
-															</div>
-															<div class="col-md-6">
-																<input type="submit" name="NextBtn" class="form-control btn btn-primary NextBtn" value="ถัดไป">
+															<div class="col-md-9">
+																<p class="show_score">ประวัติการประเมินส่วนที่ 9 : ยังไม่ได้ทำการประเมิน</p>
 															</div>
 														</div>
 													</div>
@@ -1184,73 +1142,275 @@
 				$("#estimate-edit_form_2").fadeOut(100);
 				$("#estimate-edit_form_3").fadeOut(100);
 				$("#estimate-edit_form_4").fadeOut(100);
+				$("#estimate-edit_form_5").fadeOut(100);
+				$("#estimate-edit_form_6").fadeOut(100);
+				$("#estimate-edit_form_7").fadeOut(100);
+				$("#estimate-edit_form_9").fadeOut(100);
+				$("#estimate-edit_form_8").fadeOut(100);
 				$('.estimate_form-link_1').addClass('active');
 				$('.estimate_form-link_2').removeClass('active');
 				$('.estimate_form-link_3').removeClass('active');
 				$('.estimate_form-link_4').removeClass('active');
+				$('.estimate_form-link_5').removeClass('active');
+				$('.estimate_form-link_6').removeClass('active');
+				$('.estimate_form-link_7').removeClass('active');
+				$('.estimate_form-link_8').removeClass('active');
+				$('.estimate_form-link_9').removeClass('active');
 				e.preventDefault();
 			});
 			$('.estimate_form-link_2').click(function(e) {
-				$("#estimate-edit_form_2").delay(100).fadeIn(100);
 				$("#estimate-edit_form_1").fadeOut(100);
+				$("#estimate-edit_form_2").delay(100).fadeIn(100);
 				$("#estimate-edit_form_3").fadeOut(100);
 				$("#estimate-edit_form_4").fadeOut(100);
-				$('.estimate_form-link_2').addClass('active');
+				$("#estimate-edit_form_5").fadeOut(100);
+				$("#estimate-edit_form_6").fadeOut(100);
+				$("#estimate-edit_form_7").fadeOut(100);
+				$("#estimate-edit_form_9").fadeOut(100);
+				$("#estimate-edit_form_8").fadeOut(100);
 				$('.estimate_form-link_1').removeClass('active');
+				$('.estimate_form-link_2').addClass('active');
 				$('.estimate_form-link_3').removeClass('active');
 				$('.estimate_form-link_4').removeClass('active');
+				$('.estimate_form-link_5').removeClass('active');
+				$('.estimate_form-link_6').removeClass('active');
+				$('.estimate_form-link_7').removeClass('active');
+				$('.estimate_form-link_8').removeClass('active');
+				$('.estimate_form-link_9').removeClass('active');
 				e.preventDefault();
 			});
 			$('.estimate_form-link_3').click(function(e) {
-				$("#estimate-edit_form_3").delay(100).fadeIn(100);
 				$("#estimate-edit_form_1").fadeOut(100);
 				$("#estimate-edit_form_2").fadeOut(100);
+				$("#estimate-edit_form_3").delay(100).fadeIn(100);
 				$("#estimate-edit_form_4").fadeOut(100);
-				$('.estimate_form-link_3').addClass('active');
+				$("#estimate-edit_form_5").fadeOut(100);
+				$("#estimate-edit_form_6").fadeOut(100);
+				$("#estimate-edit_form_7").fadeOut(100);
+				$("#estimate-edit_form_9").fadeOut(100);
+				$("#estimate-edit_form_8").fadeOut(100);
 				$('.estimate_form-link_1').removeClass('active');
 				$('.estimate_form-link_2').removeClass('active');
+				$('.estimate_form-link_3').addClass('active');
 				$('.estimate_form-link_4').removeClass('active');
+				$('.estimate_form-link_5').removeClass('active');
+				$('.estimate_form-link_6').removeClass('active');
+				$('.estimate_form-link_7').removeClass('active');
+				$('.estimate_form-link_8').removeClass('active');
+				$('.estimate_form-link_9').removeClass('active');
 				e.preventDefault();
 			});
 			$('.estimate_form-link_4').click(function(e) {
-				$("#estimate-edit_form_4").delay(100).fadeIn(100);
 				$("#estimate-edit_form_1").fadeOut(100);
 				$("#estimate-edit_form_2").fadeOut(100);
 				$("#estimate-edit_form_3").fadeOut(100);
-				$('.estimate_form-link_4').addClass('active');
+				$("#estimate-edit_form_4").delay(100).fadeIn(100);
+				$("#estimate-edit_form_5").fadeOut(100);
+				$("#estimate-edit_form_6").fadeOut(100);
+				$("#estimate-edit_form_7").fadeOut(100);
+				$("#estimate-edit_form_8").fadeOut(100);
+				$("#estimate-edit_form_9").fadeOut(100);
 				$('.estimate_form-link_1').removeClass('active');
 				$('.estimate_form-link_2').removeClass('active');
 				$('.estimate_form-link_3').removeClass('active');
+				$('.estimate_form-link_4').addClass('active');
+				$('.estimate_form-link_5').removeClass('active');
+				$('.estimate_form-link_6').removeClass('active');
+				$('.estimate_form-link_7').removeClass('active');
+				$('.estimate_form-link_8').removeClass('active');
+				$('.estimate_form-link_9').removeClass('active');
 				e.preventDefault();
 			});
-			// ?ำถึงนี่
 			$('.estimate_form-link_5').click(function(e) {
-				$("#estimate-edit_form_5").delay(100).fadeIn(100);
 				$("#estimate-edit_form_1").fadeOut(100);
 				$("#estimate-edit_form_2").fadeOut(100);
 				$("#estimate-edit_form_3").fadeOut(100);
 				$("#estimate-edit_form_4").fadeOut(100);
-				$('.estimate_form-link_5').addClass('active');
+				$("#estimate-edit_form_5").delay(100).fadeIn(100);
+				$("#estimate-edit_form_6").fadeOut(100);
+				$("#estimate-edit_form_7").fadeOut(100);
+				$("#estimate-edit_form_8").fadeOut(100);
+				$("#estimate-edit_form_9").fadeOut(100);
 				$('.estimate_form-link_1').removeClass('active');
 				$('.estimate_form-link_2').removeClass('active');
 				$('.estimate_form-link_3').removeClass('active');
-				$("#estimate-edit_form_4").fadeOut(100);
+				$('.estimate_form-link_4').removeClass('active');
+				$('.estimate_form-link_5').addClass('active');
+				$('.estimate_form-link_6').removeClass('active');
+				$('.estimate_form-link_7').removeClass('active');
+				$('.estimate_form-link_8').removeClass('active');
+				$('.estimate_form-link_9').removeClass('active');
 				e.preventDefault();
 			});
 			$('.estimate_form-link_6').click(function(e) {
-				$("#estimate-edit_form_6").delay(100).fadeIn(100);
 				$("#estimate-edit_form_1").fadeOut(100);
 				$("#estimate-edit_form_2").fadeOut(100);
 				$("#estimate-edit_form_3").fadeOut(100);
 				$("#estimate-edit_form_4").fadeOut(100);
 				$("#estimate-edit_form_5").fadeOut(100);
-				$('.estimate_form-link_6').addClass('active');
+				$("#estimate-edit_form_6").delay(100).fadeIn(100);
+				$("#estimate-edit_form_7").fadeOut(100);
+				$("#estimate-edit_form_8").fadeOut(100);
+				$("#estimate-edit_form_9").fadeOut(100);
 				$('.estimate_form-link_1').removeClass('active');
 				$('.estimate_form-link_2').removeClass('active');
 				$('.estimate_form-link_3').removeClass('active');
-				$("#estimate-edit_form_4").removeClass('active');
-				$("#estimate-edit_form_5").removeClass('active');
+				$('.estimate_form-link_4').removeClass('active');
+				$('.estimate_form-link_5').removeClass('active');
+				$('.estimate_form-link_6').addClass('active');
+				$('.estimate_form-link_7').removeClass('active');
+				$('.estimate_form-link_8').removeClass('active');
+				$('.estimate_form-link_9').removeClass('active');
 				e.preventDefault();
+			});
+			$('.estimate_form-link_7').click(function(e) {
+				$("#estimate-edit_form_1").fadeOut(100);
+				$("#estimate-edit_form_2").fadeOut(100);
+				$("#estimate-edit_form_3").fadeOut(100);
+				$("#estimate-edit_form_4").fadeOut(100);
+				$("#estimate-edit_form_5").fadeOut(100);
+				$("#estimate-edit_form_6").fadeOut(100);
+				$("#estimate-edit_form_7").delay(100).fadeIn(100);
+				$("#estimate-edit_form_8").fadeOut(100);
+				$("#estimate-edit_form_9").fadeOut(100);
+				$('.estimate_form-link_1').removeClass('active');
+				$('.estimate_form-link_2').removeClass('active');
+				$('.estimate_form-link_3').removeClass('active');
+				$('.estimate_form-link_4').removeClass('active');
+				$('.estimate_form-link_5').removeClass('active');
+				$('.estimate_form-link_6').removeClass('active');
+				$('.estimate_form-link_7').addClass('active');
+				$('.estimate_form-link_8').removeClass('active');
+				$('.estimate_form-link_9').removeClass('active');
+				e.preventDefault();
+			});
+			$('.estimate_form-link_8').click(function(e) {
+				$("#estimate-edit_form_1").fadeOut(100);
+				$("#estimate-edit_form_2").fadeOut(100);
+				$("#estimate-edit_form_3").fadeOut(100);
+				$("#estimate-edit_form_4").fadeOut(100);
+				$("#estimate-edit_form_5").fadeOut(100);
+				$("#estimate-edit_form_6").fadeOut(100);
+				$("#estimate-edit_form_7").fadeOut(100);
+				$("#estimate-edit_form_8").delay(100).fadeIn(100);
+				$("#estimate-edit_form_9").fadeOut(100);
+				$('.estimate_form-link_1').removeClass('active');
+				$('.estimate_form-link_2').removeClass('active');
+				$('.estimate_form-link_3').removeClass('active');
+				$('.estimate_form-link_4').removeClass('active');
+				$('.estimate_form-link_5').removeClass('active');
+				$('.estimate_form-link_6').removeClass('active');
+				$('.estimate_form-link_7').removeClass('active');
+				$('.estimate_form-link_8').addClass('active');
+				$('.estimate_form-link_9').removeClass('active');
+				e.preventDefault();
+			});
+			$('.estimate_form-link_9').click(function(e) {
+				$("#estimate-edit_form_1").fadeOut(100);
+				$("#estimate-edit_form_2").fadeOut(100);
+				$("#estimate-edit_form_3").fadeOut(100);
+				$("#estimate-edit_form_4").fadeOut(100);
+				$("#estimate-edit_form_5").fadeOut(100);
+				$("#estimate-edit_form_6").fadeOut(100);
+				$("#estimate-edit_form_7").fadeOut(100);
+				$("#estimate-edit_form_8").fadeOut(100);
+				$("#estimate-edit_form_9").delay(100).fadeIn(100);
+				$('.estimate_form-link_1').removeClass('active');
+				$('.estimate_form-link_2').removeClass('active');
+				$('.estimate_form-link_3').removeClass('active');
+				$('.estimate_form-link_4').removeClass('active');
+				$('.estimate_form-link_5').removeClass('active');
+				$('.estimate_form-link_6').removeClass('active');
+				$('.estimate_form-link_7').removeClass('active');
+				$('.estimate_form-link_8').removeClass('active');
+				$('.estimate_form-link_9').addClass('active');
+				e.preventDefault();
+			});
+			$('.estimate_form-link_previous').click(function() {
+				if ($('.estimate_form-link_2').hasClass('active')){
+					$('.estimate_form-link_2').removeClass('active');
+					$('.estimate_form-link_1').addClass('active');
+					$("#estimate-edit_form_2").fadeOut(100);
+					$("#estimate-edit_form_1").delay(100).fadeIn(100);
+				} else if ($('.estimate_form-link_3').hasClass('active')) {
+					$('.estimate_form-link_3').removeClass('active');
+					$('.estimate_form-link_2').addClass('active');
+					$("#estimate-edit_form_3").fadeOut(100);
+					$("#estimate-edit_form_2").delay(100).fadeIn(100);
+				} else if ($('.estimate_form-link_4').hasClass('active')) {
+					$('.estimate_form-link_4').removeClass('active');
+					$('.estimate_form-link_3').addClass('active');
+					$("#estimate-edit_form_4").fadeOut(100);
+					$("#estimate-edit_form_3").delay(100).fadeIn(100);
+				} else if ($('.estimate_form-link_5').hasClass('active')) {
+					$('.estimate_form-link_5').removeClass('active');
+					$('.estimate_form-link_4').addClass('active');
+					$("#estimate-edit_form_5").fadeOut(100);
+					$("#estimate-edit_form_4").delay(100).fadeIn(100);
+				} else if ($('.estimate_form-link_6').hasClass('active')) {
+					$('.estimate_form-link_6').removeClass('active');
+					$('.estimate_form-link_5').addClass('active');
+					$("#estimate-edit_form_6").fadeOut(100);
+					$("#estimate-edit_form_5").delay(100).fadeIn(100);
+				} else if ($('.estimate_form-link_7').hasClass('active')) {
+					$('.estimate_form-link_7').removeClass('active');
+					$('.estimate_form-link_6').addClass('active');
+					$("#estimate-edit_form_7").fadeOut(100);
+					$("#estimate-edit_form_6").delay(100).fadeIn(100);
+				} else if ($('.estimate_form-link_8').hasClass('active')) {
+					$('.estimate_form-link_8').removeClass('active');
+					$('.estimate_form-link_7').addClass('active');
+					$("#estimate-edit_form_8").fadeOut(100);
+					$("#estimate-edit_form_7").delay(100).fadeIn(100);
+				} else if ($('.estimate_form-link_9').hasClass('active')) {
+					$('.estimate_form-link_9').removeClass('active');
+					$('.estimate_form-link_8').addClass('active');
+					$("#estimate-edit_form_9").fadeOut(100);
+					$("#estimate-edit_form_8").delay(100).fadeIn(100);
+				}
+			});
+			$('.estimate_form-link_next').click(function() {
+				if ($('.estimate_form-link_1').hasClass('active')){
+					$('.estimate_form-link_1').removeClass('active');
+					$('.estimate_form-link_2').addClass('active');
+					$("#estimate-edit_form_1").fadeOut(100);
+					$("#estimate-edit_form_2").delay(100).fadeIn(100);
+				} else if ($('.estimate_form-link_2').hasClass('active')) {
+					$('.estimate_form-link_2').removeClass('active');
+					$('.estimate_form-link_3').addClass('active');
+					$("#estimate-edit_form_2").fadeOut(100);
+					$("#estimate-edit_form_3").delay(100).fadeIn(100);
+				} else if ($('.estimate_form-link_3').hasClass('active')) {
+					$('.estimate_form-link_3').removeClass('active');
+					$('.estimate_form-link_4').addClass('active');
+					$("#estimate-edit_form_3").fadeOut(100);
+					$("#estimate-edit_form_4").delay(100).fadeIn(100);
+				} else if ($('.estimate_form-link_4').hasClass('active')) {
+					$('.estimate_form-link_4').removeClass('active');
+					$('.estimate_form-link_5').addClass('active');
+					$("#estimate-edit_form_4").fadeOut(100);
+					$("#estimate-edit_form_5").delay(100).fadeIn(100);
+				} else if ($('.estimate_form-link_5').hasClass('active')) {
+					$('.estimate_form-link_5').removeClass('active');
+					$('.estimate_form-link_6').addClass('active');
+					$("#estimate-edit_form_5").fadeOut(100);
+					$("#estimate-edit_form_6").delay(100).fadeIn(100);
+				} else if ($('.estimate_form-link_6').hasClass('active')) {
+					$('.estimate_form-link_6').removeClass('active');
+					$('.estimate_form-link_7').addClass('active');
+					$("#estimate-edit_form_6").fadeOut(100);
+					$("#estimate-edit_form_7").delay(100).fadeIn(100);
+				} else if ($('.estimate_form-link_7').hasClass('active')) {
+					$('.estimate_form-link_7').removeClass('active');
+					$('.estimate_form-link_8').addClass('active');
+					$("#estimate-edit_form_7").fadeOut(100);
+					$("#estimate-edit_form_8").delay(100).fadeIn(100);
+				} else if ($('.estimate_form-link_8').hasClass('active')) {
+					$('.estimate_form-link_8').removeClass('active');
+					$('.estimate_form-link_9').addClass('active');
+					$("#estimate-edit_form_8").fadeOut(100);
+					$("#estimate-edit_form_9").delay(100).fadeIn(100);
+				}
 			});
 		});
 	</script>
