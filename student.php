@@ -24,7 +24,7 @@
 				<div class="row site_content-filter">
 					<form action="#" class="form-inline" role="form" method="post" data-toggle="validator" id="student-filter_form">
 						<fieldset class="fieldset-form">
-							<legend class="legend-form">ข้อมูลนักเรียน</legend>
+							<legend class="legend-form">รายชื่อนักเรียน</legend>
 							<div class="col-md-9">
 								<div class="form-group">
 									<label for="filter-keyword" class="sr-only">Keyword</label>
@@ -33,7 +33,7 @@
 								<div class="form-group">
 									<label for="filter-class" class="sr-only"></label>
 									<select name="filter-class" id="filter-class" class="form-control" required>
-										<option value="0">ระดับการศึกษา</option>
+										<option value="" disabled selected>ระดับการศึกษา</option>
 										<option value="-1">อนุบาลปีที่ 1</option>
 										<option value="-2">อนุบาลปีที่ 2</option>
 										<option value="-3">อนุบาลปีที่ 3</option>
@@ -47,13 +47,13 @@
 								</div>
 								<div class="form-group">
 									<label for="filter-year" class="sr-only"></label>
-									<input type="number" data-errors="กรุณาระบุปีการศึกษาที่ต้องการดูข้อมูล" placeholder="ปีการศึกษา" id="filter-year" class="form-control" required>
+									<input type="number" placeholder="ปีการศึกษา" id="filter-year" class="form-control" required>
 								</div>
 								<div class="form-group">
 									<input type="submit" class="btn btn-primary" name="filterBtn" id="filterBtn" tabindex="1" value="ค้นหา">
 								</div>
 								<div class="form-group">
-									<input type="submit" class="btn btn-primary" name="filterAllBtn" id="filterAllBtn" tabindex="1" value="เลือกทั้งหมด">
+									<a href="" class="btn btn-primary" name="filterAllBtn" id="filterAllBtn" tabindex="1" value="เลือกทั้งหมด">เลือกทั้งหมด</a>
 								</div>
 								<div class="form-group">
 									<input type="reset"	class="btn btn-danger" name="resetBtn" id="resetBtn" tabindex="1" value="ล้างข้อมูล">
