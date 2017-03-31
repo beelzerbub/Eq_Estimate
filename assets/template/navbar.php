@@ -26,6 +26,7 @@
 					<ul class="dropdown-menu">
 						<li><a href="user.php">จัดการข้อมูลผู้ใช้</a></li>
 						<li><a href="student.php">จัดการข้อมูลนักเรียน</a></li>
+						<li><a href="teacher.php">จัดการข้อมูลครูประจำชั้น</a></li>
 						<!--<li><a href="#">ดูผลการประเมิน</a></li>-->
 					</ul>
 				</li>
