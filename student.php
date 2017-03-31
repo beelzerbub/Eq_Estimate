@@ -24,7 +24,7 @@
 				<div class="row site_content-filter">
 					<form action="#" class="form-inline" role="form" method="post" data-toggle="validator" id="student-filter_form">
 						<fieldset class="fieldset-form">
-							<legend class="legend-form">รายชื่อนักเรียน</legend>
+							<legend class="legend-form">ค้นหาข้อมูลนักเรียน</legend>
 							<div class="col-md-9">
 								<div class="form-group">
 									<label for="filter-keyword" class="sr-only">Keyword</label>

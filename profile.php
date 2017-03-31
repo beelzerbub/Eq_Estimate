@@ -26,7 +26,7 @@
 						<legend>การตั้งค่าบัญชี</legend>
 						<div class="row">
 							<div class="form-group">
-								<div class="col-md-4 profile-form_header">ชื่อผู้ใช้</div>
+								<div class="col-md-4 profile-form_header">ค้นหาข้อมูลผู้ใช้</div>
 								<div class="col-md-8 profile-form_input">
 									<input type="text" name="reg_username" id="reg_username" tabindex="1" class="form-control" placeholder="ชื่อผู้ใช้" pattern="[A-z0-9]{1,}$" data-minlength="8" maxlength="20" value="" required>
 									<span class="help-block small">
