@@ -25,6 +25,11 @@ include_once("assets/service/login.php");
 			?>
 		</div>
 		<div class="row site_content">
+			<div class="col-md-12">
+				<div class="row site_content-notice">
+					
+				</div>
+			</div>
 			<p>Content of index for this website</p>
 		</div>
 		<div class="row site_footer">
