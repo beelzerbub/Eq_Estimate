@@ -1,3 +1,10 @@
+<?php
+include_once("assets/database/connect.php");
+include_once("assets/service/user.php");
+if ($_SESSION["username"]) {
+	$user = get_user($_SESSION["username"]);
+}
+?>
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -26,9 +33,13 @@
 						<legend>การตั้งค่าบัญชี</legend>
 						<div class="row">
 							<div class="form-group">
-								<div class="col-md-4 profile-form_header">ค้นหาข้อมูลผู้ใช้</div>
+								<div class="col-md-4 profile-form_header">ชื่อผู้ใช้</div>
 								<div class="col-md-8 profile-form_input">
-									<input type="text" name="reg_username" id="reg_username" tabindex="1" class="form-control" placeholder="ชื่อผู้ใช้" pattern="[A-z0-9]{1,}$" data-minlength="8" maxlength="20" value="" required>
+									<input type="text" name="reg_username" id="reg_username" tabindex="1" class="form-control" placeholder="ชื่อผู้ใช้" pattern="[A-z0-9]{1,}$" data-minlength="8" maxlength="20" value="<?php 
+									if ($_SESSION['username']) {
+										echo $_SESSION['username'];
+									}
+									?>" required>
 									<span class="help-block small">
 										<ul>
 											<li>ความยาว 8-20 อักขระ</li>

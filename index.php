@@ -1,3 +1,7 @@
+<?php
+include_once("assets/database/connect.php");
+include_once("assets/service/login.php");
+?>
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -8,6 +12,7 @@
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
 	<link rel="stylesheet" href="css/assets/style.css">
+	<link rel="icon" href="data:;base64,iVBORwOKGO=" />
 </head>
 <body>
 	<div class="container">

@@ -62,12 +62,6 @@ LAYOUTS
 	width: auto;
 }
 
-/**
-CONTENT
----------------------------------------------
-|NOTE: Font Color / Font / Background Color. |
----------------------------------------------
-*/
 .site_navbar>.navbar {
 	border-color: #ccc;
 	-webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
@@ -271,4 +265,8 @@ legend.legend-form {
 
 .show_score {
 	padding-top: 5px;
+}
+
+#profile-form .profile-form_header {
+	padding-top: 6px;
 }
