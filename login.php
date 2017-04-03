@@ -39,6 +39,8 @@ include_once("assets/service/login.php");
 						</button>
 					</div>
 					<?php
+				} else if (!empty($_GET["action"])) {
+					include_once("assets/template/notice.php");
 				}
 				?>
 				<div class="panel panel-default panel-login">
