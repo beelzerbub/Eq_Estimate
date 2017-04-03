@@ -43,6 +43,9 @@ if ($_POST["loginBtn"]) {
 	$username	=	$_POST["username"];
 	$password 	= 	$_POST["password"];
 	authorization($username, $password);
+} else if ($_POST["forgotBtn"]) {
+	$email 		=	$_POST["forgot_email"];
+	forgot_password($email);
 }
 
 
@@ -53,8 +56,8 @@ if ($_POST["loginBtn"]) {
 ////-----------------------------------------------//
 function authorization($username, $password) {
 	$sql = "SELECT * from user WHERE username = '".$username."' AND password = '".$password."'";
-	if (mysql_query($sql)or die(mysql_error())) {
-		$results = mysql_query($sql)or die(mysql_error());
+	$results = mysql_query($sql)or die(mysql_error());
+	if (mysql_num_rows($results) > 0) {
 		while ($result = mysql_fetch_array($results)) {
 			$_SESSION["username"] 	= 	$result["username"];
 			$_SESSION["user_name"] 	= 	$result["user_name"];
@@ -65,19 +68,26 @@ function authorization($username, $password) {
 		<?php
 	} else {
 		?>
-		<meta http-equiv="refresh" content="0; url=\project2\index.php?action=login_fail">
+		<meta http-equiv="refresh" content="0; url=\project2\login.php?action=login_fail">
 		<?php
 	}
 	?>
 	<?php
 }
 
-function forgot_password() {
-
-}
-
-function logout() {
-
+function forgot_password($email) {
+	$sql = "SELECT * FROM user WHERE user_email = '".$email."'";
+	$result = mysql_query($sql)or die(mysql_error());
+	if (mysql_num_rows($result) > 0) {
+		$sql = str_replace("'", "`",$sql);
+		?>
+		<meta http-equiv='refresh' content='0;url=/project2/login.php?result=<?php echo $sql; ?>'>
+		<?php
+	} else {
+		?>
+		<meta http-equiv='refresh' content='0;url=/project2/login.php?action=forgot_fail'>
+		<?php
+	}
 }
 
 
