@@ -54,5 +54,7 @@ if ($action ==  "forgot_fail") {
 		</button>
 	</div>
 	<?php
+} else if ($action == "update_success") {
+	
 }
 ?>
