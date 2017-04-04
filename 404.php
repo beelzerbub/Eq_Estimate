@@ -1,10 +1,6 @@
 <?php
 include_once("assets/database/connect.php");
 include_once("assets/service/login.php");
-if ($_SESSION["user_role"] == -99) {
-	session_destroy();
-	header("location:404.php");
-}
 ?>
 <!DOCTYPE html>
 <html lang="th">
@@ -29,14 +25,9 @@ if ($_SESSION["user_role"] == -99) {
 			?>
 		</div>
 		<div class="row site_content">
-			<div class="col-md-12">
-				<div class="row site_content-notice">
-					<?php
-					include_once("assets/template/notice.php");
-					?>
-				</div>
+			<div class="alert alert-danger" role="alert">
+				<h1><p class="text-center">คุณไม่ได้รับอนุญาติให้ใช้งานในส่วนนี้</p></h1>
 			</div>
-			<p>Content of index for this website</p>
 		</div>
 		<div class="row site_footer">
 			<hr>
