@@ -1,3 +1,10 @@
+<?php
+include_once("assets/database/connect.php");
+include_once("assets/service/teacher.php");
+if ($_SESSION["user_role"] < 8) {
+	header("location:404.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -21,6 +28,11 @@
 		</div>
 		<div class="row site_content">
 			<div class="col-md-12">
+				<div class="row site_content-notice">
+					<?php
+					include_once("assets/template/notice.php");
+					?>
+				</div>
 				<div class="row site_content-filter">
 					<form action="#" class="form-inline" role="form" method="post" data-toggle="validator" id="teacher-filter_form">
 						<fieldset class="fieldset-form">
