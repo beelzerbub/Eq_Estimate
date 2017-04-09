@@ -155,6 +155,15 @@ legend.legend-form {
 	width: 205px;
 }
 
+#filter-year {
+	width: 130px;
+}
+
+#teacher-table>tbody>tr td,
+#user-table>tbody>tr td{
+	vertical-align:middle; 
+}
+
 .btn-register:hover,
 .btn-register:focus {
 	color: #fff;

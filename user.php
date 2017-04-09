@@ -46,7 +46,7 @@ if ($_SESSION["user_role"] < 8) {
 									<input type="submit" class="btn btn-primary" name="filterBtn" id="filterBtn" value="ค้นหา">
 								</div>
 								<div class="form-group">
-									<a href="user.php" class="btn btn-primary">ค้นหาทั้งหมด</a>
+									<a href="user.php" class="btn btn-primary" name="filterAllBtn" id="filterAllBtn" tabindex="1" value="เลือกทั้งหมด">เลือกทั้งหมด</a>
 								</div>
 								<div class="form-group">
 									<input type="reset" class="btn btn-danger" name="resetBtn" id="resetBtn" value="ล้างข้อมูล">
@@ -242,7 +242,7 @@ if ($_SESSION["user_role"] < 8) {
 								if (empty($_GET["action"])) {
 									$filter = mysql_query("SELECT * FROM user")or die(mysql_error());
 								} else {
-									$filter = mysql_query(get_users($_GET["action"]))or die(mysql_error());
+									$filter = mysql_query(get_users_with_action($_GET["action"]))or die(mysql_error());
 								}
 							} else {
 								$filters = str_replace("`","'",$_GET["filter"]);

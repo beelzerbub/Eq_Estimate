@@ -62,7 +62,7 @@ if ($_GET["action"] == "delete") {
 ////------------------------------------------------- 
 ////------------ Function Login ---------------------
 ////-----------------------------------------------//
-function get_users($action) {
+function get_users_with_action($action) {
 	$sql = "SELECT * FROM user";
 	?>
 	<meta http-equiv='refresh' content='0;url=/project2/user.php?filter=<?php echo $sql; ?>&action=<?php echo $action; ?>'>
@@ -70,7 +70,10 @@ function get_users($action) {
 }
 
 function get_user($keyword) {
-	$sql = "SELECT * FROM user WHERE username LIKE `%".$keyword."%` OR  user_name LIKE `%".$keyword."%` OR user_email LIKE `%".$keyword."%`";
+	$sql =  "SELECT * FROM user WHERE username = `$keyword`";
+	$sql .= " OR user_name = `$keyword`";
+	$sql .= " OR user_surname = `$keyword`";
+	$sql .= " OR user_email = `$keyword`";
 	?>
 	<meta http-equiv='refresh' content='0;url=/project2/user.php?filter=<?php echo $sql; ?>'>
 	<?php
@@ -87,7 +90,7 @@ function get_user_type ($username) {
 }
 
 function insert_user($username, $password, $email, $name, $surname, $role) {
-	$sql = "INSERT INTO user VALUES('','".$username."','".$password."','".$email."','".$name."','".$surname."'";
+	$sql = "INSERT INTO user VALUES('','$username','$password','$email','$name','$surname'";
 	if ($role == 1) {
 		$sql .= ",2)";
 	} else if ($role ==2 ){
@@ -100,7 +103,9 @@ function insert_user($username, $password, $email, $name, $surname, $role) {
 }
 
 function delete_user($username) {
-	$find = "SELECT * FROM assessor join user WHERE user.user_name = assessor.As_name AND user.username = '".$username."'";
+	$find =  "SELECT * FROM assessor join user ";
+	$find .= "WHERE user.user_name = assessor.As_name ";
+	$find .= "AND user.username = '$username'";
 	$query = mysql_query($find)or die(mysql_error());
 	if (mysql_num_rows($query) > 0) {
 		$sql = "UPDATE user SET user_role = -99 WHERE user.username = '".$username."'";
