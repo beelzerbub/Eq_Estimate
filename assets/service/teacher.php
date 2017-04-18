@@ -82,7 +82,6 @@ function insert_teacher($name, $surname, $grade, $room) {
 	$query2 = mysql_query($sql2)or die(mysql_error());
 	$fetch2 = mysql_fetch_object($query2)or die(mysql_error());
 
-	
 
 	echo $sql3;
 }
