@@ -143,6 +143,24 @@ if ($_SESSION["user_role"] < 8) {
 													<div class="help-block with-errors"></div>
 												</div>
 											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="Inputyear">ปีการศึกษา</label>
+													<input type="number" id="year_reg" name="year_reg" placeholder="25XX" class="form-control" required data-error="กรุณาระบุปีการศึกษา">
+													<div class="help-block with-errors"></div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="InputTerm">ภาคเรียน</label>
+													<select name="term_reg" id="term_reg" class="form-control" required>
+														<option value="" disabled selected>กรุณาเลือก</option>
+														<option value="1">1</option>
+														<option value="2">2</option>
+														<option value="3">3</option>
+													</select>
+												</div>
+											</div>
 										</div>
 										<div class="row">
 											<div class="col-md-4 col-md-offset-4">

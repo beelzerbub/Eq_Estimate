@@ -42,11 +42,13 @@ $year = date('Y') + 543;
 if ($_GET["action"] == "delete") {
 
 } else if ($_POST["AddTeacherBtn"]) {
-	$name = $_POST["teacher_name"];
-	$surname = $_POST["teacher_surname"];
-	$grade = $_POST["classroom"];
-	$classroom = $_POST["classroom_number"];
-	insert_teacher($name, $surname, $grade, $classroom);
+	$name 		= $_POST["teacher_name"];
+	$surname 	= $_POST["teacher_surname"];
+	$grade 		= $_POST["classroom"];
+	$classroom 	= $_POST["classroom_number"];
+	$year_reg 	= $_POST["year_reg"];
+	$term_reg 	= $_POST["term_reg"];
+	insert_teacher($name, $surname, $grade, $classroom, $year_reg, $term_reg);
 }
 
 
@@ -74,16 +76,38 @@ function get_teacher_room_init($t_id, $year) {
 	return $fetch->class_grade.'/'.$fetch->class_number;
 }
 
-function insert_teacher($name, $surname, $grade, $room) {
-	$sql = "INSERT INTO teacher('','$name','$surname',0)";
-	$query = mysql_query($sql)or die(mysql_error());
+function insert_teacher($name, $surname, $grade, $room, $year_reg, $term_reg) {
+	//check duplicate insert data
+	$presql = "SELECT * FROM teacher 
+	JOIN work_time 
+	WHERE teacher.t_name 	= '$name' 
+	AND teacher.t_surname 	= '$surname' 
+	AND work_time.wt_year 	= $year_reg
+	AND work_time.wt_term 	= $term_reg
+	AND teacher.t_id 		= work_time.t_id";
+	$prequery = mysql_query($presql)or die(mysql_error());
 
-	$sql2 = "SELECT * FROM classroom WHERE class_grade = '$grade' AND class_number = $room";
-	$query2 = mysql_query($sql2)or die(mysql_error());
-	$fetch2 = mysql_fetch_object($query2)or die(mysql_error());
+	//None Dubplicate
+	if (mysql_num_rows($prequery) > 0 ) {
 
+	} else {
+		echo "None Dubplicate <br>";
+		$sql1 = "INSERT INTO teacher VALUES ('','$name','$surname',0)";
+		//$query1 = mysql_query($sql1)or die(mysql_error());
 
-	echo $sql3;
+		$sql2 = "SELECT * FROM classroom WHERE class_grade = '$grade' AND class_number = $room";
+		$query2 = mysql_query($sql2)or die(mysql_error());
+		
+		$sql3 = "SELECT * FROM teacher JOIN work_time WHERE teacher.t_name 	= '$name' AND teacher.t_surname 	= '$surname' AND work_time.wt_year 	= year_reg AND work_time.wt_term	= term_reg;";
+		
+		$fetch2 = mysql_fetch_object($query2)or die(mysql_error());
+
+	//header("location:../../teacher.php?action=insert_success");
+	}
+}
+
+function delete_teacher($id) {
+	
 }
 
 ?>
