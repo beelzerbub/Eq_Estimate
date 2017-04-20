@@ -160,8 +160,8 @@ legend.legend-form {
 }
 
 #teacher-table>tbody>tr td,
-#user-table>tbody>tr td{
-	vertical-align:middle; 
+#user-table>tbody>tr td {
+	vertical-align: middle;
 }
 
 .btn-register:hover,

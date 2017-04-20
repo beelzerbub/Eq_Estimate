@@ -41,12 +41,12 @@
 										<option value="5">อนุบาลปีที่ 2/2</option>
 										<option value="6">อนุบาลปีที่ 3/1</option>
 										<option value="7">อนุบาลปีที่ 3/2</option>
-										<option value="8">ประถมศึกษาปีที่ 1/1</option>
-										<option value="9">ประถมศึกษาปีที่ 2/1</option>
-										<option value="10">ประถมศึกษาปีที่ 3/1</option>
-										<option value="11">ประถมศึกษาปีที่ 4/1</option>
-										<option value="12">ประถมศึกษาปีที่ 5/1</option>
-										<option value="13">ประถมศึกษาปีที่ 6/1</option>
+										<option value="8">ประถมศึกษาปีที่ 1</option>
+										<option value="9">ประถมศึกษาปีที่ 2</option>
+										<option value="10">ประถมศึกษาปีที่ 3</option>
+										<option value="11">ประถมศึกษาปีที่ 4</option>
+										<option value="12">ประถมศึกษาปีที่ 5</option>
+										<option value="13">ประถมศึกษาปีที่ 6</option>
 									</select>
 								</div>
 								<div class="form-group">
@@ -137,15 +137,19 @@
 													<label for="InputClassRoom">ระดับชั้น</label>
 													<select name="classroom" id="classroom" class="form-control" required>
 														<option value="" disabled selected>กรุณาเลือก</option>
-														<option value="-1">ชั้นอนุบาลปีที่ 1</option>
-														<option value="-2">ชั้นอนุบาลปีที่ 2</option>
-														<option value="-3">ชั้นอนุบาลปีที่ 3</option>
-														<option value="1">ชั้นประถมศึกษาปีที่ 1</option>
-														<option value="2">ชั้นประถมศึกษาปีที่ 2</option>
-														<option value="3">ชั้นประถมศึกษาปีที่ 3</option>
-														<option value="4">ชั้นประถมศึกษาปีที่ 4</option>
-														<option value="5">ชั้นประถมศึกษาปีที่ 5</option>
-														<option value="6">ชั้นประถมศึกษาปีที่ 6</option>
+														<option value="1">ชั้นอนุบาลปีที่ 1/1</option>
+														<option value="2">ชั้นอนุบาลปีที่ 1/2</option>
+														<option value="3">ชั้นอนุบาลปีที่ 1/3</option>
+														<option value="4">ชั้นอนุบาลปีที่ 2/1</option>
+														<option value="5">ชั้นอนุบาลปีที่ 2/2</option>
+														<option value="6">ชั้นอนุบาลปีที่ 3/1</option>
+														<option value="7">ชั้นอนุบาลปีที่ 3/2</option>
+														<option value="8">ชั้นประถมศึกษาปีที่ 1</option>
+														<option value="9">ชั้นประถมศึกษาปีที่ 2</option>
+														<option value="10">ชั้นประถมศึกษาปีที่ 3</option>
+														<option value="11">ชั้นประถมศึกษาปีที่ 4</option>
+														<option value="12">ชั้นประถมศึกษาปีที่ 5</option>
+														<option value="13">ชั้นประถมศึกษาปีที่ 6</option>
 													</select>
 												</div>
 											</div>

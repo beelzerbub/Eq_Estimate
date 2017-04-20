@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 05, 2017 at 01:02 AM
+-- Generation Time: Apr 21, 2017 at 05:33 AM
 -- Server version: 5.7.17-log
 -- PHP Version: 5.6.30
 
@@ -52,15 +52,15 @@ INSERT INTO `assessor` (`As_id`, `As_name`, `As_surname`, `As_type`, `User_id`) 
 CREATE TABLE `classroom` (
   `class_id` int(4) NOT NULL,
   `class_grade` varchar(20) COLLATE utf32_unicode_ci NOT NULL COMMENT 'ระดับชั้น',
-  `Class_number` int(2) NOT NULL COMMENT 'เลขที่ห้อง',
-  `Class_status` int(1) NOT NULL COMMENT 'สถานะห้องเรียน'
+  `class_number` int(2) NOT NULL COMMENT 'เลขที่ห้อง',
+  `class_status` int(1) NOT NULL COMMENT 'สถานะห้องเรียน'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci COMMENT='ห้องเรียน';
 
 --
 -- Dumping data for table `classroom`
 --
 
-INSERT INTO `classroom` (`class_id`, `class_grade`, `Class_number`, `Class_status`) VALUES
+INSERT INTO `classroom` (`class_id`, `class_grade`, `class_number`, `class_status`) VALUES
 (1, 'อนุบาลปีที่ 1', 1, 1),
 (2, 'อนุบาลปีที่ 1', 2, 1),
 (3, 'อนุบาลปีที่ 1', 3, 1),
@@ -181,7 +181,30 @@ INSERT INTO `student` (`Std_no`, `Std_id`, `Std_name`, `Std_surname`, `Std_age`,
 (24, '1250101858481', 'เอวีเนีย', 'ปรุงจิตร์', 3, 1),
 (25, '1250101861121', 'กมลทิพย์', 'พิสุทธิ์เสรีวงศ์', 3, 1),
 (26, '1139400082751', 'ปันสุข', 'พรประสิทธิ์', 3, 1),
-(27, '1250101858881', 'นดล', 'ภู่ประสม', 3, 2);
+(27, '1250101858881', 'นดล', 'ภู่ประสม', 3, 2),
+(28, 'Std_id', 'Std_name', 'Std_surname', 0, 0),
+(29, '1250101817572', '???¹????', '⪵??آ', 3, 2),
+(30, '1104200587593', '?ê??', '????', 3, 1),
+(31, 'Std_id', 'Std_name', 'Std_surname', 0, 0),
+(32, '1250101817572', '???¹????', '⪵??آ', 3, 2),
+(33, '1104200587593', '?ê??', '????', 3, 1),
+(34, 'Std_id', 'Std_name', 'Std_surname', 0, 0),
+(35, '1250101817572', '???¹????', '⪵??آ', 3, 2),
+(36, '1104200587593', '?ê??', '????', 3, 1),
+(37, 'Std_id', 'Std_name', 'Std_surname', 0, 0),
+(38, '1250101817572', '???¹????', '⪵??آ', 3, 2),
+(39, '1104200587593', '?ê??', '????', 3, 1),
+(40, 'Std_id', 'Std_name', 'Std_surname', 0, 0),
+(41, '1250101817572', '???¹????', '⪵??آ', 3, 2),
+(42, '1104200587593', '?ê??', '????', 3, 1),
+(43, 'Std_id', 'Std_name', 'Std_surname', 0, 0),
+(44, '1250101817572', '???¹????', '⪵??آ', 3, 2),
+(45, '1104200587593', '?ê??', '????', 3, 1),
+(46, 'Std_id', 'Std_name', 'Std_surname', 0, 0),
+(47, '1.2501E+12', '???¹????', '⪵??آ', 3, 2),
+(48, '1.1042E+12', '?ê??', '????', 3, 1),
+(49, '1.2501E+12', '???¹????', '⪵??آ', 3, 2),
+(50, '1.1042E+12', '?ê??', '????', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -190,29 +213,34 @@ INSERT INTO `student` (`Std_no`, `Std_id`, `Std_name`, `Std_surname`, `Std_age`,
 --
 
 CREATE TABLE `teacher` (
-  `T_id` int(4) NOT NULL,
-  `T_name` varchar(50) COLLATE utf32_unicode_ci DEFAULT NULL,
-  `T_surname` varchar(50) COLLATE utf32_unicode_ci DEFAULT NULL
+  `t_id` int(4) NOT NULL,
+  `t_name` varchar(50) COLLATE utf32_unicode_ci DEFAULT NULL,
+  `t_surname` varchar(50) COLLATE utf32_unicode_ci DEFAULT NULL,
+  `t_status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci COMMENT='ครูประจำชั้น';
 
 --
 -- Dumping data for table `teacher`
 --
 
-INSERT INTO `teacher` (`T_id`, `T_name`, `T_surname`) VALUES
-(1, 'มยุรี', 'กตะศิลา'),
-(2, 'รำพึง', 'สุขช่วย'),
-(3, 'วันเพ็ญ', 'รังสิกุล'),
-(4, 'ชุติมา', 'รัตนนท์'),
-(5, 'วราภรณ์', 'ตันญบุตร'),
-(6, 'มินตรา', 'ทองกรณ์'),
-(7, 'พัชนี', 'พลเผือก'),
-(8, 'สุภาวดี', 'บุญพูล'),
-(9, 'อภิญญา ', 'ภูคะสินธ์'),
-(10, 'ณัทอร', 'ผิดพันธ์'),
-(11, 'สังวาลย์', 'เหมือนกรุด'),
-(12, 'พูลทรัพย์', 'คนขยัน'),
-(13, 'ชลชนก', 'สุทธิอาคาร');
+INSERT INTO `teacher` (`t_id`, `t_name`, `t_surname`, `t_status`) VALUES
+(1, 'มยุรี', 'กตะศิลา', 0),
+(2, 'รำพึง', 'สุขช่วย', 0),
+(3, 'วันเพ็ญ', 'รังสิกุล', 0),
+(4, 'ชุติมา', 'รัตนนท์', 0),
+(5, 'วราภรณ์', 'ตันญบุตร', 0),
+(6, 'มินตรา', 'ทองกรณ์', 0),
+(7, 'พัชนี', 'พลเผือก', 0),
+(8, 'สุภาวดี', 'บุญพูล', 0),
+(9, 'อภิญญา ', 'ภูคะสินธ์', 0),
+(10, 'ณัทอร', 'ผิดพันธ์', 0),
+(11, 'สังวาลย์', 'เหมือนกรุด', 0),
+(12, 'พูลทรัพย์', 'คนขยัน', 0),
+(13, 'ชลชนก', 'สุทธิอาคาร', 0),
+(14, 'รัชกาล', 'ประภานนท์', 0),
+(15, 'รัชกาล', 'ประภานนท์', 0),
+(16, 'รัชกาล', 'ประภานนท์', 0),
+(17, 'รัชกาล', 'ประภานนท์', 0);
 
 -- --------------------------------------------------------
 
@@ -257,7 +285,34 @@ INSERT INTO `term` (`Term_id`, `Term_year`, `Class_id`, `Std_id`) VALUES
 (24, 2560, 1, '1250101858481'),
 (25, 2560, 1, '1250101861121'),
 (26, 2560, 1, '1139400082751'),
-(27, 2560, 1, '1250101858881');
+(27, 2560, 1, '1250101858881'),
+(28, 0, 0, 'Std_id'),
+(29, 2560, 1, '1250101843115'),
+(30, 2560, 1, '1103400244969'),
+(31, 2560, 1, '1250101833241'),
+(32, 2560, 1, '1250101856136'),
+(33, 2560, 1, '1250101840043'),
+(34, 2560, 1, '1250101840906'),
+(35, 2560, 1, '1250101855911'),
+(36, 2560, 1, '1259900105393'),
+(37, 2560, 1, '1250101828051'),
+(38, 2560, 1, '1250101830692'),
+(39, 2560, 1, '1250101854826'),
+(40, 2560, 1, '1250101857116'),
+(41, 2560, 1, '1250101828116'),
+(42, 2560, 1, '1250101839037'),
+(43, 2560, 1, '1469900966087'),
+(44, 2560, 1, '1250101837417'),
+(45, 2560, 1, '1250101846998'),
+(46, 2560, 1, '1260401261758'),
+(47, 2560, 1, '1103400273616'),
+(48, 2560, 1, '1104700257056'),
+(49, 2560, 1, '1101000446287'),
+(50, 2560, 1, '1101000446279'),
+(51, 2560, 1, '1250101858481'),
+(52, 2560, 1, '1250101861121'),
+(53, 2560, 1, '1139400082751'),
+(54, 2560, 1, '1250101858881');
 
 -- --------------------------------------------------------
 
@@ -280,8 +335,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `username`, `password`, `user_email`, `user_name`, `user_surname`, `user_role`) VALUES
-(1, 'beelzerbub', 'gCrktdb0hsm', 'beelzerbub@hotmail.com', 'Ratchakran', 'Prapanon', 1),
-(5, 'asdasdasd', 'asdasdas', 'asdasd@hotmail.com', 'asdasd', 'asdasd', 2);
+(1, 'beelzerbub', 'gCrktdb0hsm', 'beelzerbub@hotmail.com', 'Ratchakran', 'Prapanon', 8),
+(5, 'asdasdasd', 'asdasdas', 'asdasd@hotmail.com', 'asdasd', 'asdasd', 1);
 
 -- --------------------------------------------------------
 
@@ -293,15 +348,15 @@ CREATE TABLE `work_time` (
   `wt_id` int(10) NOT NULL,
   `wt_year` int(11) NOT NULL,
   `wt_term` int(1) NOT NULL,
-  `T_id` int(4) NOT NULL,
-  `Class_id` int(4) NOT NULL
+  `t_id` int(4) NOT NULL,
+  `class_id` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
 
 --
 -- Dumping data for table `work_time`
 --
 
-INSERT INTO `work_time` (`wt_id`, `wt_year`, `wt_term`, `T_id`, `Class_id`) VALUES
+INSERT INTO `work_time` (`wt_id`, `wt_year`, `wt_term`, `t_id`, `class_id`) VALUES
 (1, 2559, 2, 1, 1),
 (2, 2559, 2, 2, 2),
 (3, 2559, 2, 3, 3),
@@ -360,7 +415,7 @@ ALTER TABLE `student`
 -- Indexes for table `teacher`
 --
 ALTER TABLE `teacher`
-  ADD PRIMARY KEY (`T_id`);
+  ADD PRIMARY KEY (`t_id`);
 
 --
 -- Indexes for table `term`
@@ -413,22 +468,22 @@ ALTER TABLE `score_group`
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `Std_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `Std_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 --
 -- AUTO_INCREMENT for table `teacher`
 --
 ALTER TABLE `teacher`
-  MODIFY `T_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `t_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `term`
 --
 ALTER TABLE `term`
-  MODIFY `Term_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `Term_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `user_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `work_time`
 --

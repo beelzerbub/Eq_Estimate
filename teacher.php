@@ -28,11 +28,6 @@ if ($_SESSION["user_role"] < 8) {
 		</div>
 		<div class="row site_content">
 			<div class="col-md-12">
-				<div class="row site_content-notice">
-					<?php
-					include_once("assets/template/notice.php");
-					?>
-				</div>
 				<div class="row site_content-filter">
 					<form action="#" class="form-inline" role="form" method="post" data-toggle="validator" id="teacher-filter_form">
 						<fieldset class="fieldset-form">
@@ -45,7 +40,7 @@ if ($_SESSION["user_role"] < 8) {
 								<div class="form-group">
 									<label for="filter-class" class="sr-only"></label>
 									<select name="filter-class" id="filter-class" class="form-control" required>
-										<option value="" disabled selected>ห้องเรียนที่สอน</option>
+										<option value="" disabled selected>ระดับการศึกษา</option>
 										<option value="1">อนุบาลปีที่ 1/1</option>
 										<option value="2">อนุบาลปีที่ 1/2</option>
 										<option value="3">อนุบาลปีที่ 1/3</option>
@@ -53,12 +48,12 @@ if ($_SESSION["user_role"] < 8) {
 										<option value="5">อนุบาลปีที่ 2/2</option>
 										<option value="6">อนุบาลปีที่ 3/1</option>
 										<option value="7">อนุบาลปีที่ 3/2</option>
-										<option value="8">ประถมศึกษาปีที่ 1/1</option>
-										<option value="9">ประถมศึกษาปีที่ 2/1</option>
-										<option value="10">ประถมศึกษาปีที่ 3/1</option>
-										<option value="11">ประถมศึกษาปีที่ 4/1</option>
-										<option value="12">ประถมศึกษาปีที่ 5/1</option>
-										<option value="13">ประถมศึกษาปีที่ 6/1</option>
+										<option value="8">ประถมศึกษาปีที่ 1</option>
+										<option value="9">ประถมศึกษาปีที่ 2</option>
+										<option value="10">ประถมศึกษาปีที่ 3</option>
+										<option value="11">ประถมศึกษาปีที่ 4</option>
+										<option value="12">ประถมศึกษาปีที่ 5</option>
+										<option value="13">ประถมศึกษาปีที่ 6</option>
 									</select>
 								</div>
 								<div class="form-group">
@@ -67,17 +62,17 @@ if ($_SESSION["user_role"] < 8) {
 								</div>
 								<div class="form-group">
 									<label for="filter-term" class="sr-only"></label>
-									<select name="filter-term" id="filter-term" class="form-control" required>
-										<option value="" disabled selected>ภาคการเรียน</option>
-										<option value="1">ภาคเรียนที่ 1</option>
-										<option value="2">ภาคเรียนที่ 2</option>
+									<select name="filter-term" id="filter-term" class="form-control">
+										<option value="" disabled selected>ภาคเรียน</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
 									</select>
 								</div>
 								<div class="form-group">
 									<input type="submit" class="btn btn-primary" name="filterBtn" id="filterBtn" tabindex="1" value="ค้นหา">
 								</div>
 								<div class="form-group">
-									<a href="teacher.php" class="btn btn-primary" name="filterAllBtn" id="filterAllBtn" tabindex="1" value="เลือกทั้งหมด">เลือกทั้งหมด</a>
+									<a href="" class="btn btn-primary" name="filterAllBtn" id="filterAllBtn" tabindex="1" value="เลือกทั้งหมด">เลือกทั้งหมด</a>
 								</div>
 								<div class="form-group">
 									<input type="reset"	class="btn btn-danger" name="resetBtn" id="resetBtn" tabindex="1" value="ล้างข้อมูล">
@@ -99,9 +94,9 @@ if ($_SESSION["user_role"] < 8) {
 					<div class="modal fade" id="teacher-insert_box" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
 						<div class="modal-dialog modal-lg" role="document">
 							<div class="modal-content">
-								<form action="assets/service/teacher.php" role="form" method="post" data-toggle="validator" id="teacher-insert_form">
+								<form action="#" role="form" method="post" data-toggle="validator" id="teacher-insert_form">
 									<fieldset class="fieldset-form">
-										<legend class="legend-form"><h1>เพิ่มข้อมูลครูประจำชั้น</h1></legend>
+										<legend class="legend-form"><h1>เพิ่มข้อมูลนักเรียน</h1></legend>
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group">
@@ -124,15 +119,19 @@ if ($_SESSION["user_role"] < 8) {
 													<label for="InputClassRoom">ระดับชั้น</label>
 													<select name="classroom" id="classroom" class="form-control" required>
 														<option value="" disabled selected>กรุณาเลือก</option>
-														<option value="อนุบาลปีที่ 1">ชั้นอนุบาลปีที่ 1</option>
-														<option value="อนุบาลปีที่ 2">ชั้นอนุบาลปีที่ 2</option>
-														<option value="อนุบาลปีที่ 3">ชั้นอนุบาลปีที่ 3</option>
-														<option value="ประถมศึกษาปีที่ 1">ชั้นประถมศึกษาปีที่ 1</option>
-														<option value="ประถมศึกษาปีที่ 2">ชั้นประถมศึกษาปีที่ 2</option>
-														<option value="ประถมศึกษาปีที่ 3">ชั้นประถมศึกษาปีที่ 3</option>
-														<option value="ประถมศึกษาปีที่ 4">ชั้นประถมศึกษาปีที่ 4</option>
-														<option value="ประถมศึกษาปีที่ 5">ชั้นประถมศึกษาปีที่ 5</option>
-														<option value="ประถมศึกษาปีที่ 6">ชั้นประถมศึกษาปีที่ 6</option>
+														<option value="1">ชั้นอนุบาลปีที่ 1/1</option>
+														<option value="2">ชั้นอนุบาลปีที่ 1/2</option>
+														<option value="3">ชั้นอนุบาลปีที่ 1/3</option>
+														<option value="4">ชั้นอนุบาลปีที่ 2/1</option>
+														<option value="5">ชั้นอนุบาลปีที่ 2/2</option>
+														<option value="6">ชั้นอนุบาลปีที่ 3/1</option>
+														<option value="7">ชั้นอนุบาลปีที่ 3/2</option>
+														<option value="8">ชั้นประถมศึกษาปีที่ 1</option>
+														<option value="9">ชั้นประถมศึกษาปีที่ 2</option>
+														<option value="10">ชั้นประถมศึกษาปีที่ 3</option>
+														<option value="11">ชั้นประถมศึกษาปีที่ 4</option>
+														<option value="12">ชั้นประถมศึกษาปีที่ 5</option>
+														<option value="13">ชั้นประถมศึกษาปีที่ 6</option>
 													</select>
 												</div>
 											</div>
@@ -143,10 +142,12 @@ if ($_SESSION["user_role"] < 8) {
 													<div class="help-block with-errors"></div>
 												</div>
 											</div>
+										</div>
+										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group">
-													<label for="Inputyear">ปีการศึกษา</label>
-													<input type="number" id="year_reg" name="year_reg" placeholder="25XX" class="form-control" required data-error="กรุณาระบุปีการศึกษา">
+													<label for="InputYear">ปีการศึกษา</label>
+													<input type="number" class="form-control" name="year_reg" id="year_reg" placeholder="ปีการศึกษา (25xx)" required data-error="กรุณาระบุปีการศึกษา">
 													<div class="help-block with-errors"></div>
 												</div>
 											</div>
@@ -188,53 +189,38 @@ if ($_SESSION["user_role"] < 8) {
 						<tbody>
 							<?php
 							if (empty($_GET["filter"])) {
-								if (empty($_GET["action"])) {
-									$filter = mysql_query("SELECT * FROM teacher")or die(mysql_error());
+								if (date(m) <= 4 || date(m) >= 11) {
+									$year_init = $year-1;
+									$term_init = 2;
 								} else {
+									$year_init = $year;
+									$term_init = 1;
 								}
+								$filter = mysql_query("SELECT * FROM teacher JOIN work_time 
+									WHERE teacher.t_id = work_time.t_id
+									AND work_time.wt_year = $year_init
+									AND work_time.wt_term = $term_init");
+							} else {
+
 							}
 							$counter = 0;
 							if (mysql_num_rows($filter) > 0) {
 								while($result = mysql_fetch_array($filter)) {
 									?>
 									<tr>
-										<td valign="bottom"><?php echo ++$counter; ?></td>
-										<td>คุณครู <?php echo $result["t_name"]; ?> <?php echo $result["t_surname"]; ?></td>
-										<td>
-											<?php echo get_teacher_room_init($result["t_id"], $year); ?>
-										</td>
-										<td>
-											<?php 
-											if (date(m) <= 4 || date(m) >= 11) {
-												echo "2/";
-												echo $year-1;
-											} else {
-												echo "1/";
-												echo $year;
-											}
-											?>
-										</td>
+										<td valign="middle"><?php echo ++$counter; ?></td>
+										<td>คุณครู <?php echo $result["t_name"]." ".$result["t_surname"]; ?></td>
+										<td><?php echo get_teacher_room_init($result["t_id"], $year); ?></td>
+										<td><?php echo $result["wt_term"]."/".$result["wt_year"];?></td>
 										<td>
 											<p class="text-center">
-												<a href="#" class="btn btn-primary" id="teacher_edit-link">แก้ไข</a>
+												<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#edit_user-box" id="user_edit-link">แก้ไข</a>
 											</p>
 										</td>
 										<td>
-											<?php 
-											if ($result["user_role"] == 0) {
-												?>
-												<p class="text-center">
-													<a href="assets/service/user.php?action=delete&user=<?php echo $result["username"]; ?>" class="btn btn-primary" onClick="return confirm('ต้องการลบผู้ใช้ <?php echo $result["username"]; ?> จริงหรือไม่?')" id="user_delete-link">ลบ</a>
-												</p>
-												<?php
-											} else {
-												?>
-												<p class="text-center">
-													<a href="assets/service/user.php?action=rollback&user=<?php echo $result["username"]; ?>" class="btn btn-primary" onClick="return confirm('ต้องการยกเลิกการระงับผู้ใช้ <?php echo $result["username"]; ?> จริงหรือไม่?')" id="user_delete-link">เรียกคืน</a>
-												</p>
-												<?php
-											}
-											?>
+											<p class="text-center">
+												<a href="assets/service/teacher.php?action=delete&user=<?php echo $result["t_id"]; ?>" class="btn btn-primary" onClick="return confirm('ต้องการลบข้อมูลครู <?php echo $result["t_name"]; ?> จริงหรือไม่?')" id="teacher_delete-link">ลบ</a>
+											</p>
 										</td>
 									</tr>
 									<?php

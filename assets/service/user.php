@@ -70,10 +70,9 @@ function get_users_with_action($action) {
 }
 
 function get_user($keyword) {
-	$sql =  "SELECT * FROM user WHERE username = `$keyword`";
-	$sql .= " OR user_name = `$keyword`";
-	$sql .= " OR user_surname = `$keyword`";
-	$sql .= " OR user_email = `$keyword`";
+	$sql = "SELECT * FROM user WHERE username = `$keyword` 
+	OR  user_name = `$keyword` 
+	OR user_email = `$keyword`";
 	?>
 	<meta http-equiv='refresh' content='0;url=/project2/user.php?filter=<?php echo $sql; ?>'>
 	<?php
@@ -97,37 +96,30 @@ function insert_user($username, $password, $email, $name, $surname, $role) {
 		$sql .= ",1)";
 	}
 	mysql_query($sql)or die(mysql_error());
-	?>
-	<meta http-equiv="refresh" content="0; url=\project2\user.php?action=insert_success">
-	<?php
+	header("location:../../user.php?action=insert_success");
 }
 
 function delete_user($username) {
-	$find =  "SELECT * FROM assessor join user ";
-	$find .= "WHERE user.user_name = assessor.As_name ";
-	$find .= "AND user.username = '$username'";
+	$find = "SELECT * FROM assessor join user 
+	WHERE user.user_name = assessor.As_name
+	AND user.user_surname = assessor.As_surname 
+	AND user.username = '$username'";
 	$query = mysql_query($find)or die(mysql_error());
 	if (mysql_num_rows($query) > 0) {
 		$sql = "UPDATE user SET user_role = -99 WHERE user.username = '".$username."'";
 		mysql_query($sql)or die(mysql_error());
-		?>
-		<meta http-equiv="refresh" content="0; url=\project2\user.php?action=user_delete_warning">
-		<?php
+		header("location:../../user.php?action=user_delete_warning");
 	} else {
 		$sql = "DELETE FROM user WHERE user.username = '".$username."'";
 		mysql_query($sql)or die(mysql_error());
-		?>
-		<meta http-equiv="refresh" content="0; url=\project2\user.php?action=delete_success">
-		<?php
+		header("location:../../user.php?action=delete_success");
 	}
 }
 
 function rollback($username) {
 	$sql = "UPDATE user SET user_role = 1";
 	mysql_query($sql)or die(mysql_query());
-	?>
-	<meta http-equiv="refresh" content="0; url=\project2\user.php?action=user_rollback-success">
-	<?php
+	header("location:../../user.php?action=user_rollback-success");
 }
 
 ?>
