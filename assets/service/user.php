@@ -40,7 +40,7 @@ $year = date('Y') + 543;
 ////-------------- Call Function --------------------
 ////-----------------------------------------------//
 if ($_GET["action"] == "delete") {
-	delete_user($_GET["user"]);
+	delete_user($_GET["id"]);
 } else if ($_GET["action"] == "rollback") {
 	rollback($_GET["user"]);
 } else if ($_POST["regBtn"]) {

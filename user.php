@@ -274,13 +274,13 @@ if ($_SESSION["user_role"] < 8) {
 										if ($result["user_role"] > 0) {
 											?>
 											<p class="text-center">
-												<a href="assets/service/user.php?action=delete&user=<?php echo $result["username"]; ?>" class="btn btn-primary" onClick="return confirm('ต้องการลบผู้ใช้ <?php echo $result["username"]; ?> จริงหรือไม่?')" id="user_delete-link">ลบ</a>
+												<a href="assets/service/user.php?action=delete&id=<?php echo $result["username"]; ?>" class="btn btn-primary" onClick="return confirm('ต้องการลบผู้ใช้ <?php echo $result["username"]; ?> จริงหรือไม่?')" id="user_delete-link">ลบ</a>
 											</p>
 											<?php
 										} else {
 											?>
 											<p class="text-center">
-												<a href="assets/service/user.php?action=rollback&user=<?php echo $result["username"]; ?>" class="btn btn-primary" onClick="return confirm('ต้องการยกเลิกการระงับผู้ใช้ <?php echo $result["username"]; ?> จริงหรือไม่?')" id="user_delete-link">เรียกคืน</a>
+												<a href="assets/service/user.php?action=rollback&id=<?php echo $result["username"]; ?>" class="btn btn-primary" onClick="return confirm('ต้องการยกเลิกการระงับผู้ใช้ <?php echo $result["username"]; ?> จริงหรือไม่?')" id="user_delete-link">เรียกคืน</a>
 											</p>
 											<?php
 										}

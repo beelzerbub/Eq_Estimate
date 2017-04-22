@@ -28,6 +28,11 @@ if ($_SESSION["user_role"] < 8) {
 		</div>
 		<div class="row site_content">
 			<div class="col-md-12">
+				<div class="row site_content-notice">
+					<?php
+					include_once("assets/template/notice.php");
+					?>
+				</div>
 				<div class="row site_content-filter">
 					<form action="#" class="form-inline" role="form" method="post" data-toggle="validator" id="teacher-filter_form">
 						<fieldset class="fieldset-form">
@@ -94,21 +99,21 @@ if ($_SESSION["user_role"] < 8) {
 					<div class="modal fade" id="teacher-insert_box" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
 						<div class="modal-dialog modal-lg" role="document">
 							<div class="modal-content">
-								<form action="#" role="form" method="post" data-toggle="validator" id="teacher-insert_form">
+								<form action="assets/service/teacher.php" role="form" method="post" data-toggle="validator" id="teacher-insert_form">
 									<fieldset class="fieldset-form">
-										<legend class="legend-form"><h1>เพิ่มข้อมูลนักเรียน</h1></legend>
+										<legend class="legend-form"><h1>เพิ่มข้อมูลครูประจำชั้น</h1></legend>
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group">
 													<label for="InputTeacherName">ชื่อ</label>
-													<input type="text" class="form-control" name="teacher_name" id="teacher_name" placeholder="ชื่อครูประจำชั้น"  maxlength="50" data-error="กรุณาระบุชื่อครูประจำชั้" required>
+													<input type="text" class="form-control" name="teacher_name" id="teacher_name" placeholder="ชื่อครูประจำชั้น"  maxlength="50" data-error="กรุณาระบุชื่อครูประจำชั้น" required>
 													<div class="help-block with-errors"></div>
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
 													<label for="InputTeacherSurname">นามสกุล</label>
-													<input type="text" class="form-control" name="teacher_surname" id="teacher_surname" placeholder="นามสกุลครูประจำชั้" maxlength="50" data-error="กรุณาระบุนามสกุลครูประจำชั้" required>
+													<input type="text" class="form-control" name="teacher_surname" id="teacher_surname" placeholder="นามสกุลครูประจำชั้น" maxlength="50" data-error="กรุณาระบุนามสกุลครูประจำชั้น" required>
 													<div class="help-block with-errors"></div>
 												</div>
 											</div>
@@ -119,19 +124,20 @@ if ($_SESSION["user_role"] < 8) {
 													<label for="InputClassRoom">ระดับชั้น</label>
 													<select name="classroom" id="classroom" class="form-control" required>
 														<option value="" disabled selected>กรุณาเลือก</option>
-														<option value="1">ชั้นอนุบาลปีที่ 1/1</option>
-														<option value="2">ชั้นอนุบาลปีที่ 1/2</option>
-														<option value="3">ชั้นอนุบาลปีที่ 1/3</option>
-														<option value="4">ชั้นอนุบาลปีที่ 2/1</option>
-														<option value="5">ชั้นอนุบาลปีที่ 2/2</option>
-														<option value="6">ชั้นอนุบาลปีที่ 3/1</option>
-														<option value="7">ชั้นอนุบาลปีที่ 3/2</option>
-														<option value="8">ชั้นประถมศึกษาปีที่ 1</option>
-														<option value="9">ชั้นประถมศึกษาปีที่ 2</option>
-														<option value="10">ชั้นประถมศึกษาปีที่ 3</option>
-														<option value="11">ชั้นประถมศึกษาปีที่ 4</option>
-														<option value="12">ชั้นประถมศึกษาปีที่ 5</option>
-														<option value="13">ชั้นประถมศึกษาปีที่ 6</option>
+														<option value="อนุบาลปีที่ 1">ชั้นอนุบาลปีที่ 1/1</option>
+														<option value="อนุบาลปีที่ 1">ชั้นอนุบาลปีที่ 1/2</option>
+														<option value="อนุบาลปีที่ 1">ชั้นอนุบาลปีที่ 1/3</option>
+														<option value="อนุบาลปีที่ 2">ชั้นอนุบาลปีที่ 2/1</option>
+														<option value="อนุบาลปีที่ 2">ชั้นอนุบาลปีที่ 2/2</option>
+														<option value="อนุบาลปีที่ 3">ชั้นอนุบาลปีที่ 3/1</option>
+														<option value="อนุบาลปีที่ 2">ชั้นอนุบาลปีที่ 3/2</option>
+														<option value="ประถมศึกษาปีที่ 1">ชั้นประถมศึกษาปีที่ 1</option>
+														<option value="ประถมศึกษาปีที่ 2">ชั้นประถมศึกษาปีที่ 2</option>
+														<option value="ประถมศึกษาปีที่ 3">ชั้นประถมศึกษาปีที่ 3</option>
+														<option value="ประถมศึกษาปีที่ 4">ชั้นประถมศึกษาปีที่ 4</option>
+														<option value="ประถมศึกษาปีที่ 5">ชั้นประถมศึกษาปีที่ 5</option>
+														<option value="ประถมศึกษาปีที่ 6">ชั้นประถมศึกษาปีที่ 6</option>
+														<option value="none">ไม่ระบุ</option>
 													</select>
 												</div>
 											</div>
@@ -140,6 +146,11 @@ if ($_SESSION["user_role"] < 8) {
 													<label for="InputClassNo">เลขที่ห้อง</label>
 													<input type="number" id="classroom_number" name="classroom_number" placeholder="เลขที่ห้อง" class="form-control" required data-error="กรุณาระบุห้องเรียน">
 													<div class="help-block with-errors"></div>
+													<span class="help-block small">
+														<ul>
+															<li>(กรณี "ไม่ระบุ" ระดับชั้นให้ใส่เลขที่ห้องเป็น 0)</li>
+														</ul>
+													</span>
 												</div>
 											</div>
 										</div>
@@ -207,7 +218,7 @@ if ($_SESSION["user_role"] < 8) {
 							if (mysql_num_rows($filter) > 0) {
 								while($result = mysql_fetch_array($filter)) {
 									?>
-									<tr>
+									<tr <?php if ($result["t_status == -1"]) { echo "style='color:red'"; } ?>>
 										<td valign="middle"><?php echo ++$counter; ?></td>
 										<td>คุณครู <?php echo $result["t_name"]." ".$result["t_surname"]; ?></td>
 										<td><?php echo get_teacher_room_init($result["t_id"], $year); ?></td>
@@ -219,7 +230,7 @@ if ($_SESSION["user_role"] < 8) {
 										</td>
 										<td>
 											<p class="text-center">
-												<a href="assets/service/teacher.php?action=delete&user=<?php echo $result["t_id"]; ?>" class="btn btn-primary" onClick="return confirm('ต้องการลบข้อมูลครู <?php echo $result["t_name"]; ?> จริงหรือไม่?')" id="teacher_delete-link">ลบ</a>
+												<a href="assets/service/teacher.php?action=delete&id=<?php echo $result["t_id"]; ?>" class="btn btn-primary" onClick="return confirm('ต้องการลบข้อมูลครู <?php echo $result["t_name"]; ?> จริงหรือไม่?')" id="teacher_delete-link">ลบ</a>
 											</p>
 										</td>
 									</tr>

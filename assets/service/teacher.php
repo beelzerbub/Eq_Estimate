@@ -40,7 +40,7 @@ $year = date('Y') + 543;
 ////-------------- Call Function --------------------
 ////-----------------------------------------------//
 if ($_GET["action"] == "delete") {
-
+	delete_teacher($_GET["id"]);
 } else if ($_POST["AddTeacherBtn"]) {
 	$name 		= $_POST["teacher_name"];
 	$surname 	= $_POST["teacher_surname"];
@@ -73,41 +73,66 @@ function get_teacher_room_init($t_id, $year) {
 
 	$query = mysql_query($sql)or die(mysql_error());
 	$fetch = mysql_fetch_object($query)or die(mysql_error());
-	return $fetch->class_grade.'/'.$fetch->class_number;
-}
-
-function insert_teacher($name, $surname, $grade, $room, $year_reg, $term_reg) {
-	//check duplicate insert data
-	$presql = "SELECT * FROM teacher 
-	JOIN work_time 
-	WHERE teacher.t_name 	= '$name' 
-	AND teacher.t_surname 	= '$surname' 
-	AND work_time.wt_year 	= $year_reg
-	AND work_time.wt_term 	= $term_reg
-	AND teacher.t_id 		= work_time.t_id";
-	$prequery = mysql_query($presql)or die(mysql_error());
-
-	//None Dubplicate
-	if (mysql_num_rows($prequery) > 0 ) {
-
+	if ($fetch->class_grade == 'none') {
+		return "ไม่ได้รับหน้าที่ครูประจำชั้น";
 	} else {
-		echo "None Dubplicate <br>";
-		$sql1 = "INSERT INTO teacher VALUES ('','$name','$surname',0)";
-		//$query1 = mysql_query($sql1)or die(mysql_error());
-
-		$sql2 = "SELECT * FROM classroom WHERE class_grade = '$grade' AND class_number = $room";
-		$query2 = mysql_query($sql2)or die(mysql_error());
-		
-		$sql3 = "SELECT * FROM teacher JOIN work_time WHERE teacher.t_name 	= '$name' AND teacher.t_surname 	= '$surname' AND work_time.wt_year 	= year_reg AND work_time.wt_term	= term_reg;";
-		
-		$fetch2 = mysql_fetch_object($query2)or die(mysql_error());
-
-	//header("location:../../teacher.php?action=insert_success");
+		return $fetch->class_grade.'/'.$fetch->class_number;
 	}
 }
 
+function insert_teacher($name, $surname, $grade, $room, $year_reg, $term_reg) {
+	//check classroom number
+	$presql = "SELECT * FROM classroom WHERE class_grade = '$grade' AND class_number = $room";
+	$prequery = mysql_query($presql)or die(mysql_error());
+	if (mysql_num_rows($prequery) == 0 && $grade != 'none') {
+		header("location:../../teacher.php?action=wrong_classroom");
+	}
+
+	//check duplicate insert data
+	$presql2 = "SELECT * FROM teacher 
+	WHERE t_name = '$name'
+	AND t_surname = '$surname'"; // ถ้ามีครูคนนี้อยู่แล้ว
+	$prequery2 = mysql_query($presql2)or die(mysql_error());
+	if (mysql_num_rows($prequery2) == 0 ) {
+		$sql1 = "INSERT INTO teacher VALUES('','$name','$surname',0)";
+		mysql_query($sql1)or die(mysql_error());
+	}
+
+	$sql2 = "SELECT * FROM teacher WHERE t_name = '$name' AND t_surname = '$surname'";
+	$query2 = mysql_query($sql2)or die(mysql_error());
+	$teacher = mysql_fetch_object($query2);
+
+	//ถ้าไม่ได้เป็นครูประจำชั้นให้ work_time มี class_id เป็น 0
+	if ($grade == 'none') {
+		$class_id = 0;
+	} else {
+		$classroom = mysql_fetch_object($prequery)or die(mysql_error());
+		$class_id = $classroom->class_id;
+	}
+
+	$sql3 = "INSERT INTO work_time VALUES('', $year_reg, $term_reg, $teacher->t_id, $class_id)";
+	$query3 = mysql_query($sql3)or die(mysql_error());
+	header("location:../../teacher.php?action=insert_success");
+}
+
 function delete_teacher($id) {
-	
+	$find = "SELECT * FROM assessor ass JOIN teacher t 
+	WHERE t.t_id = $id
+	AND t.t_name = ass.As_name
+	AND t.t_surname = ass.As_surname
+	AND ass.As_type = 'ครูประจำชั้น'";
+	$query = mysql_query($find)or die(mysql_error());
+	if (mysql_num_rows($query) > 0) {
+		$sql = "UPDATE teacher SET t_status = -1 WHERE t_id = $id";
+		mysql_query($sql)or die(mysql_error());
+		header("location:../../teacher.php?action=teacher_detele_warning");
+	} else {
+		$sql = "DELETE FROM teacher WHERE t_id = $id";
+		mysql_query($sql)or die(mysql_error());
+		$sql2 = "DELETE FROM work_time WHERE t_id = $id";
+		mysql_query($sql2)or die(mysql_error());
+		header("location:../../teacher.php?action=delete_success");
+	}
 }
 
 ?>
