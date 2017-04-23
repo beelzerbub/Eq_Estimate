@@ -54,7 +54,25 @@ if ($action ==  "forgot_fail") {
 		</button>
 	</div>
 	<?php
+} else if ($action == "teacher_delete_warning") {
+	?>
+	<div class="alert alert-danger" role="alert">
+		เนื่องจากครูประจำชั้นดังกล่าวมีประวัติการประเมิน จึงไม่สามารถลบครูดังกล่าวได้ แต่ระบบจะทำการล็อคการใช้งานของครูดังกล่าวแทน
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<?php
 } else if ($action == "update_success") {
 	
+} else if ($action == "wrong_classroom") {
+	?>
+	<div class="alert alert-danger" role="alert">
+		เกิดข้อผิดพลาดในการระบุห้องเรียน กรุณาตรวจสอบห้องเรียนและเลขที่ห้องเรียนให้ถูกต้อง
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<?php
 }
 ?>
