@@ -1,3 +1,10 @@
+<?php
+include_once("assets/database/connect.php");
+include_once("assets/service/teacher.php");
+if ($_SESSION["user_role"] < 8) {
+	header("location:404.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -21,6 +28,11 @@
 		</div>
 		<div class="row site_content">
 			<div class="col-md-12">
+				<div class="row site_content-notice">
+					<?php
+					include_once("assets/template/notice.php");
+					?>
+				</div>
 				<div class="row site_content-filter">
 					<form action="#" class="form-inline" role="form" method="post" data-toggle="validator" id="student-filter_form">
 						<fieldset class="fieldset-form">
@@ -85,7 +97,7 @@
 					<div class="modal fade" id="student-insert_box" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
 						<div class="modal-dialog modal-lg" role="document">
 							<div class="modal-content">
-								<form action="#" role="form" method="post" data-toggle="validator" id="student-insert_form">
+								<form action="assets/service/student.php" role="form" method="post" data-toggle="validator" id="student-insert_form">
 									<fieldset class="fieldset-form">
 										<legend class="legend-form"><h1>เพิ่มข้อมูลนักเรียน</h1></legend>
 										<div class="row">
@@ -202,16 +214,60 @@
 							<tr>
 								<th><p class="text-center">ลำดับ</p></th>
 								<th><p class="text-center">รหัสบัตรประชาชน</p></th>
-								<th><p class="text-center">คำนำหน้า</p></th>
-								<th><p class="text-center">ชื่อ</p></th>
-								<th><p class="text-center">นามสกุล</p></th>
+								<th><p class="text-center">ชื่อ - นามสกุล</p></th>
 								<th><p class="text-center">อายุ</p></th>
-								<th><p class="text-center">ระดับการศึกษาปัจจุบัน</p></th>
-								<th><p class="text-center">ลบ</p></th>
+								<th><p class="text-center">ห้องเรียน</p></th>
+								<th><p class="text-center">ปีการศึกษา</p></th>
 								<th><p class="text-center">แก้ไข</p></th>
+								<th><p class="text-center">ลบ</p></th>
 							</tr>
 						</thead>
 						<tbody>
+							<?php
+							if (empty($_GET["filter"])) {
+								if (date(m) <= 4 || date(m) >= 11) {
+									$year_init = $year-1;
+									$term_init = 2;
+								} else {
+									$year_init = $year;
+									$term_init = 1;
+								}
+								$filter = mysql_query("SELECT * FROM student s JOIN term t JOIN classroom c
+									WHERE s.Std_id = t.Std_id
+									AND t.Term_year = $year_init
+									AND t.Term = $term_init
+									AND t.Class_id = c.Class_id")or die(mysql_error());
+							}
+							$counter = 0;
+							if (mysql_num_rows($filter) > 0) {
+								while ($result = mysql_fetch_array($filter)) {
+									?>
+									<tr>
+										<td><?php echo ++$counter; ?></td>
+										<td><?php echo $result[Std_id]; ?></td>
+										<td>
+											<?php if ($result[Std_gender] == 1) { echo "เด็กหญิง ";} else { echo "เด็กชาย "; } ?> 
+											<?php echo $result[Std_name]; ?>
+											<?php echo $result[Std_surname]; ?>
+										</td>
+										<td><?php echo $result[Std_age]; ?> ปี</td>
+										<td><?php echo $result[class_grade]; ?> ห้อง <?php echo $result[class_number];?></td>
+										<td><?php echo $result[Term]."/".$result[Term_year];?></td>
+										<td>
+											<p class="text-center">
+												<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#edit_student-box" id="student_edit-link">แก้ไข</a>
+											</p>
+										</td>
+										<td>
+											<p class="text-center">
+												<a href="assets/service/teacher.php?action=delete&id=<?php echo $result["Std_id"]; ?>" class="btn btn-primary" onClick="return confirm('ต้องการลบข้อมูลครู <?php echo $result["Std_name"]; ?> จริงหรือไม่?')" id="student_delete-link">ลบ</a>
+											</p>
+										</td>
+									</tr>
+									<?php
+								}
+							}
+							?>
 						</tbody>
 					</table>
 				</div>

@@ -225,7 +225,7 @@ if ($_SESSION["user_role"] < 8) {
 										<td><?php echo $result["wt_term"]."/".$result["wt_year"];?></td>
 										<td>
 											<p class="text-center">
-												<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#edit_user-box" id="user_edit-link">แก้ไข</a>
+												<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#edit_teacher-box" id="teacher_edit-link">แก้ไข</a>
 											</p>
 										</td>
 										<td>
