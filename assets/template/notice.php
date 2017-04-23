@@ -54,7 +54,7 @@ if ($action ==  "forgot_fail") {
 		</button>
 	</div>
 	<?php
-} else if ($action = "teacher_delete_wrning") {
+} else if ($action == "teacher_delete_warning") {
 	?>
 	<div class="alert alert-danger" role="alert">
 		เนื่องจากครูประจำชั้นดังกล่าวมีประวัติการประเมิน จึงไม่สามารถลบครูดังกล่าวได้ แต่ระบบจะทำการล็อคการใช้งานของครูดังกล่าวแทน
