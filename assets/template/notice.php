@@ -74,5 +74,14 @@ if ($action ==  "forgot_fail") {
 		</button>
 	</div>
 	<?php
+} else if ($action == "student_duplicate") {
+	?>
+	<div class="alert alert-warning" role="alert">
+		ข้อมูลนักเรียนดังกล่าว มีการซ้ำซ้อน กรุณาใช้ส่วนค้นหาและแก้ไขข้อมูลเดิม
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<?php
 }
 ?>

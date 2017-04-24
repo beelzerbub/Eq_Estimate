@@ -35,6 +35,7 @@
 							<?php
 							if ($_SESSION["user_role"] >= 8) {
 								?>
+								<li><a href="__import.php">นำเข้าข้อมูลนักเรียน</a></li>
 								<li><a href="user.php">จัดการข้อมูลผู้ใช้</a></li>
 								<li><a href="teacher.php">จัดการข้อมูลครูประจำชั้น</a></li>
 								<?php

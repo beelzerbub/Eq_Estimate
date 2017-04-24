@@ -53,7 +53,7 @@ if ($_GET["action"] == "delete") {
 
 
 ////------------------------------------------------- 
-////------------ Function Login ---------------------
+////------------ Function Teacher ---------------------
 ////-----------------------------------------------//
 function get_teacher_room_init($t_id, $year) {
 	if (date(m) <= 4 || date(m) >= 11) {
@@ -116,21 +116,21 @@ function insert_teacher($name, $surname, $grade, $room, $year_reg, $term_reg) {
 }
 
 function delete_teacher($id) {
-	$find = "SELECT * FROM assessor ass JOIN teacher t 
+	$teacher = "SELECT * FROM assessor ass JOIN teacher t 
 	WHERE t.t_id = $id
 	AND t.t_name = ass.As_name
 	AND t.t_surname = ass.As_surname
 	AND ass.As_type = 'ครูประจำชั้น'";
-	$query = mysql_query($find)or die(mysql_error());
-	if (mysql_num_rows($query) > 0) {
-		$sql = "UPDATE teacher SET t_status = -1 WHERE t_id = $id";
-		mysql_query($sql)or die(mysql_error());
+	$teacher_query = mysql_query($teacher)or die(mysql_error());
+	if (mysql_num_rows($teacher_query) > 0) {
+		$teacher_update = "UPDATE teacher SET t_status = -1 WHERE t_id = $id";
+		mysql_query($teacher_update)or die(mysql_error());
 		header("location:../../teacher.php?action=teacher_detele_warning");
 	} else {
-		$sql = "DELETE FROM teacher WHERE t_id = $id";
-		mysql_query($sql)or die(mysql_error());
-		$sql2 = "DELETE FROM work_time WHERE t_id = $id";
-		mysql_query($sql2)or die(mysql_error());
+		$teacher_delete = "DELETE FROM teacher WHERE t_id = $id";
+		mysql_query($teacher_delete)or die(mysql_error());
+		$work_time_delete = "DELETE FROM work_time WHERE t_id = $id";
+		mysql_query($work_time_delete)or die(mysql_error());
 		header("location:../../teacher.php?action=delete_success");
 	}
 }
