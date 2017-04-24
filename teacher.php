@@ -67,10 +67,11 @@ if ($_SESSION["user_role"] < 8) {
 								</div>
 								<div class="form-group">
 									<label for="filter-term" class="sr-only"></label>
-									<select name="filter-term" id="filter-term" class="form-control">
+									<select name="filter-term" id="filter-term" class="form-control" required>
 										<option value="" disabled selected>ภาคเรียน</option>
 										<option value="1">1</option>
 										<option value="2">2</option>
+										<option value="3">3</option>
 									</select>
 								</div>
 								<div class="form-group">
