@@ -51,24 +51,13 @@ if ($_GET["action"] == "delete") {
 	$surname 	= 	$_POST["reg_surname"];
 	$role 		= 	$_POST["reg_role"];
 	insert_user($username, $password, $email, $name, $surname, $role);
-} else if ($_POST["filterBtn"]) {
-	$keyword = $_POST["filter-keyword"];
-	get_user($keyword);
 }
-
 
 
 
 ////------------------------------------------------- 
 ////------------ Function User ---------------------
 ////-----------------------------------------------//
-function get_users_with_action($action) {
-	$sql = "SELECT * FROM user";
-	?>
-	<meta http-equiv='refresh' content='0;url=/project2/user.php?filter=<?php echo $sql; ?>&action=<?php echo $action; ?>'>
-	<?php
-}
-
 function get_user($keyword) {
 	$sql = "SELECT * FROM user WHERE username = `$keyword` 
 	OR  user_name = `$keyword` 
