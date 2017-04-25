@@ -6,8 +6,10 @@ if ($_SESSION["user_role"] < 2) {
 	header("location:404.php");
 }
 $student_fetch = get_student($_GET[Std_no], $_GET[year], $_GET[term]);
-$estimate = get_estimate($student_fetch->Std_no, $student_fetch->term, $student_fetch->term_year);
-
+$estimate = get_estimate($student_fetch->Std_no, $student_fetch->Term, $student_fetch->Term_year);
+if ($estimte == 0) {
+	preinsert_estimte($_GET["As_type"]);
+}
 
 //echo $estimate;
 ?>

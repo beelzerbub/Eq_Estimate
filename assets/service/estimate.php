@@ -54,7 +54,21 @@ function get_estimate($Std_no, $term, $year) {
 	JOIN score_group sg
 	JOIN assessor asses
 	WHERE std.Std_no = $Std_no
-	AND et.";
-	echo $estimate;
+	AND et.Es_year = $year
+	AND et.Es_term = $term
+	AND et.As_id = asses.As_id
+	AND es.Es_id = et.Es_id
+	AND es.Sg_id = sg.Sg_id";
+	$estimate_query = mysql_query($estimate)or die(mysql_error());
+	return $estimate_query;
+}
+
+function preinsert($as_type, $Std_no, $Term, $Term_year) {
+	preinsert_assessor($as_type);
+}
+
+function preinsert_assessor($as_type) {
+	$insert_assessor = "INSERT INTO assessor VALUES('', '', '', '$as_type', '')";
+	$insert_assessor_query = mysql_query($insert_assessor)or die(mysql_error());
 }
 ?>
