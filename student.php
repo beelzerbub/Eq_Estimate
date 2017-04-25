@@ -1,6 +1,6 @@
 <?php
 include_once("assets/database/connect.php");
-include_once("assets/service/teacher.php");
+include_once("assets/service/student.php");
 if ($_SESSION["user_role"] < 8) {
 	header("location:404.php");
 }
