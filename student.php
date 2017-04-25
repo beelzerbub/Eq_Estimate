@@ -236,7 +236,7 @@ if ($_SESSION["user_role"] < 8) {
 									AND (s.Std_id LIKE '%$keyword%'
 									OR s.Std_name LIKE '%$keyword%'
 									OR s.Std_surname LIKE '%$keyword%')";
-									$filter_query = mysql_query($filter);
+									$filter_query = mysql_query($filter)or die(mysql_error());
 								} else {
 									$filter = "SELECT * FROM student s JOIN term t JOIN classroom c
 									WHERE (c.class_id = $class_id

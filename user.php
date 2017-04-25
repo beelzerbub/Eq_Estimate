@@ -290,24 +290,33 @@ if ($_SESSION["user_role"] < 8) {
 								</tr>
 								<?php
 							}
-						}
-						?>
-					</tbody>
-				</table>
-			</div>
-			<div class="row site_content-profile">
+						} else {
+							?>
+							<tr>
+								<td colspan="9">
+									<div class="alert alert-danger" role="alert">
+										<p class="text-center">ขออภัย ไม่พบข้อมูลที่ต้องการค้นหา</p>
+									</div>
+								</tr>
+								<?
+							}
+							?>
+						</tbody>
+					</table>
+				</div>
+				<div class="row site_content-profile">
+				</div>
 			</div>
 		</div>
+		<div class="row site_footer">
+			<hr>
+			&copy;2016 HATAICHAT SCHOOL
+		</div>
 	</div>
-	<div class="row site_footer">
-		<hr>
-		&copy;2016 HATAICHAT SCHOOL
-	</div>
-</div>
-<!-- jQuery -->
-<script src="js/jquery/jquery.min.js"></script>
-<!-- Bootstrap JavaScript -->
-<script src="js/bootstrap/bootstrap.min.js"></script>
-<script src="js/bootstrap/validator.min.js"></script>
+	<!-- jQuery -->
+	<script src="js/jquery/jquery.min.js"></script>
+	<!-- Bootstrap JavaScript -->
+	<script src="js/bootstrap/bootstrap.min.js"></script>
+	<script src="js/bootstrap/validator.min.js"></script>
 </body>
 </html>

@@ -34,18 +34,18 @@ if ($_SESSION["user_role"] < 8) {
 					?>
 				</div>
 				<div class="row site_content-filter">
-					<form action="#" class="form-inline" role="form" method="post" data-toggle="validator" id="teacher-filter_form">
+					<form action="" class="form-inline" role="form" method="post" data-toggle="validator" id="teacher-filter_form">
 						<fieldset class="fieldset-form">
 							<legend class="legend-form">ค้นหาข้อมูลครูประจำชั้น</legend>
 							<div class="col-md-10">
 								<div class="form-group">
 									<label for="filter-keyword" class="sr-only">Keyword</label>
-									<input type="text" class="form-control" id="filter-keyword" maxlength="50" placeholder="ชื่อ/นามสกุล">
+									<input type="text" class="form-control" id="filter-keyword" name="filter-keyword" maxlength="50" placeholder="ชื่อ/นามสกุล">
 								</div>
 								<div class="form-group">
 									<label for="filter-class" class="sr-only"></label>
 									<select name="filter-class" id="filter-class" class="form-control" required>
-										<option value="" disabled selected>ระดับการศึกษา</option>
+										<option value="" disabled selected>ห้องเรียน</option>
 										<option value="1">อนุบาลปีที่ 1/1</option>
 										<option value="2">อนุบาลปีที่ 1/2</option>
 										<option value="3">อนุบาลปีที่ 1/3</option>
@@ -63,7 +63,7 @@ if ($_SESSION["user_role"] < 8) {
 								</div>
 								<div class="form-group">
 									<label for="filter-year" class="sr-only"></label>
-									<input type="number" placeholder="ปีการศึกษา" id="filter-year" class="form-control" required>
+									<input type="number" placeholder="ปีการศึกษา" id="filter-year" name="filter-year" class="form-control" required>
 								</div>
 								<div class="form-group">
 									<label for="filter-term" class="sr-only"></label>
@@ -200,7 +200,29 @@ if ($_SESSION["user_role"] < 8) {
 						</thead>
 						<tbody>
 							<?php
-							if (empty($_GET["filter"])) {
+							if ($_POST["filterBtn"]) {
+								$keyword = $_POST["filter-keyword"];
+								$class_id = $_POST["filter-class"];
+								$year_input = $_POST["filter-year"];
+								$term_input = $_POST["filter-term"];
+								if (!empty($keyword)) {
+									$filter = "SELECT * FROM teacher t JOIN work_time wt JOIN classroom c
+									WHERE (t.t_name LIKE '%$keyword%'
+									OR t.t_surname LIKE '%$keyword%')
+									AND (c.class_id = $class_id
+									AND c.class_id = wt.class_id
+									AND wt.wt_year = $year_input
+									AND wt.wt_term = $term_input)";
+									$filter_query = mysql_query($filter)or die(mysql_error());
+								} else {
+									$filter = "SELECT * FROM teacher t JOIN work_time wt JOIN classroom c
+									WHERE (c.class_id = $class_id
+									AND c.class_id = wt.class_id
+									AND wt.wt_year = $year_input
+									AND wt.wt_term = $term_input)";
+									$filter_query = mysql_query($filter)or die(mysql_error());
+								}
+							} else {
 								if (date(m) <= 4 || date(m) >= 11) {
 									$year_init = $year-1;
 									$term_init = 2;
@@ -208,16 +230,15 @@ if ($_SESSION["user_role"] < 8) {
 									$year_init = $year;
 									$term_init = 1;
 								}
-								$filter = mysql_query("SELECT * FROM teacher JOIN work_time 
-									WHERE teacher.t_id = work_time.t_id
-									AND work_time.wt_year = $year_init
-									AND work_time.wt_term = $term_init");
-							} else {
-
+								$filter_query = mysql_query("SELECT * FROM teacher t JOIN work_time wt JOIN classroom c
+									WHERE (c.class_id = wt.class_id
+									AND wt.wt_term = $term_init
+									AND wt.wt_year = $year_init
+									AND wt.t_id = t.t_id)")or die(mysql_error());
 							}
 							$counter = 0;
-							if (mysql_num_rows($filter) > 0) {
-								while($result = mysql_fetch_array($filter)) {
+							if (mysql_num_rows($filter_query) > 0) {
+								while($result = mysql_fetch_array($filter_query)) {
 									?>
 									<tr <?php if ($result["t_status == -1"]) { echo "style='color:red'"; } ?>>
 										<td valign="middle"><?php echo ++$counter; ?></td>
@@ -237,22 +258,31 @@ if ($_SESSION["user_role"] < 8) {
 									</tr>
 									<?php
 								}
-							}
-							?>
-						</tbody>
-					</table>
+							} else {
+								?>
+								<tr>
+									<td colspan="8">
+										<div class="alert alert-danger" role="alert">
+											<p class="text-center">ขออภัย ไม่พบข้อมูลที่ต้องการค้นหา</p>
+										</div>
+									</tr>
+									<?
+								}
+								?>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
+			<div class="row site_footer">
+				<hr>
+				&copy;2016 HATAICHAT SCHOOL
+			</div>
 		</div>
-		<div class="row site_footer">
-			<hr>
-			&copy;2016 HATAICHAT SCHOOL
-		</div>
-	</div>
-	<!-- jQuery -->
-	<script src="js/jquery/jquery.min.js"></script>
-	<!-- Bootstrap JavaScript -->
-	<script src="js/bootstrap/bootstrap.min.js"></script>
-	<script src="js/bootstrap/validator.min.js"></script>
-</body>
-</html>
+		<!-- jQuery -->
+		<script src="js/jquery/jquery.min.js"></script>
+		<!-- Bootstrap JavaScript -->
+		<script src="js/bootstrap/bootstrap.min.js"></script>
+		<script src="js/bootstrap/validator.min.js"></script>
+	</body>
+	</html>
