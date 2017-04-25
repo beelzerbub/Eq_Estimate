@@ -58,15 +58,6 @@ if ($_GET["action"] == "delete") {
 ////------------------------------------------------- 
 ////------------ Function User ---------------------
 ////-----------------------------------------------//
-function get_user($keyword) {
-	$sql = "SELECT * FROM user WHERE username = `$keyword` 
-	OR  user_name = `$keyword` 
-	OR user_email = `$keyword`";
-	?>
-	<meta http-equiv='refresh' content='0;url=/project2/user.php?filter=<?php echo $sql; ?>'>
-	<?php
-}
-
 function get_user_type ($username) {
 	$sql = "SELECT * FROM user WHERE username = '".$username."' AND user_role >= 2";
 	$query = mysql_query($sql)or die(mysql_er);
