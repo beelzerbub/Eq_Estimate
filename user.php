@@ -237,6 +237,7 @@ if ($_SESSION["user_role"] < 8) {
 							</tr>
 						</thead>
 						<tbody>
+							
 							<?php
 							if (empty($_GET["filter"])) {
 								if (empty($_GET["action"])) {
