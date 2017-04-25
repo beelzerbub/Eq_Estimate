@@ -1,3 +1,21 @@
+<?php
+include_once("assets/database/connect.php");
+include_once("assets/service/teacher.php");
+if ($_SESSION["user_role"] < 2) {
+	header("location:404.php");
+}
+$as_type = $_GET["As_type"];
+$student = "SELECT * FROM student std
+JOIN classroom cls
+JOIN term
+WHERE std.Std_no = $_GET[Std_no]
+AND term.Std_no = std.Std_no
+AND term.Class_id = cls.Class_id
+AND term.term_year = $_GET[year]
+AND term.term = $_GET[term]";
+$student_query = mysql_query($student)or die(mysql_error());
+$student_fetch = mysql_fetch_object($student_query)or die(mysql_error());
+?>
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -21,6 +39,30 @@
 		</div>
 		<div class="row site_content">
 			<div class="col-md-12">
+				<div class="row site_content-notice">
+					<?php
+					include_once("assets/template/notice.php");
+					?>
+				</div>
+				<div class="row site_content-detail">
+					<fieldset class="fieldset-form">
+						<legend class="legend-form">ข้อมูลนักเรียน</legend>
+						<p>
+							รหัสประจำตัวประชาชน : <?php echo $student_fetch->Std_id; ?>
+							
+						</p>
+						<p>
+							ชื่อ - นามสกุล : <?php echo ($student_fetch->Std_gender == 1 ? 'เด็กหญิง ' : 'เด็กชาย ') ?><?php echo $student_fetch->Std_name; ?> <?php echo $student_fetch->Std_surname; ?>
+							
+						</p>
+						<p>
+							ห้องเรียน : <?php echo $student_fetch->class_grade.' ห้อง '.$student_fetch->class_number; ?>
+						</p>
+						<p>
+							ปีการศึกษา : <?php echo $student_fetch->Term.'/'.$student_fetch->Term_year; ?>
+						</p>
+					</fieldset>
+				</div>
 				<div class="row site_content-menu">
 					<a href="#" id="assessor-link" data-toggle="modal" data-target="#assesor-edit_box" value="edit_assesor">
 						<div class="col-md-4 col-md-offset-2 site_content-menu_box">
