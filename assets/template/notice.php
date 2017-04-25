@@ -36,10 +36,10 @@ if ($action ==  "forgot_fail") {
 		</button>
 	</div>
 	<?php
-} else if ($action == "user_delete_warning") {
+} else if ($action == "update_success") {
 	?>
-	<div class="alert alert-danger" role="alert">
-		เนื่องจากผู้ใช้งานดังกล่าวมีประวัติการประเมิน จึงไม่สามารถลบผู้ใช้ดังกล่าวได้ แต่ระบบจะทำการล็อคการใช้งานของผู้ใช้ดังกล่าว
+	<div class="alert alert-warning" role="alert">
+		แก้ไขข้อมูลเรียบร้อยแล้ว
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		</button>
@@ -54,6 +54,15 @@ if ($action ==  "forgot_fail") {
 		</button>
 	</div>
 	<?php
+} else if ($action == "user_delete_warning") {
+	?>
+	<div class="alert alert-danger" role="alert">
+		เนื่องจากผู้ใช้งานดังกล่าวมีประวัติการประเมิน จึงไม่สามารถลบผู้ใช้ดังกล่าวได้ แต่ระบบจะทำการล็อคการใช้งานของผู้ใช้ดังกล่าว
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<?php
 } else if ($action == "teacher_delete_warning") {
 	?>
 	<div class="alert alert-danger" role="alert">
@@ -63,8 +72,6 @@ if ($action ==  "forgot_fail") {
 		</button>
 	</div>
 	<?php
-} else if ($action == "update_success") {
-	
 } else if ($action == "wrong_classroom") {
 	?>
 	<div class="alert alert-danger" role="alert">

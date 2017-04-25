@@ -34,7 +34,7 @@ if ($_SESSION["user_role"] < 8) {
 					?>
 				</div>
 				<div class="row site_content-filter">
-					<form action="assets/service/user.php" class="form-inline" id="user-filter_form" name="user-filter_form" role="form" method="POST" data-toggle="validator">
+					<form action="" class="form-inline" id="user-filter_form" name="user-filter_form" role="form" method="POST" data-toggle="validator">
 						<fieldset class="fieldset-form">
 							<legend class="legend-form">ข้อมูลผู้ใช้</legend>
 							<div class="col-md-7">
@@ -237,21 +237,21 @@ if ($_SESSION["user_role"] < 8) {
 							</tr>
 						</thead>
 						<tbody>
-							
 							<?php
-							if (empty($_GET["filter"])) {
-								if (empty($_GET["action"])) {
-									$filter = mysql_query("SELECT * FROM user")or die(mysql_error());
-								} else {
-									$filter = mysql_query(get_users_with_action($_GET["action"]))or die(mysql_error());
-								}
+							if ($_POST["filterBtn"]) {
+								$keyword = $_POST["filter-keyword"];
+								$filter = "SELECT * FROM user
+								WHERE username LIKE '%$keyword%'
+								OR user_email LIKE '%$keyword%'
+								OR user_name LIKE '%$keyword%'
+								OR user_surname LIKE '%$keyword%'";
+								$filter_query = mysql_query($filter)or die(mysql_error());
 							} else {
-								$filters = str_replace("`","'",$_GET["filter"]);
-								$filter = mysql_query($filters)or die(mysql_error());
+								$filter_query = mysql_query("SELECT * FROM user")or die(mysql_error());
 							}
 							$counter = 0;
-							if (mysql_num_rows($filter) > 0) {
-								while($result = mysql_fetch_array($filter)) {
+							if (mysql_num_rows($filter_query) > 0) {
+								while($result = mysql_fetch_array($filter_query)) {
 									?>
 									<tr <?php
 									if ($result["user_role"] == -99) {
