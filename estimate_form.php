@@ -6,12 +6,11 @@ if ($_SESSION["user_role"] < 2) {
 	header("location:404.php");
 }
 $student_fetch = get_student($_GET[Std_no], $_GET[year], $_GET[term]);
-$estimate = get_estimate($student_fetch->Std_no, $student_fetch->Term, $student_fetch->Term_year);
-if ($estimte == 0) {
-	preinsert_estimte($_GET["As_type"]);
+$estimate = get_estimate($student_fetch->Std_no, $student_fetch->Term, $student_fetch->Term_year, $_GET[As_type]);
+if (mysql_num_rows($estimate) == 0) {
+	preinsert($_GET["As_type"], $student_fetch->Std_no, $student_fetch->Term, $student_fetch->Term_year);
 }
 
-//echo $estimate;
 ?>
 <!DOCTYPE html>
 <html lang="th">
