@@ -5,12 +5,13 @@ include_once("assets/service/student.php");
 if ($_SESSION["user_role"] < 2) {
 	header("location:404.php");
 }
-$student_fetch = get_student($_GET[Std_no], $_GET[year], $_GET[term]);
-$estimate = get_estimate($student_fetch->Std_no, $student_fetch->Term, $student_fetch->Term_year, $_GET[As_type]);
-if (mysql_num_rows($estimate) == 0) {
-	preinsert($_GET["As_type"], $student_fetch->Std_no, $student_fetch->Term, $student_fetch->Term_year);
-}
-
+$student_fetch = get_student($_GET[std_no], $_GET[year], $_GET[term]);
+$estimate_check = get_estimate($student_fetch->Std_no, $student_fetch->Term, $student_fetch->Term_year, $_GET[as_type]);
+if (mysql_num_rows($estimate_check) == 0) {
+	preinsert($_GET[as_type], $student_fetch->Std_no, $student_fetch->Term, $student_fetch->Term_year);
+} 
+$estimate = get_estimate($student_fetch->Std_no, $student_fetch->Term, $student_fetch->Term_year, $_GET[as_type]);
+$estimate_fetch = mysql_fetch_object($estimate)or die(mysql_error());
 ?>
 <!DOCTYPE html>
 <html lang="th">
@@ -100,14 +101,19 @@ if (mysql_num_rows($estimate) == 0) {
 							<div class="modal fade" id="assesor-edit_box" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
 								<div class="modal-dialog modal-lg" role="document">
 									<div class="modal-content">
-										<form action="#" role="form" method="post" data-toggle="validator" id="assesor-edit_form">
+										<form action="assets/service/assessor.php" role="form" method="post" data-toggle="validator" id="assesor-edit_form">
+											<input type="hidden" name="as_id" value=<?php echo $estimate_fetch->As_id; ?>>
+											<input type="hidden" name="as_type" value=<?php echo $estimate_fetch->As_type; ?>>
+											<input type="hidden" name="year" value=<?php echo $estimate_fetch->Es_year; ?>>
+											<input type="hidden" name="term" value=<?php echo $estimate_fetch->Es_term; ?>>
+											<input type="hidden" name="std_no" value=<?php echo $estimate_fetch->Std_no; ?>>
 											<fieldset class="fieldset-form">
 												<legend class="legend-form"><h1>แก้ไขข้อมูลผู้ประเมิน</h1></legend>
 												<div class="row">
 													<div class="col-md-6">
 														<div class="form-group">
 															<label for="InputStdName">ชื่อ - นามสกุลผู้ถูกประเมิน</label>
-															<input type="text" class="form-control" name="std_name" disabled="" required="">
+															<input type="text" class="form-control" name="std_name" disabled="" placeholder="<?php echo ($student_fetch->Std_gender==1? "เด็กหญิง " : "เด็กชาย ").$student_fetch->Std_name.' '.$student_fetch->Std_surname; ?>">
 														</div>
 													</div>
 												</div>
@@ -115,7 +121,7 @@ if (mysql_num_rows($estimate) == 0) {
 													<div class="col-md-6">
 														<div class="form-group">
 															<label for="InputAssName">ชื่อผู้ประเมิน</label>
-															<input type="text" class="form-control" name="ass_name" id="ass_name" placeholder="ชื่อผู้ประเมิน"  maxlength="50" data-error="กรุณาระบุชื่อผู้ประเมิน" required>
+															<input type="text" class="form-control" name="as_name" id="as_name" placeholder="ชื่อผู้ประเมิน" value="<?php echo $estimate_fetch->As_name; ?>" maxlength="50" data-error="กรุณาระบุชื่อผู้ประเมิน" required>
 															<div class="help-block with-errors"></div>
 														</div>
 													</div>
@@ -124,7 +130,7 @@ if (mysql_num_rows($estimate) == 0) {
 													<div class="col-md-6">
 														<div class="form-group">
 															<label for="InputStdSurname">นามสกุลผู้ประเมิน</label>
-															<input type="text" class="form-control" name="ass_surname" id="ass_surname" placeholder="นามสกุลผู้ประเมิน" maxlength="50" data-error="กรุณาระบุนามสกุลผู้ประเมิน" required>
+															<input type="text" class="form-control" name="as_surname" id="as_surname" placeholder="นามสกุลผู้ประเมิน" value="<?php echo $estimate_fetch->As_surname; ?>" maxlength="50" data-error="กรุณาระบุนามสกุลผู้ประเมิน" required>
 															<div class="help-block with-errors"></div>
 														</div>
 													</div>
@@ -133,23 +139,14 @@ if (mysql_num_rows($estimate) == 0) {
 													<div class="col-md-6">
 														<div class="form-group">
 															<label for="InputRelationship">เกี่ยวข้องกับผู้ถูกประเมินโดยเป็น</label>
-															<input type="text" class="form-control" name="relation" id="relation" disabled required>
+															<input type="text" class="form-control" name="relation" id="relation" placeholder="<?php echo $estimate_fetch->As_type; ?>" disabled>
 														</div>
 													</div>
 												</div>
 												<div class="row">
-													<div class="col-md-6">
+													<div class="col-md-6 form-inline">
 														<div class="form-group">
-															<label for="InputTerm">ภาคการเรียน</label>
-															<label for="InputTerm" class="radio-inline">
-																<input type="radio" name="Term" id="Term1" value="1" checked>1
-															</label>
-															<label for="InputTerm" class="radio-inline">
-																<input type="radio" name="Term" id="Term2" value="2" >2
-															</label>
-															<label for="InputTerm" class="radio-inline">
-																<input type="radio" name="Term" id="Term3" value="3" >3
-															</label>
+															<label for="DisplayTermAndYear">ปีการศึกษา <?php echo $estimate_fetch->Es_term.'/'.$estimate_fetch->Es_year; ?></label>
 														</div>
 													</div>
 												</div>
