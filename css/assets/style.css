@@ -1,0 +1,277 @@
+/*------------------------------------*
+CONTENTS
+*------------------------------------*/
+/**
+* RESET................ reset everything to default
+* LAYOUTS.............. page layouts customize
+* HEADERS.............. header layouts customize
+* CONTENT.............. customize content
+*/
+
+/**
+RESET
+---------------------------------------------------
+|NOTE: This style sheet leverages: layout-core.css.|
+---------------------------------------------------
+*/
+/*@import url(layout-core.css);*/
+
+
+/**
+LAYOUTS
+-----------------------------------------
+|NOTE: Size / Position / Layouts / Padding / Margin. |
+------------------------------------------
+*/
+
+.panel-login {
+	border-color: #ccc;
+	-webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+	box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+}
+
+.panel-login>.panel-heading {
+	color: #00415d;
+	background-color: #fff;
+	border-color: #fff;
+	text-align:center;
+}
+
+.panel-login>.panel-body {
+	text-align: center;
+}
+
+.modal-content form {
+	margin: 2% 2% 2% 2%;
+}
+
+.site_content-menu {
+	text-align: center;
+	font-size: 1.2em;
+}
+
+.img-menu {
+	display:block;
+	margin:0 auto;
+	height: 100px;
+	width: auto;
+}
+
+.site_navbar>.navbar {
+	border-color: #ccc;
+	-webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+	box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+}
+
+.panel-login>.panel-heading a{
+	text-decoration: none;
+	color: #666;
+	font-weight: bold;
+	font-size: 15px;
+	-webkit-transition: all 0.1s linear;
+	-moz-transition: all 0.1s linear;
+	transition: all 0.1s linear;
+}
+
+.panel-login>.panel-heading a.active, .panel-login>.panel-heading>#forgot-header {
+	color: #0C4A00;
+	font-size: 18px;
+}
+
+.panel-login>.panel-heading hr{
+	margin-top: 10px;
+	margin-bottom: 0px;
+	clear: both;
+	border: 0;
+	height: 1px;
+	background-image: -webkit-linear-gradient(left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.15),rgba(0, 0, 0, 0));
+	background-image: -moz-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+	background-image: -ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+	background-image: -o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+}
+
+.btn-login {
+	background-color: #07C;
+	outline: none;
+	color: #fff;
+	font-size: 14px;
+	height: auto;
+	font-weight: normal;
+	padding: 14px 0;
+	text-transform: uppercase;
+	border-color: #59B2E6;
+}
+
+a.forgot-password {
+	text-decoration: underline;
+	color: #888;
+}
+
+.forgot-password:hover,
+.forgot-password:focus {
+	text-decoration: underline;
+	color: #666;
+}
+
+.btn-login:hover,
+.btn-login:focus {
+	color: #fff;
+	background-color: #0060A5;
+	border-color: #53A3CD;
+}
+
+.btn-register, .btn-add, .btn-edit {
+	background-color: #1CB94E;
+	outline: none;
+	color: #fff;
+	font-size: 14px;
+	height: auto;
+	font-weight: normal;
+	padding: 14px 0;
+	text-transform: uppercase;
+	border-color: #1CB94A;
+}
+
+fieldset.fieldset-form {
+	border: 1px groove #ddd !important;
+	padding: 0 1.4em 1.4em 1.4em !important;
+	margin: 0 0 1.5em 0 !important;
+	-webkit-box-shadow:  0px 0px 0px 0px #000;
+	box-shadow:  0px 0px 0px 0px #000;
+}
+
+legend.legend-form {
+	font-size: 1.2em !important;
+	font-weight: bold !important;
+	text-align: left !important;
+	width:auto;
+	padding:0 10px;
+	border-bottom:none;
+}
+
+#filter-keyword {
+	width: 205px;
+}
+
+#filter-year {
+	width: 130px;
+}
+
+#teacher-table>tbody>tr td,
+#user-table>tbody>tr td {
+	vertical-align: middle;
+}
+
+.btn-register:hover,
+.btn-register:focus {
+	color: #fff;
+	background-color: #1CA347;
+	border-color: #1CA347;
+}
+
+.btn-forgot {
+	background-color: #07C;
+	outline: none;
+	color: #fff;
+	font-size: 14px;
+	height: 50px;
+	width: 100px;
+	font-weight: normal;
+	padding: 14px 0;
+	text-transform: uppercase;
+	border-color: #59B2E6;
+}
+
+.btn-forgot:hover,
+.btn-forgot:focus {
+	color: #fff;
+	background-color: #0060A5;
+	border-color: #53A3CD;
+}
+
+.btn-back {
+	background-color: #999999;
+	outline: none;
+	color: #fff;
+	font-size: 14px;
+	height: 50px;
+	width: 100px;
+	font-weight: normal;
+	padding: 14px 0;
+	text-transform: uppercase;
+}
+
+.btn-back:hover,
+.btn-back:focus {
+	color: #fff;
+	background-color: #909090;
+	border-color: #A5A5A5;
+}
+
+#register-form .help-block, 
+#login-form .help-block, 
+#forgot-form .help-block {
+	text-align: left;
+}
+
+.profile-form_header {
+	text-align: right;
+}
+
+.site_content-table>#student-table th {
+	vertical-align:middle;
+}
+
+.site_footer, .site_content-menu {
+	margin-top: 3%;
+	margin-bottom: 5%;
+}
+
+.site_content-menu_box:hover {
+	border-radius: 25px;
+	border: 2px solid #ADADAD;
+	background: #C5C5C5;
+	padding: 20px; 
+	font-weight: bold;
+}
+
+.site_content-menu a:link,
+.site_content-menu a:visited {
+	color: #000000;
+}
+
+.site_content-menu a:hover {
+	color: #686868;
+	text-decoration: none;
+}
+
+.list-group-horizontal {
+	text-align: center;
+}
+
+.list-group-horizontal .list-group-item {
+	display: inline-block;
+}
+.list-group-horizontal .list-group-item {
+	margin-bottom: 0;
+	margin-left:-4px;
+	margin-right: 0;
+}
+.list-group-horizontal .list-group-item:first-child {
+	border-top-right-radius:0;
+	border-bottom-left-radius:4px;
+}
+.list-group-horizontal .list-group-item:last-child {
+	border-top-right-radius:4px;
+	border-bottom-left-radius:0;
+}
+
+.show_score {
+	padding-top: 5px;
+}
+
+#profile-form .profile-form_header {
+	padding-top: 6px;
+}
