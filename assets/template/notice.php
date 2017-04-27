@@ -38,7 +38,7 @@ if ($action ==  "forgot_fail") {
 	<?php
 } else if ($action == "update_success") {
 	?>
-	<div class="alert alert-warning" role="alert">
+	<div class="alert alert-success" role="alert">
 		แก้ไขข้อมูลเรียบร้อยแล้ว
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
@@ -85,6 +85,15 @@ if ($action ==  "forgot_fail") {
 	?>
 	<div class="alert alert-warning" role="alert">
 		ข้อมูลนักเรียนดังกล่าว มีการซ้ำซ้อน กรุณาใช้ส่วนค้นหาและแก้ไขข้อมูลเดิม
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<?php
+} else if ($action == "edit_assessor_success") {
+	?>
+	<div class="alert alert-success" role="alert">
+		จัดการข้อมูลผู้ประเมินเรียบร้อยแล้ว
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		</button>
