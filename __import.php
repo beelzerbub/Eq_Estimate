@@ -1,8 +1,7 @@
 <?php
 include_once("assets/database/connect.php");
 include_once("assets/service/login.php");
-if ($_SESSION["user_role"] == -99) {
-	session_destroy();
+if ($_SESSION["user_role"] < 8) {
 	header("location:404.php");
 }
 ?>
@@ -36,7 +35,22 @@ if ($_SESSION["user_role"] == -99) {
 					?>
 				</div>
 			</div>
-			<p>Content of index for this website</p>
+			<form action="#" id="student-import_form" role="form" method="post" data-toggle="validator" >
+				<fieldset class="fieldset-form">
+					<legend class="legend-form"><h1>นำเข้าข้อมูลนักเรียนด้วยไฟล์ CSV</h1></legend>
+					<div class="form-group">
+						<label for="InputFileCsv">เลือก File CSV ที่ต้องการนำเข้า : </label>
+						<input type="file" class="form-control" data-error="กรุณาเลือกไฟล์ ที่ต้องการนำเข้าข้อมูลนักเรียน" required />
+						<div class="help-block with-errors"></div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-md-4 col-md-offset-4">
+							<input type="submit" id="ImportStdBtn" name="ImportStdBtn" tabindex="" class="form-control btn btn-add" value="นำเข้าข้อมูล">
+						</div>
+					</div>
+				</fieldset>
+			</form>
 		</div>
 		<div class="row site_footer">
 			<hr>
