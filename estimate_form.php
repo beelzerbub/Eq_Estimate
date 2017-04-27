@@ -1,20 +1,16 @@
 <?php
 include_once("assets/database/connect.php");
-include_once("assets/service/teacher.php");
+include_once("assets/service/estimate.php");
+include_once("assets/service/student.php");
 if ($_SESSION["user_role"] < 2) {
 	header("location:404.php");
 }
-$as_type = $_GET["As_type"];
-$student = "SELECT * FROM student std
-JOIN classroom cls
-JOIN term
-WHERE std.Std_no = $_GET[Std_no]
-AND term.Std_no = std.Std_no
-AND term.Class_id = cls.Class_id
-AND term.term_year = $_GET[year]
-AND term.term = $_GET[term]";
-$student_query = mysql_query($student)or die(mysql_error());
-$student_fetch = mysql_fetch_object($student_query)or die(mysql_error());
+$student_fetch = get_student($_GET[Std_no], $_GET[year], $_GET[term]);
+$estimate = get_estimate($student_fetch->Std_no, $student_fetch->Term, $student_fetch->Term_year, $_GET[As_type]);
+if (mysql_num_rows($estimate) == 0) {
+	preinsert($_GET["As_type"], $student_fetch->Std_no, $student_fetch->Term, $student_fetch->Term_year);
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="th">
@@ -155,13 +151,6 @@ $student_fetch = mysql_fetch_object($student_query)or die(mysql_error());
 																<input type="radio" name="Term" id="Term3" value="3" >3
 															</label>
 														</div>
-													</div>
-												</div>
-												<div class="row">
-													<div class="col-md-6">
-														<label for="InputDate">
-															วันที่ทำการประเมิน
-														</label>
 													</div>
 												</div>
 												<br>

@@ -64,6 +64,20 @@ if ($_GET["action"] == "delete") {
 ////------------------------------------------------- 
 ////------------ Function Student -------------------
 ////-----------------------------------------------//
+function get_student ($std_no, $year, $term) {
+	$student = "SELECT * FROM student std
+	JOIN classroom cls
+	JOIN term
+	WHERE std.Std_no = $std_no
+	AND term.Std_no = std.Std_no
+	AND term.Class_id = cls.Class_id
+	AND term.term_year = $year
+	AND term.term = $term";
+	$student_query = mysql_query($student)or die(mysql_error());
+	$student_fetch = mysql_fetch_object($student_query)or die(mysql_error());
+	return $student_fetch;
+}
+
 function insert_student($id, $name, $surname, $age, $gender, $classroom, $class_number, $year_reg, $term_reg) {
 	if (check_classroom($classroom, $class_number)) {
 		$classroom = "SELECT * FROM classroom WHERE class_grade = '$classroom'
