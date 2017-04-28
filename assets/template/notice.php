@@ -99,5 +99,14 @@ if ($action ==  "forgot_fail") {
 		</button>
 	</div>
 	<?php
+} else if ($action == "estimate_update_success") {
+	?>
+	<div class="alert alert-success" role="alert">
+		บันทึกการประเมินส่วนที่ <?php echo $_GET[part]; ?> เรียบร้อยแล้ว
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<?php
 }
 ?>
