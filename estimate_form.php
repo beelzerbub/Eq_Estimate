@@ -9,7 +9,7 @@ $student_fetch = get_student($_GET[std_no], $_GET[year], $_GET[term]);
 $estimate_check = get_estimate($student_fetch->Std_no, $student_fetch->Term, $student_fetch->Term_year, $_GET[as_type]);
 if (mysql_num_rows($estimate_check) == 0) {
 	preinsert($_GET[as_type], $student_fetch->Std_no, $student_fetch->Term, $student_fetch->Term_year);
-} 
+}
 $estimate = get_estimate($student_fetch->Std_no, $student_fetch->Term, $student_fetch->Term_year, $_GET[as_type]);
 $estimate_fetch = mysql_fetch_object($estimate)or die(mysql_error());
 ?>
@@ -164,12 +164,17 @@ $estimate_fetch = mysql_fetch_object($estimate)or die(mysql_error());
 							<!-- จบฟอร์มสำหรับผู้ประเมิน -->
 							<div class="modal fade" id="estimate-edit_box" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
 								<div class="modal-dialog modal-lg" role="document">
-									<form action="#" role="form" method="post" data-toggle="validator" id="estimte-edit_form" name="estimte-edit_form">
+									<form action="assets/service/estimate.php" role="form" method="post" data-toggle="validator" id="estimte-edit_form" name="estimte-edit_form">
 										<div class="modal-content" id="estimate-edit_form_1">
 											<fieldset class="fieldset-form">
 												<legend class="legend-form"><h1>แบบประเมิน</h1></legend>
 												<div class="row">
 													<div class="col-md-12">
+														<input type="hidden" name="as_type" value="<?php echo $estimate_fetch->As_type; ?>">
+														<input type="hidden" name="std_no" value="<?php echo $estimate_fetch->Std_no; ?>">
+														<input type="hidden" name="year" value="<?php echo $estimate_fetch->Es_year; ?>">
+														<input type="hidden" name="term" value="<?php echo $estimate_fetch->Es_term; ?>">
+														<input type="hidden" name="es_id" value="<?php echo $estimate_fetch->Es_id; ?>">
 														<div class="list-group list-group-horizontal">
 															<a href="#" class="list-group-item estimate_form-link_previous disabled"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span></a>
 															<a href="#" class="list-group-item active estimate_form-link_1">ส่วนที่ 1</a>
@@ -263,7 +268,7 @@ $estimate_fetch = mysql_fetch_object($estimate)or die(mysql_error());
 													<div class="col-md-6">
 														<div class="row">
 															<div class="col-md-3">
-																<input type="submit" name="SaveBtn" class="form-control btn btn-primary SaveBtn" value="บันทึก">
+																<input type="submit" name="SaveBtn1" class="form-control btn btn-primary" value="บันทึก">
 															</div>
 															<div class="col-md-9">
 																<p class="show_score">ประวัติการประเมินส่วนที่ 1 : ยังไม่ได้ทำการประเมิน</p>

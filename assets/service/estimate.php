@@ -39,7 +39,157 @@ $year = date('Y') + 543;
 ////------------------------------------------------- 
 ////-------------- Call Function --------------------
 ////-----------------------------------------------//
+if ($_POST["SaveBtn1"]) {
+	$choice_1 = $_POST['choice_1'];
+	$choice_2 = $_POST['choice_2'];
+	$choice_3 = $_POST['choice_3'];
+	$choice_4 = $_POST['choice_4'];
+	$choice_5 = $_POST['choice_5'];
+	$choice_6 = $_POST['choice_6'];
+	$choice_7 = $_POST['choice_7'];
+	$es_id = $_POST["es_id"];
 
+	$as_type = $_POST['as_type'];
+	$year = $_POST['year'];
+	$term = $_POST['term'];
+	$std_no = $_POST['std_no'];
+
+	update_estimate_score($es_id, 1);
+	header("location:../../estimate_form.php?as_type=$as_type&std_no=$std_no&year=$year&term=$term&action=estimate_update_success&part=1");
+} else if ($_POST["SaveBtn2"]) {
+	$choice_8 = $_POST['choice_8'];
+	$choice_9 = $_POST['choice_9'];
+	$choice_10 = $_POST['choice_10'];
+	$choice_11 = $_POST['choice_11'];
+	$choice_12 = $_POST['choice_12'];
+	$choice_13 = $_POST['choice_13'];
+	$choice_14 = $_POST['choice_14'];
+	$choice_15 = $_POST['choice_15'];
+	$choice_16 = $_POST['choice_16'];
+	$es_id = $_POST["es_id"];
+
+	$as_type = $_POST['as_type'];
+	$year = $_POST['year'];
+	$term = $_POST['term'];
+	$std_no = $_POST['std_no'];
+
+	update_estimate_score($es_id, 2);
+	header("location:../../estimate_form.php?as_type=$as_type&std_no=$std_no&year=$year&term=$term&action=estimate_update_success&part=2");
+} else if ($_POST["SaveBtn3"]) {
+	$choice_17 = $_POST['choice_17'];
+	$choice_18 = $_POST['choice_18'];
+	$choice_19 = $_POST['choice_19'];
+	$choice_20 = $_POST['choice_20'];
+	$choice_21 = $_POST['choice_21'];
+	$choice_22 = $_POST['choice_22'];
+	$choice_23 = $_POST['choice_23'];
+	$es_id = $_POST["es_id"];
+
+	$as_type = $_POST['as_type'];
+	$year = $_POST['year'];
+	$term = $_POST['term'];
+	$std_no = $_POST['std_no'];
+
+	update_estimate_score($es_id, 3);
+	header("location:../../estimate_form.php?as_type=$as_type&std_no=$std_no&year=$year&term=$term&action=estimate_update_success&part=3");
+} else if ($_POST["SaveBtn4"]) {
+	$choice_24 = $_POST['choice_24'];
+	$choice_25 = $_POST['choice_25'];
+	$choice_26 = $_POST['choice_26'];
+	$choice_27 = $_POST['choice_27'];
+	$choice_28 = $_POST['choice_28'];
+	$choice_29 = $_POST['choice_29'];
+	$choice_30 = $_POST['choice_30'];
+	$es_id = $_POST["es_id"];
+
+	$as_type = $_POST['as_type'];
+	$year = $_POST['year'];
+	$term = $_POST['term'];
+	$std_no = $_POST['std_no'];
+
+	update_estimate_score($es_id, 4);
+	header("location:../../estimate_form.php?as_type=$as_type&std_no=$std_no&year=$year&term=$term&action=estimate_update_success&part=4");
+} else if ($_POST["SaveBtn5"]) {
+	$choice_31 = $_POST['choice_31'];
+	$choice_32 = $_POST['choice_32'];
+	$choice_33 = $_POST['choice_33'];
+	$choice_34 = $_POST['choice_34'];
+	$choice_35 = $_POST['choice_35'];
+	$choice_36 = $_POST['choice_36'];
+	$es_id = $_POST["es_id"];
+
+	$as_type = $_POST['as_type'];
+	$year = $_POST['year'];
+	$term = $_POST['term'];
+	$std_no = $_POST['std_no'];
+
+	update_estimate_score($es_id, 5);
+	header("location:../../estimate_form.php?as_type=$as_type&std_no=$std_no&year=$year&term=$term&action=estimate_update_success&part=5");
+} else if ($_POST["SaveBtn6"]) {
+	$choice_37 = $_POST['choice_37'];
+	$choice_38 = $_POST['choice_38'];
+	$choice_39 = $_POST['choice_39'];
+	$choice_40 = $_POST['choice_40'];
+	$choice_41 = $_POST['choice_41'];
+	$choice_42 = $_POST['choice_42'];
+	$es_id = $_POST["es_id"];
+
+	$as_type = $_POST['as_type'];
+	$year = $_POST['year'];
+	$term = $_POST['term'];
+	$std_no = $_POST['std_no'];
+
+	update_estimate_score($es_id, 6);
+	header("location:../../estimate_form.php?as_type=$as_type&std_no=$std_no&year=$year&term=$term&action=estimate_update_success&part=6");
+} else if ($_POST["SaveBtn7"]) {
+	$choice_43 = $_POST['choice_43'];
+	$choice_44 = $_POST['choice_44'];
+	$choice_45 = $_POST['choice_45'];
+	$choice_46 = $_POST['choice_46'];
+	$choice_47 = $_POST['choice_47'];
+	$choice_48 = $_POST['choice_48'];
+	$es_id = $_POST["es_id"];
+
+	$as_type = $_POST['as_type'];
+	$year = $_POST['year'];
+	$term = $_POST['term'];
+	$std_no = $_POST['std_no'];
+
+	update_estimate_score($es_id, 7);
+	header("location:../../estimate_form.php?as_type=$as_type&std_no=$std_no&year=$year&term=$term&action=estimate_update_success&part=7");
+} else if ($_POST["SaveBtn8"]) {
+	$choice_49 = $_POST['choice_49'];
+	$choice_50 = $_POST['choice_50'];
+	$choice_51 = $_POST['choice_51'];
+	$choice_52 = $_POST['choice_52'];
+	$choice_53 = $_POST['choice_53'];
+	$choice_54 = $_POST['choice_54'];
+	$es_id = $_POST["es_id"];
+
+	$as_type = $_POST['as_type'];
+	$year = $_POST['year'];
+	$term = $_POST['term'];
+	$std_no = $_POST['std_no'];
+
+	update_estimate_score($es_id, 8);
+	header("location:../../estimate_form.php?as_type=$as_type&std_no=$std_no&year=$year&term=$term&action=estimate_update_success&part=8");
+} else if ($_POST["SaveBtn9"]) {
+	$choice_55 = $_POST['choice_55'];
+	$choice_56 = $_POST['choice_56'];
+	$choice_57 = $_POST['choice_57'];
+	$choice_58 = $_POST['choice_58'];
+	$choice_59 = $_POST['choice_59'];
+	$choice_60 = $_POST['choice_60'];
+	$es_id = $_POST["es_id"];
+
+	$as_type = $_POST['as_type'];
+	$year = $_POST['year'];
+	$term = $_POST['term'];
+	$std_no = $_POST['std_no'];
+
+	update_estimate_score($es_id, 9);
+	header("location:../../estimate_form.php?as_type=$as_type&std_no=$std_no&year=$year&term=$term&action=estimate_update_success&part=9");
+}
 
 
 
@@ -99,5 +249,108 @@ function preinsert_estimate_score($es_id) {
 	$group_query8 = mysql_query($pre_group8)or die(mysql_error());
 	$pre_group9 = "INSERT INTO estimate_score VALUES('',0,9,$es_id)";
 	$group_query9 = mysql_query($pre_group9)or die(mysql_error());
+}
+
+function update_estimate_score($es_id, $sg_id) {
+	if ($sg_id == 1) {
+		$update_score = "UPDATE estimate_score SET Es_score = ".Set_Score1()." WHERE Es_id = ".$es_id." and Sg_id = 1";
+		$update_score_query = mysql_query($update_score)or die(mysql_error());
+	} else if ($sg_id == 2) {
+		$update_score = "UPDATE estimate_score SET Es_score = ".Set_Score2()." WHERE Es_id = ".$es_id." and Sg_id = 2";
+		$update_score_query = mysql_query($update_score)or die(mysql_error());
+	} else if ($sg_id == 3) {
+		$update_score = "UPDATE estimate_score SET Es_score = ".Set_Score3()." WHERE Es_id = ".$es_id." and Sg_id = 3";
+		$update_score_query = mysql_query($update_score)or die(mysql_error());
+	} else if ($sg_id == 4) {
+		$update_score = "UPDATE estimate_score SET Es_score = ".Set_Score4()." WHERE Es_id = ".$es_id." and Sg_id = 4";
+		$update_score_query = mysql_query($update_score)or die(mysql_error());
+	} else if ($sg_id == 5) {
+		$update_score = "UPDATE estimate_score SET Es_score = ".Set_Score5()." WHERE Es_id = ".$es_id." and Sg_id = 5";
+		$update_score_query = mysql_query($update_score)or die(mysql_error());
+	} else if ($sg_id == 6) {
+		$update_score = "UPDATE estimate_score SET Es_score = ".Set_Score6()." WHERE Es_id = ".$es_id." and Sg_id = 6";
+		$update_score_query = mysql_query($update_score)or die(mysql_error());
+	} else if ($sg_id == 7) {
+		$update_score = "UPDATE estimate_score SET Es_score = ".Set_Score7()." WHERE Es_id = ".$es_id." and Sg_id = 7";
+		$update_score_query = mysql_query($update_score)or die(mysql_error());
+	} else if ($sg_id == 8) {
+		$update_score = "UPDATE estimate_score SET Es_score = ".Set_Score8()." WHERE Es_id = ".$es_id." and Sg_id = 8";
+		$update_score_query = mysql_query($update_score)or die(mysql_error());
+	} else if ($sg_id == 9) {
+		$update_score = "UPDATE estimate_score SET Es_score = ".Set_Score9()." WHERE Es_id = ".$es_id." and Sg_id = 9";
+		$update_score_query = mysql_query($update_score)or die(mysql_error());
+	}
+}
+
+function Set_Score1() {
+	$sum_group1 = 0;
+	for($i=1; $i<=7; $i++) {
+		$sum_group1 = $sum_group1 + $GLOBALS['choice_'.$i];
+	}
+	return $sum_group1;
+}
+
+function Set_Score2() {
+	$sum_group2 = 0;
+	for($i=8; $i<=16; $i++) {
+		$sum_group2 = $sum_group2 + $GLOBALS['choice_'.$i];
+	}
+	return $sum_group2;
+}
+
+function Set_Score3() {
+	$sum_group3 = 0;
+	for($i=17; $i<=23; $i++) {
+		$sum_group3 = $sum_group3 + $GLOBALS['choice_'.$i];
+	}
+	return $sum_group3;
+}
+
+function Set_Score4() {
+	$sum_group4 = 0;
+	for($i=24; $i<=30; $i++) {
+		$sum_group4 = $sum_group4 + $GLOBALS['choice_'.$i];
+	}
+	return $sum_group4;
+}
+
+function Set_Score5() {
+	$sum_group5 = 0;
+	for($i=31; $i<=36; $i++) {
+		$sum_group5 = $sum_group5 + $GLOBALS['choice_'.$i];
+	}
+	return $sum_group5;
+}
+
+function Set_Score6() {
+	$sum_group6 = 0;
+	for($i=37; $i<=42; $i++) {
+		$sum_group6 = $sum_group6 + $GLOBALS['choice_'.$i];
+	}
+	return $sum_group6;
+}
+
+function Set_Score7() {
+	$sum_group7 = 0;
+	for($i=43; $i<=48; $i++) {
+		$sum_group7 = $sum_group7 + $GLOBALS['choice_'.$i];
+	}
+	return $sum_group7;
+}
+
+function Set_Score8() {
+	$sum_group8 = 0;
+	for($i=49; $i<=54; $i++) {
+		$sum_group8 = $sum_group8 + $GLOBALS['choice_'.$i];
+	}
+	return $sum_group8;
+}
+
+function Set_Score9() {
+	$sum_group9 = 0;
+	for($i=55; $i<=60; $i++) {
+		$sum_group9 = $sum_group9 + $GLOBALS['choice_'.$i];
+	}
+	return $sum_group9;
 }
 ?>
