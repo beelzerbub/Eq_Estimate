@@ -39,7 +39,23 @@ $year = date('Y') + 543;
 ////------------------------------------------------- 
 ////-------------- Call Function --------------------
 ////-----------------------------------------------//
-
+if ($_POST["SaveBtn1"]) {
+	$choice_1 = $_POST['choice_1'];
+	$choice_2 = $_POST['choice_2'];
+	$choice_3 = $_POST['choice_3'];
+	$choice_4 = $_POST['choice_4'];
+	$choice_5 = $_POST['choice_5'];
+	$choice_6 = $_POST['choice_6'];
+	$choice_7 = $_POST['choice_7'];
+} else if ($_POST["SaveBtn2"]) {
+} else if ($_POST["SaveBtn3"]) {
+} else if ($_POST["SaveBtn4"]) {
+} else if ($_POST["SaveBtn5"]) {
+} else if ($_POST["SaveBtn6"]) {
+} else if ($_POST["SaveBtn7"]) {
+} else if ($_POST["SaveBtn8"]) {
+} else if ($_POST["SaveBtn9"]) {
+}
 
 
 

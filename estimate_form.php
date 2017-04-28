@@ -9,7 +9,7 @@ $student_fetch = get_student($_GET[std_no], $_GET[year], $_GET[term]);
 $estimate_check = get_estimate($student_fetch->Std_no, $student_fetch->Term, $student_fetch->Term_year, $_GET[as_type]);
 if (mysql_num_rows($estimate_check) == 0) {
 	preinsert($_GET[as_type], $student_fetch->Std_no, $student_fetch->Term, $student_fetch->Term_year);
-} 
+}
 $estimate = get_estimate($student_fetch->Std_no, $student_fetch->Term, $student_fetch->Term_year, $_GET[as_type]);
 $estimate_fetch = mysql_fetch_object($estimate)or die(mysql_error());
 ?>
@@ -263,7 +263,7 @@ $estimate_fetch = mysql_fetch_object($estimate)or die(mysql_error());
 													<div class="col-md-6">
 														<div class="row">
 															<div class="col-md-3">
-																<input type="submit" name="SaveBtn" class="form-control btn btn-primary SaveBtn" value="บันทึก">
+																<input type="submit" name="SaveBtn1" class="form-control btn btn-primary" value="บันทึก">
 															</div>
 															<div class="col-md-9">
 																<p class="show_score">ประวัติการประเมินส่วนที่ 1 : ยังไม่ได้ทำการประเมิน</p>
