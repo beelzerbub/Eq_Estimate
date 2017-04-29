@@ -14,6 +14,8 @@ $estimate = get_estimate($student_fetch->Std_no, $student_fetch->Term, $student_
 $estimate_fetch = mysql_fetch_object($estimate)or die(mysql_error());
 $estimate_teacher_table = get_estimate($student_fetch->Std_no, $student_fetch->Term, $student_fetch->Term_year, 'ครูประจำชั้น');
 $estimate_teacher_tscore = get_estimate($student_fetch->Std_no, $student_fetch->Term, $student_fetch->Term_year, 'ครูประจำชั้น');
+$estimate_parent_table = get_estimate($student_fetch->Std_no, $student_fetch->Term, $student_fetch->Term_year, 'ผู้ปกครอง');
+$estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->Term, $student_fetch->Term_year, 'ผู้ปกครอง');
 ?>
 <!DOCTYPE html>
 <html lang="th">
@@ -46,20 +48,10 @@ $estimate_teacher_tscore = get_estimate($student_fetch->Std_no, $student_fetch->
 				<div class="row site_content-detail">
 					<fieldset class="fieldset-form">
 						<legend class="legend-form">ข้อมูลนักเรียน</legend>
-						<p>
-							รหัสประจำตัวประชาชน : <?php echo $student_fetch->Std_id; ?>
-							
-						</p>
-						<p>
-							ชื่อ - นามสกุล : <?php echo ($student_fetch->Std_gender == 1 ? 'เด็กหญิง ' : 'เด็กชาย ') ?><?php echo $student_fetch->Std_name; ?> <?php echo $student_fetch->Std_surname; ?>
-							
-						</p>
-						<p>
-							ห้องเรียน : <?php echo $student_fetch->class_grade.' ห้อง '.$student_fetch->class_number; ?>
-						</p>
-						<p>
-							ปีการศึกษา : <?php echo $student_fetch->Term.'/'.$student_fetch->Term_year; ?>
-						</p>
+						<p>รหัสประจำตัวประชาชน : <?php echo $student_fetch->Std_id; ?></p>
+						<p>ชื่อ - นามสกุล : <?php echo ($student_fetch->Std_gender == 1 ? 'เด็กหญิง ' : 'เด็กชาย ') ?><?php echo $student_fetch->Std_name; ?> <?php echo $student_fetch->Std_surname; ?></p>
+						<p>ห้องเรียน : <?php echo $student_fetch->class_grade.' ห้อง '.$student_fetch->class_number; ?></p>
+						<p>ปีการศึกษา : <?php echo $student_fetch->Term.'/'.$student_fetch->Term_year; ?></p>
 					</fieldset>
 				</div>
 				<div class="row site_content-menu">

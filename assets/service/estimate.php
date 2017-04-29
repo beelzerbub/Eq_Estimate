@@ -209,7 +209,6 @@ function get_estimate($std_no, $term, $year, $as_type) {
 	AND et.As_id = asses.As_id
 	AND et.Es_id = es.Es_id
 	AND asses.As_type = '$as_type'";
-	echo $estimate;
 	$estimate_query = mysql_query($estimate)or die(mysql_error());
 	return $estimate_query;
 }
