@@ -12,6 +12,8 @@ if (mysql_num_rows($estimate_check) == 0) {
 }
 $estimate = get_estimate($student_fetch->Std_no, $student_fetch->Term, $student_fetch->Term_year, $_GET[as_type]);
 $estimate_fetch = mysql_fetch_object($estimate)or die(mysql_error());
+$estimate_teacher_table = get_estimate($student_fetch->Std_no, $student_fetch->Term, $student_fetch->Term_year, 'ครูประจำชั้น');
+$estimate_teacher_tscore = get_estimate($student_fetch->Std_no, $student_fetch->Term, $student_fetch->Term_year, 'ครูประจำชั้น');
 ?>
 <!DOCTYPE html>
 <html lang="th">
@@ -1174,11 +1176,41 @@ $estimate_fetch = mysql_fetch_object($estimate)or die(mysql_error());
 														</thead>
 														<tbody>
 															<tr>
-																<td><?php echo $estimate_fetch->Es_score; ?></td>
 																<?php
-																while($result = mysql_fetch_array($estimate)) {
+																while($result = mysql_fetch_array($estimate_teacher_table)) {
 																	?>
 																	<td><?php echo $result['Es_score']; ?></td>
+																	<?php
+																}
+																?>
+															</tr>
+														</tbody>
+													</table>
+													<h3>เกณฑ์คะแนนที (T-Score Norms)</h3>
+													<table class="table table-bordered table-striped" id="teacher_tscore-table_result">
+														<thead>
+															<tr>
+																<th colspan="3"><p class="text-center">ดี</p></th>
+																<th colspan="3"><p class="text-center">เก่ง</p></th>
+																<th colspan="3"><p class="text-center">สุข</p></th>
+															</tr>
+															<tr>
+																<?php
+																$groups = get_group();
+																while($group = mysql_fetch_array($groups)) {
+																	?>
+																	<td><center><?php echo $group['Sg_name']; ?></center></td>
+																	<?php
+																}
+																?>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<?php
+																while($result = mysql_fetch_array($estimate_teacher_tscore)) {
+																	?>
+																	<td><?php echo T_Score($result['Es_score'],$result['Sg_id']); ?></td>
 																	<?php
 																}
 																?>

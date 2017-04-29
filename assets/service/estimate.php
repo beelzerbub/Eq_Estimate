@@ -207,7 +207,9 @@ function get_estimate($std_no, $term, $year, $as_type) {
 	AND et.Es_term = $term
 	AND et.Std_no = $std_no
 	AND et.As_id = asses.As_id
-	AND et.Es_id = es.Es_id";
+	AND et.Es_id = es.Es_id
+	AND asses.As_type = '$as_type'";
+	echo $estimate;
 	$estimate_query = mysql_query($estimate)or die(mysql_error());
 	return $estimate_query;
 }
@@ -358,5 +360,513 @@ function get_group() {
 	$groups = "SELECT * FROM score_group";
 	$groups_query = mysql_query($groups)or die(mysql_error());
 	return $groups_query;
+}
+
+function T_Score ($score, $group) {
+	if ($score == 6) {
+		if ($group == 5) {
+			return 22;
+		} else if ($group == 6) {
+			return 11;
+		} else if ($group == 7) {
+			return 11;
+		} else if ($group == 8) {
+			return 7;
+		} else if ($group == 9) {
+			return 9;
+		} else {
+			return false;
+		}
+	} else if ($score == 7) {
+		if ($group == 1) {
+			return 10;
+		} else if ($group == 3) {
+			return 13;
+		} else if ($group == 4) {
+			return 13;
+		} else if ($group == 5) {
+			return 25;
+		} else if ($group == 6) {
+			return 14;
+		} else if ($group == 7) {
+			return 14;
+		} else if ($group == 8) {
+			return 10;
+		} else if ($group == 9) {
+			return 12;
+		} else {
+			return false;
+		}
+	} else if ($score == 8) {
+		if ($group == 1) {
+			return 13;
+		} else if ($group == 3) {
+			return 15;
+		} else if ($group == 4) {
+			return 16;
+		} else if ($group == 5) {
+			return 27;
+		} else if ($group == 6) {
+			return 17;
+		} else if ($group == 7) {
+			return 17;
+		} else if ($group == 8) {
+			return 14;
+		} else if ($group == 9) {
+			return 15;
+		} else {
+			return false;
+		}
+	} else if ($score == 9) {
+		if ($group == 1) {
+			return 16;
+		} else if ($group == 2) {
+			return 15;
+		} else if ($group == 3) {
+			return 18;
+		} else if ($group == 4) {
+			return 18;
+		} else if ($group == 5) {
+			return 30;
+		} else if ($group == 6) {
+			return 20;
+		} else if ($group == 7) {
+			return 20;
+		} else if ($group == 8) {
+			return 17;
+		} else if ($group == 9) {
+			return 18;
+		} else {
+			return false;
+		}
+	} else if ($score == 10) {
+		if ($group == 1) {
+			return 19;
+		} else if ($group == 2) {
+			return 17;
+		} else if ($group == 3) {
+			return 20;
+		} else if ($group == 4) {
+			return 20;
+		} else if ($group == 5) {
+			return 33;
+		} else if ($group == 6) {
+			return 23;
+		} else if ($group == 7) {
+			return 23;
+		} else if ($group == 8) {
+			return 20;
+		} else if ($group == 9) {
+			return 21;
+		} else {
+			return false;
+		}
+	} else if ($score == 11) {
+		if ($group == 1) {
+			return 22;
+		} else if ($group == 2) {
+			return 19;
+		} else if ($group == 3) {
+			return 23;
+		} else if ($group == 4) {
+			return 23;
+		} else if ($group == 5) {
+			return 35;
+		} else if ($group == 6) {
+			return 26;
+		} else if ($group == 7) {
+			return 26;
+		} else if ($group == 8) {
+			return 23;
+		} else if ($group == 9) {
+			return 24;
+		} else {
+			return false;
+		}
+	} else if ($score == 12) {
+		if ($group == 1) {
+			return 25;
+		} else if ($group == 2) {
+			return 21;
+		} else if ($group == 3) {
+			return 25;
+		} else if ($group == 4) {
+			return 25;
+		} else if ($group == 5) {
+			return 38;
+		} else if ($group == 6) {
+			return 29;
+		} else if ($group == 7) {
+			return 29;
+		} else if ($group == 8) {
+			return 27;
+		} else if ($group == 9) {
+			return 26;
+		} else {
+			return false;
+		}
+	} else if ($score == 13) {
+		if ($group == 1) {
+			return 28;
+		} else if ($group == 2) {
+			return 22;
+		} else if ($group == 3) {
+			return 28;
+		} else if ($group == 4) {
+			return 27;
+		} else if ($group == 5) {
+			return 41;
+		} else if ($group == 6) {
+			return 32;
+		} else if ($group == 7) {
+			return 32;
+		} else if ($group == 8) {
+			return 30;
+		} else if ($group == 9) {
+			return 29;
+		} else {
+			return false;
+		}
+	} else if ($score == 14) {
+		if ($group == 1) {
+			return 31;
+		} else if ($group == 2) {
+			return 24;
+		} else if ($group == 3) {
+			return 30;
+		} else if ($group == 4) {
+			return 30;
+		} else if ($group == 5) {
+			return 43;
+		} else if ($group == 6) {
+			return 35;
+		} else if ($group == 7) {
+			return 35;
+		} else if ($group == 8) {
+			return 33;
+		} else if ($group == 9) {
+			return 32;
+		} else {
+			return false;
+		}
+	} else if ($score == 15) {
+		if ($group == 1) {
+			return 34;
+		} else if ($group == 2) {
+			return 26;
+		} else if ($group == 3) {
+			return 33;
+		} else if ($group == 4) {
+			return 32;
+		} else if ($group == 5) {
+			return 46;
+		} else if ($group == 6) {
+			return 38;
+		} else if ($group == 7) {
+			return 38;
+		} else if ($group == 8) {
+			return 36;
+		} else if ($group == 9) {
+			return 35;
+		} else {
+			return false;
+		}
+	} else if ($score == 16) {
+		if ($group == 1) {
+			return 37;
+		} else if ($group == 2) {
+			return 28;
+		} else if ($group == 3) {
+			return 35;
+		} else if ($group == 4) {
+			return 34;
+		} else if ($group == 5) {
+			return 49;
+		} else if ($group == 6) {
+			return 41;
+		} else if ($group == 7) {
+			return 41;
+		} else if ($group == 8) {
+			return 40;
+		} else if ($group == 9) {
+			return 38;
+		} else {
+			return false;
+		}
+	} else if ($score == 17) {
+		if ($group == 1) {
+			return 40;
+		} else if ($group == 2) {
+			return 30;
+		} else if ($group == 3) {
+			return 38;
+		} else if ($group == 4) {
+			return 37;
+		} else if ($group == 5) {
+			return 51;
+		} else if ($group == 6) {
+			return 44;
+		} else if ($group == 7) {
+			return 44;
+		} else if ($group == 8) {
+			return 43;
+		} else if ($group == 9) {
+			return 41;
+		} else {
+			return false;
+		}
+	} else if ($score == 18) {
+		if ($group == 1) {
+			return 43;
+		} else if ($group == 2) {
+			return 32;
+		} else if ($group == 3) {
+			return 40;
+		} else if ($group == 4) {
+			return 39;
+		} else if ($group == 5) {
+			return 54;
+		} else if ($group == 6) {
+			return 47;
+		} else if ($group == 7) {
+			return 48;
+		} else if ($group == 8) {
+			return 46;
+		} else if ($group == 9) {
+			return 43;
+		} else {
+			return false;
+		}
+	} else if ($score == 19) {
+		if ($group == 1) {
+			return 46;
+		} else if ($group == 2) {
+			return 34;
+		} else if ($group == 3) {
+			return 43;
+		} else if ($group == 4) {
+			return 41;
+		} else if ($group == 5) {
+			return 57;
+		} else if ($group == 6) {
+			return 50;
+		} else if ($group == 7) {
+			return 51;
+		} else if ($group == 8) {
+			return 49;
+		} else if ($group == 9) {
+			return 46;
+		} else {
+			return false;
+		}
+	} else if ($score == 20) {
+		if ($group == 1) {
+			return 48;
+		} else if ($group == 2) {
+			return 36;
+		} else if ($group == 3) {
+			return 45;
+		} else if ($group == 4) {
+			return 44;
+		} else if ($group == 5) {
+			return 59;
+		} else if ($group == 6) {
+			return 53;
+		} else if ($group == 7) {
+			return 54;
+		} else if ($group == 8) {
+			return 53;
+		} else if ($group == 9) {
+			return 49;
+		} else {
+			return false;
+		}
+	} else if ($score == 21) {
+		if ($group == 1) {
+			return 51;
+		} else if ($group == 2) {
+			return 38;
+		} else if ($group == 3) {
+			return 48;
+		} else if ($group == 4) {
+			return 46;
+		} else if ($group == 5) {
+			return 62;
+		} else if ($group == 6) {
+			return 56;
+		} else if ($group == 7) {
+			return 57;
+		} else if ($group == 8) {
+			return 56;
+		} else if ($group == 9) {
+			return 52;
+		} else {
+			return false;
+		}
+	} else if ($score == 22) {
+		if ($group == 1) {
+			return 54;
+		} else if ($group == 2) {
+			return 40;
+		} else if ($group == 3) {
+			return 50;
+		} else if ($group == 4) {
+			return 48;
+		} else if ($group == 5) {
+			return 64;
+		} else if ($group == 6) {
+			return 59;
+		} else if ($group == 7) {
+			return 60;
+		} else if ($group == 8) {
+			return 59;
+		} else if ($group == 9) {
+			return 55;
+		} else {
+			return false;
+		}
+	} else if ($score == 23) {
+		if ($group == 1) {
+			return 57;
+		} else if ($group == 2) {
+			return 42;
+		} else if ($group == 3) {
+			return 53;
+		} else if ($group == 4) {
+			return 51;
+		} else if ($group == 5) {
+			return 67;
+		} else if ($group == 6) {
+			return 62;
+		} else if ($group == 7) {
+			return 63;
+		} else if ($group == 8) {
+			return 63;
+		} else if ($group == 9) {
+			return 58;
+		} else {
+			return false;
+		}
+	} else if ($score == 24) {
+		if ($group == 1) {
+			return 60;
+		} else if ($group == 2) {
+			return 44;
+		} else if ($group == 3) {
+			return 55;
+		} else if ($group == 4) {
+			return 53;
+		} else if ($group == 5) {
+			return 70;
+		} else if ($group == 6) {
+			return 65;
+		} else if ($group == 7) {
+			return 66;
+		} else if ($group == 8) {
+			return 66;
+		} else if ($group == 9) {
+			return 60;
+		} else {
+			return false;
+		}
+	} else if ($score == 25) {
+		if ($group == 1) {
+			return 60;
+		} else if ($group == 2) {
+			return 45;
+		} else if ($group == 3) {
+			return 58;
+		} else if ($group == 4) {
+			return 55;
+		} else {
+			return false;
+		}
+	} else if ($score == 26) {
+		if ($group == 1) {
+			return 66;
+		} else if ($group == 2) {
+			return 47;
+		} else if ($group == 3) {
+			return 60;
+		} else if ($group == 4) {
+			return 58;
+		} else {
+			return false;
+		}
+	} else if ($score == 27) {
+		if ($group == 1) {
+			return 69;
+		} else if ($group == 2) {
+			return 49;
+		} else if ($group == 3) {
+			return 63;
+		} else if ($group == 4) {
+			return 60;
+		} else {
+			return false;
+		}
+	} else if ($score == 28) {
+		if ($group == 1) {
+			return 72;
+		} else if ($group == 2) {
+			return 51;
+		} else if ($group == 3) {
+			return 65;
+		} else if ($group == 4) {
+			return 62;
+		} else {
+			return false;
+		}
+	} else if ($score == 29) {
+		if ($group == 2) {
+			return 53;
+		} else {
+			return false;
+		}
+	} else if ($score == 30) {
+		if ($group == 2) {
+			return 55;
+		} else {
+			return false;
+		}
+	} else if ($score == 31) {
+		if ($group == 2) {
+			return 57;
+		} else {
+			return false;
+		}
+	} else if ($score == 32) {
+		if ($group == 2) {
+			return 59;
+		} else {
+			return false;
+		}
+	} else if ($score == 33) {
+		if ($group == 2) {
+			return 61;
+		} else {
+			return false;
+		}
+	} else if ($score == 34) {
+		if ($group == 2) {
+			return 63;
+		} else {
+			return false;
+		}
+	} else if ($score == 35) {
+		if ($group == 2) {
+			return 65;
+		} else {
+			return false;
+		}
+	} else if ($score == 36) {
+		if ($group == 2) {
+			return 67;
+		} else {
+			return false;
+		}
+	} else {
+		return 0;
+	}
 }
 ?>
