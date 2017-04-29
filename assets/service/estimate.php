@@ -353,4 +353,10 @@ function Set_Score9() {
 	}
 	return $sum_group9;
 }
+
+function get_group() {
+	$groups = "SELECT * FROM score_group";
+	$groups_query = mysql_query($groups)or die(mysql_error());
+	return $groups_query;
+}
 ?>

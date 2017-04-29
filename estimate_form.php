@@ -76,7 +76,7 @@ $estimate_fetch = mysql_fetch_object($estimate)or die(mysql_error());
 				</div>
 				<hr>
 				<div class="row site_content-menu">
-					<a href="#" id="school-link">
+					<a href="#" id="school-link" data-toggle="modal" data-target="#teacher-estimate_box" value="display-teacher_estimate">
 						<div class="col-md-4 site_content-menu_box">
 							<img src="image/school-icon.png" class="img-responsive img-menu" alt="Image"><br>
 							ดูผลการประเมินของครูประจำชั้น
@@ -1143,6 +1143,52 @@ $estimate_fetch = mysql_fetch_object($estimate)or die(mysql_error());
 										</div>
 										<!-- แบบฟอร์มที่ 9 -->
 									</form>
+								</div>
+							</div>
+							<div class="modal fade" id="teacher-estimate_box" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+								<div class="modal-dialog modal-lg" role="document">
+									<div class="modal-content">
+										<div class="container">
+											<div class="row" id="teacher-estimate_display">
+												<div class="col-md-9">
+													<h2>ผลการประเมินของครูประจำชั้น</h2>
+													<hr>
+													<h3>คะแนนการประเมิน</h3>
+													<table class="table table-bordered table-striped" id="teacher-table_result">
+														<thead>
+															<tr>
+																<th colspan="3"><p class="text-center">ดี</p></th>
+																<th colspan="3"><p class="text-center">เก่ง</p></th>
+																<th colspan="3"><p class="text-center">สุข</p></th>
+															</tr>
+															<tr>
+																<?php
+																$groups = get_group();
+																while($group = mysql_fetch_array($groups)) {
+																	?>
+																	<td><center><?php echo $group['Sg_name']; ?></center></td>
+																	<?php
+																}
+																?>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td><?php echo $estimate_fetch->Es_score; ?></td>
+																<?php
+																while($result = mysql_fetch_array($estimate)) {
+																	?>
+																	<td><?php echo $result['Es_score']; ?></td>
+																	<?php
+																}
+																?>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>

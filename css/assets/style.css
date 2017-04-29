@@ -220,7 +220,8 @@ legend.legend-form {
 	text-align: right;
 }
 
-.site_content-table>#student-table th {
+.site_content-table>#student-table th,
+#teacher-table_result hr {
 	vertical-align:middle;
 }
 
@@ -274,4 +275,8 @@ legend.legend-form {
 
 #profile-form .profile-form_header {
 	padding-top: 6px;
+}
+
+#teacher-estimate_display {
+	padding: 10px 30px 10px 30px;
 }
