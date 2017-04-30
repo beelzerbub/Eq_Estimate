@@ -213,6 +213,19 @@ function get_estimate($std_no, $term, $year, $as_type) {
 	return $estimate_query;
 }
 
+function check_estimate($es_id, $sg_id) {
+	$estimate = "SELECT * FROM estimate_score es 
+	WHERE es.Es_id = $es_id
+	AND es.Sg_id = $sg_id";
+	$estimate_query = mysql_query($estimate)or die(mysql_error());
+	if (mysql_num_rows($estimate_query) > 0) {
+		$estimate_fetch = mysql_fetch_object($estimate_query)or die(mysql_error());
+		return $estimate_fetch->Es_score;
+	} else {
+		return 0;
+	}
+}
+
 function preinsert($as_type, $std_no, $term, $term_year) {
 	$as_id = preinsert_assessor($as_type);
 	$et_id = preinsert_estimate_time($term_year, $term, $std_no, $as_id);

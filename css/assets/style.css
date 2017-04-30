@@ -280,3 +280,8 @@ legend.legend-form {
 #teacher-estimate_display {
 	padding: 10px 30px 10px 30px;
 }
+
+.text-advice .list-group-item .badge,
+.text-advice .list-group-item .label-text {
+	font-size: 1em;
+}
