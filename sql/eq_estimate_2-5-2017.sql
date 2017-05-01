@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 26, 2017 at 01:32 AM
+-- Generation Time: May 02, 2017 at 12:45 AM
 -- Server version: 5.7.17-log
 -- PHP Version: 5.6.30
 
@@ -39,9 +39,8 @@ CREATE TABLE `assessor` (
 --
 
 INSERT INTO `assessor` (`As_id`, `As_name`, `As_surname`, `As_type`, `User_id`) VALUES
-(1, 'ชื่อ', 'นามสกุล', 'ครูประจำชั้น', NULL),
-(2, 'Ratchakran', 'Prapanon', 'ครูประจำชั้น', NULL),
-(3, 'รัชกาล', 'ประภานนท์', 'ครูประจำชั้น', NULL);
+(1, 'ผู้ประเมิน', 'ประเมิน', 'ครูประจำชั้น', 0),
+(2, '', '', 'ครูประจำชั้น', 0);
 
 -- --------------------------------------------------------
 
@@ -61,6 +60,7 @@ CREATE TABLE `classroom` (
 --
 
 INSERT INTO `classroom` (`class_id`, `class_grade`, `class_number`, `class_status`) VALUES
+(0, 'ไม่ระบุ', 0, 1),
 (1, 'อนุบาลปีที่ 1', 1, 1),
 (2, 'อนุบาลปีที่ 1', 2, 1),
 (3, 'อนุบาลปีที่ 1', 3, 1),
@@ -88,6 +88,30 @@ CREATE TABLE `estimate_score` (
   `Es_id` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
 
+--
+-- Dumping data for table `estimate_score`
+--
+
+INSERT INTO `estimate_score` (`Ess_id`, `Es_score`, `Sg_id`, `Es_id`) VALUES
+(1, 16, 1, 1),
+(2, 0, 2, 1),
+(3, 0, 3, 1),
+(4, 0, 4, 1),
+(5, 0, 5, 1),
+(6, 0, 6, 1),
+(7, 0, 7, 1),
+(8, 0, 8, 1),
+(9, 0, 9, 1),
+(10, 0, 1, 2),
+(11, 0, 2, 2),
+(12, 0, 3, 2),
+(13, 0, 4, 2),
+(14, 0, 5, 2),
+(15, 0, 6, 2),
+(16, 0, 7, 2),
+(17, 0, 8, 2),
+(18, 0, 9, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -101,6 +125,14 @@ CREATE TABLE `estimate_time` (
   `Std_no` int(12) NOT NULL,
   `As_id` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
+
+--
+-- Dumping data for table `estimate_time`
+--
+
+INSERT INTO `estimate_time` (`Es_id`, `Es_year`, `Es_term`, `Std_no`, `As_id`) VALUES
+(1, 2559, 2, 2, 1),
+(2, 2559, 2, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -251,11 +283,7 @@ INSERT INTO `term` (`Term_id`, `Term_year`, `Term`, `Class_id`, `Std_no`) VALUES
 (24, 2559, 2, 1, 24),
 (25, 2559, 2, 1, 25),
 (26, 2559, 2, 1, 26),
-(27, 2559, 0, 1, 27),
-(55, 2559, 2, 1, 53),
-(56, 2559, 2, 1, 53),
-(57, 2559, 1, 1, 54),
-(58, 2559, 2, 1, 54);
+(27, 2559, 2, 1, 27);
 
 -- --------------------------------------------------------
 
@@ -267,7 +295,7 @@ CREATE TABLE `user` (
   `user_id` int(4) NOT NULL,
   `username` varchar(30) COLLATE utf32_unicode_ci NOT NULL,
   `password` varchar(30) COLLATE utf32_unicode_ci NOT NULL,
-  `user_email` varchar(30) COLLATE utf32_unicode_ci DEFAULT NULL,
+  `user_email` varchar(30) COLLATE utf32_unicode_ci NOT NULL,
   `user_name` varchar(50) COLLATE utf32_unicode_ci NOT NULL,
   `user_surname` varchar(50) COLLATE utf32_unicode_ci NOT NULL,
   `user_role` int(2) NOT NULL
@@ -279,7 +307,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`user_id`, `username`, `password`, `user_email`, `user_name`, `user_surname`, `user_role`) VALUES
 (1, 'beelzerbub', 'gCrktdb0hsm', 'beelzerbub@hotmail.com', 'Ratchakran', 'Prapanon', 8),
-(5, 'asdasdasd', 'asdasdas', 'asdasd@hotmail.com', 'asdasd', 'asdasd', 1);
+(2, 'guest', 'guest', 'guest@hotmail.com', 'guest_name', 'guest_surname', 1),
+(3, 'teacher_user', 'gCrktdb0hsm', 'teacher@hotmail.com', 'teacher_name', 'teacher_surname', 2);
 
 -- --------------------------------------------------------
 
@@ -386,22 +415,22 @@ ALTER TABLE `work_time`
 -- AUTO_INCREMENT for table `assessor`
 --
 ALTER TABLE `assessor`
-  MODIFY `As_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `As_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `classroom`
 --
 ALTER TABLE `classroom`
-  MODIFY `class_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `class_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `estimate_score`
 --
 ALTER TABLE `estimate_score`
-  MODIFY `Ess_id` int(7) NOT NULL AUTO_INCREMENT;
+  MODIFY `Ess_id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `estimate_time`
 --
 ALTER TABLE `estimate_time`
-  MODIFY `Es_id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `Es_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `score_group`
 --
@@ -411,17 +440,17 @@ ALTER TABLE `score_group`
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `Std_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `Std_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT for table `teacher`
 --
 ALTER TABLE `teacher`
-  MODIFY `t_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `t_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `term`
 --
 ALTER TABLE `term`
-  MODIFY `Term_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `Term_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `user`
 --
@@ -431,7 +460,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `work_time`
 --
 ALTER TABLE `work_time`
-  MODIFY `wt_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `wt_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
