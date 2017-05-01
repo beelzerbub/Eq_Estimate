@@ -139,7 +139,7 @@ if ($_SESSION["user_role"] < 8) {
 														<option value="ประถมศึกษาปีที่ 4">ชั้นประถมศึกษาปีที่ 4</option>
 														<option value="ประถมศึกษาปีที่ 5">ชั้นประถมศึกษาปีที่ 5</option>
 														<option value="ประถมศึกษาปีที่ 6">ชั้นประถมศึกษาปีที่ 6</option>
-														<option value="none">ไม่ระบุ</option>
+														<option value="ไม่ระบุ">ไม่ระบุ</option>
 													</select>
 												</div>
 											</div>
@@ -213,7 +213,7 @@ if ($_SESSION["user_role"] < 8) {
 								AND wt.wt_term = $term_input";
 								if ($class_id > 0) {
 									$filter .= " AND c.class_id = $class_id";
-								} 
+								}
 								if (!empty($keyword)) {
 									$filter .= " AND (t.t_name LIKE '%$keyword%'
 									OR t.t_surname LIKE '%$keyword%')";
@@ -244,7 +244,7 @@ if ($_SESSION["user_role"] < 8) {
 										<td><?php echo $result["wt_term"]."/".$result["wt_year"];?></td>
 										<td>
 											<p class="text-center">
-												<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#edit_teacher-box" id="teacher_edit-link">แก้ไข</a>
+												<a href="_edit_teacher.php?id=<?php echo $result[t_id]; ?>" class="btn btn-primary" id="teacher_edit-link">แก้ไข</a>
 											</p>
 										</td>
 										<td>

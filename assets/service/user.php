@@ -59,7 +59,7 @@ if ($_GET["action"] == "delete") {
 	$name 		=	$_POST["reg_name"];
 	$surname 	= 	$_POST["reg_surname"];
 	$role 		= 	$_POST["reg_role"];
-	edit_user ($id, $username, $password, $email, $name, $surname, $role);
+	update_user ($id, $username, $password, $email, $name, $surname, $role);
 }
 
 
@@ -94,7 +94,7 @@ function insert_user($username, $password, $email, $name, $surname, $role) {
 	header("location:../../user.php?action=insert_success");
 }
 
-function edit_user ($id, $username, $password, $email, $name, $surname, $role) {
+function update_user ($id, $username, $password, $email, $name, $surname, $role) {
 	$update_user = "UPDATE user 
 	SET username = '$username',
 	password = '$password',
