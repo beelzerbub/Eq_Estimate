@@ -36,6 +36,7 @@ if ($_SESSION["user_role"] < 8) {
 					$teacher_fetch = mysql_fetch_object($teacher)or die(mysql_error());
 					?>
 					<form action="assets/service/teacher.php" role="form" method="post" data-toggle="validator" id="teacher-insert_form">
+						<input type="hidden" name="id" value=<?php echo $teacher_fetch->t_id; ?>>
 						<fieldset class="fieldset-form">
 							<legend class="legend-form"><h1>แก้ไขข้อมูลครูประจำชั้น</h1></legend>
 							<div class="row">
@@ -80,7 +81,7 @@ if ($_SESSION["user_role"] < 8) {
 								<div class="col-md-6">
 									<div class="form-group">
 										<label for="InputClassNo">เลขที่ห้อง</label>
-										<input type="number" id="classroom_number" name="classroom_number" placeholder="เลขที่ห้อง" class="form-control" required data-error="กรุณาระบุห้องเรียน">
+										<input type="number" id="classroom_number" name="classroom_number" placeholder="เลขที่ห้อง" value="<?php echo $teacher_fetch->class_number; ?>" class="form-control" required data-error="กรุณาระบุห้องเรียน">
 										<div class="help-block with-errors"></div>
 										<span class="help-block small">
 											<ul>
@@ -94,7 +95,7 @@ if ($_SESSION["user_role"] < 8) {
 								<div class="col-md-6">
 									<div class="form-group">
 										<label for="InputYear">ปีการศึกษา</label>
-										<input type="number" class="form-control" name="year_reg" id="year_reg" placeholder="ปีการศึกษา (25xx)" required data-error="กรุณาระบุปีการศึกษา">
+										<input type="number" class="form-control" name="year_reg" id="year_reg" placeholder="ปีการศึกษา (ระบุเป็นปี พ.ศ.)" value="<?php echo $teacher_fetch->wt_year; ?>" required data-error="กรุณาระบุปีการศึกษา">
 										<div class="help-block with-errors"></div>
 									</div>
 								</div>
@@ -103,9 +104,9 @@ if ($_SESSION["user_role"] < 8) {
 										<label for="InputTerm">ภาคเรียน</label>
 										<select name="term_reg" id="term_reg" class="form-control" required>
 											<option value="" disabled selected>กรุณาเลือก</option>
-											<option value="1">1</option>
-											<option value="2">2</option>
-											<option value="3">3</option>
+											<option value="1" <?php echo ($teacher_fetch->wt_term == 1) ? 'SELECTED' : ''; ?>>1</option>
+											<option value="2" <?php echo ($teacher_fetch->wt_term == 2) ? 'SELECTED' : ''; ?>>2</option>
+											<option value="3" <?php echo ($teacher_fetch->wt_term == 3) ? 'SELECTED' : ''; ?>>3</option>
 										</select>
 									</div>
 								</div>
