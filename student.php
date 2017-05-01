@@ -271,8 +271,9 @@ if ($_SESSION["user_role"] < 8) {
 										<td><?php echo $result[class_grade]; ?> ห้อง <?php echo $result[class_number];?></td>
 										<td><?php echo $result[Term]."/".$result[Term_year];?></td>
 										<td>
+
 											<p class="text-center">
-												<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#edit_student-box" id="student_edit-link">แก้ไข</a>
+												<a href="_edit_student.php?id=<?php echo $result[Std_no]; ?>" class="btn btn-primary" id="student_edit-link">แก้ไข</a>
 											</p>
 										</td>
 										<td>

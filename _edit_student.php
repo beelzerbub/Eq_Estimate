@@ -1,6 +1,6 @@
 <?php
 include_once("assets/database/connect.php");
-include_once("assets/service/login.php");
+include_once("assets/service/student.php");
 if ($_SESSION["user_role"] < 8) {
 	header("location:404.php");
 }
@@ -32,7 +32,7 @@ if ($_SESSION["user_role"] < 8) {
 				<div class="row site_content-form">
 					<?php
 					$id = $_GET['id'];
-					$student = get_teacher_byPK($id);
+					$student = get_student_byPK($id);
 					$student_fetch = mysql_fetch_object($student)or die(mysql_error());
 					?>
 					<form action="assets/service/student.php" role="form" method="post" data-toggle="validator" id="student-insert_form">
@@ -43,7 +43,7 @@ if ($_SESSION["user_role"] < 8) {
 								<div class="col-md-6">
 									<div class="form-group">
 										<label for="InputStdID">รหัสบัตรประชาชน</label>
-										<input type="text" class="form-control" name="std_id" id="std_id" placeholder="รหัสบัตรประชาชน" maxlength="13" data-minlength="13" pattern="[0-9]{1,}$" data-error="( กรุณาตรวจสอบรหัสบัตรประชาชน รหัสบัตรประชาชนต้องประกอบด้วยตัวเลข 13 หลัก โดยไม่ต้องใส่ช่องว่างหรือเครื่องหมาย - )" required>
+										<input type="text" class="form-control" name="std_id" id="std_id" placeholder="รหัสบัตรประชาชน" value="<?php echo $student_fetch->Std_id; ?>" maxlength="13" data-minlength="13" pattern="[0-9]{1,}$" data-error="( กรุณาตรวจสอบรหัสบัตรประชาชน รหัสบัตรประชาชนต้องประกอบด้วยตัวเลข 13 หลัก โดยไม่ต้องใส่ช่องว่างหรือเครื่องหมาย - )" required>
 										<div class="help-block with-errors"></div>
 									</div>
 								</div>
@@ -52,14 +52,14 @@ if ($_SESSION["user_role"] < 8) {
 								<div class="col-md-6">
 									<div class="form-group">
 										<label for="InputStdName">ชื่อ</label>
-										<input type="text" class="form-control" name="std_name" id="std_name" placeholder="ชื่อนักเรียน"  maxlength="50" data-error="กรุณาระบุชื่อนักเรียน" required>
+										<input type="text" class="form-control" name="std_name" id="std_name" placeholder="ชื่อนักเรียน" value="<?php echo $student_fetch->Std_name; ?>"  maxlength="50" data-error="กรุณาระบุชื่อนักเรียน" required>
 										<div class="help-block with-errors"></div>
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
 										<label for="InputStdSurname">นามสกุล</label>
-										<input type="text" class="form-control" name="std_surname" id="std_surname" placeholder="นามสกุลนักเรียน" maxlength="50" data-error="กรุณาระบุนามสกุลนักเรียน" required>
+										<input type="text" class="form-control" name="std_surname" id="std_surname" placeholder="นามสกุลนักเรียน" value="<?php echo $student_fetch->Std_surname; ?>" maxlength="50" data-error="กรุณาระบุนามสกุลนักเรียน" required>
 										<div class="help-block with-errors"></div>
 									</div>
 								</div>
@@ -68,7 +68,7 @@ if ($_SESSION["user_role"] < 8) {
 								<div class="col-md-6">
 									<div class="form-group">
 										<label for="InputStdAge">อายุ</label>
-										<input type="number" class="form-control" name="std_age" id="std_age" placeholder="อายุ" required>
+										<input type="number" class="form-control" name="std_age" id="std_age" placeholder="อายุ" value="<?php echo $student_fetch->Std_age; ?>" required>
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -76,8 +76,8 @@ if ($_SESSION["user_role"] < 8) {
 										<label for="InputStdGender">เพศ</label>
 										<select class="form-control" name="std_gender" id="std_gender" required>
 											<option value="" disabled selected>กรุณาเลือก</option>
-											<option value="1">หญิง</option>
-											<option value="2">ชาย</option>
+											<option value="1" <?php echo ($student_fetch->Std_gender == 1)? 'SELECTED' : ''; ?>>หญิง</option>
+											<option value="2" <?php echo ($student_fetch->Std_gender == 2)? 'SELECTED' : ''; ?>>ชาย</option>
 										</select>
 									</div>
 								</div>
@@ -88,22 +88,22 @@ if ($_SESSION["user_role"] < 8) {
 										<label for="InputClassRoom">ระดับชั้น</label>
 										<select name="classroom" id="classroom" class="form-control" required>
 											<option value="" disabled selected>กรุณาเลือก</option>
-											<option value="อนุบาลปีที่ 1">ชั้นอนุบาลปีที่ 1</option>
-											<option value="อนุบาลปีที่ 2">ชั้นอนุบาลปีที่ 2</option>
-											<option value="อนุบาลปีที่ 3">ชั้นอนุบาลปีที่ 3</option>
-											<option value="ประถมศึกษาปีที่ 1">ชั้นประถมศึกษาปีที่ 1</option>
-											<option value="ประถมศึกษาปีที่ 2">ชั้นประถมศึกษาปีที่ 2</option>
-											<option value="ประถมศึกษาปีที่ 3">ชั้นประถมศึกษาปีที่ 3</option>
-											<option value="ประถมศึกษาปีที่ 4">ชั้นประถมศึกษาปีที่ 4</option>
-											<option value="ประถมศึกษาปีที่ 5">ชั้นประถมศึกษาปีที่ 5</option>
-											<option value="ประถมศึกษาปีที่ 6">ชั้นประถมศึกษาปีที่ 6</option>
+											<option value="อนุบาลปีที่ 1" <?php echo ($student_fetch->class_grade == 'อนุบาลปีที่ 1')? 'SELECTED' : ''; ?>>ชั้นอนุบาลปีที่ 1</option>
+											<option value="อนุบาลปีที่ 2" <?php echo ($student_fetch->class_grade == 'อนุบาลปีที่ 2')? 'SELECTED' : ''; ?>>ชั้นอนุบาลปีที่ 2</option>
+											<option value="อนุบาลปีที่ 3" <?php echo ($student_fetch->class_grade == 'อนุบาลปีที่ 3')? 'SELECTED' : ''; ?>>ชั้นอนุบาลปีที่ 3</option>
+											<option value="ประถมศึกษาปีที่ 1" <?php echo ($student_fetch->class_grade == 'ประถมศึกษาปีที่ 1')? 'SELECTED' : ''; ?>>ชั้นประถมศึกษาปีที่ 1</option>
+											<option value="ประถมศึกษาปีที่ 2" <?php echo ($student_fetch->class_grade == 'ประถมศึกษาปีที่ 2')? 'SELECTED' : ''; ?>>ชั้นประถมศึกษาปีที่ 2</option>
+											<option value="ประถมศึกษาปีที่ 3" <?php echo ($student_fetch->class_grade == 'ประถมศึกษาปีที่ 3')? 'SELECTED' : ''; ?>>ชั้นประถมศึกษาปีที่ 3</option>
+											<option value="ประถมศึกษาปีที่ 4" <?php echo ($student_fetch->class_grade == 'ประถมศึกษาปีที่ 4')? 'SELECTED' : ''; ?>>ชั้นประถมศึกษาปีที่ 4</option>
+											<option value="ประถมศึกษาปีที่ 5" <?php echo ($student_fetch->class_grade == 'ประถมศึกษาปีที่ 5')? 'SELECTED' : ''; ?>>ชั้นประถมศึกษาปีที่ 5</option>
+											<option value="ประถมศึกษาปีที่ 6" <?php echo ($student_fetch->class_grade == 'ประถมศึกษาปีที่ 6')? 'SELECTED' : ''; ?>>ชั้นประถมศึกษาปีที่ 6</option>
 										</select>
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
 										<label for="InputClassNo">เลขที่ห้อง</label>
-										<input type="number" id="classroom_number" name="classroom_number" placeholder="เลขที่ห้อง" class="form-control" required data-error="กรุณาระบุห้องเรียน">
+										<input type="number" id="classroom_number" name="classroom_number" placeholder="เลขที่ห้อง" value="<?php echo $student_fetch->class_number; ?>" class="form-control" required data-error="กรุณาระบุห้องเรียน">
 										<div class="help-block with-errors"></div>
 									</div>
 								</div>
@@ -112,7 +112,7 @@ if ($_SESSION["user_role"] < 8) {
 								<div class="col-md-6">
 									<div class="form-group">
 										<label for="InputYear">ปีการศึกษา</label>
-										<input type="number" id="year_reg" name="year_reg" placeholder="ปีการศึกษา" class="form-control" data-error="กรุณาระบุปีการศึกษาที่ต้องการเพิ่มข้อมูล" required>
+										<input type="number" id="year_reg" name="year_reg" placeholder="ปีการศึกษา" value="<?php echo $student_fetch->Term_year; ?>" class="form-control" data-error="กรุณาระบุปีการศึกษาที่ต้องการเพิ่มข้อมูล" required>
 										<div class="help-block with-errors"></div>
 									</div>
 								</div>
@@ -121,9 +121,9 @@ if ($_SESSION["user_role"] < 8) {
 										<label for="InputTerm">ภาคเรียน</label>
 										<select name="term_reg" id="term_reg" class="form-control" required>
 											<option value="" disabled selected>กรุณาเลือก</option>
-											<option value="1">1</option>
-											<option value="2">2</option>
-											<option value="3">3</option>
+											<option value="1" <?php echo ($student_fetch->Term == 1)? 'SELECTED' : ''; ?>>1</option>
+											<option value="2" <?php echo ($student_fetch->Term == 2)? 'SELECTED' : ''; ?>>2</option>
+											<option value="3" <?php echo ($student_fetch->Term == 3)? 'SELECTED' : ''; ?>>3</option>
 										</select>
 									</div>
 								</div>

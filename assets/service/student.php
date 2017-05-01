@@ -56,7 +56,17 @@ if ($_GET["action"] == "delete") {
 	$keyword = @$_POST["filter-keyword"];
 	echo $keyword;
 } else if ($_POST["updateBtn"]) {
-	
+	$id 		= $_POST["id"];
+	$std_id 	= $_POST["std_id"];
+	$name 		= $_POST["std_name"];
+	$surname	= $_POST["std_surname"];
+	$age		= $_POST["std_age"];
+	$gender		= $_POST["std_gender"];
+	$classroom	= $_POST["classroom"];
+	$class_number	= $_POST["classroom_number"];
+	$year_reg	= $_POST["year_reg"];
+	$term_reg	= $_POST["term_reg"];
+	update_student($id, $std_id, $name, $surname, $age, $gender, $classroom, $class_number, $year_reg, $term_reg);
 }
 
 
@@ -77,6 +87,17 @@ function get_student ($std_no, $year, $term) {
 	$student_query = mysql_query($student)or die(mysql_error());
 	$student_fetch = mysql_fetch_object($student_query)or die(mysql_error());
 	return $student_fetch;
+}
+
+function get_student_byPK($id) {
+	$student = "SELECT * FROM student std 
+	JOIN classroom c 
+	JOIN term t
+	WHERE std.Std_no = t.Std_no
+	AND t.class_id = c.class_id
+	AND std.Std_no = $id";
+	$student_query = mysql_query($student)or die(mysql_error());
+	return $student_query;
 }
 
 function insert_student($id, $name, $surname, $age, $gender, $classroom, $class_number, $year_reg, $term_reg) {
@@ -107,6 +128,19 @@ function insert_student($id, $name, $surname, $age, $gender, $classroom, $class_
 	$insert_term = "INSERT INTO term VALUES('', $year_reg, $term_reg, $classroom_fetch->class_id, $student_fetch->Std_no)";
 	$insert_term_query = mysql_query($insert_term)or die(mysql_error());
 	header("location:../../student.php?action=insert_success");
+}
+
+function update_student($id, $std_id, $name, $surname, $age, $gender, $classroom, $class_number, $year, $term) {
+	$update_student = "UPDATE student SET std_id = '$std_id', std_name = '$name', std_surname = '$surname', std_age = $age, std_gender = $gender WHERE std_no = $id";
+	$update_student_query = mysql_query($update_student)or die(mysql_error());
+
+	$classroom = "SELECT * FROM classroom WHERE class_grade = '$classroom' AND class_number = $class_number";
+	$classroom_query = mysql_query($classroom)or die(mysql_error());
+	$classroom_fetch = mysql_fetch_object($classroom_query)or die(mysql_error());
+
+	$update_term = "UPDATE term SET Term_year = $year, Term = $term, Class_id = $classroom_fetch->class_id WHERE Std_no = $id";
+	$update_term_query = mysql_query($update_term)or die(mysql_error());
+	header("location:../../student.php?action=update_success");
 }
 
 function delete_student($Std_no) {
