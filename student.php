@@ -46,6 +46,7 @@ if ($_SESSION["user_role"] < 8) {
 									<label for="filter-class" class="sr-only"></label>
 									<select name="filter-class" id="filter-class" class="form-control" required>
 										<option value="" disabled selected>ระดับการศึกษา</option>
+										<option value="0">ทั้งหมด</option>
 										<option value="1">ชั้นอนุบาลปีที่ 1/1</option>
 										<option value="2">ชั้นอนุบาลปีที่ 1/2</option>
 										<option value="3">ชั้นอนุบาลปีที่ 1/3</option>
@@ -226,26 +227,20 @@ if ($_SESSION["user_role"] < 8) {
 								$class_id = $_POST["filter-class"];
 								$year = $_POST["filter-year"];
 								$term = $_POST["filter-term"];
+								$filter = "SELECT * FROM student s JOIN term t JOIN classroom c
+								WHERE s.Std_no = t.Std_no
+								AND t.Class_id = c.Class_id
+								AND t.Term_year = $year
+								AND t.Term = $term";
+								if ($class_id > 0) {
+									$filter .= " AND c.class_id = $class_id";
+								}
 								if (!empty($keyword)) {
-									$filter = "SELECT * FROM student s JOIN term t JOIN classroom c
-									WHERE (c.class_id = $class_id
-									AND c.class_id = t.class_id
-									AND t.Term_year = $year
-									AND t.Term = $term
-									AND t.Std_no = s.Std_no)
-									AND (s.Std_id LIKE '%$keyword%'
+									$filter .= " AND (s.Std_id LIKE '%$keyword%'
 									OR s.Std_name LIKE '%$keyword%'
 									OR s.Std_surname LIKE '%$keyword%')";
-									$filter_query = mysql_query($filter)or die(mysql_error());
-								} else {
-									$filter = "SELECT * FROM student s JOIN term t JOIN classroom c
-									WHERE (c.class_id = $class_id
-									AND c.class_id = t.class_id
-									AND t.Term_year = $year
-									AND t.Term = $term
-									AND t.Std_no = s.Std_no)";
-									$filter_query = mysql_query($filter);
 								}
+								$filter_query = mysql_query($filter)or die(mysql_error());
 							} else {
 								if (date(m) <= 4 || date(m) >= 11) {
 									$year_init = $year-1;
@@ -276,8 +271,9 @@ if ($_SESSION["user_role"] < 8) {
 										<td><?php echo $result[class_grade]; ?> ห้อง <?php echo $result[class_number];?></td>
 										<td><?php echo $result[Term]."/".$result[Term_year];?></td>
 										<td>
+
 											<p class="text-center">
-												<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#edit_student-box" id="student_edit-link">แก้ไข</a>
+												<a href="_edit_student.php?id=<?php echo $result[Std_no]; ?>" class="btn btn-primary" id="student_edit-link">แก้ไข</a>
 											</p>
 										</td>
 										<td>
