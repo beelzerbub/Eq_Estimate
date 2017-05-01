@@ -121,90 +121,15 @@ if ($_SESSION["user_role"] < 8) {
 													<label for="reg_role" class="radio-inline">
 														<input type="radio" name="reg_role" value="2" required> ผู้ใช้งานทั่วไป
 													</label>
-												</div>
-											</div>
-										</div>
-										<div class="form-group">
-											<div class="row">
-												<div class="col-md-6 col-md-offset-3">
-													<input type="submit" name="regBtn" id="regBtn" tabindex="4" class="form-control btn btn-register" value="สมัครสมาชิก">
-												</div>
-											</div>
-										</div>
-									</fieldset>
-								</form>
-							</div>
-						</div>
-					</div>
-					<div class="modal fade" id="edit_user-box" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-						<div class="modal-dialog modal-lg" role="document">
-							<div class="modal-content">
-								<form action="#" role="form" method="post" data-toggle="validator" id="edit_user-form">
-									<fieldset class="fieldset-form">
-										<legend class="legend-form"><h1>แก้ไขข้อมูลผู้ใช้</h1></legend>
-										<?php
-
-										?>
-										<div class="form-group">
-											<input type="text" name="reg_username" id="reg_username" tabindex="1" class="form-control" placeholder="ชื่อผู้ใช้" pattern="[A-z0-9]{1,}$" data-minlength="8" maxlength="20" value="" required>
-											<span class="help-block small">
-												<ul>
-													<li>ความยาว 8-20 อักขระ</li>
-													<li>ใช้ตัวอักษรภาษาอังกฤษและตัวเลขเท่านั้น</li>
-												</ul>
-											</span>
-										</div>
-										<div class="form-group">
-											<div class="row">
-												<div class="col-md-6">
-													<input type="password" name="reg_password" id="reg_password" tabindex="1" class="form-control" data-minlength="8" data-error="กรุณาตรวจสอบความถูกต้อง" placeholder="รหัสผ่าน" value="" required>
-													<div class="help-block with-errors"></div>
-													<span class="help-block small">
-														<ul>
-															<li>ความยาว 8-15 อักขระ</li>
-															<li>ใช้ตัวอักษรภาษาอังกฤษและตัวเลขเท่านั้น</li>
-														</ul>
-													</span>
-												</div>
-												<div class="col-md-6">
-													<input type="password" name="reg_passwordConfirm" data-match="#reg_password" class="form-control" data-match-error="รหัสยืนยันผิดพลาด" placeholder="ยืนยันรหัสผ่าน" value="" data-error="กรุณาตรวจสอบความถูกต้อง" required>
-													<div class="help-block with-errors"></div>
-												</div>
-											</div>
-										</div>
-										<div class="form-group">
-											<input type="email" name="reg_email" id="reg_email" tabindex="1" class="form-control" placeholder="อีเมลล์" value="" data-error="กรุณาตรวจสอบความถูกต้อง อีเมลล์ต้องมีลักษณะดังนี้ example@mail.com" required>
-											<div class="help-block with-errors"></div>
-											<span class="help-block small">( กรุณาระบุอีเมลล์ที่ใช้งานได้จริง )</span>
-										</div>
-										<div class="form-group">
-											<input type="name" name="reg_name" id="reg_name" tabindex="1" class="form-control" placeholder="ชื่อ" value="" required>
-											<span class="help-block small">( กรุณาระบุชื่อ เพื่อประโยชน์ในการใช้เก็บข้อมูล) </span>
-										</div>
-										<div class="form-group">
-											<input type="reg_surname" name="reg_surname" id="reg_surname" tabindex="1" class="form-control" placeholder="นามสกุล" value="" required>
-											<span class="help-block small">( กรุณาระบุนามสกุล เพื่อประโยชน์ในการใช้เก็บข้อมูล)</span>
-										</div>
-										<div class="form-group">
-											<input type="reg_question" name="reg_question" id="reg_question" tabindex="1" class="form-control" placeholder="คำถามสำหรับกู้รหัสผ่าน" value="" required>
-											<span class="help-block small">( กรุณาระบุคำถามที่ใช้ในการกู้คืนรหัสผ่าน )</span>
-										</div>
-										<div class="form-group">
-											<input type="reg_answer" name="reg_answer" id="reg_answer" tabindex="1" class="form-control" placeholder="คำตอบ" value="" required>
-											<span class="help-block small">( กรุณาระบุคำตอบที่ใช้ในการกู้คืนรหัสผ่าน )</span>
-										</div>
-										<div class="form-group">
-											<div class="row">
-												<div class="col-md-3">
-													ประเภทผู้ใช้
-												</div>
-												<div class="col-md-8 col-md-pull-1">
-													<label for="reg_role" class="radio-inline">
-														<input type="radio" name="reg_role" value="-1" required> ผู้ใช้งานทั่วไป
-													</label>
-													<label for="reg_role" class="radio-inline">
-														<input type="radio" name="reg_role" value="-2" required> ครูประจำชั้น
-													</label>
+													<?php
+													if ($_SESSION["user_role"] == 8) {
+														?>
+														<label for="reg_role" class="radio-inline">
+															<input type="radio" name="reg_role" value="8" required> ผู้ดูแลระบบ
+														</label>
+														<?php
+													}
+													?>
 												</div>
 											</div>
 										</div>
@@ -267,7 +192,7 @@ if ($_SESSION["user_role"] < 8) {
 									<td><?php echo get_user_type($result["username"]); ?></td>
 									<td>
 										<p class="text-center">
-											<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#edit_user-box" id="user_edit-link">แก้ไข</a>
+											<a href="_edit_user.php?id=<?php echo $result["user_id"]; ?>" class="btn btn-primary" id="user_edit-link">แก้ไข</a>
 										</p>
 									</td>
 									<td>
