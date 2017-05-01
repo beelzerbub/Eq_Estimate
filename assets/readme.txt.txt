@@ -38,5 +38,7 @@ form.class#id[name][role][method][data-toggle]
 Tag input
 input.class#id[name][maxlength][placeholder][required]
 
+export DATABASE
+http://phplike.blogspot.com/2013/03/export-mysql-database-php-code.html
 
 - อย่าลืมแก้ไฟล์ php.ini file_uploads = On
