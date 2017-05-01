@@ -53,7 +53,6 @@ if ($_GET["action"] == "delete") {
 	$term_reg	= $_POST["term_reg"];
 	insert_student($id, $name, $surname, $age, $gender, $classroom, $class_number, $year_reg, $term_reg);
 } else if ($_POST["filterBtn"]) {
-	echo "here";
 	$keyword = @$_POST["filter-keyword"];
 	echo $keyword;
 }
