@@ -55,14 +55,8 @@ if ($_GET["action"] == "delete") {
 ////------------------------------------------------- 
 ////------------ Function Teacher ---------------------
 ////-----------------------------------------------//
-function get_teacher_room_init($t_id, $year) {
-	if (date(m) <= 4 || date(m) >= 11) {
-		$year = $year - 1;
-		$term = 2;
-	} else if (date(m) >= 5 || date(m) <= 10) {
-		$term = 1;
-	}
-	$sql = "SELECT * FROM classroom c 
+function get_teacher_room($t_id, $year, $term) {
+	$teacher = "SELECT * FROM classroom c 
 	JOIN work_time wt 
 	JOIN teacher t 
 	WHERE t.t_id = wt.t_id 
@@ -70,13 +64,12 @@ function get_teacher_room_init($t_id, $year) {
 	AND wt.wt_year = $year 
 	AND wt.wt_term = $term 
 	AND t.t_id = $t_id";
-
-	$query = mysql_query($sql)or die(mysql_error());
-	$fetch = mysql_fetch_object($query)or die(mysql_error());
-	if ($fetch->class_grade == 'none') {
+	$teacher_query = mysql_query($teacher)or die(mysql_error());
+	$teacher_query_fetch = mysql_fetch_object($teacher_query)or die(mysql_error());
+	if ($teacher_query_fetch->class_grade == 'none') {
 		return "ไม่ได้รับหน้าที่ครูประจำชั้น";
 	} else {
-		return $fetch->class_grade.'/'.$fetch->class_number;
+		return $teacher_query_fetch->class_grade.'/'.$teacher_query_fetch->class_number;
 	}
 }
 

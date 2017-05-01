@@ -212,14 +212,17 @@ if ($_SESSION["user_role"] < 8) {
 									AND (c.class_id = $class_id
 									AND c.class_id = wt.class_id
 									AND wt.wt_year = $year_input
-									AND wt.wt_term = $term_input)";
+									AND wt.wt_term = $term_input
+									AND wt.t_id = t.t_id)";
 									$filter_query = mysql_query($filter)or die(mysql_error());
 								} else {
 									$filter = "SELECT * FROM teacher t JOIN work_time wt JOIN classroom c
 									WHERE (c.class_id = $class_id
 									AND c.class_id = wt.class_id
 									AND wt.wt_year = $year_input
-									AND wt.wt_term = $term_input)";
+									AND wt.wt_term = $term_input
+									AND wt.t_id = t.t_id)";
+									echo $filter;
 									$filter_query = mysql_query($filter)or die(mysql_error());
 								}
 							} else {
@@ -243,7 +246,7 @@ if ($_SESSION["user_role"] < 8) {
 									<tr <?php if ($result["t_status == -1"]) { echo "style='color:red'"; } ?>>
 										<td valign="middle"><?php echo ++$counter; ?></td>
 										<td>คุณครู <?php echo $result["t_name"]." ".$result["t_surname"]; ?></td>
-										<td><?php echo get_teacher_room_init($result["t_id"], $year); ?></td>
+										<td><?php echo get_teacher_room($result["t_id"], $result["wt_year"], $result["wt_term"]); ?></td>
 										<td><?php echo $result["wt_term"]."/".$result["wt_year"];?></td>
 										<td>
 											<p class="text-center">
