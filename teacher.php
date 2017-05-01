@@ -46,6 +46,7 @@ if ($_SESSION["user_role"] < 8) {
 									<label for="filter-class" class="sr-only"></label>
 									<select name="filter-class" id="filter-class" class="form-control" required>
 										<option value="" disabled selected>ห้องเรียน</option>
+										<option value="0">ทั้งหมด</option>
 										<option value="1">อนุบาลปีที่ 1/1</option>
 										<option value="2">อนุบาลปีที่ 1/2</option>
 										<option value="3">อนุบาลปีที่ 1/3</option>
@@ -205,26 +206,19 @@ if ($_SESSION["user_role"] < 8) {
 								$class_id = $_POST["filter-class"];
 								$year_input = $_POST["filter-year"];
 								$term_input = $_POST["filter-term"];
+								$filter = "SELECT * FROM teacher t JOIN work_time wt JOIN classroom c
+								WHERE wt.t_id = t.t_id
+								AND wt.class_id = c.class_id
+								AND wt.wt_year = $year_input
+								AND wt.wt_term = $term_input";
+								if ($class_id > 0) {
+									$filter .= " AND c.class_id = $class_id";
+								} 
 								if (!empty($keyword)) {
-									$filter = "SELECT * FROM teacher t JOIN work_time wt JOIN classroom c
-									WHERE (t.t_name LIKE '%$keyword%'
-									OR t.t_surname LIKE '%$keyword%')
-									AND (c.class_id = $class_id
-									AND c.class_id = wt.class_id
-									AND wt.wt_year = $year_input
-									AND wt.wt_term = $term_input
-									AND wt.t_id = t.t_id)";
-									$filter_query = mysql_query($filter)or die(mysql_error());
-								} else {
-									$filter = "SELECT * FROM teacher t JOIN work_time wt JOIN classroom c
-									WHERE (c.class_id = $class_id
-									AND c.class_id = wt.class_id
-									AND wt.wt_year = $year_input
-									AND wt.wt_term = $term_input
-									AND wt.t_id = t.t_id)";
-									echo $filter;
-									$filter_query = mysql_query($filter)or die(mysql_error());
-								}
+									$filter .= " AND (t.t_name LIKE '%$keyword%'
+									OR t.t_surname LIKE '%$keyword%')";
+								} 
+								$filter_query = mysql_query($filter)or die(mysql_error());
 							} else {
 								if (date(m) <= 4 || date(m) >= 11) {
 									$year_init = $year-1;
