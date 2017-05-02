@@ -98,7 +98,7 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 							ดูผลการประเมินของครูประจำชั้น
 						</div>
 					</a>
-					<a href="" id="family-link">
+					<a href="" id="family-link" data-toggle="modal" data-target="#parent-estimate_box" value="display-parent_estimate">
 						<div class="col-md-4 site_content-menu_box">
 							<img src="image/family-icon.png" class="img-responsive img-menu" alt="Image"><br>
 							ดูผลการประเมินของผู้ปกครอง
@@ -2211,15 +2211,192 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 								</div>
 							</div>
 						</div>
-						<div class="row site_content-form_result">
-							
-						</div>
 					</div>
 				</div>
 				<div class="row site_content-result">
 					<div class="col-md-12">
-						<div class="row site_content-result_student"></div>
-						<div class="row site_content-result_family"></div>
+						<div class="row site_content-result_student">
+							<div class="modal fade" id="teacher-estimate_box" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+								<div class="modal-dialog modal-lg" role="document">
+									<div class="modal-content">
+										<div class="container">
+											<div class="row" id="teacher-estimate_display_score">
+												<div class="col-md-9">
+													<h2>
+														ผลการประเมินของครูประจำชั้น 
+														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+														</button>
+													</h2> 
+													<hr>
+													<h3>คะแนนการประเมิน</h3>
+													<table class="table table-bordered table-striped" id="teacher-table_result">
+														<thead>
+															<tr>
+																<th colspan="3"><p class="text-center">ดี</p></th>
+																<th colspan="3"><p class="text-center">เก่ง</p></th>
+																<th colspan="3"><p class="text-center">สุข</p></th>
+															</tr>
+															<tr>
+																<?php
+																$groups = get_group();
+																while($group = mysql_fetch_array($groups)) {
+																	?>
+																	<td><center><?php echo $group['Sg_name']; ?></center></td>
+																	<?php
+																}
+																?>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<?php
+																while($result = mysql_fetch_array($estimate_teacher_table)) {
+																	?>
+																	<td><?php echo $result['Es_score']; ?></td>
+																	<?php
+																}
+																?>
+															</tr>
+														</tbody>
+													</table>
+													<h3>เกณฑ์คะแนนที (T-Score Norms)</h3>
+													<table class="table table-bordered table-striped" id="teacher_tscore-table_result">
+														<thead>
+															<tr>
+																<th colspan="3"><p class="text-center">ดี</p></th>
+																<th colspan="3"><p class="text-center">เก่ง</p></th>
+																<th colspan="3"><p class="text-center">สุข</p></th>
+															</tr>
+															<tr>
+																<?php
+																$groups = get_group();
+																while($group = mysql_fetch_array($groups)) {
+																	?>
+																	<td><center><?php echo $group['Sg_name']; ?></center></td>
+																	<?php
+																}
+																?>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<?php
+																while($result = mysql_fetch_array($estimate_teacher_tscore)) {
+																	?>
+																	<td><?php echo T_Score($result['Es_score'],$result['Sg_id']); ?></td>
+																	<?php
+																}
+																?>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+											<div class="row" id="teacher-estimate_display_text">
+												<div class="col-md-9">
+													<?php
+													$estimate_score = "SELECT * FROM estimate_score es WHERE es.Es_id = $estimate_teacher_fetch->Es_id";
+													include("assets/template/guide.php");
+													?>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row site_content-result_family">
+							<div class="modal fade" id="parent-estimate_box" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+								<div class="modal-dialog modal-lg" role="document">
+									<div class="modal-content">
+										<div class="container">
+											<div class="row" id="parent-estimate_display_score">
+												<div class="col-md-9">
+													<h2>
+														ผลการประเมินของครูประจำชั้น 
+														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+														</button>
+													</h2> 
+													<hr>
+													<h3>คะแนนการประเมิน</h3>
+													<table class="table table-bordered table-striped" id="parent-table_result">
+														<thead>
+															<tr>
+																<th colspan="3"><p class="text-center">ดี</p></th>
+																<th colspan="3"><p class="text-center">เก่ง</p></th>
+																<th colspan="3"><p class="text-center">สุข</p></th>
+															</tr>
+															<tr>
+																<?php
+																$groups = get_group();
+																while($group = mysql_fetch_array($groups)) {
+																	?>
+																	<td><center><?php echo $group['Sg_name']; ?></center></td>
+																	<?php
+																}
+																?>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<?php
+																while($result = mysql_fetch_array($estimate_parent_table)) {
+																	?>
+																	<td><?php echo $result['Es_score']; ?></td>
+																	<?php
+																}
+																?>
+															</tr>
+														</tbody>
+													</table>
+													<h3>เกณฑ์คะแนนที (T-Score Norms)</h3>
+													<table class="table table-bordered table-striped" id="parent_tscore-table_result">
+														<thead>
+															<tr>
+																<th colspan="3"><p class="text-center">ดี</p></th>
+																<th colspan="3"><p class="text-center">เก่ง</p></th>
+																<th colspan="3"><p class="text-center">สุข</p></th>
+															</tr>
+															<tr>
+																<?php
+																$groups = get_group();
+																while($group = mysql_fetch_array($groups)) {
+																	?>
+																	<td><center><?php echo $group['Sg_name']; ?></center></td>
+																	<?php
+																}
+																?>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<?php
+																while($result = mysql_fetch_array($estimate_parent_tscore)) {
+																	?>
+																	<td><?php echo T_Score($result['Es_score'],$result['Sg_id']); ?></td>
+																	<?php
+																}
+																?>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+											<div class="row" id="parent-estimate_display_text">
+												<div class="col-md-9">
+													<?php
+													$estimate_score = "SELECT * FROM estimate_score es WHERE es.Es_id = $estimate_parent_fetch->Es_id";
+													include("assets/template/guide.php");
+													?>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 						<div class="row site_content-result_overall"></div>
 					</div>
 				</div>

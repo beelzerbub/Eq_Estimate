@@ -1,5 +1,4 @@
 <?php
-$estimate_score = "SELECT * FROM estimate_score es WHERE es.Es_id = $estimate_fetch->Es_id";
 $estimate_score_query = mysql_query($estimate_score)or die(mysql_error());
 $danger = "เด็กจำเป็นต้องได้รับการพัฒนาความฉลาดทางอารมณ์ด้านการ";
 $warning = "เด็กควรได้รับการพัฒนาความฉลาดทางอารมณ์ด้านการ";
