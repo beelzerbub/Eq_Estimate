@@ -23,6 +23,7 @@ $estimate_parent = get_estimate($student_fetch->Std_no, $student_fetch->Term, $s
 $estimate_parent_fetch = mysql_fetch_object($estimate_parent)or die(mysql_error());
 $estimate_parent_table = get_estimate($student_fetch->Std_no, $student_fetch->Term, $student_fetch->Term_year, 'ผู้ปกครอง');
 $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->Term, $student_fetch->Term_year, 'ผู้ปกครอง');
+
 ?>
 <!DOCTYPE html>
 <html lang="th">
@@ -104,7 +105,7 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 							ดูผลการประเมินของผู้ปกครอง
 						</div>
 					</a>
-					<a href="" id="overall-link">
+					<a href="" id="overall-link" data-toggle="modal" data-target="#compare-estimate_box" value="display-compare_estimate">
 						<div class="col-md-4 site_content-menu_box">
 							<img src="image/overall-icon.png" class="img-responsive img-menu" alt="Image"><br>
 							ดูผลการประเมินเปรียบเทียบ<br>ที่บ้านและโรงเรียน
@@ -117,7 +118,7 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 							<div class="modal fade" id="assesor-teacher_edit_box" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
 								<div class="modal-dialog modal-lg" role="document">
 									<div class="modal-content">
-										<form action="assets/service/assessor.php" role="form" method="post" data-toggle="validator" id="assesor-edit_form">
+										<form action="assets/service/assessor.php" role="form" method="post" data-toggle="validator" id="assesor_teacher-edit_form">
 											<input type="hidden" name="as_id" value=<?php echo $estimate_teacher_fetch->As_id; ?>>
 											<input type="hidden" name="as_type" value="ครูประจำชั้น">
 											<input type="hidden" name="year" value=<?php echo $estimate_teacher_fetch->Es_year; ?>>
@@ -181,7 +182,7 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 							<div class="modal fade" id="assesor-parent_edit_box" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
 								<div class="modal-dialog modal-lg" role="document">
 									<div class="modal-content">
-										<form action="assets/service/assessor.php" role="form" method="post" data-toggle="validator" id="assesor-edit_form">
+										<form action="assets/service/assessor.php" role="form" method="post" data-toggle="validator" id="assesor_parent-edit_form">
 											<input type="hidden" name="as_id" value=<?php echo $estimate_parent_fetch->As_id; ?>>
 											<input type="hidden" name="as_type" value="ผู้ปกครอง">
 											<input type="hidden" name="year" value=<?php echo $estimate_parent_fetch->Es_year; ?>>
@@ -475,7 +476,7 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 													<div class="col-md-12">
 														<div class="row">
 															<div class="col-md-2">
-																<input type="submit" name="SaveBtn" class="form-control btn btn-primary SaveBtn" value="บันทึก">
+																<input type="submit" name="SaveBtn2" class="form-control btn btn-primary SaveBtn" value="บันทึก">
 															</div>
 															<div class="col-md-10">
 																<p class="show_score">ประวัติการประเมินส่วนที่ 2 : <?php echo (check_estimate($estimate_teacher_fetch->Es_id, 2) > 0) ? 'คะแนนการประเมินครั้งล่าสุดคือ '.check_estimate($estimate_teacher_fetch->Es_id, 2) : 'ยังไม่ได้ทำการประเมินหรือคะแนนการประเมินครั้งล่าสุดเป็น 0'; ?></p>
@@ -584,7 +585,7 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 													<div class="col-md-12">
 														<div class="row">
 															<div class="col-md-2">
-																<input type="submit" name="SaveBtn" class="form-control btn btn-primary SaveBtn" value="บันทึก">
+																<input type="submit" name="SaveBtn3" class="form-control btn btn-primary SaveBtn" value="บันทึก">
 															</div>
 															<div class="col-md-10">
 																<p class="show_score">ประวัติการประเมินส่วนที่ 3 : <?php echo (check_estimate($estimate_teacher_fetch->Es_id, 3) > 0) ? 'คะแนนการประเมินครั้งล่าสุดคือ '.check_estimate($estimate_teacher_fetch->Es_id, 3) : 'ยังไม่ได้ทำการประเมินหรือคะแนนการประเมินครั้งล่าสุดเป็น 0'; ?></p>
@@ -696,7 +697,7 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 													<div class="col-md-12">
 														<div class="row">
 															<div class="col-md-2">
-																<input type="submit" name="SaveBtn" class="form-control btn btn-primary SaveBtn" value="บันทึก">
+																<input type="submit" name="SaveBtn4" class="form-control btn btn-primary SaveBtn" value="บันทึก">
 															</div>
 															<div class="col-md-10">
 																<p class="show_score">ประวัติการประเมินส่วนที่ 4 : <?php echo (check_estimate($estimate_teacher_fetch->Es_id, 4) > 0) ? 'คะแนนการประเมินครั้งล่าสุดคือ '.check_estimate($estimate_teacher_fetch->Es_id, 4) : 'ยังไม่ได้ทำการประเมินหรือคะแนนการประเมินครั้งล่าสุดเป็น 0'; ?></p>
@@ -797,7 +798,7 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 													<div class="col-md-12">
 														<div class="row">
 															<div class="col-md-2">
-																<input type="submit" name="SaveBtn" class="form-control btn btn-primary SaveBtn" value="บันทึก">
+																<input type="submit" name="SaveBtn5" class="form-control btn btn-primary SaveBtn" value="บันทึก">
 															</div>
 															<div class="col-md-10">
 																<p class="show_score">ประวัติการประเมินส่วนที่ 5 : <?php echo (check_estimate($estimate_teacher_fetch->Es_id, 5) > 0) ? 'คะแนนการประเมินครั้งล่าสุดคือ '.check_estimate($estimate_teacher_fetch->Es_id, 5) : 'ยังไม่ได้ทำการประเมินหรือคะแนนการประเมินครั้งล่าสุดเป็น 0'; ?></p>
@@ -898,7 +899,7 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 													<div class="col-md-12">
 														<div class="row">
 															<div class="col-md-2">
-																<input type="submit" name="SaveBtn" class="form-control btn btn-primary SaveBtn" value="บันทึก">
+																<input type="submit" name="SaveBtn6" class="form-control btn btn-primary SaveBtn" value="บันทึก">
 															</div>
 															<div class="col-md-10">
 																<p class="show_score">ประวัติการประเมินส่วนที่ 6 : <?php echo (check_estimate($estimate_teacher_fetch->Es_id, 6) > 0) ? 'คะแนนการประเมินครั้งล่าสุดคือ '.check_estimate($estimate_teacher_fetch->Es_id, 6) : 'ยังไม่ได้ทำการประเมินหรือคะแนนการประเมินครั้งล่าสุดเป็น 0'; ?></p>
@@ -1008,7 +1009,7 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 													<div class="col-md-12">
 														<div class="row">
 															<div class="col-md-2">
-																<input type="submit" name="SaveBtn" class="form-control btn btn-primary SaveBtn" value="บันทึก">
+																<input type="submit" name="SaveBtn7" class="form-control btn btn-primary SaveBtn" value="บันทึก">
 															</div>
 															<div class="col-md-10">
 																<p class="show_score">ประวัติการประเมินส่วนที่ 7 : <?php echo (check_estimate($estimate_teacher_fetch->Es_id, 7) > 0) ? 'คะแนนการประเมินครั้งล่าสุดคือ '.check_estimate($estimate_teacher_fetch->Es_id, 7) : 'ยังไม่ได้ทำการประเมินหรือคะแนนการประเมินครั้งล่าสุดเป็น 0'; ?></p>
@@ -1109,7 +1110,7 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 													<div class="col-md-12">
 														<div class="row">
 															<div class="col-md-2">
-																<input type="submit" name="SaveBtn" class="form-control btn btn-primary SaveBtn" value="บันทึก">
+																<input type="submit" name="SaveBtn8" class="form-control btn btn-primary SaveBtn" value="บันทึก">
 															</div>
 															<div class="col-md-10">
 																<p class="show_score">ประวัติการประเมินส่วนที่ 8 : <?php echo (check_estimate($estimate_teacher_fetch->Es_id, 8) > 0) ? 'คะแนนการประเมินครั้งล่าสุดคือ '.check_estimate($estimate_teacher_fetch->Es_id, 8) : 'ยังไม่ได้ทำการประเมินหรือคะแนนการประเมินครั้งล่าสุดเป็น 0'; ?></p>
@@ -1213,7 +1214,7 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 													<div class="col-md-12">
 														<div class="row">
 															<div class="col-md-2">
-																<input type="submit" name="SaveBtn" class="form-control btn btn-primary SaveBtn" value="บันทึก">
+																<input type="submit" name="SaveBtn9" class="form-control btn btn-primary SaveBtn" value="บันทึก">
 															</div>
 															<div class="col-md-10">
 																<p class="show_score">ประวัติการประเมินส่วนที่ 9 : <?php echo (check_estimate($estimate_teacher_fetch->Es_id, 9) > 0) ? 'คะแนนการประเมินครั้งล่าสุดคือ '.check_estimate($estimate_teacher_fetch->Es_id, 9) : 'ยังไม่ได้ทำการประเมินหรือคะแนนการประเมินครั้งล่าสุดเป็น 0'; ?></p>
@@ -1458,7 +1459,7 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 													<div class="col-md-12">
 														<div class="row">
 															<div class="col-md-2">
-																<input type="submit" name="SaveBtn" class="form-control btn btn-primary SaveBtn" value="บันทึก">
+																<input type="submit" name="SaveBtn2" class="form-control btn btn-primary SaveBtn" value="บันทึก">
 															</div>
 															<div class="col-md-10">
 																<p class="show_score">ประวัติการประเมินส่วนที่ 2 : <?php echo (check_estimate($estimate_parent_fetch->Es_id, 2) > 0) ? 'คะแนนการประเมินครั้งล่าสุดคือ '.check_estimate($estimate_parent_fetch->Es_id, 2) : 'ยังไม่ได้ทำการประเมินหรือคะแนนการประเมินครั้งล่าสุดเป็น 0'; ?></p>
@@ -1567,7 +1568,7 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 													<div class="col-md-12">
 														<div class="row">
 															<div class="col-md-2">
-																<input type="submit" name="SaveBtn" class="form-control btn btn-primary SaveBtn" value="บันทึก">
+																<input type="submit" name="SaveBtn3" class="form-control btn btn-primary SaveBtn" value="บันทึก">
 															</div>
 															<div class="col-md-10">
 																<p class="show_score">ประวัติการประเมินส่วนที่ 3 : <?php echo (check_estimate($estimate_parent_fetch->Es_id, 3) > 0) ? 'คะแนนการประเมินครั้งล่าสุดคือ '.check_estimate($estimate_parent_fetch->Es_id, 3) : 'ยังไม่ได้ทำการประเมินหรือคะแนนการประเมินครั้งล่าสุดเป็น 0'; ?></p>
@@ -1679,7 +1680,7 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 													<div class="col-md-12">
 														<div class="row">
 															<div class="col-md-2">
-																<input type="submit" name="SaveBtn" class="form-control btn btn-primary SaveBtn" value="บันทึก">
+																<input type="submit" name="SaveBtn4" class="form-control btn btn-primary SaveBtn" value="บันทึก">
 															</div>
 															<div class="col-md-10">
 																<p class="show_score">ประวัติการประเมินส่วนที่ 4 : <?php echo (check_estimate($estimate_parent_fetch->Es_id, 4) > 0) ? 'คะแนนการประเมินครั้งล่าสุดคือ '.check_estimate($estimate_parent_fetch->Es_id, 4) : 'ยังไม่ได้ทำการประเมินหรือคะแนนการประเมินครั้งล่าสุดเป็น 0'; ?></p>
@@ -1780,7 +1781,7 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 													<div class="col-md-12">
 														<div class="row">
 															<div class="col-md-2">
-																<input type="submit" name="SaveBtn" class="form-control btn btn-primary SaveBtn" value="บันทึก">
+																<input type="submit" name="SaveBtn5" class="form-control btn btn-primary SaveBtn" value="บันทึก">
 															</div>
 															<div class="col-md-10">
 																<p class="show_score">ประวัติการประเมินส่วนที่ 5 : <?php echo (check_estimate($estimate_parent_fetch->Es_id, 5) > 0) ? 'คะแนนการประเมินครั้งล่าสุดคือ '.check_estimate($estimate_parent_fetch->Es_id, 5) : 'ยังไม่ได้ทำการประเมินหรือคะแนนการประเมินครั้งล่าสุดเป็น 0'; ?></p>
@@ -1881,7 +1882,7 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 													<div class="col-md-12">
 														<div class="row">
 															<div class="col-md-2">
-																<input type="submit" name="SaveBtn" class="form-control btn btn-primary SaveBtn" value="บันทึก">
+																<input type="submit" name="SaveBtn6" class="form-control btn btn-primary SaveBtn" value="บันทึก">
 															</div>
 															<div class="col-md-10">
 																<p class="show_score">ประวัติการประเมินส่วนที่ 6 : <?php echo (check_estimate($estimate_parent_fetch->Es_id, 6) > 0) ? 'คะแนนการประเมินครั้งล่าสุดคือ '.check_estimate($estimate_parent_fetch->Es_id, 6) : 'ยังไม่ได้ทำการประเมินหรือคะแนนการประเมินครั้งล่าสุดเป็น 0'; ?></p>
@@ -1991,7 +1992,7 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 													<div class="col-md-12">
 														<div class="row">
 															<div class="col-md-2">
-																<input type="submit" name="SaveBtn" class="form-control btn btn-primary SaveBtn" value="บันทึก">
+																<input type="submit" name="SaveBtn7" class="form-control btn btn-primary SaveBtn" value="บันทึก">
 															</div>
 															<div class="col-md-10">
 																<p class="show_score">ประวัติการประเมินส่วนที่ 7 : <?php echo (check_estimate($estimate_parent_fetch->Es_id, 7) > 0) ? 'คะแนนการประเมินครั้งล่าสุดคือ '.check_estimate($estimate_parent_fetch->Es_id, 7) : 'ยังไม่ได้ทำการประเมินหรือคะแนนการประเมินครั้งล่าสุดเป็น 0'; ?></p>
@@ -2092,7 +2093,7 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 													<div class="col-md-12">
 														<div class="row">
 															<div class="col-md-2">
-																<input type="submit" name="SaveBtn" class="form-control btn btn-primary SaveBtn" value="บันทึก">
+																<input type="submit" name="SaveBtn8" class="form-control btn btn-primary SaveBtn" value="บันทึก">
 															</div>
 															<div class="col-md-10">
 																<p class="show_score">ประวัติการประเมินส่วนที่ 8 : <?php echo (check_estimate($estimate_parent_fetch->Es_id, 8) > 0) ? 'คะแนนการประเมินครั้งล่าสุดคือ '.check_estimate($estimate_parent_fetch->Es_id, 8) : 'ยังไม่ได้ทำการประเมินหรือคะแนนการประเมินครั้งล่าสุดเป็น 0'; ?></p>
@@ -2196,7 +2197,7 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 													<div class="col-md-12">
 														<div class="row">
 															<div class="col-md-2">
-																<input type="submit" name="SaveBtn" class="form-control btn btn-primary SaveBtn" value="บันทึก">
+																<input type="submit" name="SaveBtn9" class="form-control btn btn-primary SaveBtn" value="บันทึก">
 															</div>
 															<div class="col-md-10">
 																<p class="show_score">ประวัติการประเมินส่วนที่ 9 : <?php echo (check_estimate($estimate_parent_fetch->Es_id, 9) > 0) ? 'คะแนนการประเมินครั้งล่าสุดคือ '.check_estimate($estimate_parent_fetch->Es_id, 9) : 'ยังไม่ได้ทำการประเมินหรือคะแนนการประเมินครั้งล่าสุดเป็น 0'; ?></p>
@@ -2314,7 +2315,7 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 											<div class="row" id="parent-estimate_display_score">
 												<div class="col-md-9">
 													<h2>
-														ผลการประเมินของครูประจำชั้น 
+														ผลการประเมินของผู้ปกครอง
 														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 															<span aria-hidden="true">&times;</span>
 														</button>
@@ -2397,7 +2398,88 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 								</div>
 							</div>
 						</div>
-						<div class="row site_content-result_overall"></div>
+						<div class="row site_content-result_overall">
+							<div class="modal fade" id="compare-estimate_box" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+								<div class="modal-dialog modal-lg" role="document">
+									<div class="modal-content">
+										<div class="container">
+											<div class="row" id="compare-estimate_display_score">
+												<div class="col-md-9">
+													<h2>
+														ผลการประเมินเปรียบเทียบ
+														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+														</button>
+													</h2> 
+													<hr>
+													<h3>คะแนนการประเมิน</h3>
+													<table class="table table-bordered table-striped" id="compare-table_result">
+														<thead>
+															<tr>
+																<th colspan="3"><p class="text-center">ดี</p></th>
+																<th colspan="3"><p class="text-center">เก่ง</p></th>
+																<th colspan="3"><p class="text-center">สุข</p></th>
+															</tr>
+															<tr>
+																<?php
+																$groups = get_group();
+																while($group = mysql_fetch_array($groups)) {
+																	?>
+																	<td><center><?php echo $group['Sg_name']; ?></center></td>
+																	<?php
+																}
+																?>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<?php
+																calculate_compare($estimate_teacher_fetch->Es_id, $estimate_parent_fetch->Es_id);
+																?>
+															</tr>
+														</tbody>
+													</table>
+													<h3>เกณฑ์คะแนนที (T-Score Norms)</h3>
+													<table class="table table-bordered table-striped" id="compare_tscore-table_result">
+														<thead>
+															<tr>
+																<th colspan="3"><p class="text-center">ดี</p></th>
+																<th colspan="3"><p class="text-center">เก่ง</p></th>
+																<th colspan="3"><p class="text-center">สุข</p></th>
+															</tr>
+															<tr>
+																<?php
+																$groups = get_group();
+																while($group = mysql_fetch_array($groups)) {
+																	?>
+																	<td><center><?php echo $group['Sg_name']; ?></center></td>
+																	<?php
+																}
+																?>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<?php
+																calculate_tcompare($estimate_teacher_fetch->Es_id, $estimate_parent_fetch->Es_id);
+																?>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+											<div class="row" id="compare-estimate_display_text">
+												<div class="col-md-9">
+													<?php
+													compare_guide ($estimate_teacher_fetch->Es_id, $estimate_parent_fetch->Es_id);
+													?>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

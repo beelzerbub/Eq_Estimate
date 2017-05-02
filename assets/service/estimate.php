@@ -881,4 +881,329 @@ function T_Score ($score, $group) {
 		return 0;
 	}
 }
+
+function calculate_compare($teacher_es_id, $parent_es_id) {
+	$i = 0;
+	$teacher = "SELECT * FROM estimate_score WHERE Es_id = $teacher_es_id";
+	$teacher_query = mysql_query($teacher)or die(mysql_error());
+	while($result = mysql_fetch_array($teacher_query)) {
+		$teacher_score[$i] = $result[Es_score];
+		$i++;
+	}
+
+	$i = 0;
+	$parent = "SELECT * FROM estimate_score WHERE Es_id = $parent_es_id";
+	$parent_query = mysql_query($parent)or die(mysql_error());
+	while($result = mysql_fetch_array($parent_query)) {
+		$parent_score[$i] = $result[Es_score];
+		$i++;
+	}
+
+
+	for ($l = 0; $l < 9; $l++) {
+		if ($teacher_score[$l] != 0 && $parent_score[$l] != 0) {
+			echo "<td>".compare_score($teacher_score[$l], $parent_score[$l])."</td>";
+		} else if ($teacher_score[$l] == 0 || $parent_score[$l] == 0) {
+			echo "<td>ไม่สามารถเปรียบเทียบ</td>";
+		}
+	}
+}
+
+function calculate_tcompare($teacher_es_id, $parent_es_id) {
+	$i = 0;
+	$teacher = "SELECT * FROM estimate_score WHERE Es_id = $teacher_es_id";
+	$teacher_query = mysql_query($teacher)or die(mysql_error());
+	while($result = mysql_fetch_array($teacher_query)) {
+		$teacher_score[$i] = $result[Es_score];
+		$i++;
+	}
+
+	$i = 0;
+	$parent = "SELECT * FROM estimate_score WHERE Es_id = $parent_es_id";
+	$parent_query = mysql_query($parent)or die(mysql_error());
+	while($result = mysql_fetch_array($parent_query)) {
+		$parent_score[$i] = $result[Es_score];
+		$i++;
+	}
+
+	$sg_id = 1;
+	for ($l = 0; $l < 9; $l++) {
+		if ($teacher_score[$l] != 0 && $parent_score[$l] != 0) {
+			$score = compare_score(T_Score($teacher_score[$l], $sg_id), T_Score($parent_score[$l], $sg_id));
+			echo "<td>".$score."</td>";
+		} else if ($teacher_score[$l] == 0 || $parent_score[$l] == 0) {
+			echo "<td>ไม่สามารถเปรียบเทียบ</td>";
+		}
+		$sg_id++;
+	}
+}
+
+function compare_guide ($teacher_es_id, $parent_es_id) {
+	$danger = "เด็กจำเป็นต้องได้รับการพัฒนาความฉลาดทางอารมณ์ด้านการ";
+	$warning = "เด็กควรได้รับการพัฒนาความฉลาดทางอารมณ์ด้านการ";
+	$success = "เด็กควรได้รับการรักษาไว้ซึ่งความฉลาดทางอารมณ์ด้านการ";
+	$high = "คะแนนทีมากกว่าหรือเท่ากับ 50 คะแนน";
+	$average = "คะแนนทีอยู่ในช่วง 40 - 49 คะแนน";
+	$low = "คะแนนทีต่ำกว่า 40 คะแนน";
+
+	$i = 0;
+	$teacher = "SELECT * FROM estimate_score WHERE Es_id = $teacher_es_id";
+	$teacher_query = mysql_query($teacher)or die(mysql_error());
+	while($result = mysql_fetch_array($teacher_query)) {
+		$teacher_score[$i] = $result[Es_score];
+		$i++;
+	}
+
+	$i = 0;
+	$parent = "SELECT * FROM estimate_score WHERE Es_id = $parent_es_id";
+	$parent_query = mysql_query($parent)or die(mysql_error());
+	while($result = mysql_fetch_array($parent_query)) {
+		$parent_score[$i] = $result[Es_score];
+		$i++;
+	}
+
+	$sg_id = 1;
+	for ($l = 0; $l < 9; $l++) {
+		$score = compare_score(T_Score($teacher_score[$l], $sg_id), T_Score($parent_score[$l], $sg_id));
+		$sg_id++;
+	}
+	?>
+	<ul class="list-group text-advice">
+		<?php
+		$number = 1;
+		for ($i = 1; $i <= 9; $i++) {
+			if ($score >= 0 && $score <= 39) {
+				if ($i == 1) {
+					?>
+					<li class="list-group-item">
+						<span class="badge"><?php echo $low; ?></span>
+						<span class="label label-text label-danger"><?php echo $number; ?>.<?php echo $danger; ?>ควบคุมอารมณ์</span>
+					</li>
+					<?php
+				} else if ($i == 2 ) {
+					?>
+					<li class="list-group-item">
+						<span class="badge"><?php echo $low; ?></span>
+						<span class="label label-text label-danger"><?php echo $number; ?>.<?php echo $danger; ?>ใส่ใจและเข้าใจอารมณ์</span>
+					</li>
+					<?php
+				} else if ($i == 3 ) {
+					?>
+					<li class="list-group-item">
+						<span class="badge"><?php echo $low; ?></span>
+						<span class="label label-text label-danger"><?php echo $number; ?>.<?php echo $danger; ?>ยอมรับถูกผิด</span>
+					</li>
+					<?php
+				} else if ($i == 4 ) {
+					?>
+					<li class="list-group-item">
+						<span class="badge"><?php echo $low; ?></span>
+						<span class="label label-text label-danger"><?php echo $number; ?>.<?php echo $danger; ?>มุ่งมั่นพยายาม</span>
+					</li>
+					<?php
+				} else if ($i == 5 ) {
+					?>
+					<li class="list-group-item">
+						<span class="badge"><?php echo $low; ?></span>
+						<span class="label label-text label-danger"><?php echo $number; ?>.<?php echo $danger; ?>ปรับตัวต่อปัญหา</span>
+					</li>
+					<?php
+				} else if ($i == 6 ) {
+					?>
+					<li class="list-group-item">
+						<span class="badge"><?php echo $low; ?></span>
+						<span class="label label-text label-danger"><?php echo $number; ?>.<?php echo $danger; ?>กล้าแสดงออก</span>
+					</li>
+					<?php
+				} else if ($i == 7 ) {
+					?>
+					<li class="list-group-item">
+						<span class="badge"><?php echo $low; ?></span>
+						<span class="label label-text label-danger"><?php echo $number; ?>.<?php echo $danger; ?>พอใจในตนเอง</span>
+					</li>
+					<?php
+				} else if ($i == 8 ) {
+					?>
+					<li class="list-group-item">
+						<span class="badge"><?php echo $low; ?></span>
+						<span class="label label-text label-danger"><?php echo $number; ?>.<?php echo $danger; ?>รู้จักปรับตัว</span>
+					</li>
+					<?php
+				} else if ($i == 9 ) {
+					?>
+					<li class="list-group-item">
+						<span class="badge"><?php echo $low; ?></span>
+						<span class="label label-text label-danger"><?php echo $number; ?>.<?php echo $danger; ?>รื่นเริงเบิกบาน</span>
+					</li>
+					<?php
+				}
+			} else if ($score >= 40 && $score <= 49) {
+				if ($i == 1) {
+					?>
+					<li class="list-group-item">
+						<span class="badge"><?php echo $average; ?></span>
+						<span class="label label-text label-warning"><?php echo $l; ?>.<?php echo $warning; ?>ควบคุมอารมณ์</span>
+					</li>
+					<?php
+				} else if ($i == 2 ) {
+					?>
+					<li class="list-group-item">
+						<span class="badge"><?php echo $average; ?></span>
+						<span class="label label-text label-warning"><?php echo $l; ?>.<?php echo $warning; ?>ใส่ใจและเข้าใจอารมณ์</span>
+					</li>
+					<?php
+				} else if ($i == 3 ) {
+					?>
+					<li class="list-group-item">
+						<span class="badge"><?php echo $average; ?></span>
+						<span class="label label-text label-warning"><?php echo $l; ?>.<?php echo $warning; ?>ยอมรับถูกผิด</span>
+					</li>
+					<?php
+				} else if ($i == 4 ) {
+					?>
+					<li class="list-group-item">
+						<span class="badge"><?php echo $average; ?></span>
+						<span class="label label-text label-warning"><?php echo $l; ?>.<?php echo $warning; ?>มุ่งมั่นพยายาม</span>
+					</li>
+					<?php
+				} else if ($i == 5 ) {
+					?>
+					<li class="list-group-item">
+						<span class="badge"><?php echo $average; ?></span>
+						<span class="label label-text label-warning"><?php echo $l; ?>.<?php echo $warning; ?>ปรับตัวต่อปัญหา</span>
+					</li>
+					<?php
+				} else if ($i == 6 ) {
+					?>
+					<li class="list-group-item">
+						<span class="badge"><?php echo $average; ?></span>
+						<span class="label label-text label-warning"><?php echo $l; ?>.<?php echo $warning; ?>กล้าแสดงออก</span>
+					</li>
+					<?php
+				} else if ($i == 7 ) {
+					?>
+					<li class="list-group-item">
+						<span class="badge"><?php echo $average; ?></span>
+						<span class="label label-text label-warning"><?php echo $l; ?>.<?php echo $warning; ?>พอใจในตนเอง</span>
+					</li>
+					<?php
+				} else if ($i == 8 ) {
+					?>
+					<li class="list-group-item">
+						<span class="badge"><?php echo $average; ?></span>
+						<span class="label label-text label-warning"><?php echo $l; ?>.<?php echo $warning; ?>รู้จักปรับตัว</span>
+					</li>
+					<?php
+				} else if ($i == 9 ) {
+					?>
+					<li class="list-group-item">
+						<span class="badge"><?php echo $average; ?></span>
+						<span class="label label-text label-warning"><?php echo $l; ?>.<?php echo $warning; ?>รื่นเริงเบิกบาน</span>
+					</li>
+					<?php
+				}
+			} else if ($score >= 50 && $score <= 100) {
+				if ($i == 1) {
+					?>
+					<li class="list-group-item">
+						<span class="badge"><?php echo $high; ?></span>
+						<span class="label label-text label-success"><?php echo $l; ?>.<?php echo $success; ?>ควบคุมอารมณ์</span>
+					</li>
+					<?php
+				} else if ($i == 2 ) {
+					?>
+					<li class="list-group-item">
+						<span class="badge"><?php echo $high; ?></span>
+						<span class="label label-text label-success"><?php echo $l; ?>.<?php echo $success; ?>ใส่ใจและเข้าใจอารมณ์</span>
+					</li>
+					<?php
+				} else if ($i == 3 ) {
+					?>
+					<li class="list-group-item">
+						<span class="badge"><?php echo $high; ?></span>
+						<span class="label label-text label-success"><?php echo $l; ?>.<?php echo $success; ?>ยอมรับถูกผิด</span>
+					</li>
+					<?php
+				} else if ($i == 4 ) {
+					?>
+					<li class="list-group-item">
+						<span class="badge"><?php echo $high; ?></span>
+						<span class="label label-text label-success"><?php echo $l; ?>.<?php echo $success; ?>มุ่งมั่นพยายาม</span>
+					</li>
+					<?php
+				} else if ($i == 5 ) {
+					?>
+					<li class="list-group-item">
+						<span class="badge"><?php echo $high; ?></span>
+						<span class="label label-text label-success"><?php echo $l; ?>.<?php echo $success; ?>ปรับตัวต่อปัญหา</span>
+					</li>
+					<?php
+				} else if ($i == 6 ) {
+					?>
+					<li class="list-group-item">
+						<span class="badge"><?php echo $high; ?></span>
+						<span class="label label-text label-success"><?php echo $l; ?>.<?php echo $success; ?>กล้าแสดงออก</span>
+					</li>
+					<?php
+				} else if ($i == 7 ) {
+					?>
+					<li class="list-group-item">
+						<span class="badge"><?php echo $high; ?></span>
+						<span class="label label-text label-success"><?php echo $l; ?>.<?php echo $success; ?>พอใจในตนเอง</span>
+					</li>
+					<?php
+				} else if ($i == 8 ) {
+					?>
+					<li class="list-group-item">
+						<span class="badge"><?php echo $high; ?></span>
+						<span class="label label-text label-success"><?php echo $l; ?>.<?php echo $success; ?>รู้จักปรับตัว</span>
+					</li>
+					<?php
+				} else if ($i == 9 ) {
+					?>
+					<li class="list-group-item">
+						<span class="badge"><?php echo $high; ?></span>
+						<span class="label label-text label-success"><?php echo $l; ?>.<?php echo $success; ?>รื่นเริงเบิกบาน</span>
+					</li>
+					<?php
+				}
+			}
+			$number++;
+		}
+		?>
+	</ul>
+	<fieldset>
+		<legend>คำแนะนำ</legend>
+		<div class="panel panel-success">
+			<div class="panel-heading">
+				<h3 class="panel-title">เกณฑ์คะแนนทีตั้งแต่ 50 คะแนนขึ้นไป</h3>
+			</div>
+			<div class="panel-body">
+				บ่งบอกว่าเด็กมีความฉลาดทางอารมณ์อยู่ในเกณฑ์ที่ดี ควรส่งเสริมและรักษาคุณลักษณะนี้ให้คงไว้
+			</div>
+		</div>
+		<div class="panel panel-warning">
+			<div class="panel-heading">
+				<h3 class="panel-title">เกณฑ์คะแนนทีอยู่ในช่วง 40 ถึง 49 คะแนน</h3>
+			</div>
+			<div class="panel-body">
+				บ่งบอกว่าเด็กควรได้รับการพัฒนาความฉลาดทางอารมณ์ในด้านนั้นๆให้ดียิ่งขึ้น ผู้ใหญ่ควรร่วมกันส่งเสริมให้เด็กมีความฉลาดทางอารมณ์ในด้านนั้นๆ อย่างต่อเนื่อง
+			</div>
+		</div>
+		<div class="panel panel-danger">
+			<div class="panel-heading">
+				<h3 class="panel-title">เกณฑ์คะแนนทีต่ำกว่า 40 คะแนน</h3>
+			</div>
+			<div class="panel-body">
+				บ่งบอกว่าเด็กจำเป็นต้องได้รับการพัฒนาความฉลาดทางอารมณ์ในด้านนั้นๆ ให้ดียิ่งขึ้น ผู้ใหญ่จำเป็นต้องช่วยกันเอาใจใส่พัฒนาความฉลาดทางอารมณ์เด็กอย่างจริงจังและสม่ำเสมอ
+			</div>
+		</div>
+	</fieldset>
+	<?php
+}
+
+function compare_score($teacher_score, $parent_score) {
+	$compare_score = ($teacher_score + $parent_score) / 2;
+	return $compare_score;
+}
 ?>
