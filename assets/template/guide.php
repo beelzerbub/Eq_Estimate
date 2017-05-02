@@ -1,9 +1,8 @@
 <?php
-$estimate_score = "SELECT * FROM estimate_score es WHERE es.Es_id = $estimate_fetch->Es_id";
 $estimate_score_query = mysql_query($estimate_score)or die(mysql_error());
 $danger = "เด็กจำเป็นต้องได้รับการพัฒนาความฉลาดทางอารมณ์ด้านการ";
 $warning = "เด็กควรได้รับการพัฒนาความฉลาดทางอารมณ์ด้านการ";
-$success = "เด็กควรได้รับการส่งเสริมและรักษาความฉลาดทางอารมณ์ด้านการ";
+$success = "เด็กควรได้รับการรักษาไว้ซึ่งความฉลาดทางอารมณ์ด้านการ";
 $high = "คะแนนทีมากกว่าหรือเท่ากับ 50 คะแนน";
 $average = "คะแนนทีอยู่ในช่วง 40 - 49 คะแนน";
 $low = "คะแนนทีต่ำกว่า 40 คะแนน";
