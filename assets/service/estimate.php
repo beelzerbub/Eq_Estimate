@@ -205,7 +205,7 @@ function get_estimate($std_no, $term, $year, $as_type) {
 	WHERE std.Std_no = $std_no
 	AND et.Es_year = $year
 	AND et.Es_term = $term
-	AND et.Std_no = $std_no
+	AND et.Std_no = std.Std_no
 	AND et.As_id = asses.As_id
 	AND et.Es_id = es.Es_id
 	AND asses.As_type = '$as_type'";
