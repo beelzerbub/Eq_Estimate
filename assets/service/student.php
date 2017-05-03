@@ -78,17 +78,31 @@ if ($_GET["action"] == "delete") {
 		$insert_student .= "'$objArr[3]',";
 		$insert_student .= "$objArr[4],";
 		$insert_student .= get_gender($objArr[1]).")";
-		echo $insert_student."<br>";
-		//$insert_student_query = mysql_query($insert_student)or die(mysql_error());
-		/*$student = "SELECT * FROM student 
+		$insert_student_query = mysql_query($insert_student)or die(mysql_error());
+		
+		$student = "SELECT * FROM student 
 		WHERE Std_id = '".str_replace("-",'',$objArr[0])."' 
 		AND Std_name = '$objArr[2]' 
 		AND Std_surname = '$objArr[3]'
 		AND Std_age = $objArr[4]";
-		echo $student."<br>";*/
+		$student_query = mysql_query($student)or die(mysql_error());
+		$student_fetch = mysql_fetch_object($student_query)or die(mysql_error());
 
+		$classroom = "SELECT * FROM classroom 
+		WHERE class_grade = '$objArr[5]' 
+		AND class_number = $objArr[6]";
+		$classroom_query = mysql_query($classroom)or die(mysql_error());
+		$classroom_fetch = mysql_fetch_object($classroom_query)or die(mysql_error());
+		
+		$insert_term = "INSERT INTO term VALUES ('',";
+		$insert_term .= "$objArr[7],";
+		$insert_term .= "$objArr[8],";
+		$insert_term .= "$classroom_fetch->class_id,";
+		$insert_term .= "$student_fetch->Std_no)";
+		$insert_term_query = mysql_query($insert_term)or die(mysql_error());
 	}
 	fclose($objCSV);
+	header("location:../../__import.php?action=import_success");
 }
 
 
