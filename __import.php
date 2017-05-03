@@ -35,22 +35,85 @@ if ($_SESSION["user_role"] < 8) {
 					?>
 				</div>
 			</div>
-			<form action="assets/service/student.php" name="student-import_form" id="student-import_form" role="form" method="post" enctype="multipart/form-data" data-toggle="validator" >
-				<fieldset class="fieldset-form">
-					<legend class="legend-form"><h1>นำเข้าข้อมูลนักเรียนด้วยไฟล์ CSV</h1></legend>
-					<div class="form-group">
-						<label for="InputFileCsv">เลือก File CSV ที่ต้องการนำเข้า : </label>
-						<input type="file" name="fileCSV" id="fileCSV" class="form-control" data-error="กรุณาเลือกไฟล์ ที่ต้องการนำเข้าข้อมูลนักเรียน" required />
-						<div class="help-block with-errors"></div>
-					</div>
-					<br>
-					<div class="row">
-						<div class="col-md-4 col-md-offset-4">
-							<input type="submit" id="ImportStdBtn" name="ImportStdBtn" tabindex="" class="form-control btn btn-add" value="นำเข้าข้อมูล">
+		</div>
+		<div class="row site_content-form">
+			<div class="col-md-3">
+				<div class="well">
+					<ul class="nav nav-pills nav-stacked">
+						<li role="presentation" class="active">
+							<a class="btn btn-default" id="howto-form-link" href="" role="button">
+								วิธีการนำเข้าข้อมูลนักเรียน<br>ด้วยไฟล์ CSV
+							</a>
+						</li>
+						<li role="presentation">
+							<a class="btn btn-default" id="import-form-link" href="" role="button">
+								นำเข้าข้อมูลนักเรียนด้วยไฟล์ <br> CSV
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-9">
+				<div id="howto-form" >
+					<fieldset class="fieldset-form">
+						<legend class="legend-form"><h2>วิธีการนำเข้าข้อมูลด้วยไฟล์ CSV</h2></legend>
+						<ol>
+							<li>
+								เตรียมไฟล์ Excel หรือดาวโหลดจากลิ้งด้านหลัง <a href="assets/template/template.xlsx">Download</a> เพื่อใช้เป็น Pattern สำหรับกรอกบันทึกข้อมูล โดยจะต้องมีหัวคอลั่มดังรูปด้านล่าง 
+								<img src="image/howto/howto_1.png" width="98%" alt=""><hr>
+							</li>
+							<li>
+								ทำการบันทึกข้อมูลลงในไฟล์ Excel ที่เตรียมไว้
+								<img src="image/howto/howto_2.png" width="98%" alt=""><hr>
+							</li>
+							<li>
+								บันทึกไฟล์เป็นนามสกุล CSV UTF-8 (Comma delimited) โดยไปที่ <br>
+								File -> Save As -> เลือกนามสกุลไฟล์ให้เป็น CSV UTF-8 (Comma delimited) 
+								<img src="image/howto/howto_3.png" width="98%" alt=""><hr>
+								<img src="image/howto/howto_4.png" width="98%" alt=""><hr>
+							</li>
+							<li>
+								จากนั้นทำการตรวจสอบ Format โดยการเปิดไฟล์ CSV ด้วย Notepad หากบันทึกได้ถูกต้องจะพบข้อมูลดังรูป
+								<img src="image/howto/howto_5.png" width="98%" alt=""><hr>
+								<img src="image/howto/howto_6.png" width="98%" alt=""><hr>
+							</li>
+							<li>
+								ทำการลบหัวตารางออกให้เหลือเพียงแค่ข้อมูลที่ต้องการ
+								<img src="image/howto/howto_7.png" width="98%" alt=""><hr>
+							</li>
+							<li>
+								จากนั้นบันทึกไฟล์ โดยเปลี่ยน Encoding เป็น UTF-8 โดยไปที่ <br>
+								File -> Save As -> Encoding
+								<img src="image/howto/howto_8.png" width="98%" alt=""><hr>
+							</li>
+							<li>
+								สามารถนำไฟล์ที่ได้ ไปบันทึกเข้าฐานข้อมูล ผ่านทางส่วน "นำเข้าข้อมูลนักเรียนด้วยไฟล์ CSV" ได้
+								<img src="image/howto/howto_9.png" width="98%" alt=""><hr>
+							</li>
+							<li>
+								หากเห็นข้อความตามรูปเป็นอันเสร็จขั้นตอนการนำเข้าข้อมูลนักเรียนด้วยไฟล์ CSV
+								<img src="image/howto/howto_10.png" width="98%" alt=""><hr>
+							</li>
+						</ol>
+					</fieldset>
+				</div>
+				<form action="assets/service/student.php" name="student-import_form" id="student-import_form" role="form" method="post" enctype="multipart/form-data" data-toggle="validator" style="display:none">
+					<fieldset class="fieldset-form">
+						<legend class="legend-form"><h2>นำเข้าข้อมูลนักเรียนด้วยไฟล์ CSV</h2></legend>
+						<div class="form-group">
+							<label for="InputFileCsv">เลือก File CSV ที่ต้องการนำเข้า : </label>
+							<input type="file" name="fileCSV" id="fileCSV" class="form-control" data-error="กรุณาเลือกไฟล์ ที่ต้องการนำเข้าข้อมูลนักเรียน" required />
+							<div class="help-block with-errors"></div>
 						</div>
-					</div>
-				</fieldset>
-			</form>
+						<br>
+						<div class="row">
+							<div class="col-md-4 col-md-offset-4">
+								<input type="submit" id="ImportStdBtn" name="ImportStdBtn" tabindex="" class="form-control btn btn-add" value="นำเข้าข้อมูล">
+							</div>
+						</div>
+					</fieldset>
+				</form>
+			</div>
 		</div>
 		<div class="row site_footer">
 			<hr>
@@ -62,5 +125,23 @@ if ($_SESSION["user_role"] < 8) {
 	<!-- Bootstrap JavaScript -->
 	<script src="js/bootstrap/bootstrap.min.js"></script>
 	<script src="js/bootstrap/validator.min.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$('#howto-form-link').click(function(e) {
+				$("#howto-form").delay(100).fadeIn(100);
+				$("#student-import_form").fadeOut(100);
+				$(this).addClass('active');
+				$("#import-form-link").removeClass('active');
+				e.preventDefault();
+			});
+			$('#import-form-link').click(function(e) {
+				$("#student-import_form").delay(100).fadeIn(100);
+				$("#howto-form").fadeOut(100);
+				$(this).addClass('active');
+				$('#howto-form-link').removeClass('active');
+				e.preventDefault();
+			});
+		});
+	</script>
 </body>
 </html>
