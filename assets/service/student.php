@@ -78,8 +78,7 @@ if ($_GET["action"] == "delete") {
 		$insert_student .= "'$objArr[3]',";
 		$insert_student .= "$objArr[4],";
 		$insert_student .= get_gender($objArr[1]).")";
-		//$insert_student_query = mysql_query($insert_student)or die(mysql_error());
-		echo $insert_student."<br>";
+		$insert_student_query = mysql_query($insert_student)or die(mysql_error());
 
 		$student = "SELECT * FROM student 
 		WHERE Std_id = '".str_replace("-",'',$objArr[0])."' 
