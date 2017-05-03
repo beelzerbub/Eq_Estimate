@@ -108,9 +108,7 @@ if ($_GET["action"] == "delete") {
 			$insert_term .= "$classroom_fetch->class_id,";
 			$insert_term .= "$student_fetch->Std_no)";
 			$insert_term_query = mysql_query($insert_term)or die(mysql_error());
-		} else {
-			header("location:../../__import.php?action=import_duplicate");
-		}
+		} 
 	}
 	fclose($objCSV);
 	header("location:../../__import.php?action=import_success");
