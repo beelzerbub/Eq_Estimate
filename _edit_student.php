@@ -38,7 +38,7 @@ if ($_SESSION["user_role"] < 8) {
 					<form action="assets/service/student.php" role="form" method="post" data-toggle="validator" id="student-insert_form">
 						<input type="hidden" name="id" value="<?php echo $student_fetch->Std_no; ?>">
 						<fieldset class="fieldset-form">
-							<legend class="legend-form"><h1>เพิ่มข้อมูลนักเรียน</h1></legend>
+							<legend class="legend-form"><h1>แก้ไขข้อมูลนักเรียน</h1></legend>
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group">

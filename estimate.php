@@ -92,8 +92,7 @@ if ($_SESSION["user_role"] < 2) {
 								<th><p class="text-center">อายุ</p></th>
 								<th><p class="text-center">ห้องเรียน</p></th>
 								<th><p class="text-center">ปีการศึกษา</p></th>
-								<th><p class="text-center">สถานะการประเมิน<br>ของผู้ปกครอง</p></th>
-								<th><p class="text-center">สถานะการประเมิน<br>ของครูประจำชั้น</p></th>
+								<th><p class="text-center">ทำแบบประเมิน</p></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -152,8 +151,7 @@ if ($_SESSION["user_role"] < 2) {
 										<td><?php echo $result[Std_age]; ?> ปี</td>
 										<td><?php echo $result[class_grade]; ?> ห้อง <?php echo $result[class_number];?></td>
 										<td><?php echo $result[Term]."/".$result[Term_year];?></td>
-										<td><a href="estimate_form.php?as_type=ผู้ปกครอง&std_no=<?php echo $result["Std_no"]; ?>&year=<?php echo $result[Term_year]; ?>&term=<?php echo $result[Term]; ?>">ทำแบบประเมิน</a></td>
-										<td><a href="estimate_form.php?as_type=ครูประจำชั้น&std_no=<?php echo $result["Std_no"]; ?>&year=<?php echo $result[Term_year]; ?>&term=<?php echo $result[Term]; ?>">ทำแบบประเมิน</a></td>
+										<td><a href="estimate_form.php?std_no=<?php echo $result["Std_no"]; ?>&year=<?php echo $result[Term_year]; ?>&term=<?php echo $result[Term]; ?>">ทำแบบประเมิน</a></td>
 									</tr>
 									<?php
 								}

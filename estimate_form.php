@@ -9,6 +9,7 @@ $student_fetch = get_student($_GET[std_no], $_GET[year], $_GET[term]);
 $estimate_check_teacher = get_estimate($student_fetch->Std_no, $student_fetch->Term, $student_fetch->Term_year, "ครูประจำชั้น");
 if (mysql_num_rows($estimate_check_teacher) == 0) {
 	preinsert("ครูประจำชั้น", $student_fetch->Std_no, $student_fetch->Term, $student_fetch->Term_year);
+	preinsert("ผู้ปกครอง", $student_fetch->Std_no, $student_fetch->Term, $student_fetch->Term_year);
 }
 $estimate_check_parent = get_estimate($student_fetch->Std_no, $student_fetch->Term, $student_fetch->Term_year, "ผู้ปกครอง");
 if (mysql_num_rows($estimate_check_parent) == 0) {
