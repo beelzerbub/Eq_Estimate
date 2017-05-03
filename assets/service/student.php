@@ -67,6 +67,19 @@ if ($_GET["action"] == "delete") {
 	$year_reg	= $_POST["year_reg"];
 	$term_reg	= $_POST["term_reg"];
 	update_student($id, $std_id, $name, $surname, $age, $gender, $classroom, $class_number, $year_reg, $term_reg);
+} else if ($_POST["ImportStdBtn"]) {
+	$objCSV = fopen($_FILES["fileCSV"]["name"], "r");
+	$i=1;
+	while (($objArr = fgetcsv($objCSV, 1000, ",")) !== FALSE) {
+		$insert_student = "INSERT INTO student VALUES ('',";
+		$insert_student .= "'".str_replace("-","",$objArr[0])."',";
+		$insert_student .= "'".$objArr[2]."',";
+		$insert_student .= "'".$objArr[3]."',";
+		
+		$i++;
+		echo $insert_student."<br>";
+	}
+	fclose($objCSV);
 }
 
 
@@ -194,6 +207,16 @@ function check_classroom ($classroom, $class_number) {
 		header("location:../../student.php?action=wrong_classroom");
 	} else {
 		return true;
+	}
+}
+
+function get_gender ($gender) {
+	if ("เด็กชาย") {
+		return 2;
+	} else if ("เด็กหญิง") {
+		return 1;
+	} else {
+		return 0;
 	}
 }
 ?>
