@@ -67,6 +67,53 @@ if ($_GET["action"] == "delete") {
 	$year_reg	= $_POST["year_reg"];
 	$term_reg	= $_POST["term_reg"];
 	update_student($id, $std_id, $name, $surname, $age, $gender, $classroom, $class_number, $year_reg, $term_reg);
+
+} else if ($_POST["ImportStdBtn"]) {
+	move_uploaded_file($_FILES["fileCSV"]["tmp_name"],$_FILES["fileCSV"]["name"]);
+	$objCSV = fopen($_FILES["fileCSV"]["name"], "r");
+	while (($objArr = fgetcsv($objCSV, 1000, ",")) !== FALSE) {
+		$duplicate = "SELECT * FROM student 
+		WHERE Std_id = '".str_replace("-",'',$objArr[0])."' 
+		AND Std_name = '$objArr[2]' 
+		AND Std_surname = '$objArr[3]'
+		AND Std_age = $objArr[4]";
+		$duplicate_query = mysql_query($duplicate)or die(mysql_error());
+		if (mysql_num_rows($duplicate_query) == 0) {
+			$student_query = mysql_query($student)or die(mysql_error());
+			$insert_student = "INSERT INTO student VALUES ('',";
+			$insert_student .= "'".str_replace("-","",$objArr[0])."',";
+			$insert_student .= "'$objArr[2]',";
+			$insert_student .= "'$objArr[3]',";
+			$insert_student .= "$objArr[4],";
+			$insert_student .= get_gender($objArr[1]).")";
+			$insert_student_query = mysql_query($insert_student)or die(mysql_error());
+
+			$student = "SELECT * FROM student 
+			WHERE Std_id = '".str_replace("-",'',$objArr[0])."' 
+			AND Std_name = '$objArr[2]' 
+			AND Std_surname = '$objArr[3]'
+			AND Std_age = $objArr[4]";
+			$student_query = mysql_query($student)or die(mysql_error());
+			$student_fetch = mysql_fetch_object($student_query)or die(mysql_error());
+
+			$classroom = "SELECT * FROM classroom 
+			WHERE class_grade = '$objArr[5]' 
+			AND class_number = $objArr[6]";
+			$classroom_query = mysql_query($classroom)or die(mysql_error());
+			$classroom_fetch = mysql_fetch_object($classroom_query)or die(mysql_error());
+
+			$insert_term = "INSERT INTO term VALUES ('',";
+			$insert_term .= "$objArr[7],";
+			$insert_term .= "$objArr[8],";
+			$insert_term .= "$classroom_fetch->class_id,";
+			$insert_term .= "$student_fetch->Std_no)";
+			$insert_term_query = mysql_query($insert_term)or die(mysql_error());
+		} else {
+			header("location:../../__import.php?action=import_duplicate");
+		}
+	}
+	fclose($objCSV);
+	header("location:../../__import.php?action=import_success");
 }
 
 
@@ -194,6 +241,16 @@ function check_classroom ($classroom, $class_number) {
 		header("location:../../student.php?action=wrong_classroom");
 	} else {
 		return true;
+	}
+}
+
+function get_gender ($gender) {
+	if ("เด็กชาย") {
+		return 2;
+	} else if ("เด็กหญิง") {
+		return 1;
+	} else {
+		return 0;
 	}
 }
 ?>

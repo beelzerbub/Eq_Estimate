@@ -108,5 +108,14 @@ if ($action ==  "forgot_fail") {
 		</button>
 	</div>
 	<?php
+} else if ($action == "import_success") {
+	?>
+	<div class="alert alert-success" role="alert">
+		นำเข้าข้อมูลนักเรียนเรียบร้อยแล้ว
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<?php
 }
 ?>
