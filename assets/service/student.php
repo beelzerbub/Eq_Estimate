@@ -67,17 +67,26 @@ if ($_GET["action"] == "delete") {
 	$year_reg	= $_POST["year_reg"];
 	$term_reg	= $_POST["term_reg"];
 	update_student($id, $std_id, $name, $surname, $age, $gender, $classroom, $class_number, $year_reg, $term_reg);
+
 } else if ($_POST["ImportStdBtn"]) {
+	move_uploaded_file($_FILES["fileCSV"]["tmp_name"],$_FILES["fileCSV"]["name"]);
 	$objCSV = fopen($_FILES["fileCSV"]["name"], "r");
-	$i=1;
 	while (($objArr = fgetcsv($objCSV, 1000, ",")) !== FALSE) {
 		$insert_student = "INSERT INTO student VALUES ('',";
 		$insert_student .= "'".str_replace("-","",$objArr[0])."',";
-		$insert_student .= "'".$objArr[2]."',";
-		$insert_student .= "'".$objArr[3]."',";
-		
-		$i++;
+		$insert_student .= "'$objArr[2]',";
+		$insert_student .= "'$objArr[3]',";
+		$insert_student .= "$objArr[4],";
+		$insert_student .= get_gender($objArr[1]).")";
 		echo $insert_student."<br>";
+		//$insert_student_query = mysql_query($insert_student)or die(mysql_error());
+		/*$student = "SELECT * FROM student 
+		WHERE Std_id = '".str_replace("-",'',$objArr[0])."' 
+		AND Std_name = '$objArr[2]' 
+		AND Std_surname = '$objArr[3]'
+		AND Std_age = $objArr[4]";
+		echo $student."<br>";*/
+
 	}
 	fclose($objCSV);
 }
