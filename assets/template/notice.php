@@ -117,5 +117,14 @@ if ($action ==  "forgot_fail") {
 		</button>
 	</div>
 	<?php
+} else if ($action == "insert_user_duplicate") {
+	?>
+	<div class="alert alert-danger" role="alert">
+		ไม่สามารถใช้ชื่อผู้ใช้นี้ได้ เนื่องจากมีการใช้งานแล้ว
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<?php
 }
 ?>

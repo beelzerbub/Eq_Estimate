@@ -84,14 +84,21 @@ function get_user_type ($username) {
 }
 
 function insert_user($username, $password, $email, $name, $surname, $role) {
-	$insert_user = "INSERT INTO user VALUES('','$username','$password','$email','$name','$surname'";
-	if ($role == 1) {
-		$insert_user .= ",2)";
-	} else if ($role ==2 ){
-		$insert_user .= ",1)";
+	$check_user = "SELECT * FROM user WHERE username = '$username'";
+	$check_user_query = mysql_query($check_user)or die(mysql_error());
+	if (mysql_num_rows($check_user_query) > 0) {
+		header("location:../../user.php?action=insert_user_duplicate");
+	} else {
+		$insert_user = "INSERT INTO user VALUES('','$username','$password','$email','$name','$surname'";
+		if ($role == 1) {
+			$insert_user .= ",2)";
+		} else if ($role ==2 ){
+			$insert_user .= ",1)";
+		}
+
+		mysql_query($insert_user)or die(mysql_error());
+		header("location:../../user.php?action=insert_success");
 	}
-	mysql_query($insert_user)or die(mysql_error());
-	header("location:../../user.php?action=insert_success");
 }
 
 function update_user ($id, $username, $password, $email, $name, $surname, $role) {

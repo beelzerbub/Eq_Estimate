@@ -70,7 +70,9 @@ if ($_SESSION["user_role"] < 8) {
 									<fieldset class="fieldset-form">
 										<legend class="legend-form"><h1>เพิ่มข้อมูลผู้ใช้</h1></legend>
 										<div class="form-group">
-											<input type="text" name="reg_username" id="reg_username" tabindex="1" class="form-control" placeholder="ชื่อผู้ใช้" pattern="[A-z0-9]{1,}$" data-minlength="8" maxlength="20" value="" required>
+											<label for="reg_username">ชื่อผู้ใช้</label>
+											<input type="text" name="reg_username" id="reg_username" tabindex="1" class="form-control" placeholder="ชื่อผู้ใช้" pattern="[A-z0-9]{1,}$" data-error="กรุณาตรวจสอบความถูกต้อง" data-minlength="8" maxlength="20" value="" required>
+											<div class="help-block with-errors"></div>
 											<span class="help-block small">
 												<ul>
 													<li>ความยาว 8-20 อักขระ</li>
@@ -81,8 +83,8 @@ if ($_SESSION["user_role"] < 8) {
 										<div class="form-group">
 											<div class="row">
 												<div class="col-md-6">
-													<input type="password" name="reg_password" id="reg_password" tabindex="1" class="form-control" data-minlength="8" data-error="กรุณาตรวจสอบความถูกต้อง" placeholder="รหัสผ่าน" value="" required>
-													<div class="help-block with-errors"></div>
+													<label for="reg_password">รหัสผ่าน</label>
+													<input type="password" name="reg_password" id="reg_password" tabindex="1" class="form-control" data-minlength="8" data-error="กรุณาตรวจสอบความถูกต้องของรหัสผ่าน" placeholder="รหัสผ่าน" value="" required>
 													<span class="help-block small">
 														<ul>
 															<li>ความยาว 8-15 อักขระ</li>
@@ -91,28 +93,32 @@ if ($_SESSION["user_role"] < 8) {
 													</span>
 												</div>
 												<div class="col-md-6">
-													<input type="password" name="reg_passwordConfirm" data-match="#reg_password" class="form-control" data-match-error="รหัสยืนยันผิดพลาด" placeholder="ยืนยันรหัสผ่าน" value="" data-error="กรุณาตรวจสอบความถูกต้อง" required>
-													<div class="help-block with-errors"></div>
+													<label for="reg_passwordConfirm">ยืนยันรหัสผ่าน</label>
+													<input type="password" name="reg_passwordConfirm" data-match="#reg_password" class="form-control"  placeholder="ยืนยันรหัสผ่าน" value="" data-error="กรุณาตรวจสอบความถูกต้องของรหัสยืนยัน" required>
 												</div>
 											</div>
+											<div class="help-block with-errors"></div>
 										</div>
 										<div class="form-group">
+											<label for="reg_email">อีเมล</label>
 											<input type="email" name="reg_email" id="reg_email" tabindex="1" class="form-control" placeholder="อีเมลล์" value="" data-error="กรุณาตรวจสอบความถูกต้อง อีเมลล์ต้องมีลักษณะดังนี้ example@mail.com" required>
 											<div class="help-block with-errors"></div>
 											<span class="help-block small">( กรุณาระบุอีเมลล์ที่ใช้งานได้จริง )</span>
 										</div>
 										<div class="form-group">
+											<label for="reg_name">ชื่อ</label>
 											<input type="name" name="reg_name" id="reg_name" tabindex="1" class="form-control" placeholder="ชื่อ" value="" required>
 											<span class="help-block small">( กรุณาระบุชื่อ เพื่อประโยชน์ในการใช้เก็บข้อมูล) </span>
 										</div>
 										<div class="form-group">
+											<label for="reg_surnme">นามสกุล</label>
 											<input type="reg_surname" name="reg_surname" id="reg_surname" tabindex="1" class="form-control" placeholder="นามสกุล" value="" required>
 											<span class="help-block small">( กรุณาระบุนามสกุล เพื่อประโยชน์ในการใช้เก็บข้อมูล)</span>
 										</div>
 										<div class="form-group">
 											<div class="row">
 												<div class="col-md-3">
-													ประเภทผู้ใช้
+													<label for="reg_role">ประเภทผู้ใช้</label>
 												</div>
 												<div class="col-md-8 col-md-pull-1">
 													<label for="reg_role" class="radio-inline">
