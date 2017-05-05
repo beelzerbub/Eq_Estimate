@@ -126,5 +126,30 @@ if ($action ==  "forgot_fail") {
 		</button>
 	</div>
 	<?php
+} else if ($action == "insert_teacher_dupplicate") {
+	$old = $_GET["old"];
+	$classroom = "SELECT * FROM classroom class JOIN work_time wt ON wt.class_id = class.class_id
+	WHERE wt_id = $old";
+	$classroom_query = mysql_query($classroom)or die(mysql_error());
+	$classroom_fetch = mysql_fetch_object($classroom_query)or die(mysql_error());
+	?>
+	<div class="alert alert-warning" role="alert">
+		ไม่สามารถเพิ่มข้อมูลครูดังกล่าวได้ เนื่องจากมีการบันทึกว่า 
+		<?php
+		if ($classroom_fetch->class_id == 0) {
+			?>
+			ไม่ได้รับตำแหน่งครูประจำชั้นในปีการศึกษานี้ หากต้องการเปลี่ยนให้ใช้การแก้ไขข้อมูลหรือ <a href="_edit_teacher.php?id=<?php echo $classroom_fetch->t_id; ?>">คลิกที่นี่</a>
+			<?php
+		} else {
+			?>
+			เป็นครูประจำชั้นของ <?php echo $classroom_fetch->class_grade; ?> / <?php echo $classroom_fetch->class_number;?> แล้วในปีการศึกษานี้ หากต้องการเปลี่ยนให้ใช้การแก้ไขข้อมูลหรือ <a href="_edit_teacher.php?id=<?php echo $classroom_fetch->t_id; ?>">คลิกที่นี่</a>
+			<?php
+		}
+		?>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<?php
 }
 ?>

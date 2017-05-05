@@ -42,13 +42,11 @@ $year = date('Y') + 543;
 if ($_GET["action"] == "delete") {
 	delete_teacher($_GET["id"]);
 } else if ($_POST["AddTeacherBtn"]) {
-	$name 		= $_POST["teacher_name"];
-	$surname 	= $_POST["teacher_surname"];
-	$grade 		= $_POST["classroom"];
-	$classroom 	= $_POST["classroom_number"];
+	$teacher_id = $_POST["InputTeacher"];
+	$class_id	= $_POST["InputClassroom"];
 	$year_reg 	= $_POST["year_reg"];
 	$term_reg 	= $_POST["term_reg"];
-	insert_teacher($name, $surname, $grade, $classroom, $year_reg, $term_reg);
+	insert_teacher($teacher_id, $class_id, $year_reg, $term_reg);
 } else if ($_POST["updateBtn"]) {
 	$id 	= $_POST["id"];
 	$name 		= $_POST["teacher_name"];
@@ -91,39 +89,37 @@ function get_teacher_byPK($id) {
 	return $teacher_query;
 }
 
-function insert_teacher($name, $surname, $grade, $room, $year_reg, $term_reg) {
-	//check classroom number
-	$check = "SELECT * FROM classroom WHERE class_grade = '$grade' AND class_number = $room";
-	$check_query = mysql_query($check)or die(mysql_error());
-	if (mysql_num_rows($check_query) == 0 && $grade != 'ไม่ระบุ') {
-		header("location:../../teacher.php?action=wrong_classroom");
-	}
-
-	//check duplicate insert data
-	$teacher = "SELECT * FROM teacher 
-	WHERE t_name = '$name'
-	AND t_surname = '$surname'"; // ถ้ามีครูคนนี้อยู่แล้ว
+function insert_teacher($teacher_id, $class_id, $year_reg, $term_reg) {
+	$teacher = "SELECT * FROM user WHERE user_id = $teacher_id";
 	$teacher_query = mysql_query($teacher)or die(mysql_error());
-	if (mysql_num_rows($teacher_query) == 0 ) {
-		$insert_teacher = "INSERT INTO teacher VALUES('','$name','$surname',0)";
+	$teacher_fetch = mysql_fetch_object($teacher_query)or die(mysql_error());
+
+	$classroom = "SELECT * FROM classroom WHERE class_id = $class_id";
+	$classroom_query = mysql_query($classroom)or die(mysql_error());
+	$classroom_fetch = mysql_fetch_object($classroom_query)or die(mysql_error());
+
+	$check_teacher = "SELECT * FROM teacher WHERE t_name = '$teacher_fetch->user_name' AND t_surname = '$teacher_fetch->user_surname'";
+	$check_teacher_query = mysql_query($check_teacher)or die(mysql_error());
+
+	if (mysql_num_rows($check_teacher_query) == 0) {
+		$insert_teacher = "INSERT INTO teacher VALUES('', '$teacher_fetch->user_name', '$teacher_fetch->user_surname', 0)";
 		mysql_query($insert_teacher)or die(mysql_error());
-	}
-
-	$teacher2 = "SELECT * FROM teacher WHERE t_name = '$name' AND t_surname = '$surname'";
-	$teacher2_query = mysql_query($teacher2)or die(mysql_error());
-	$teacher2_fetch = mysql_fetch_object($teacher2_query);
-
-	//ถ้าไม่ได้เป็นครูประจำชั้นให้ work_time มี class_id เป็น 0
-	if ($grade == 'ไม่ระบุ') {
-		$class_id = 0;
+		$t_id = mysql_insert_id();
 	} else {
-		$classroom = mysql_fetch_object($check_query)or die(mysql_error());
-		$class_id = $classroom->class_id;
+		$check_teacher_fetch = mysql_fetch_object($check_teacher_query)or die(mysql_error());
+		$t_id = $check_teacher_fetch->t_id;
 	}
 
-	$insert_wt = "INSERT INTO work_time VALUES('', $year_reg, $term_reg, $teacher->t_id, $class_id)";
-	$insert_wt_query = mysql_query($insert_wt)or die(mysql_error());
-	header("location:../../teacher.php?action=insert_success");
+	$check_work = "SELECT * FROM work_time WHERE t_id = $t_id AND wt_year = $year_reg AND wt_term = $term_reg";
+	$check_work_query = mysql_query($check_work)or die(mysql_error());
+	if (mysql_num_rows($check_work_query) == 0) {
+		$insert_worktime = "INSERT INTO work_time VALUES('', $year_reg, $term_reg, $t_id, $class_id)";
+		$insert_worktime_query = mysql_query($insert_worktime)or die(mysql_error());
+		header("location:../../teacher.php?action=insert_success");
+	} else {
+		$check_work_fetch = mysql_fetch_object($check_work_query);
+		header("location:../../teacher.php?action=insert_teacher_dupplicate&old=".$check_work_fetch->wt_id);
+	}
 }
 
 function update_teacher($id, $name, $surname, $grade, $classroom, $year, $term) {
