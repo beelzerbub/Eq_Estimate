@@ -285,3 +285,44 @@ legend.legend-form {
 .text-advice .list-group-item .label-text {
 	font-size: 1em;
 }
+
+#body-index {
+	background-color: #2A2A2A;
+}
+
+.topmenu {
+	width: 100%;
+	color: #A5A5A5;
+	color: #A5A5A5;
+	background-color: #333;
+}
+
+.topmenu tr td {
+	text-align: center;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.2) rgba(0,0,0,0.2);
+	border-width: 1px;
+	border-style: solid;
+}
+
+.topmenu a:hover {
+	text-decoration: none;
+	background: #000;
+}
+
+.topmenu tr td:hover {
+	
+	background-color: #FFC459;
+}
+
+.topmenu-active {
+	color: #2C2C2C;
+	background: #FFC459;
+}
+
+.sidemenu, .content, .rightbar {
+	background: white;
+}
