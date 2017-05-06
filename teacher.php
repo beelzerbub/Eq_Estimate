@@ -196,13 +196,14 @@ if ($_SESSION["user_role"] < 8) {
 								if ($_POST["filterBtn"]) {
 									$keyword = $_POST["filter-keyword"];
 									$class_id = $_POST["filter-class"];
-									$year_input = $_POST["filter-year"];
-									$term_input = $_POST["filter-term"];
+									$year = $_POST["filter-year"];
+									$term = $_POST["filter-term"];
 									$filter = "SELECT * FROM teacher t JOIN work_time wt JOIN classroom c
 									WHERE wt.t_id = t.t_id
 									AND wt.class_id = c.class_id
-									AND wt.wt_year = $year_input
-									AND wt.wt_term = $term_input";
+									AND wt.wt_year = $year
+									AND wt.wt_term = $term
+									ORDER BY c.class_id ASC";
 									if ($class_id > -1) {
 										$filter .= " AND c.class_id = $class_id";
 									}
@@ -213,16 +214,16 @@ if ($_SESSION["user_role"] < 8) {
 									$filter_query = mysql_query($filter)or die(mysql_error());
 								} else {
 									if (date(m) <= 4 || date(m) >= 11) {
-										$year_init = $year-1;
-										$term_init = 2;
+										$year = $year-1;
+										$term = 2;
 									} else {
-										$year_init = $year;
-										$term_init = 1;
+										$year = $year;
+										$term = 1;
 									}
 									$filter_query = mysql_query("SELECT * FROM teacher t JOIN work_time wt JOIN classroom c
 										WHERE (c.class_id = wt.class_id
-										AND wt.wt_term = $term_init
-										AND wt.wt_year = $year_init
+										AND wt.wt_term = $term
+										AND wt.wt_year = $year
 										AND wt.t_id = t.t_id)")or die(mysql_error());
 								}
 								$counter = 0;
@@ -241,7 +242,7 @@ if ($_SESSION["user_role"] < 8) {
 											</td>
 											<td>
 												<p class="text-center">
-													<a href="assets/service/teacher.php?action=delete&id=<?php echo $result["t_id"]; ?>" class="btn btn-primary" onClick="return confirm('ต้องการลบข้อมูลครู <?php echo $result["t_name"]; ?> จริงหรือไม่?')" id="teacher_delete-link">ลบ</a>
+													<a href="assets/service/teacher.php?action=delete&id=<?php echo $result["t_id"]; ?>&year=<?php echo $year; ?>&term=<?php echo $term;?>" class="btn btn-primary" onClick="return confirm('ต้องการลบข้อมูลครู <?php echo $result["t_name"]; ?> จริงหรือไม่?')" id="teacher_delete-link">ลบ</a>
 												</p>
 											</td>
 										</tr>
