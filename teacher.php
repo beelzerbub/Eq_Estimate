@@ -203,7 +203,7 @@ if ($_SESSION["user_role"] < 8) {
 									AND wt.class_id = c.class_id
 									AND wt.wt_year = $year
 									AND wt.wt_term = $term
-									ORDER BY c.class_id ASC";
+									ORDER BY c.class_id, t.t_id ASC";
 									if ($class_id > -1) {
 										$filter .= " AND c.class_id = $class_id";
 									}
@@ -224,7 +224,8 @@ if ($_SESSION["user_role"] < 8) {
 										WHERE (c.class_id = wt.class_id
 										AND wt.wt_term = $term
 										AND wt.wt_year = $year
-										AND wt.t_id = t.t_id)")or die(mysql_error());
+										AND wt.t_id = t.t_id)
+										ORDER BY c.class_id, t.t_id ASC")or die(mysql_error());
 								}
 								$counter = 0;
 								if (mysql_num_rows($filter_query) > 0) {
