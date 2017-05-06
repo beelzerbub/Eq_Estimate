@@ -40,7 +40,7 @@ $year = date('Y') + 543;
 ////-------------- Call Function --------------------
 ////-----------------------------------------------//
 if ($_GET["action"] == "delete") {
-	delete_student($_GET["id"]);
+	delete_student($_GET["id"], $_GET["year"], $_GET["term"]);
 } else if ($_POST["AddStdBtn"]) {
 	$id 		= $_POST["std_id"];
 	$name 		= $_POST["std_name"];
@@ -52,9 +52,6 @@ if ($_GET["action"] == "delete") {
 	$year_reg	= $_POST["year_reg"];
 	$term_reg	= $_POST["term_reg"];
 	insert_student($id, $name, $surname, $age, $gender, $classroom, $class_number, $year_reg, $term_reg);
-} else if ($_POST["filterBtn"]) {
-	$keyword = @$_POST["filter-keyword"];
-	echo $keyword;
 } else if ($_POST["updateBtn"]) {
 	$id 		= $_POST["id"];
 	$std_id 	= $_POST["std_id"];
@@ -69,7 +66,7 @@ if ($_GET["action"] == "delete") {
 	update_student($id, $std_id, $name, $surname, $age, $gender, $classroom, $class_number, $year_reg, $term_reg);
 
 } else if ($_POST["ImportStdBtn"]) {
-	move_uploaded_file($_FILES["fileCSV"]["tmp_name"],"../csv/".$_FILES["fileCSV"]["name"]);
+	move_uploaded_file($_FILES["fileCSV"]["tmp_name"],$_FILES["fileCSV"]["name"]);
 	$objCSV = fopen($_FILES["fileCSV"]["name"], "r");
 	while (($objArr = fgetcsv($objCSV, 1000, ",")) !== FALSE) {
 		$check = "SELECT * FROM student 
@@ -78,7 +75,7 @@ if ($_GET["action"] == "delete") {
 		AND Std_surname = '$objArr[3]'
 		AND Std_age = $objArr[4]";
 		$check_query = mysql_query($check)or die(mysql_error());
-		if (mysql_num_rows($check_query) > 0) {
+		if (mysql_num_rows($check_query) == 0) {
 			$insert_student = "INSERT INTO student VALUES ('',";
 			$insert_student .= "'".str_replace("-","",$objArr[0])."',";
 			$insert_student .= "'$objArr[2]',";
@@ -187,17 +184,36 @@ function update_student($id, $std_id, $name, $surname, $age, $gender, $classroom
 	header("location:../../student.php?action=update_success");
 }
 
-function delete_student($Std_no) {
-	$estimate = "SELECT * FROM estimate_time et JOIN estimate_score es JOIN student s 
-	WHERE s.Std_no = et.Std_no
-	AND es.Es_id = et.Es_id
-	AND s.Std_no = $Std_no";
+function delete_student($Std_no, $year, $term) {
+	$estimate = "SELECT * FROM estimate_time et JOIN student std
+	WHERE std.Std_no = $Std_no
+	AND et.Std_no = std.Std_no
+	AND et.Es_year = $year
+	AND et.Es_term = $term";
 	$estimate_query = mysql_query($estimate)or die(mysql_error());
-	if (mysql_num_rows($estimate_query) > 0) {
-		//อย่าลืมลบข้อมูลผลการประเมิน
-	} 
-	$delete_student = "DELETE FROM student WHERE Std_no = $Std_no";
-	$delete_student_query = mysql_query($delete_student)or die(mysql_error());
+	if (mysql_num_rows($estimate_query) == 0) {
+		$delete_student = "DELETE FROM student WHERE Std_no = $Std_no";
+		$delete_student_query = mysql_query($delete_student)or die(mysql_error());
+		$delete_term = "DELETE FROM term WHERE Std_no = $Std_no";
+		$delete_term_query = mysql_query($delete_term)or die(mysql_error());
+	} else {
+		$estimate_query = mysql_query($estimate)or die(mysql_error());
+		while($delete_score_fetch = mysql_fetch_array($estimate_query)) {
+			$delete_score = "DELETE FROM estimate_score WHERE Es_id = $delete_score_fetch[Es_id]";
+			$delete_score_query = mysql_query($delete_score)or die(mysql_error());
+			$delete_estimate = "DELETE FROM estimate_time WHERE Es_id = $delete_score_fetch[Es_id]";
+			$delete_estimate_query = mysql_query($delete_estimate)or die(mysql_error());
+		}
+		$student = "SELECT * FROM estimate_time et JOIN student std
+		WHERE std.Std_no = $Std_no
+		AND et.Std_no = std.Std_no
+		AND et.Es_year = $year
+		AND et.Es_term = $term";
+		$student_query = mysql_query($student)or die(mysql_error());
+		if (mysql_num_rows($student_query) == 0) {
+			delete_student($Std_no, $year, $term);
+		}
+	}
 	header("location:../../student.php?action=delete_success");
 }
 
