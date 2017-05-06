@@ -231,8 +231,7 @@ if ($_SESSION["user_role"] < 8) {
 								WHERE s.Std_no = t.Std_no
 								AND t.Class_id = c.Class_id
 								AND t.Term_year = $year
-								AND t.Term = $term
-								ORDER BY c.Class_id, s.Std_no ASC";
+								AND t.Term = $term";
 								if ($class_id > 0) {
 									$filter .= " AND c.class_id = $class_id";
 								}
@@ -241,19 +240,20 @@ if ($_SESSION["user_role"] < 8) {
 									OR s.Std_name LIKE '%$keyword%'
 									OR s.Std_surname LIKE '%$keyword%')";
 								}
+								$filter .= " ORDER BY c.Class_id, s.Std_no ASC";
 								$filter_query = mysql_query($filter)or die(mysql_error());
 							} else {
 								if (date(m) <= 4 || date(m) >= 11) {
-									$year_init = $year-1;
-									$term_init = 2;
+									$year = $year-1;
+									$term = 2;
 								} else {
-									$year_init = $year;
-									$term_init = 1;
+									$year = $year;
+									$term = 1;
 								}
 								$filter_query = mysql_query("SELECT * FROM student s JOIN term t JOIN classroom c
 									WHERE s.Std_no = t.Std_no
-									AND t.Term_year = $year_init
-									AND t.Term = $term_init
+									AND t.Term_year = $year
+									AND t.Term = $term
 									AND t.Class_id = c.Class_id
 									ORDER BY c.Class_id, s.Std_no ASC")or die(mysql_error());
 							}
@@ -273,14 +273,13 @@ if ($_SESSION["user_role"] < 8) {
 										<td><?php echo $result[class_grade]; ?> ห้อง <?php echo $result[class_number];?></td>
 										<td><?php echo $result[Term]."/".$result[Term_year];?></td>
 										<td>
-
 											<p class="text-center">
 												<a href="_edit_student.php?id=<?php echo $result[Std_no]; ?>" class="btn btn-primary" id="student_edit-link">แก้ไข</a>
 											</p>
 										</td>
 										<td>
 											<p class="text-center">
-												<a href="assets/service/student.php?action=delete&id=<?php echo $result["Std_no"]; ?>" class="btn btn-primary" onClick="return confirm('ต้องการลบข้อมูลครู <?php echo $result["Std_name"]; ?> จริงหรือไม่?')" id="student_delete-link">ลบ</a>
+												<a href="assets/service/student.php?action=delete&id=<?php echo $result["Std_no"]; ?>&year=<?php echo $year; ?>&term=<?php echo $term; ?>" class="btn btn-primary" onClick="return confirm('ต้องการลบข้อมูลครู <?php echo $result["Std_name"]; ?> จริงหรือไม่?')" id="student_delete-link">ลบ</a>
 											</p>
 										</td>
 									</tr>
