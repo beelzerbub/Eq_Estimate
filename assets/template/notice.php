@@ -142,7 +142,7 @@ if ($action ==  "forgot_fail") {
 			<?php
 		} else {
 			?>
-			เป็นครูประจำชั้นของ <?php echo $classroom_fetch->class_grade; ?> / <?php echo $classroom_fetch->class_number;?> แล้วในปีการศึกษานี้ หากต้องการเปลี่ยนให้ใช้การแก้ไขข้อมูลหรือ <a href="_edit_teacher.php?id=<?php echo $classroom_fetch->t_id; ?>">คลิกที่นี่</a>
+			เป็นครูประจำชั้นของ <?php echo $classroom_fetch->class_grade; ?>/<?php echo $classroom_fetch->class_number;?> แล้วในปีการศึกษานี้ หากต้องการเปลี่ยนให้ใช้การแก้ไขข้อมูลหรือ <a href="_edit_teacher.php?id=<?php echo $classroom_fetch->t_id; ?>">คลิกที่นี่</a>
 			<?php
 		}
 		?>

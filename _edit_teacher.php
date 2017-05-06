@@ -32,62 +32,56 @@ if ($_SESSION["user_role"] < 8) {
 				<div class="row site_content-form">
 					<?php
 					$t_id = $_GET['id'];
-					$teacher = get_teacher_byPK($t_id);
-					$teacher_fetch = mysql_fetch_object($teacher)or die(mysql_error());
+					$teacher = "SELECT * FROM teacher JOIN work_time wt JOIN user 
+					WHERE teacher.t_user = user.user_id
+					AND teacher.t_id = wt.t_id
+					AND teacher.t_id = $t_id";
+					$teacher_query = mysql_query($teacher)or die(mysql_error());
+					$teacher_fetch = mysql_fetch_object($teacher_query)or die(mysql_error());
+
+					$classroom = "SELECT * FROM classroom";
+					$classroom_query = mysql_query($classroom)or die(mysql_error());
 					?>
-					<form action="assets/service/teacher.php" role="form" method="post" data-toggle="validator" id="teacher-insert_form">
-						<input type="hidden" name="id" value=<?php echo $teacher_fetch->t_id; ?>>
+					<form action="assets/service/teacher.php" role="form" method="post" data-toggle="validator" id="teacher-edit_form">
+						<input type="hidden" name="teacher_id" value=<?php echo $teacher_fetch->t_id; ?>>
+						<input type="hidden" name="user_id" value=<?php echo $teacher_fetch->user_id; ?>>
 						<fieldset class="fieldset-form">
 							<legend class="legend-form"><h1>แก้ไขข้อมูลครูประจำชั้น</h1></legend>
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group">
-										<label for="InputTeacherName">ชื่อ</label>
-										<input type="text" class="form-control" name="teacher_name" id="teacher_name" placeholder="ชื่อครูประจำชั้น" value="<?php echo $teacher_fetch->t_name; ?>" maxlength="50" data-error="กรุณาระบุชื่อครูประจำชั้น" required>
-										<div class="help-block with-errors"></div>
+										<label for="InputName">ชื่อ</label>
+										<input type="text" class="form-control" id="InputName" Name="InputName" value="<?php echo $teacher_fetch->t_name; ?>">
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<label for="InputTeacherSurname">นามสกุล</label>
-										<input type="text" class="form-control" name="teacher_surname" id="teacher_surname" placeholder="นามสกุลครูประจำชั้น" value="<?php echo $teacher_fetch->t_surname; ?>" maxlength="50" data-error="กรุณาระบุนามสกุลครูประจำชั้น" required>
-										<div class="help-block with-errors"></div>
+										<label for="InputSurname">นามสกุล</label>
+										<input type="text" class="form-control" id="InputSurname" Name="InputSurname" value="<?php echo $teacher_fetch->t_surname; ?>">
 									</div>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group">
-										<label for="InputClassRoom">ระดับชั้น</label>
-										<select name="classroom" id="classroom" class="form-control" required>
-											<option value="" disabled selected>กรุณาเลือก</option>
-											<option value="อนุบาลปีที่ 1" <?php echo ($teacher_fetch->class_id == 1)? 'SELECTED' : '' ?>>ชั้นอนุบาลปีที่ 1/1</option>
-											<option value="อนุบาลปีที่ 1" <?php echo ($teacher_fetch->class_id == 2)? 'SELECTED' : '' ?>>ชั้นอนุบาลปีที่ 1/2</option>
-											<option value="อนุบาลปีที่ 1" <?php echo ($teacher_fetch->class_id == 3)? 'SELECTED' : '' ?>>ชั้นอนุบาลปีที่ 1/3</option>
-											<option value="อนุบาลปีที่ 2" <?php echo ($teacher_fetch->class_id == 4)? 'SELECTED' : '' ?>>ชั้นอนุบาลปีที่ 2/1</option>
-											<option value="อนุบาลปีที่ 2" <?php echo ($teacher_fetch->class_id == 5)? 'SELECTED' : '' ?>>ชั้นอนุบาลปีที่ 2/2</option>
-											<option value="อนุบาลปีที่ 3" <?php echo ($teacher_fetch->class_id == 6)? 'SELECTED' : '' ?>>ชั้นอนุบาลปีที่ 3/1</option>
-											<option value="อนุบาลปีที่ 2" <?php echo ($teacher_fetch->class_id == 7)? 'SELECTED' : '' ?>>ชั้นอนุบาลปีที่ 3/2</option>
-											<option value="ประถมศึกษาปีที่ 1" <?php echo ($teacher_fetch->class_id == 8)? 'SELECTED' : '' ?>>ชั้นประถมศึกษาปีที่ 1</option>
-											<option value="ประถมศึกษาปีที่ 2" <?php echo ($teacher_fetch->class_id == 9)? 'SELECTED' : '' ?>>ชั้นประถมศึกษาปีที่ 2</option>
-											<option value="ประถมศึกษาปีที่ 3" <?php echo ($teacher_fetch->class_id == 10)? 'SELECTED' : '' ?>>ชั้นประถมศึกษาปีที่ 3</option>
-											<option value="ประถมศึกษาปีที่ 4" <?php echo ($teacher_fetch->class_id == 11)? 'SELECTED' : '' ?>>ชั้นประถมศึกษาปีที่ 4</option>
-											<option value="ประถมศึกษาปีที่ 5" <?php echo ($teacher_fetch->class_id == 12)? 'SELECTED' : '' ?>>ชั้นประถมศึกษาปีที่ 5</option>
-											<option value="ประถมศึกษาปีที่ 6" <?php echo ($teacher_fetch->class_id == 13)? 'SELECTED' : '' ?>>ชั้นประถมศึกษาปีที่ 6</option>
-											<option value="ไม่ระบุ" <?php echo ($teacher_fetch->class_id == 0)? 'SELECTED' : '' ?>>ไม่ระบุ</option>
+										<label for="InputClassroom">ห้องเรียน</label>
+										<select name="InputClassroom" id="InputClassroom" class="form-control" required>
+											<option value="" disabled selected> กรุณาระบุห้องเรียน </option>
+											<?php
+											while($classroom_fetch = mysql_fetch_array($classroom_query)) {
+												?>
+												<option value="<?php echo $classroom_fetch[class_id]; ?>"
+													<?php echo ($classroom_fetch[class_id] == $teacher_fetch->class_id)? 'SELECTED' : ''; ?>>
+													<?php echo $classroom_fetch[class_grade];
+													if ($classroom_fetch[class_id] != 0) {
+														echo "/".$classroom_fetch[class_number];
+													}
+													?>
+												</option>
+												<?php
+											}
+											?>
 										</select>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="InputClassNo">เลขที่ห้อง</label>
-										<input type="number" id="classroom_number" name="classroom_number" placeholder="เลขที่ห้อง" value="<?php echo $teacher_fetch->class_number; ?>" class="form-control" required data-error="กรุณาระบุห้องเรียน">
-										<div class="help-block with-errors"></div>
-										<span class="help-block small">
-											<ul>
-												<li>(กรณี "ไม่ระบุ" ระดับชั้นให้ใส่เลขที่ห้องเป็น 0)</li>
-											</ul>
-										</span>
 									</div>
 								</div>
 							</div>
