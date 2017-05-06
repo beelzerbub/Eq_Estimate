@@ -180,54 +180,56 @@ if ($_SESSION["user_role"] < 8) {
 						</div>
 					</div>
 					<div class="row site_content-table">
+						<?php
+						if ($_POST["filterBtn"]) {
+							$keyword = $_POST["filter-keyword"];
+							$class_id = $_POST["filter-class"];
+							$year = $_POST["filter-year"];
+							$term = $_POST["filter-term"];
+							$filter = "SELECT * FROM teacher t JOIN work_time wt JOIN classroom c
+							WHERE wt.t_id = t.t_id
+							AND wt.class_id = c.class_id
+							AND wt.wt_year = $year
+							AND wt.wt_term = $term";
+							if ($class_id > -1) {
+								$filter .= " AND c.class_id = $class_id";
+							}
+							if (!empty($keyword)) {
+								$filter .= " AND (t.t_name LIKE '%$keyword%'
+								OR t.t_surname LIKE '%$keyword%')";
+							} 
+							$filter .= " ORDER BY c.class_id, t.t_id ASC";
+							$filter_query = mysql_query($filter)or die(mysql_error());
+						} else {
+							if (date(m) <= 4 || date(m) >= 11) {
+								$year = $year-1;
+								$term = 2;
+							} else {
+								$year = $year;
+								$term = 1;
+							}
+							$filter_query = mysql_query("SELECT * FROM teacher t JOIN work_time wt JOIN classroom c
+								WHERE (c.class_id = wt.class_id
+								AND wt.wt_term = $term
+								AND wt.wt_year = $year
+								AND wt.t_id = t.t_id)
+								ORDER BY c.class_id, t.t_id ASC")or die(mysql_error());
+						}
+						$counter = 0;
+						?>
+						<p class="text-right">ตารางข้อมูลนี้เป็นของปีการศึกษา <?php echo $term."/".$year;?></p>
 						<table id="teacher-table" class="table table-bordered table-hover">
 							<thead>
 								<tr>
 									<th><p class="text-center">ลำดับ</p></th>
 									<th><p class="text-center">ชื่อ - นามสกุล</p></th>
 									<th><p class="text-center">ครูประจำชั้นห้อง</p></th>
-									<th><p class="text-center">ภาคการเรียน</p></th>
 									<th><p class="text-center">แก้ไข</p></th>
 									<th><p class="text-center">ลบ</p></th>
 								</tr>
 							</thead>
 							<tbody>
 								<?php
-								if ($_POST["filterBtn"]) {
-									$keyword = $_POST["filter-keyword"];
-									$class_id = $_POST["filter-class"];
-									$year = $_POST["filter-year"];
-									$term = $_POST["filter-term"];
-									$filter = "SELECT * FROM teacher t JOIN work_time wt JOIN classroom c
-									WHERE wt.t_id = t.t_id
-									AND wt.class_id = c.class_id
-									AND wt.wt_year = $year
-									AND wt.wt_term = $term
-									ORDER BY c.class_id, t.t_id ASC";
-									if ($class_id > -1) {
-										$filter .= " AND c.class_id = $class_id";
-									}
-									if (!empty($keyword)) {
-										$filter .= " AND (t.t_name LIKE '%$keyword%'
-										OR t.t_surname LIKE '%$keyword%')";
-									} 
-									$filter_query = mysql_query($filter)or die(mysql_error());
-								} else {
-									if (date(m) <= 4 || date(m) >= 11) {
-										$year = $year-1;
-										$term = 2;
-									} else {
-										$year = $year;
-										$term = 1;
-									}
-									$filter_query = mysql_query("SELECT * FROM teacher t JOIN work_time wt JOIN classroom c
-										WHERE (c.class_id = wt.class_id
-										AND wt.wt_term = $term
-										AND wt.wt_year = $year
-										AND wt.t_id = t.t_id)
-										ORDER BY c.class_id, t.t_id ASC")or die(mysql_error());
-								}
-								$counter = 0;
 								if (mysql_num_rows($filter_query) > 0) {
 									while($result = mysql_fetch_array($filter_query)) {
 										?>
@@ -235,7 +237,6 @@ if ($_SESSION["user_role"] < 8) {
 											<td valign="middle"><?php echo ++$counter; ?></td>
 											<td>คุณครู <?php echo $result["t_name"]." ".$result["t_surname"]; ?></td>
 											<td><?php echo get_teacher_room($result["t_id"], $result["wt_year"], $result["wt_term"]); ?></td>
-											<td><?php echo $result["wt_term"]."/".$result["wt_year"];?></td>
 											<td>
 												<p class="text-center">
 													<a href="_edit_teacher.php?id=<?php echo $result[t_id]; ?>" class="btn btn-primary" id="teacher_edit-link">แก้ไข</a>
