@@ -69,7 +69,7 @@ if ($_GET["action"] == "delete") {
 	update_student($id, $std_id, $name, $surname, $age, $gender, $classroom, $class_number, $year_reg, $term_reg);
 
 } else if ($_POST["ImportStdBtn"]) {
-	move_uploaded_file($_FILES["fileCSV"]["tmp_name"],$_FILES["fileCSV"]["name"]);
+	move_uploaded_file($_FILES["fileCSV"]["tmp_name"],"../csv/".$_FILES["fileCSV"]["name"]);
 	$objCSV = fopen($_FILES["fileCSV"]["name"], "r");
 	while (($objArr = fgetcsv($objCSV, 1000, ",")) !== FALSE) {
 		$check = "SELECT * FROM student 
