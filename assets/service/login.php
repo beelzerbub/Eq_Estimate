@@ -64,7 +64,7 @@ function authorization($username, $password) {
 			$_SESSION["user_role"]	=	$result["user_role"];
 		}
 		?>
-		<meta http-equiv="refresh" content="0; url=\project2\index.php?action=login_success">
+		<meta http-equiv="refresh" content="0; url=\project2\estimate.php?action=login_success">
 		<?php
 	} else {
 		?>
