@@ -74,10 +74,6 @@ if ($_SESSION["user_role"]) {
 										<div class="help-block with-errors"></div>
 									</div>
 									<div class="form-group">
-										<input type="checkbox" name="remember" id="remember" tabindex="1" value="remember">
-										<label for="remember">จำการเข้าสู่ระบบ</label>
-									</div>
-									<div class="form-group">
 										<div class="row">
 											<div class="col-md-6 col-md-offset-3">
 												<input type="submit" name="loginBtn" id="loginBtn" tabindex="4" class="form-control btn btn-login" value="เข้าสู่ระบบ">
