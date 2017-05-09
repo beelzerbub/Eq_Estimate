@@ -17,7 +17,7 @@
 						<ul class="dropdown-menu">
 							<li><a href="estimate.php">ทำแบบประเมินผ่านเว็บ</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="print_form.php">สั่งพิมพ์แบบฟอร์ม</a></li>
+							<li><a href="_print.php">สั่งพิมพ์แบบฟอร์ม</a></li>
 						</ul>
 					</li>
 					<?php
@@ -39,6 +39,8 @@
 								<li><a href="teacher.php">จัดการข้อมูลครูประจำชั้น</a></li>
 								<li role="separator" class="divider"></li>
 								<li><a href="__import.php">นำเข้าข้อมูลนักเรียนด้วยไฟล์ CSV</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a href="__export.php">ออกรายงาน</a></li>
 								<?php
 							}
 							?>

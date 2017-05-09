@@ -51,6 +51,15 @@ if ($_GET["action"] == "delete") {
 	$surname 	= 	$_POST["reg_surname"];
 	$role 		= 	$_POST["reg_role"];
 	insert_user($username, $password, $email, $name, $surname, $role);
+} else if ($_POST["updateBtn"]) {
+	$id 		=	$_POST["id"];
+	$username 	= 	$_POST["reg_username"];
+	$password 	= 	$_POST["reg_password"];
+	$email 		= 	$_POST["reg_email"];
+	$name 		=	$_POST["reg_name"];
+	$surname 	= 	$_POST["reg_surname"];
+	$role 		= 	$_POST["reg_role"];
+	update_user ($id, $username, $password, $email, $name, $surname, $role);
 }
 
 
@@ -58,6 +67,12 @@ if ($_GET["action"] == "delete") {
 ////------------------------------------------------- 
 ////------------ Function User ---------------------
 ////-----------------------------------------------//
+function get_user_byPK ($id) {
+	$user = "SELECT * FROM user WHERE user_id = $id";
+	$user_query = mysql_query($user)or die(mysql_error());
+	return $user_query;
+}
+
 function get_user_type ($username) {
 	$sql = "SELECT * FROM user WHERE username = '".$username."' AND user_role >= 2";
 	$query = mysql_query($sql)or die(mysql_er);
@@ -69,14 +84,34 @@ function get_user_type ($username) {
 }
 
 function insert_user($username, $password, $email, $name, $surname, $role) {
-	$sql = "INSERT INTO user VALUES('','$username','$password','$email','$name','$surname'";
-	if ($role == 1) {
-		$sql .= ",2)";
-	} else if ($role ==2 ){
-		$sql .= ",1)";
+	$check_user = "SELECT * FROM user WHERE username = '$username'";
+	$check_user_query = mysql_query($check_user)or die(mysql_error());
+	if (mysql_num_rows($check_user_query) > 0) {
+		header("location:../../user.php?action=insert_user_duplicate");
+	} else {
+		$insert_user = "INSERT INTO user VALUES('','$username','$password','$email','$name','$surname'";
+		if ($role == 1) {
+			$insert_user .= ",2)";
+		} else if ($role ==2 ){
+			$insert_user .= ",1)";
+		}
+
+		mysql_query($insert_user)or die(mysql_error());
+		header("location:../../user.php?action=insert_success");
 	}
-	mysql_query($sql)or die(mysql_error());
-	header("location:../../user.php?action=insert_success");
+}
+
+function update_user ($id, $username, $password, $email, $name, $surname, $role) {
+	$update_user = "UPDATE user 
+	SET username = '$username',
+	password = '$password',
+	user_email = '$email',
+	user_name = '$name',
+	user_surname = '$surname',
+	user_role = $role
+	WHERE user_id = $id";
+	$update_user_query = mysql_query($update_user)or die(mysql_error());
+	header("location:../../user.php?action=update_success");
 }
 
 function delete_user($username) {

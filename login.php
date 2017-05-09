@@ -1,6 +1,9 @@
 <?php
 include_once("assets/database/connect.php");
 include_once("assets/service/login.php");
+if ($_SESSION["user_role"]) {
+	header("location:estimate.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="th">
@@ -69,10 +72,6 @@ include_once("assets/service/login.php");
 									<div class="form-group">
 										<input type="password" name="password" id="password" tabindex="1" class="form-control" placeholder="รหัสผ่าน" value="" data-error="กรุณากรอกรหัสผ่าน" required>
 										<div class="help-block with-errors"></div>
-									</div>
-									<div class="form-group">
-										<input type="checkbox" name="remember" id="remember" tabindex="1" value="remember">
-										<label for="remember">จำการเข้าสู่ระบบ</label>
 									</div>
 									<div class="form-group">
 										<div class="row">

@@ -38,5 +38,10 @@ form.class#id[name][role][method][data-toggle]
 Tag input
 input.class#id[name][maxlength][placeholder][required]
 
+print
+https://www.codebee.co.th/labs/%E0%B8%9E%E0%B8%B4%E0%B8%A1%E0%B8%9E%E0%B9%8C%E0%B8%AB%E0%B8%99%E0%B9%89%E0%B8%B2%E0%B9%80%E0%B8%A7%E0%B9%87%E0%B8%9A%E0%B9%84%E0%B8%8B%E0%B8%95%E0%B9%8C-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2%E0%B8%84/
+
+export DATABASE
+http://phplike.blogspot.com/2013/03/export-mysql-database-php-code.html
 
 - อย่าลืมแก้ไฟล์ php.ini file_uploads = On

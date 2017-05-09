@@ -1,0 +1,18 @@
+.form-input {
+	padding: 5px 5px 5px 5px;
+	line-height: 30px;
+}
+
+.table-print {
+	border-collapse: collapse;
+}
+
+.table-caption {
+	margin-bottom: 20px;
+	line-height: 20px;
+}
+
+.table-print td, .table-print th {
+	border: 1px solid black;
+	padding:5px 5px 5px 5px;
+}

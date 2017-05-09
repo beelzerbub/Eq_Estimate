@@ -46,6 +46,7 @@ if ($_SESSION["user_role"] < 8) {
 									<label for="filter-class" class="sr-only"></label>
 									<select name="filter-class" id="filter-class" class="form-control" required>
 										<option value="" disabled selected>ระดับการศึกษา</option>
+										<option value="0">ทั้งหมด</option>
 										<option value="1">ชั้นอนุบาลปีที่ 1/1</option>
 										<option value="2">ชั้นอนุบาลปีที่ 1/2</option>
 										<option value="3">ชั้นอนุบาลปีที่ 1/3</option>
@@ -206,6 +207,45 @@ if ($_SESSION["user_role"] < 8) {
 					<!-- end student-insert_box -->
 				</div>
 				<div class="row site_content-table">
+					<?php
+					if ($_POST["filterBtn"]) {
+						$keyword = $_POST["filter-keyword"];
+						$class_id = $_POST["filter-class"];
+						$year = $_POST["filter-year"];
+						$term = $_POST["filter-term"];
+						$filter = "SELECT * FROM student s JOIN term t JOIN classroom c
+						WHERE s.Std_no = t.Std_no
+						AND t.Class_id = c.Class_id
+						AND t.Term_year = $year
+						AND t.Term = $term";
+						if ($class_id > 0) {
+							$filter .= " AND c.class_id = $class_id";
+						}
+						if (!empty($keyword)) {
+							$filter .= " AND (s.Std_id LIKE '%$keyword%'
+							OR s.Std_name LIKE '%$keyword%'
+							OR s.Std_surname LIKE '%$keyword%')";
+						}
+						$filter .= " ORDER BY c.Class_id, s.Std_no ASC";
+						$filter_query = mysql_query($filter)or die(mysql_error());
+					} else {
+						if (date(m) <= 4 || date(m) >= 11) {
+							$year = $year-1;
+							$term = 2;
+						} else {
+							$year = $year;
+							$term = 1;
+						}
+						$filter_query = mysql_query("SELECT * FROM student s JOIN term t JOIN classroom c
+							WHERE s.Std_no = t.Std_no
+							AND t.Term_year = $year
+							AND t.Term = $term
+							AND t.Class_id = c.Class_id
+							ORDER BY c.Class_id, s.Std_no ASC")or die(mysql_error());
+					}
+					$counter = 0;
+					?>
+					<p class="text-right">ตารางข้อมูลนี้เป็นของปีการศึกษา <?php echo $term."/".$year;?></p>
 					<table id="student-table" class="table table-bordered table-hover">
 						<thead>
 							<tr>
@@ -214,53 +254,12 @@ if ($_SESSION["user_role"] < 8) {
 								<th><p class="text-center">ชื่อ - นามสกุล</p></th>
 								<th><p class="text-center">อายุ</p></th>
 								<th><p class="text-center">ห้องเรียน</p></th>
-								<th><p class="text-center">ปีการศึกษา</p></th>
 								<th><p class="text-center">แก้ไข</p></th>
 								<th><p class="text-center">ลบ</p></th>
 							</tr>
 						</thead>
 						<tbody>
 							<?php
-							if ($_POST["filterBtn"]) {
-								$keyword = $_POST["filter-keyword"];
-								$class_id = $_POST["filter-class"];
-								$year = $_POST["filter-year"];
-								$term = $_POST["filter-term"];
-								if (!empty($keyword)) {
-									$filter = "SELECT * FROM student s JOIN term t JOIN classroom c
-									WHERE (c.class_id = $class_id
-									AND c.class_id = t.class_id
-									AND t.Term_year = $year
-									AND t.Term = $term
-									AND t.Std_no = s.Std_no)
-									AND (s.Std_id LIKE '%$keyword%'
-									OR s.Std_name LIKE '%$keyword%'
-									OR s.Std_surname LIKE '%$keyword%')";
-									$filter_query = mysql_query($filter)or die(mysql_error());
-								} else {
-									$filter = "SELECT * FROM student s JOIN term t JOIN classroom c
-									WHERE (c.class_id = $class_id
-									AND c.class_id = t.class_id
-									AND t.Term_year = $year
-									AND t.Term = $term
-									AND t.Std_no = s.Std_no)";
-									$filter_query = mysql_query($filter);
-								}
-							} else {
-								if (date(m) <= 4 || date(m) >= 11) {
-									$year_init = $year-1;
-									$term_init = 2;
-								} else {
-									$year_init = $year;
-									$term_init = 1;
-								}
-								$filter_query = mysql_query("SELECT * FROM student s JOIN term t JOIN classroom c
-									WHERE s.Std_no = t.Std_no
-									AND t.Term_year = $year_init
-									AND t.Term = $term_init
-									AND t.Class_id = c.Class_id")or die(mysql_error());
-							}
-							$counter = 0;
 							if (mysql_num_rows($filter_query) > 0) {
 								while ($result = mysql_fetch_array($filter_query)) {
 									?>
@@ -274,15 +273,14 @@ if ($_SESSION["user_role"] < 8) {
 										</td>
 										<td><?php echo $result[Std_age]; ?> ปี</td>
 										<td><?php echo $result[class_grade]; ?> ห้อง <?php echo $result[class_number];?></td>
-										<td><?php echo $result[Term]."/".$result[Term_year];?></td>
 										<td>
 											<p class="text-center">
-												<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#edit_student-box" id="student_edit-link">แก้ไข</a>
+												<a href="_edit_student.php?id=<?php echo $result[Std_no]; ?>" class="btn btn-primary" id="student_edit-link">แก้ไข</a>
 											</p>
 										</td>
 										<td>
 											<p class="text-center">
-												<a href="assets/service/student.php?action=delete&id=<?php echo $result["Std_no"]; ?>" class="btn btn-primary" onClick="return confirm('ต้องการลบข้อมูลครู <?php echo $result["Std_name"]; ?> จริงหรือไม่?')" id="student_delete-link">ลบ</a>
+												<a href="assets/service/student.php?action=delete&id=<?php echo $result["Std_no"]; ?>&year=<?php echo $year; ?>&term=<?php echo $term; ?>" class="btn btn-primary" onClick="return confirm('ต้องการลบข้อมูลครู <?php echo $result["Std_name"]; ?> จริงหรือไม่?')" id="student_delete-link">ลบ</a>
 											</p>
 										</td>
 									</tr>

@@ -83,6 +83,48 @@ if ($_SESSION["user_role"] < 2) {
 					</form>
 				</div>
 				<div class="site_content-table">
+					<?php
+					if ($_POST["filterBtn"]) {
+						$keyword = $_POST["filter-keyword"];
+						$class_id = $_POST["filter-class"];
+						$year = $_POST["filter-year"];
+						$term = $_POST["filter-term"];
+						if (!empty($keyword)) {
+							$filter = "SELECT * FROM student s JOIN term t JOIN classroom c
+							WHERE (c.class_id = $class_id
+							AND c.class_id = t.class_id
+							AND t.Term_year = $year
+							AND t.Term = $term
+							AND t.Std_no = s.Std_no)
+							AND (s.Std_id LIKE '%$keyword%'
+							OR s.Std_name LIKE '%$keyword%'
+							OR s.Std_surname LIKE '%$keyword%')";
+							$filter_query = mysql_query($filter)or die(mysql_error());
+						} else {
+							$filter = "SELECT * FROM student s JOIN term t JOIN classroom c
+							WHERE (c.class_id = $class_id
+							AND c.class_id = t.class_id
+							AND t.Term_year = $year
+							AND t.Term = $term
+							AND t.Std_no = s.Std_no)";
+							$filter_query = mysql_query($filter)or die(mysql_error());
+						}
+					} else {
+						if (date(m) <= 4 || date(m) >= 11) {
+							$year = $year-1;
+							$term = 2;
+						} else {
+							$year = $year;
+							$term = 1;
+						}
+						$filter_query = mysql_query("SELECT * FROM student s JOIN term t JOIN classroom c
+							WHERE s.Std_no = t.Std_no
+							AND t.Term_year = $year
+							AND t.Term = $term
+							AND t.Class_id = c.Class_id")or die(mysql_error());
+					}
+					?>
+					<p class="text-right">ตารางข้อมูลนี้เป็นของปีการศึกษา <?php echo $term."/".$year;?></p>
 					<table id="student-table" class="table table-bordered table-hover">
 						<thead>
 							<tr>
@@ -91,52 +133,11 @@ if ($_SESSION["user_role"] < 2) {
 								<th><p class="text-center">ชื่อ - นามสกุล</p></th>
 								<th><p class="text-center">อายุ</p></th>
 								<th><p class="text-center">ห้องเรียน</p></th>
-								<th><p class="text-center">ปีการศึกษา</p></th>
-								<th><p class="text-center">สถานะการประเมิน<br>ของผู้ปกครอง</p></th>
-								<th><p class="text-center">สถานะการประเมิน<br>ของครูประจำชั้น</p></th>
+								<th><p class="text-center">ทำแบบประเมิน</p></th>
 							</tr>
 						</thead>
 						<tbody>
 							<?php
-							if ($_POST["filterBtn"]) {
-								$keyword = $_POST["filter-keyword"];
-								$class_id = $_POST["filter-class"];
-								$year = $_POST["filter-year"];
-								$term = $_POST["filter-term"];
-								if (!empty($keyword)) {
-									$filter = "SELECT * FROM student s JOIN term t JOIN classroom c
-									WHERE (c.class_id = $class_id
-									AND c.class_id = t.class_id
-									AND t.Term_year = $year
-									AND t.Term = $term
-									AND t.Std_no = s.Std_no)
-									AND (s.Std_id LIKE '%$keyword%'
-									OR s.Std_name LIKE '%$keyword%'
-									OR s.Std_surname LIKE '%$keyword%')";
-									$filter_query = mysql_query($filter)or die(mysql_error());
-								} else {
-									$filter = "SELECT * FROM student s JOIN term t JOIN classroom c
-									WHERE (c.class_id = $class_id
-									AND c.class_id = t.class_id
-									AND t.Term_year = $year
-									AND t.Term = $term
-									AND t.Std_no = s.Std_no)";
-									$filter_query = mysql_query($filter)or die(mysql_error());
-								}
-							} else {
-								if (date(m) <= 4 || date(m) >= 11) {
-									$year_init = $year-1;
-									$term_init = 2;
-								} else {
-									$year_init = $year;
-									$term_init = 1;
-								}
-								$filter_query = mysql_query("SELECT * FROM student s JOIN term t JOIN classroom c
-									WHERE s.Std_no = t.Std_no
-									AND t.Term_year = $year_init
-									AND t.Term = $term_init
-									AND t.Class_id = c.Class_id")or die(mysql_error());
-							}
 							$counter = 0;
 							if (mysql_num_rows($filter_query) > 0) {
 								while ($result = mysql_fetch_array($filter_query)) {
@@ -151,9 +152,7 @@ if ($_SESSION["user_role"] < 2) {
 										</td>
 										<td><?php echo $result[Std_age]; ?> ปี</td>
 										<td><?php echo $result[class_grade]; ?> ห้อง <?php echo $result[class_number];?></td>
-										<td><?php echo $result[Term]."/".$result[Term_year];?></td>
-										<td><a href="estimate_form.php?as_type=ผู้ปกครอง&std_no=<?php echo $result["Std_no"]; ?>&year=<?php echo $result[Term_year]; ?>&term=<?php echo $result[Term]; ?>">ทำแบบประเมิน</a></td>
-										<td><a href="estimate_form.php?as_type=ครูประจำชั้น&std_no=<?php echo $result["Std_no"]; ?>&year=<?php echo $result[Term_year]; ?>&term=<?php echo $result[Term]; ?>">ทำแบบประเมิน</a></td>
+										<td><a href="estimate_form.php?std_no=<?php echo $result["Std_no"]; ?>&year=<?php echo $result[Term_year]; ?>&term=<?php echo $result[Term]; ?>">ทำแบบประเมิน</a></td>
 									</tr>
 									<?php
 								}

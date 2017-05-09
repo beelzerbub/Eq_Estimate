@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 26, 2017 at 01:32 AM
+-- Generation Time: May 04, 2017 at 03:16 AM
 -- Server version: 5.7.17-log
 -- PHP Version: 5.6.30
 
@@ -34,15 +34,6 @@ CREATE TABLE `assessor` (
   `User_id` int(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
 
---
--- Dumping data for table `assessor`
---
-
-INSERT INTO `assessor` (`As_id`, `As_name`, `As_surname`, `As_type`, `User_id`) VALUES
-(1, 'ชื่อ', 'นามสกุล', 'ครูประจำชั้น', NULL),
-(2, 'Ratchakran', 'Prapanon', 'ครูประจำชั้น', NULL),
-(3, 'รัชกาล', 'ประภานนท์', 'ครูประจำชั้น', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -61,6 +52,7 @@ CREATE TABLE `classroom` (
 --
 
 INSERT INTO `classroom` (`class_id`, `class_grade`, `class_number`, `class_status`) VALUES
+(0, 'ไม่ระบุ', 0, 1),
 (1, 'อนุบาลปีที่ 1', 1, 1),
 (2, 'อนุบาลปีที่ 1', 2, 1),
 (3, 'อนุบาลปีที่ 1', 3, 1),
@@ -143,38 +135,6 @@ CREATE TABLE `student` (
   `Std_gender` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
 
---
--- Dumping data for table `student`
---
-
-INSERT INTO `student` (`Std_no`, `Std_id`, `Std_name`, `Std_surname`, `Std_age`, `Std_gender`) VALUES
-(2, '1250101843115', 'ปาณัสม์', 'สีทองเพีย', 3, 2),
-(3, '1103400244969', 'กาญจน์นลิน', 'โอสถาพงษ์กาญจน์', 3, 1),
-(4, '1250101833241', 'บุญญิสา', 'คนหลัก', 3, 1),
-(5, '1250101856136', 'กัณพล', 'ฟักเปีย', 3, 2),
-(6, '1250101840043', 'ฐปนวัฒน์', 'สุ่นปาน', 3, 2),
-(7, '1250101840906', 'บุญสิตา', 'ชาญฉลาด', 3, 1),
-(8, '1250101855911', 'ธนกฤต', 'ฝั่งมงคลกิจ', 3, 2),
-(9, '1259900105393', 'พรประภัสสร', 'พาดวงจันทร์', 3, 1),
-(10, '1250101828051', 'ณฎา', 'สหพงศ์', 3, 1),
-(11, '1250101830692', 'สิริบูรณ์', 'บุญพิทักษ์', 3, 1),
-(12, '1250101854826', 'พิชยุตม์', 'หงษ์ทอง', 3, 2),
-(13, '1250101857116', 'ภูริชญาฐ์', 'จิตรบุญ', 3, 1),
-(14, '1250101828116', 'ชยวรรธน์', 'ขาวสุริยจันทร์', 3, 2),
-(15, '1250101839037', 'ภัทราภรณ์', 'พลายวัน', 3, 1),
-(16, '1469900966087', 'พงศพัฒฐ์', 'ภูวเกียรติกำจร', 3, 2),
-(17, '1250101837417', 'ปณศภัทร', 'ไพเราะ', 3, 1),
-(18, '1250101846998', 'พัสวีพิชญ์', 'ภูวิศปภาวงษ์', 3, 1),
-(19, '1260401261758', 'อรณิชชา', 'เสริมทอง', 3, 1),
-(20, '1103400273616', 'ปณิตา', 'เลิศวิไล', 3, 1),
-(21, '1104700257056', 'จุตรภัทร', 'เคี่ยนคำ', 3, 2),
-(22, '1101000446287', 'วิลาวัลย์', 'วิทเมธีกุล', 3, 1),
-(23, '1101000446279', 'พีรนีย์', 'วิทเมธีกุล', 3, 1),
-(24, '1250101858481', 'เอวีเนีย', 'ปรุงจิตร์', 3, 1),
-(25, '1250101861121', 'กมลทิพย์', 'พิสุทธิ์เสรีวงศ์', 3, 1),
-(26, '1139400082751', 'ปันสุข', 'พรประสิทธิ์', 3, 1),
-(27, '1250101858881', 'นดล', 'ภู่ประสม', 3, 2);
-
 -- --------------------------------------------------------
 
 --
@@ -221,42 +181,6 @@ CREATE TABLE `term` (
   `Std_no` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
 
---
--- Dumping data for table `term`
---
-
-INSERT INTO `term` (`Term_id`, `Term_year`, `Term`, `Class_id`, `Std_no`) VALUES
-(2, 2559, 2, 1, 2),
-(3, 2559, 2, 1, 3),
-(4, 2559, 2, 1, 4),
-(5, 2559, 2, 1, 5),
-(6, 2559, 2, 1, 6),
-(7, 2559, 2, 1, 7),
-(8, 2559, 2, 1, 8),
-(9, 2559, 2, 1, 9),
-(10, 2559, 2, 1, 10),
-(11, 2559, 2, 1, 11),
-(12, 2559, 2, 1, 12),
-(13, 2559, 2, 1, 13),
-(14, 2559, 2, 1, 14),
-(15, 2559, 2, 1, 15),
-(16, 2559, 2, 1, 16),
-(17, 2559, 2, 1, 17),
-(18, 2559, 2, 1, 18),
-(19, 2559, 2, 1, 19),
-(20, 2559, 2, 1, 20),
-(21, 2559, 2, 1, 21),
-(22, 2559, 2, 1, 22),
-(23, 2559, 2, 1, 23),
-(24, 2559, 2, 1, 24),
-(25, 2559, 2, 1, 25),
-(26, 2559, 2, 1, 26),
-(27, 2559, 0, 1, 27),
-(55, 2559, 2, 1, 53),
-(56, 2559, 2, 1, 53),
-(57, 2559, 1, 1, 54),
-(58, 2559, 2, 1, 54);
-
 -- --------------------------------------------------------
 
 --
@@ -267,7 +191,7 @@ CREATE TABLE `user` (
   `user_id` int(4) NOT NULL,
   `username` varchar(30) COLLATE utf32_unicode_ci NOT NULL,
   `password` varchar(30) COLLATE utf32_unicode_ci NOT NULL,
-  `user_email` varchar(30) COLLATE utf32_unicode_ci DEFAULT NULL,
+  `user_email` varchar(30) COLLATE utf32_unicode_ci NOT NULL,
   `user_name` varchar(50) COLLATE utf32_unicode_ci NOT NULL,
   `user_surname` varchar(50) COLLATE utf32_unicode_ci NOT NULL,
   `user_role` int(2) NOT NULL
@@ -279,7 +203,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`user_id`, `username`, `password`, `user_email`, `user_name`, `user_surname`, `user_role`) VALUES
 (1, 'beelzerbub', 'gCrktdb0hsm', 'beelzerbub@hotmail.com', 'Ratchakran', 'Prapanon', 8),
-(5, 'asdasdasd', 'asdasdas', 'asdasd@hotmail.com', 'asdasd', 'asdasd', 1);
+(2, 'guest', 'guest', 'guest@hotmail.com', 'guest_name', 'guest_surname', 1),
+(3, 'teacher_user', 'gCrktdb0hsm', 'teacher@hotmail.com', 'teacher_name', 'teacher_surname', 2);
 
 -- --------------------------------------------------------
 
@@ -386,7 +311,7 @@ ALTER TABLE `work_time`
 -- AUTO_INCREMENT for table `assessor`
 --
 ALTER TABLE `assessor`
-  MODIFY `As_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `As_id` int(5) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `classroom`
 --
@@ -411,7 +336,7 @@ ALTER TABLE `score_group`
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `Std_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `Std_no` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `teacher`
 --
@@ -421,12 +346,12 @@ ALTER TABLE `teacher`
 -- AUTO_INCREMENT for table `term`
 --
 ALTER TABLE `term`
-  MODIFY `Term_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `Term_id` int(5) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `user_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `work_time`
 --
