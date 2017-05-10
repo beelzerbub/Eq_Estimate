@@ -260,7 +260,6 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 														<input type="hidden" name="term" value="<?php echo $estimate_teacher_fetch->Es_term; ?>">
 														<input type="hidden" name="es_id" value="<?php echo $estimate_teacher_fetch->Es_id; ?>">
 														<div class="list-group list-group-horizontal">
-															<a href="" class="list-group-item estimate_form-link_previous disabled"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span></a>
 															<a href="" class="list-group-item active estimate_form-link_1">ส่วนที่ 1</a>
 															<a href="" class="list-group-item estimate_form-link_2">ส่วนที่ 2</a>
 															<a href="" class="list-group-item estimate_form-link_3">ส่วนที่ 3</a>
@@ -270,7 +269,6 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 															<a href="" class="list-group-item estimate_form-link_7">ส่วนที่ 7</a>
 															<a href="" class="list-group-item estimate_form-link_8">ส่วนที่ 8</a>
 															<a href="" class="list-group-item estimate_form-link_9">ส่วนที่ 9</a>
-															<a href="" class="list-group-item estimate_form-link_next"><span class="glyphicon glyphicon-forward" aria-hidden="true"></span></a>
 														</div>
 													</div>
 												</div>
@@ -369,7 +367,6 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 												<div class="row">
 													<div class="col-md-12">
 														<div class="list-group list-group-horizontal">
-															<a href="" class="list-group-item estimate_form-link_previous"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span></a>
 															<a href="" class="list-group-item estimate_form-link_1">ส่วนที่ 1</a>
 															<a href="" class="list-group-item estimate_form-link_2">ส่วนที่ 2</a>
 															<a href="" class="list-group-item estimate_form-link_3">ส่วนที่ 3</a>
@@ -379,7 +376,6 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 															<a href="" class="list-group-item estimate_form-link_7">ส่วนที่ 7</a>
 															<a href="" class="list-group-item estimate_form-link_8">ส่วนที่ 8</a>
 															<a href="" class="list-group-item estimate_form-link_9">ส่วนที่ 9</a>
-															<a href="" class="list-group-item estimate_form-link_next"><span class="glyphicon glyphicon-forward" aria-hidden="true"></span></a>
 														</div>
 													</div>
 												</div>
@@ -494,7 +490,6 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 												<div class="row">
 													<div class="col-md-12">
 														<div class="list-group list-group-horizontal">
-															<a href="" class="list-group-item estimate_form-link_previous"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span></a>
 															<a href="" class="list-group-item estimate_form-link_1">ส่วนที่ 1</a>
 															<a href="" class="list-group-item estimate_form-link_2">ส่วนที่ 2</a>
 															<a href="" class="list-group-item estimate_form-link_3">ส่วนที่ 3</a>
@@ -504,7 +499,6 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 															<a href="" class="list-group-item estimate_form-link_7">ส่วนที่ 7</a>
 															<a href="" class="list-group-item estimate_form-link_8">ส่วนที่ 8</a>
 															<a href="" class="list-group-item estimate_form-link_9">ส่วนที่ 9</a>
-															<a href="" class="list-group-item estimate_form-link_next"><span class="glyphicon glyphicon-forward" aria-hidden="true"></span></a>
 														</div>
 													</div>
 												</div>
@@ -603,7 +597,6 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 												<div class="row">
 													<div class="col-md-12">
 														<div class="list-group list-group-horizontal">
-															<a href="" class="list-group-item estimate_form-link_previous"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span></a>
 															<a href="" class="list-group-item estimate_form-link_1">ส่วนที่ 1</a>
 															<a href="" class="list-group-item estimate_form-link_2">ส่วนที่ 2</a>
 															<a href="" class="list-group-item estimate_form-link_3">ส่วนที่ 3</a>
@@ -613,7 +606,6 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 															<a href="" class="list-group-item estimate_form-link_7">ส่วนที่ 7</a>
 															<a href="" class="list-group-item estimate_form-link_8">ส่วนที่ 8</a>
 															<a href="" class="list-group-item estimate_form-link_9">ส่วนที่ 9</a>
-															<a href="" class="list-group-item estimate_form-link_next"><span class="glyphicon glyphicon-forward" aria-hidden="true"></span></a>
 														</div>
 													</div>
 												</div>
@@ -715,7 +707,6 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 												<div class="row">
 													<div class="col-md-12">
 														<div class="list-group list-group-horizontal">
-															<a href="" class="list-group-item estimate_form-link_previous"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span></a>
 															<a href="" class="list-group-item estimate_form-link_1">ส่วนที่ 1</a>
 															<a href="" class="list-group-item estimate_form-link_2">ส่วนที่ 2</a>
 															<a href="" class="list-group-item estimate_form-link_3">ส่วนที่ 3</a>
@@ -725,7 +716,6 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 															<a href="" class="list-group-item estimate_form-link_7">ส่วนที่ 7</a>
 															<a href="" class="list-group-item estimate_form-link_8">ส่วนที่ 8</a>
 															<a href="" class="list-group-item estimate_form-link_9">ส่วนที่ 9</a>
-															<a href="" class="list-group-item estimate_form-link_next"><span class="glyphicon glyphicon-forward" aria-hidden="true"></span></a>
 														</div>
 													</div>
 												</div>
@@ -816,7 +806,6 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 												<div class="row">
 													<div class="col-md-12">
 														<div class="list-group list-group-horizontal">
-															<a href="" class="list-group-item estimate_form-link_previous"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span></a>
 															<a href="" class="list-group-item estimate_form-link_1">ส่วนที่ 1</a>
 															<a href="" class="list-group-item estimate_form-link_2">ส่วนที่ 2</a>
 															<a href="" class="list-group-item estimate_form-link_3">ส่วนที่ 3</a>
@@ -826,7 +815,6 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 															<a href="" class="list-group-item estimate_form-link_7">ส่วนที่ 7</a>
 															<a href="" class="list-group-item estimate_form-link_8">ส่วนที่ 8</a>
 															<a href="" class="list-group-item estimate_form-link_9">ส่วนที่ 9</a>
-															<a href="" class="list-group-item estimate_form-link_next"><span class="glyphicon glyphicon-forward" aria-hidden="true"></span></a>
 														</div>
 													</div>
 												</div>
@@ -917,7 +905,6 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 												<div class="row">
 													<div class="col-md-12">
 														<div class="list-group list-group-horizontal">
-															<a href="" class="list-group-item estimate_form-link_previous"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span></a>
 															<a href="" class="list-group-item estimate_form-link_1">ส่วนที่ 1</a>
 															<a href="" class="list-group-item estimate_form-link_2">ส่วนที่ 2</a>
 															<a href="" class="list-group-item estimate_form-link_3">ส่วนที่ 3</a>
@@ -927,7 +914,6 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 															<a href="" class="list-group-item estimate_form-link_7">ส่วนที่ 7</a>
 															<a href="" class="list-group-item estimate_form-link_8">ส่วนที่ 8</a>
 															<a href="" class="list-group-item estimate_form-link_9">ส่วนที่ 9</a>
-															<a href="" class="list-group-item estimate_form-link_next"><span class="glyphicon glyphicon-forward" aria-hidden="true"></span></a>
 														</div>
 													</div>
 												</div>
@@ -1027,7 +1013,6 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 												<div class="row">
 													<div class="col-md-12">
 														<div class="list-group list-group-horizontal">
-															<a href="" class="list-group-item estimate_form-link_previous"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span></a>
 															<a href="" class="list-group-item estimate_form-link_1">ส่วนที่ 1</a>
 															<a href="" class="list-group-item estimate_form-link_2">ส่วนที่ 2</a>
 															<a href="" class="list-group-item estimate_form-link_3">ส่วนที่ 3</a>
@@ -1037,7 +1022,6 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 															<a href="" class="list-group-item estimate_form-link_7">ส่วนที่ 7</a>
 															<a href="" class="list-group-item estimate_form-link_8">ส่วนที่ 8</a>
 															<a href="" class="list-group-item estimate_form-link_9">ส่วนที่ 9</a>
-															<a href="" class="list-group-item estimate_form-link_next"><span class="glyphicon glyphicon-forward" aria-hidden="true"></span></a>
 														</div>
 													</div>
 												</div>
@@ -1128,7 +1112,6 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 												<div class="row">
 													<div class="col-md-12">
 														<div class="list-group list-group-horizontal">
-															<a href="" class="list-group-item estimate_form-link_previous"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span></a>
 															<a href="" class="list-group-item estimate_form-link_1">ส่วนที่ 1</a>
 															<a href="" class="list-group-item estimate_form-link_2">ส่วนที่ 2</a>
 															<a href="" class="list-group-item estimate_form-link_3">ส่วนที่ 3</a>
@@ -1138,7 +1121,6 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 															<a href="" class="list-group-item estimate_form-link_7">ส่วนที่ 7</a>
 															<a href="" class="list-group-item estimate_form-link_8">ส่วนที่ 8</a>
 															<a href="" class="list-group-item estimate_form-link_9">ส่วนที่ 9</a>
-															<a href="" class="list-group-item estimate_form-link_next disabled"><span class="glyphicon glyphicon-forward" aria-hidden="true"></span></a>
 														</div>
 													</div>
 												</div>
@@ -1243,7 +1225,6 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 														<input type="hidden" name="term" value="<?php echo $estimate_parent_fetch->Es_term; ?>">
 														<input type="hidden" name="es_id" value="<?php echo $estimate_parent_fetch->Es_id; ?>">
 														<div class="list-group list-group-horizontal">
-															<a href="" class="list-group-item estimate_form-link_previous disabled"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span></a>
 															<a href="" class="list-group-item active estimate_form-link_1">ส่วนที่ 1</a>
 															<a href="" class="list-group-item estimate_form-link_2">ส่วนที่ 2</a>
 															<a href="" class="list-group-item estimate_form-link_3">ส่วนที่ 3</a>
@@ -1253,7 +1234,6 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 															<a href="" class="list-group-item estimate_form-link_7">ส่วนที่ 7</a>
 															<a href="" class="list-group-item estimate_form-link_8">ส่วนที่ 8</a>
 															<a href="" class="list-group-item estimate_form-link_9">ส่วนที่ 9</a>
-															<a href="" class="list-group-item estimate_form-link_next"><span class="glyphicon glyphicon-forward" aria-hidden="true"></span></a>
 														</div>
 													</div>
 												</div>
@@ -1352,7 +1332,6 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 												<div class="row">
 													<div class="col-md-12">
 														<div class="list-group list-group-horizontal">
-															<a href="" class="list-group-item estimate_form-link_previous"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span></a>
 															<a href="" class="list-group-item estimate_form-link_1">ส่วนที่ 1</a>
 															<a href="" class="list-group-item estimate_form-link_2">ส่วนที่ 2</a>
 															<a href="" class="list-group-item estimate_form-link_3">ส่วนที่ 3</a>
@@ -1362,7 +1341,6 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 															<a href="" class="list-group-item estimate_form-link_7">ส่วนที่ 7</a>
 															<a href="" class="list-group-item estimate_form-link_8">ส่วนที่ 8</a>
 															<a href="" class="list-group-item estimate_form-link_9">ส่วนที่ 9</a>
-															<a href="" class="list-group-item estimate_form-link_next"><span class="glyphicon glyphicon-forward" aria-hidden="true"></span></a>
 														</div>
 													</div>
 												</div>
@@ -1477,7 +1455,6 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 												<div class="row">
 													<div class="col-md-12">
 														<div class="list-group list-group-horizontal">
-															<a href="" class="list-group-item estimate_form-link_previous"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span></a>
 															<a href="" class="list-group-item estimate_form-link_1">ส่วนที่ 1</a>
 															<a href="" class="list-group-item estimate_form-link_2">ส่วนที่ 2</a>
 															<a href="" class="list-group-item estimate_form-link_3">ส่วนที่ 3</a>
@@ -1487,7 +1464,6 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 															<a href="" class="list-group-item estimate_form-link_7">ส่วนที่ 7</a>
 															<a href="" class="list-group-item estimate_form-link_8">ส่วนที่ 8</a>
 															<a href="" class="list-group-item estimate_form-link_9">ส่วนที่ 9</a>
-															<a href="" class="list-group-item estimate_form-link_next"><span class="glyphicon glyphicon-forward" aria-hidden="true"></span></a>
 														</div>
 													</div>
 												</div>
@@ -1586,7 +1562,6 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 												<div class="row">
 													<div class="col-md-12">
 														<div class="list-group list-group-horizontal">
-															<a href="" class="list-group-item estimate_form-link_previous"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span></a>
 															<a href="" class="list-group-item estimate_form-link_1">ส่วนที่ 1</a>
 															<a href="" class="list-group-item estimate_form-link_2">ส่วนที่ 2</a>
 															<a href="" class="list-group-item estimate_form-link_3">ส่วนที่ 3</a>
@@ -1596,7 +1571,6 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 															<a href="" class="list-group-item estimate_form-link_7">ส่วนที่ 7</a>
 															<a href="" class="list-group-item estimate_form-link_8">ส่วนที่ 8</a>
 															<a href="" class="list-group-item estimate_form-link_9">ส่วนที่ 9</a>
-															<a href="" class="list-group-item estimate_form-link_next"><span class="glyphicon glyphicon-forward" aria-hidden="true"></span></a>
 														</div>
 													</div>
 												</div>
@@ -1698,7 +1672,6 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 												<div class="row">
 													<div class="col-md-12">
 														<div class="list-group list-group-horizontal">
-															<a href="" class="list-group-item estimate_form-link_previous"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span></a>
 															<a href="" class="list-group-item estimate_form-link_1">ส่วนที่ 1</a>
 															<a href="" class="list-group-item estimate_form-link_2">ส่วนที่ 2</a>
 															<a href="" class="list-group-item estimate_form-link_3">ส่วนที่ 3</a>
@@ -1708,7 +1681,6 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 															<a href="" class="list-group-item estimate_form-link_7">ส่วนที่ 7</a>
 															<a href="" class="list-group-item estimate_form-link_8">ส่วนที่ 8</a>
 															<a href="" class="list-group-item estimate_form-link_9">ส่วนที่ 9</a>
-															<a href="" class="list-group-item estimate_form-link_next"><span class="glyphicon glyphicon-forward" aria-hidden="true"></span></a>
 														</div>
 													</div>
 												</div>
@@ -1799,7 +1771,6 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 												<div class="row">
 													<div class="col-md-12">
 														<div class="list-group list-group-horizontal">
-															<a href="" class="list-group-item estimate_form-link_previous"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span></a>
 															<a href="" class="list-group-item estimate_form-link_1">ส่วนที่ 1</a>
 															<a href="" class="list-group-item estimate_form-link_2">ส่วนที่ 2</a>
 															<a href="" class="list-group-item estimate_form-link_3">ส่วนที่ 3</a>
@@ -1809,7 +1780,6 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 															<a href="" class="list-group-item estimate_form-link_7">ส่วนที่ 7</a>
 															<a href="" class="list-group-item estimate_form-link_8">ส่วนที่ 8</a>
 															<a href="" class="list-group-item estimate_form-link_9">ส่วนที่ 9</a>
-															<a href="" class="list-group-item estimate_form-link_next"><span class="glyphicon glyphicon-forward" aria-hidden="true"></span></a>
 														</div>
 													</div>
 												</div>
@@ -1900,7 +1870,6 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 												<div class="row">
 													<div class="col-md-12">
 														<div class="list-group list-group-horizontal">
-															<a href="" class="list-group-item estimate_form-link_previous"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span></a>
 															<a href="" class="list-group-item estimate_form-link_1">ส่วนที่ 1</a>
 															<a href="" class="list-group-item estimate_form-link_2">ส่วนที่ 2</a>
 															<a href="" class="list-group-item estimate_form-link_3">ส่วนที่ 3</a>
@@ -1910,7 +1879,6 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 															<a href="" class="list-group-item estimate_form-link_7">ส่วนที่ 7</a>
 															<a href="" class="list-group-item estimate_form-link_8">ส่วนที่ 8</a>
 															<a href="" class="list-group-item estimate_form-link_9">ส่วนที่ 9</a>
-															<a href="" class="list-group-item estimate_form-link_next"><span class="glyphicon glyphicon-forward" aria-hidden="true"></span></a>
 														</div>
 													</div>
 												</div>
@@ -2010,7 +1978,6 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 												<div class="row">
 													<div class="col-md-12">
 														<div class="list-group list-group-horizontal">
-															<a href="" class="list-group-item estimate_form-link_previous"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span></a>
 															<a href="" class="list-group-item estimate_form-link_1">ส่วนที่ 1</a>
 															<a href="" class="list-group-item estimate_form-link_2">ส่วนที่ 2</a>
 															<a href="" class="list-group-item estimate_form-link_3">ส่วนที่ 3</a>
@@ -2020,7 +1987,6 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 															<a href="" class="list-group-item estimate_form-link_7">ส่วนที่ 7</a>
 															<a href="" class="list-group-item estimate_form-link_8">ส่วนที่ 8</a>
 															<a href="" class="list-group-item estimate_form-link_9">ส่วนที่ 9</a>
-															<a href="" class="list-group-item estimate_form-link_next"><span class="glyphicon glyphicon-forward" aria-hidden="true"></span></a>
 														</div>
 													</div>
 												</div>
@@ -2111,7 +2077,6 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 												<div class="row">
 													<div class="col-md-12">
 														<div class="list-group list-group-horizontal">
-															<a href="" class="list-group-item estimate_form-link_previous"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span></a>
 															<a href="" class="list-group-item estimate_form-link_1">ส่วนที่ 1</a>
 															<a href="" class="list-group-item estimate_form-link_2">ส่วนที่ 2</a>
 															<a href="" class="list-group-item estimate_form-link_3">ส่วนที่ 3</a>
@@ -2121,7 +2086,6 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 															<a href="" class="list-group-item estimate_form-link_7">ส่วนที่ 7</a>
 															<a href="" class="list-group-item estimate_form-link_8">ส่วนที่ 8</a>
 															<a href="" class="list-group-item estimate_form-link_9">ส่วนที่ 9</a>
-															<a href="" class="list-group-item estimate_form-link_next disabled"><span class="glyphicon glyphicon-forward" aria-hidden="true"></span></a>
 														</div>
 													</div>
 												</div>
@@ -2685,92 +2649,6 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 				$('.estimate_form-link_8').removeClass('active');
 				$('.estimate_form-link_9').addClass('active');
 				e.preventDefault();
-			});
-			$('.estimate_form-link_previous').click(function() {
-				if ($('.estimate_form-link_2').hasClass('active')){
-					$('.estimate_form-link_2').removeClass('active');
-					$('.estimate_form-link_1').addClass('active');
-					$(".estimate-edit_form_2").fadeOut(100);
-					$(".estimate-edit_form_1").delay(100).fadeIn(100);
-				} else if ($('.estimate_form-link_3').hasClass('active')) {
-					$('.estimate_form-link_3').removeClass('active');
-					$('.estimate_form-link_2').addClass('active');
-					$(".estimate-edit_form_3").fadeOut(100);
-					$(".estimate-edit_form_2").delay(100).fadeIn(100);
-				} else if ($('.estimate_form-link_4').hasClass('active')) {
-					$('.estimate_form-link_4').removeClass('active');
-					$('.estimate_form-link_3').addClass('active');
-					$(".estimate-edit_form_4").fadeOut(100);
-					$(".estimate-edit_form_3").delay(100).fadeIn(100);
-				} else if ($('.estimate_form-link_5').hasClass('active')) {
-					$('.estimate_form-link_5').removeClass('active');
-					$('.estimate_form-link_4').addClass('active');
-					$(".estimate-edit_form_5").fadeOut(100);
-					$(".estimate-edit_form_4").delay(100).fadeIn(100);
-				} else if ($('.estimate_form-link_6').hasClass('active')) {
-					$('.estimate_form-link_6').removeClass('active');
-					$('.estimate_form-link_5').addClass('active');
-					$(".estimate-edit_form_6").fadeOut(100);
-					$(".estimate-edit_form_5").delay(100).fadeIn(100);
-				} else if ($('.estimate_form-link_7').hasClass('active')) {
-					$('.estimate_form-link_7').removeClass('active');
-					$('.estimate_form-link_6').addClass('active');
-					$(".estimate-edit_form_7").fadeOut(100);
-					$(".estimate-edit_form_6").delay(100).fadeIn(100);
-				} else if ($('.estimate_form-link_8').hasClass('active')) {
-					$('.estimate_form-link_8').removeClass('active');
-					$('.estimate_form-link_7').addClass('active');
-					$(".estimate-edit_form_8").fadeOut(100);
-					$(".estimate-edit_form_7").delay(100).fadeIn(100);
-				} else if ($('.estimate_form-link_9').hasClass('active')) {
-					$('.estimate_form-link_9').removeClass('active');
-					$('.estimate_form-link_8').addClass('active');
-					$(".estimate-edit_form_9").fadeOut(100);
-					$(".estimate-edit_form_8").delay(100).fadeIn(100);
-				}
-			});
-			$('.estimate_form-link_next').click(function() {
-				if ($('.estimate_form-link_1').hasClass('active')){
-					$('.estimate_form-link_1').removeClass('active');
-					$('.estimate_form-link_2').addClass('active');
-					$(".estimate-edit_form_1").fadeOut(100);
-					$(".estimate-edit_form_2").delay(100).fadeIn(100);
-				} else if ($('.estimate_form-link_2').hasClass('active')) {
-					$('.estimate_form-link_2').removeClass('active');
-					$('.estimate_form-link_3').addClass('active');
-					$(".estimate-edit_form_2").fadeOut(100);
-					$(".estimate-edit_form_3").delay(100).fadeIn(100);
-				} else if ($('.estimate_form-link_3').hasClass('active')) {
-					$('.estimate_form-link_3').removeClass('active');
-					$('.estimate_form-link_4').addClass('active');
-					$(".estimate-edit_form_3").fadeOut(100);
-					$(".estimate-edit_form_4").delay(100).fadeIn(100);
-				} else if ($('.estimate_form-link_4').hasClass('active')) {
-					$('.estimate_form-link_4').removeClass('active');
-					$('.estimate_form-link_5').addClass('active');
-					$(".estimate-edit_form_4").fadeOut(100);
-					$(".estimate-edit_form_5").delay(100).fadeIn(100);
-				} else if ($('.estimate_form-link_5').hasClass('active')) {
-					$('.estimate_form-link_5').removeClass('active');
-					$('.estimate_form-link_6').addClass('active');
-					$(".estimate-edit_form_5").fadeOut(100);
-					$(".estimate-edit_form_6").delay(100).fadeIn(100);
-				} else if ($('.estimate_form-link_6').hasClass('active')) {
-					$('.estimate_form-link_6').removeClass('active');
-					$('.estimate_form-link_7').addClass('active');
-					$(".estimate-edit_form_6").fadeOut(100);
-					$(".estimate-edit_form_7").delay(100).fadeIn(100);
-				} else if ($('.estimate_form-link_7').hasClass('active')) {
-					$('.estimate_form-link_7').removeClass('active');
-					$('.estimate_form-link_8').addClass('active');
-					$(".estimate-edit_form_7").fadeOut(100);
-					$(".estimate-edit_form_8").delay(100).fadeIn(100);
-				} else if ($('.estimate_form-link_8').hasClass('active')) {
-					$('.estimate_form-link_8').removeClass('active');
-					$('.estimate_form-link_9').addClass('active');
-					$(".estimate-edit_form_8").fadeOut(100);
-					$(".estimate-edit_form_9").delay(100).fadeIn(100);
-				}
 			});
 		});
 	</script>
