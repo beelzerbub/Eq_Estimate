@@ -233,7 +233,7 @@ function preinsert($as_type, $std_no, $term, $term_year) {
 }
 
 function preinsert_assessor($as_type) {
-	$insert_assessor = "INSERT INTO assessor VALUES('', '', '', '$as_type', '')";
+	$insert_assessor = "INSERT INTO assessor VALUES('', '', '', '$as_type')";
 	$insert_assessor_query = mysql_query($insert_assessor)or die(mysql_error());
 	return mysql_insert_id();
 }
