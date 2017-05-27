@@ -34,7 +34,7 @@ if ($_SESSION["user_role"] < 8) {
 					?>
 				</div>
 				<div class="row site_content-filter">
-					<form action="" class="form-inline" role="form" method="post" data-toggle="validator" id="teacher-filter_form">
+					<form action="" class="form-inline" role="form" method="post" data-toggle="validator" id="<teacher-filter_form></teacher-filter_form>">
 						<fieldset class="fieldset-form">
 							<legend class="legend-form">ค้นหาข้อมูลครูประจำชั้น</legend>
 							<div class="col-md-10">
@@ -234,9 +234,9 @@ if ($_SESSION["user_role"] < 8) {
 									while($result = mysql_fetch_array($filter_query)) {
 										?>
 										<tr <?php if ($result["t_status == -1"]) { echo "style='color:red'"; } ?>>
-											<td valign="middle"><?php echo ++$counter; ?></td>
+											<td class="text-center" valign="middle"><?php echo ++$counter; ?></td>
 											<td>คุณครู <?php echo $result["t_name"]." ".$result["t_surname"]; ?></td>
-											<td><?php echo get_teacher_room($result["t_id"], $result["wt_year"], $result["wt_term"]); ?></td>
+											<td class="text-center"><?php echo get_teacher_room($result["t_id"], $result["wt_year"], $result["wt_term"]); ?></td>
 											<td>
 												<p class="text-center">
 													<a href="_edit_teacher.php?id=<?php echo $result[t_id]; ?>" class="btn btn-primary" id="teacher_edit-link">แก้ไข</a>

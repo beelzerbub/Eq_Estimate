@@ -264,15 +264,15 @@ if ($_SESSION["user_role"] < 8) {
 								while ($result = mysql_fetch_array($filter_query)) {
 									?>
 									<tr>
-										<td><?php echo ++$counter; ?></td>
+										<td class="text-center"><?php echo ++$counter; ?></td>
 										<td><?php echo $result[Std_id]; ?></td>
 										<td>
 											<?php if ($result[Std_gender] == 1) { echo "เด็กหญิง ";} else { echo "เด็กชาย "; } ?> 
 											<?php echo $result[Std_name]; ?>
 											<?php echo $result[Std_surname]; ?>
 										</td>
-										<td><?php echo $result[Std_age]; ?> ปี</td>
-										<td><?php echo $result[class_grade]; ?> ห้อง <?php echo $result[class_number];?></td>
+										<td class="text-right"><?php echo $result[Std_age]; ?> ปี</td>
+										<td class="text-center"><?php echo $result[class_grade]; ?> ห้อง <?php echo $result[class_number];?></td>
 										<td>
 											<p class="text-center">
 												<a href="_edit_student.php?id=<?php echo $result[Std_no]; ?>" class="btn btn-primary" id="student_edit-link">แก้ไข</a>

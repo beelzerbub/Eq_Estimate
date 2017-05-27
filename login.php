@@ -66,7 +66,7 @@ if ($_SESSION["user_role"]) {
 							<div class="col-md-12">
 								<form action="assets/service/login.php" id="login-form" role="form" method="post" data-toggle="validator"  style="display:block">
 									<div class="form-group">
-										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="ชื่อผู้ใช้" value="" pattern="[A-z0-9]{1,}$" data-minlength="8" maxlength="20" data-error="กรุณากรอกชื่อผู้ใช้" required>
+										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="ชื่อผู้ใช้" value="" pattern="[A-z0-9]{1,}$" data-error="กรุณากรอกชื่อผู้ใช้" required>
 										<div class="help-block with-errors"></div>
 									</div>
 									<div class="form-group">

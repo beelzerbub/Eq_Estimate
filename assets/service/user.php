@@ -74,12 +74,13 @@ function get_user_byPK ($id) {
 }
 
 function get_user_type ($username) {
-	$sql = "SELECT * FROM user WHERE username = '".$username."' AND user_role >= 2";
-	$query = mysql_query($sql)or die(mysql_er);
-	if (mysql_num_rows($query) > 0) {
+	$sql = "SELECT * FROM user WHERE username = '".$username."'";
+	$user_query = mysql_query($sql)or die(mysql_error());
+	$user_fetch = mysql_fetch_object($user_query);
+	if ($user_fetch->user_role == 2) {
 		return "ครูประจำชั้น / เจ้าหน้าที่";
 	} else {
-		return "ผู้ปกครอง / บุคคลภายนอก";
+		return "ผู้ดูแลระบบ";
 	}
 }
 
@@ -89,13 +90,8 @@ function insert_user($username, $password, $email, $name, $surname, $role) {
 	if (mysql_num_rows($check_user_query) > 0) {
 		header("location:../../user.php?action=insert_user_duplicate");
 	} else {
-		$insert_user = "INSERT INTO user VALUES('','$username','$password','$email','$name','$surname'";
-		if ($role == 1) {
-			$insert_user .= ",2)";
-		} else if ($role ==2 ){
-			$insert_user .= ",1)";
-		}
-
+		$insert_user = "INSERT INTO user VALUES('','$username','$password','$email','$name','$surname', $role)";
+		
 		mysql_query($insert_user)or die(mysql_error());
 		header("location:../../user.php?action=insert_success");
 	}

@@ -71,11 +71,10 @@ if ($_SESSION["user_role"] < 8) {
 										<legend class="legend-form"><h1>เพิ่มข้อมูลผู้ใช้</h1></legend>
 										<div class="form-group">
 											<label for="reg_username">ชื่อผู้ใช้</label>
-											<input type="text" name="reg_username" id="reg_username" tabindex="1" class="form-control" placeholder="ชื่อผู้ใช้" pattern="[A-z0-9]{1,}$" data-error="กรุณาตรวจสอบความถูกต้อง" data-minlength="8" maxlength="20" value="" required>
+											<input type="text" name="reg_username" id="reg_username" tabindex="1" class="form-control" placeholder="ชื่อผู้ใช้" pattern="[A-z0-9]{1,}$" data-error="กรุณาตรวจสอบความถูกต้อง" value="" required>
 											<div class="help-block with-errors"></div>
 											<span class="help-block small">
 												<ul>
-													<li>ความยาว 8-20 อักขระ</li>
 													<li>ใช้ตัวอักษรภาษาอังกฤษและตัวเลขเท่านั้น</li>
 												</ul>
 											</span>
@@ -84,10 +83,9 @@ if ($_SESSION["user_role"] < 8) {
 											<div class="row">
 												<div class="col-md-6">
 													<label for="reg_password">รหัสผ่าน</label>
-													<input type="password" name="reg_password" id="reg_password" tabindex="1" class="form-control" data-minlength="8" data-error="กรุณาตรวจสอบความถูกต้องของรหัสผ่าน" placeholder="รหัสผ่าน" value="" required>
+													<input type="password" name="reg_password" id="reg_password" tabindex="1" class="form-control" data-error="กรุณาตรวจสอบความถูกต้องของรหัสผ่าน" placeholder="รหัสผ่าน" value="" required>
 													<span class="help-block small">
 														<ul>
-															<li>ความยาว 8-15 อักขระ</li>
 															<li>ใช้ตัวอักษรภาษาอังกฤษและตัวเลขเท่านั้น</li>
 														</ul>
 													</span>
@@ -122,20 +120,11 @@ if ($_SESSION["user_role"] < 8) {
 												</div>
 												<div class="col-md-8 col-md-pull-1">
 													<label for="reg_role" class="radio-inline">
-														<input type="radio" name="reg_role" value="1" required> ครูประจำชั้น
+														<input type="radio" name="reg_role" value="2" required> ครูประจำชั้น
 													</label>
 													<label for="reg_role" class="radio-inline">
-														<input type="radio" name="reg_role" value="2" required> ผู้ใช้งานทั่วไป
+														<input type="radio" name="reg_role" value="8" required> ผู้ดูแลระบบ
 													</label>
-													<?php
-													if ($_SESSION["user_role"] == 8) {
-														?>
-														<label for="reg_role" class="radio-inline">
-															<input type="radio" name="reg_role" value="8" required> ผู้ดูแลระบบ
-														</label>
-														<?php
-													}
-													?>
 												</div>
 											</div>
 										</div>
@@ -189,13 +178,13 @@ if ($_SESSION["user_role"] < 8) {
 										echo "style='color:red;'";
 									}
 									?>>
-									<td><?php echo ++$counter; ?></td>
+									<td class="text-center"><?php echo ++$counter; ?></td>
 									<td><?php echo $result["username"]; ?></td>
 									<td><?php echo $result["user_name"]; ?></td>
 									<td><?php echo $result["user_surname"]; ?></td>
 									<td><?php echo $result["user_email"]; ?></td>
-									<td>ระดับ <?php echo $result["user_role"]; ?></td>
-									<td><?php echo get_user_type($result["username"]); ?></td>
+									<td class="text-center">ระดับ <?php echo $result["user_role"]; ?></td>
+									<td class="text-center"><?php echo get_user_type($result["username"]); ?></td>
 									<td>
 										<p class="text-center">
 											<a href="_edit_user.php?id=<?php echo $result["user_id"]; ?>" class="btn btn-primary" id="user_edit-link">แก้ไข</a>

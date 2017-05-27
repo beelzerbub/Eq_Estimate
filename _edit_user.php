@@ -41,10 +41,9 @@ if ($_SESSION["user_role"] < 8) {
 							<legend class="legend-form"><h1>แก้ไขข้อมูลผู้ใช้</h1></legend>
 							<div class="form-group">
 								<p>ชื่อผู้ใช้</p>
-								<input type="text" name="reg_username" id="reg_username" tabindex="1" class="form-control" placeholder="ชื่อผู้ใช้" pattern="[A-z0-9]{1,}$" data-minlength="8" maxlength="20" value="<?php echo $user_fetch->username; ?>" required>
+								<input type="text" name="reg_username" id="reg_username" tabindex="1" class="form-control" placeholder="ชื่อผู้ใช้" pattern="[A-z0-9]{1,}$" value="<?php echo $user_fetch->username; ?>" required>
 								<span class="help-block small">
 									<ul>
-										<li>ความยาว 8-20 อักขระ</li>
 										<li>ใช้ตัวอักษรภาษาอังกฤษและตัวเลขเท่านั้น</li>
 									</ul>
 								</span>
@@ -53,11 +52,10 @@ if ($_SESSION["user_role"] < 8) {
 								<div class="row">
 									<div class="col-md-6">
 										<p>รหัสผ่าน</p>
-										<input type="password" name="reg_password" id="reg_password" tabindex="1" class="form-control" data-minlength="8" data-error="กรุณาตรวจสอบความถูกต้อง" placeholder="รหัสผ่าน" value="<?php echo $user_fetch->password; ?>" required>
+										<input type="password" name="reg_password" id="reg_password" tabindex="1" class="form-control" data-error="กรุณาตรวจสอบความถูกต้อง" placeholder="รหัสผ่าน" value="<?php echo $user_fetch->password; ?>" required>
 										<div class="help-block with-errors"></div>
 										<span class="help-block small">
 											<ul>
-												<li>ความยาว 8-15 อักขระ</li>
 												<li>ใช้ตัวอักษรภาษาอังกฤษและตัวเลขเท่านั้น</li>
 											</ul>
 										</span>
@@ -97,20 +95,12 @@ if ($_SESSION["user_role"] < 8) {
 									</div>
 									<div class="col-md-8 col-md-pull-1">
 										<label for="reg_role" class="radio-inline">
-											<input type="radio" name="reg_role" value="1" <?php echo ($user_fetch->user_role == 1)? 'checked' : ''; ?> required> ผู้ใช้งานทั่วไป
-										</label>
-										<label for="reg_role" class="radio-inline">
 											<input type="radio" name="reg_role" value="2" <?php echo ($user_fetch->user_role == 2)? 'checked' : ''; ?> required> ครูประจำชั้น
 										</label>
-										<?php
-										if ($_SESSION["user_role"] == 8) {
-											?>
-											<label for="reg_role" class="radio-inline">
-												<input type="radio" name="reg_role" value="8" <?php echo ($user_fetch->user_role == 8)? 'checked' : ''; ?> required> ผู้ดูแลระบบ
-											</label>
-											<?php
-										}
-										?>
+										<label for="reg_role" class="radio-inline">
+											<input type="radio" name="reg_role" value="8" <?php echo ($user_fetch->user_role == 8)? 'checked' : ''; ?> required> ผู้ดูแลระบบ
+										</label>
+										
 									</div>
 								</div>
 							</div>
