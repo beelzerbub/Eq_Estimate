@@ -49,42 +49,31 @@ if ($_SESSION["user_role"] < 8) {
 							<legend class="legend-form"><h1>แก้ไขข้อมูลครูประจำชั้น</h1></legend>
 							<div class="row">
 								<div class="col-md-6">
-									<div class="form-group">
-										<label for="InputName">ชื่อ</label>
-										<input type="text" class="form-control" id="InputName" Name="InputName" value="<?php echo $teacher_fetch->t_name; ?>">
-									</div>
+									<label for="InputTeacher">ครูประจำชั้น</label>
+									<input type="text" id="teacher_id" class="form-control" value="ครู <?php echo $teacher_fetch->t_name." ".$teacher_fetch->t_surname; ?>" disabled>
 								</div>
 								<div class="col-md-6">
-									<div class="form-group">
-										<label for="InputSurname">นามสกุล</label>
-										<input type="text" class="form-control" id="InputSurname" Name="InputSurname" value="<?php echo $teacher_fetch->t_surname; ?>">
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="InputClassroom">ห้องเรียน</label>
-										<select name="InputClassroom" id="InputClassroom" class="form-control" required>
-											<option value="" disabled selected> กรุณาระบุห้องเรียน </option>
-											<?php
-											while($classroom_fetch = mysql_fetch_array($classroom_query)) {
-												?>
-												<option value="<?php echo $classroom_fetch[class_id]; ?>"
-													<?php echo ($classroom_fetch[class_id] == $teacher_fetch->class_id)? 'SELECTED' : ''; ?>>
-													<?php echo $classroom_fetch[class_grade];
-													if ($classroom_fetch[class_id] != 0) {
-														echo "/".$classroom_fetch[class_number];
-													}
-													?>
-												</option>
-												<?php
-											}
+									<label for="InputClassroom">ห้องเรียน</label>
+									<select name="InputClassroom" id="InputClassroom" class="form-control" required>
+										<option value="" disabled selected> กรุณาระบุห้องเรียน </option>
+										<?php
+										while($classroom_fetch = mysql_fetch_array($classroom_query)) {
 											?>
-										</select>
-									</div>
+											<option value="<?php echo $classroom_fetch[class_id]; ?>"
+												<?php echo ($classroom_fetch[class_id] == $teacher_fetch->class_id)? 'SELECTED' : ''; ?>>
+												<?php echo $classroom_fetch[class_grade];
+												if ($classroom_fetch[class_id] != 0) {
+													echo "/".$classroom_fetch[class_number];
+												}
+												?>
+											</option>
+											<?php
+										}
+										?>
+									</select>
 								</div>
 							</div>
+							<br>
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group">
