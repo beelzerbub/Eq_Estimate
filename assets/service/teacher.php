@@ -50,12 +50,10 @@ if ($_GET["action"] == "delete") {
 } else if ($_POST["updateBtn"]) {
 	$teacher_id = $_POST["teacher_id"];
 	$user_id 	= $_POST["user_id"];
-	$name 		= $_POST["InputName"];
-	$surname 	= $_POST["InputSurname"];
 	$class_id	= $_POST["InputClassroom"];
 	$year 		= $_POST["year_reg"];
 	$term 		= $_POST["term_reg"];
-	update_teacher($teacher_id, $user_id, $name, $surname, $class_id, $year, $term);
+	update_teacher($teacher_id, $user_id, $class_id, $year, $term);
 }
 
 
@@ -113,19 +111,8 @@ function insert_teacher($teacher_id, $class_id, $year_reg, $term_reg) {
 	}
 }
 
-function update_teacher($teacher_id, $user_id, $name, $surname, $class_id, $year, $term) {
-	$update_teacher = "UPDATE teacher SET t_name = '$name', t_surname = '$surname' WHERE t_id = $teacher_id";
-	$update_teacher_query = mysql_query($update_teacher)or die(mysql_error());
-
-	$update_user = "UPDATE user SET user_name = '$name', user_surname = '$surname' WHERE user_id = $user_id";
-	$update_user_query = mysql_query($update_user)or die(mysql_error());
-
-	$classroom = "SELECT * FROM classroom WHERE class_id = $class_id";
-	echo $classroom;
-	$classroom_query = mysql_query($classroom)or die(mysql_error());
-	$classroom_fetch = mysql_fetch_object($classroom_query)or die(mysql_error());
-
-	$update_worktime = "UPDATE work_time SET wt_year = $year, wt_term = $term, class_id = $classroom_fetch->class_id WHERE t_id = $teacher_id";
+function update_teacher($teacher_id, $user_id, $class_id, $year, $term) {
+	$update_worktime = "UPDATE work_time SET wt_year = $year, wt_term = $term, class_id = $class_id WHERE t_id = $teacher_id";
 	$update_worktime_query = mysql_query($update_worktime)or die(mysql_error());
 	header("location:../../teacher.php?action=update_success");
 }
