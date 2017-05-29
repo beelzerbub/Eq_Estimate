@@ -213,6 +213,28 @@ function get_estimate($std_no, $term, $year, $as_type) {
 	return $estimate_query;
 }
 
+function get_compare_estimate($std_no, $term, $year, $sg_id, $as_type) {
+	$estimate = "SELECT * FROM student std
+	JOIN estimate_score es
+	JOIN estimate_time et
+	JOIN assessor asses
+	JOIN score_group sg
+	WHERE std.Std_no = $std_no
+	AND et.Es_year = $year
+	AND et.Es_term = $term
+	AND et.Std_no = std.Std_no
+	AND et.As_id = asses.As_id
+	AND et.Es_id = es.Es_id
+	AND sg.Sg_id = es.Sg_id
+	AND asses.As_type = '$as_type'
+	AND sg.Sg_id = $sg_id";
+	$estimate_query = mysql_query($estimate)or die(mysql_error());
+	if (mysql_num_rows($estimate_query) > 0) {
+		$estimate_fetch = mysql_fetch_object($estimate_query)or die(mysql_error());
+		return $estimate_fetch->Es_score;
+	} 
+}
+
 function check_estimate($es_id, $sg_id) {
 	$estimate = "SELECT * FROM estimate_score es 
 	WHERE es.Es_id = $es_id
@@ -1203,7 +1225,12 @@ function compare_guide ($teacher_es_id, $parent_es_id) {
 }
 
 function compare_score($teacher_score, $parent_score) {
-	$compare_score = ($teacher_score + $parent_score) / 2;
-	return $compare_score;
+	if ($teacher_score > $parent_score) {
+		return 1;
+	} else if ($teacher_score == $parent_score) {
+		return 3;
+	} else {
+		return 2;
+	}
 }
 ?>

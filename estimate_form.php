@@ -2375,69 +2375,210 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 															<span aria-hidden="true">&times;</span>
 														</button>
-													</h2> 
+													</h2>
 													<hr>
 													<h3>คะแนนการประเมิน</h3>
 													<table class="table table-bordered table-striped" id="compare-table_result">
 														<thead>
 															<tr>
-																<th colspan="3"><p class="text-center">ดี</p></th>
-																<th colspan="3"><p class="text-center">เก่ง</p></th>
-																<th colspan="3"><p class="text-center">สุข</p></th>
-															</tr>
-															<tr>
-																<?php
-																$groups = get_group();
-																while($group = mysql_fetch_array($groups)) {
-																	?>
-																	<td><center><?php echo $group['Sg_name']; ?></center></td>
-																	<?php
-																}
-																?>
+																<th></th>
+																<th><p class="text-center">ครูประจำชั้น</p></th>
+																<th><p class="text-center">ผู้ปกครอง</p></th>
 															</tr>
 														</thead>
 														<tbody>
-															<tr>
-																<?php
-																calculate_compare($estimate_teacher_fetch->Es_id, $estimate_parent_fetch->Es_id);
+															<?php
+															$groups = get_group();
+															while($group = mysql_fetch_array($groups)) {
 																?>
-															</tr>
+																<tr>
+																	<td>
+																		<?php echo $group['Sg_name']; ?>
+																	</td>
+																	<td>
+																		<center>
+																			<?php
+																			echo get_compare_estimate($student_fetch->Std_no, $student_fetch->Term, $student_fetch->Term_year, $group['Sg_id'] , "ครูประจำชั้น");
+																			?>
+																		</center>
+																	</td>
+																	<td>
+																		<center>
+																			<?php
+																			echo get_compare_estimate($student_fetch->Std_no, $student_fetch->Term, $student_fetch->Term_year, $group['Sg_id'] , "ผู้ปกครอง");
+																			?>
+																		</center>
+																	</td>
+																</tr>
+																<?php
+															}
+															?>														
 														</tbody>
 													</table>
 													<h3>เกณฑ์คะแนนที (T-Score Norms)</h3>
 													<table class="table table-bordered table-striped" id="compare_tscore-table_result">
 														<thead>
 															<tr>
-																<th colspan="3"><p class="text-center">ดี</p></th>
-																<th colspan="3"><p class="text-center">เก่ง</p></th>
-																<th colspan="3"><p class="text-center">สุข</p></th>
-															</tr>
-															<tr>
-																<?php
-																$groups = get_group();
-																while($group = mysql_fetch_array($groups)) {
-																	?>
-																	<td><center><?php echo $group['Sg_name']; ?></center></td>
-																	<?php
-																}
-																?>
+																<th></th>
+																<th><p class="text-center">ครูประจำชั้น</p></th>
+																<th><p class="text-center">ผู้ปกครอง</p></th>
 															</tr>
 														</thead>
 														<tbody>
-															<tr>
-																<?php
-																calculate_tcompare($estimate_teacher_fetch->Es_id, $estimate_parent_fetch->Es_id);
+															<?php
+															$groups = get_group();
+															while($group = mysql_fetch_array($groups)) {
 																?>
-															</tr>
+																<tr>
+																	<td>
+																		<?php echo $group['Sg_name']; ?>
+																	</td>
+																	<td>
+																		<center>
+																			<?php
+																			$teacher_estimate_score = get_compare_estimate($student_fetch->Std_no, $student_fetch->Term, $student_fetch->Term_year, $group['Sg_id'] , "ครูประจำชั้น");
+																			echo T_Score($teacher_estimate_score, $group['Sg_id']);
+																			?>
+																		</center>
+																	</td>
+																	<td>
+																		<center>
+																			<?php
+																			$parent_estimate_score = get_compare_estimate($student_fetch->Std_no, $student_fetch->Term, $student_fetch->Term_year, $group['Sg_id'] , "ผู้ปกครอง");
+																			echo T_Score($parent_estimate_score, $group['Sg_id']);
+																			?>
+																		</center>
+																	</td>
+																</tr>
+																<?php
+															}
+															?>
 														</tbody>
 													</table>
 												</div>
 											</div>
+											<hr>
 											<div class="row" id="compare-estimate_display_text">
 												<div class="col-md-9">
-													<?php
-													compare_guide ($estimate_teacher_fetch->Es_id, $estimate_parent_fetch->Es_id);
-													?>
+													<h3>เปรียบเทียบผลการประเมิน</h3>
+													<table class="table table-bordered table-striped" id="compare_guide">
+														<?php
+														for ($i = 1; $i <= 8; $i++) {
+															$teacher_guide_score = get_compare_estimate($student_fetch->Std_no, $student_fetch->Term, $student_fetch->Term_year, $i , "ครูประจำชั้น");
+															$parent_guide_score = get_compare_estimate($student_fetch->Std_no, $student_fetch->Term, $student_fetch->Term_year, $i , "ผู้ปกครอง");
+															?>
+															<tr>
+																<td>
+																	<li class="list-group-item">
+																		<?php
+																		if ($i == 1) {
+																			if (compare_score($teacher_guide_score, $parent_guide_score) == 1) {
+																				echo "ค่าความฉลาดทางอารมณ์ทางด้านควบคุมอารมณ์ที่บ้านมีค่าคะแนนการประเมินน้อยกว่าที่โรงเรียน";
+																			} else if (compare_score($teacher_guide_score, $parent_guide_score) == 2){
+																				echo "ค่าความฉลาดทางอารมณ์ทางด้านควบคุมอารมณ์ที่บ้านมีค่าคะแนนการประเมินมากกว่าที่โรงเรียน";
+																			} else {
+																				echo "ค่าความฉลาดทางอารมณ์ทางด้านควบคุมอารมณ์ที่บ้านและที่โรงเรียนมีคะแนนการประเมินเท่ากัน";
+																			}
+																		} else if ($i == 2){
+																			if (compare_score($teacher_guide_score, $parent_guide_score) == 1) {
+																				echo "ค่าความฉลาดทางอารมณ์ทางด้านใส่ใจและเข้าใจอารมณ์ที่บ้านมีค่าคะแนนการประเมินน้อยกว่าที่โรงเรียน";
+																			} else if (compare_score($teacher_guide_score, $parent_guide_score) == 2){
+																				echo "ค่าความฉลาดทางอารมณ์ทางด้านใส่ใจและเข้าใจอารมณ์ที่บ้านมีค่าคะแนนการประเมินมากกว่าที่โรงเรียน";
+																			} else {
+																				echo "ค่าความฉลาดทางอารมณ์ทางด้านใส่ใจและเข้าใจอารมณ์ที่บ้านและที่โรงเรียนมีคะแนนการประเมินเท่ากัน";
+																			}
+																		} else if ($i == 3){
+																			if (compare_score($teacher_guide_score, $parent_guide_score) == 1) {
+																				echo "ค่าความฉลาดทางอารมณ์ทางด้านยอมรับถูกผิดที่บ้านมีค่าคะแนนการประเมินน้อยกว่าที่โรงเรียน";
+																			} else if (compare_score($teacher_guide_score, $parent_guide_score) == 2){
+																				echo "ค่าความฉลาดทางอารมณ์ทางด้านยอมรับถูกผิดที่บ้านมีค่าคะแนนการประเมินมากกว่าที่โรงเรียน";
+																			} else {
+																				echo "ค่าความฉลาดทางอารมณ์ทางด้านใส่ยอมรับถูกผิดที่บ้านและที่โรงเรียนมีคะแนนการประเมินเท่ากัน";
+																			}
+																		} else if ($i == 4) {
+																			if (compare_score($teacher_guide_score, $parent_guide_score) == 1) {
+																				echo "ค่าความฉลาดทางอารมณ์ทางด้านมุ่งมั่นพยายามที่บ้านมีค่าคะแนนการประเมินน้อยกว่าที่โรงเรียน";
+																			} else if (compare_score($teacher_guide_score, $parent_guide_score) == 2){
+																				echo "ค่าความฉลาดทางอารมณ์ทางด้านมุ่งมั่นพยายามที่บ้านมีค่าคะแนนการประเมินมากกว่าที่โรงเรียน";
+																			} else {
+																				echo "ค่าความฉลาดทางอารมณ์ทางด้านมุ่งมั่นพยายามที่บ้านและที่โรงเรียนมีคะแนนการประเมินเท่ากัน";
+																			}
+																		} else if ($i == 5) {
+																			if (compare_score($teacher_guide_score, $parent_guide_score) == 1) {
+																				echo "ค่าความฉลาดทางอารมณ์ทางด้านปรับตัวต่อปัญหาที่บ้านมีค่าคะแนนการประเมินน้อยกว่าที่โรงเรียน";
+																			} else if (compare_score($teacher_guide_score, $parent_guide_score) == 2){
+																				echo "ค่าความฉลาดทางอารมณ์ทางด้านปรับตัวต่อปัญหาที่บ้านมีค่าคะแนนการประเมินมากกว่าที่โรงเรียน";
+																			} else {
+																				echo "ค่าความฉลาดทางอารมณ์ทางด้านปรับตัวต่อปัญหาที่บ้านและที่โรงเรียนมีคะแนนการประเมินเท่ากัน";
+																			}
+																		} else if ($i == 6) {
+																			if (compare_score($teacher_guide_score, $parent_guide_score) == 1) {
+																				echo "ค่าความฉลาดทางอารมณ์ทางด้านกล้าแสดงออกที่บ้านมีค่าคะแนนการประเมินน้อยกว่าที่โรงเรียน";
+																			} else if (compare_score($teacher_guide_score, $parent_guide_score) == 2){
+																				echo "ค่าความฉลาดทางอารมณ์ทางด้านกล้าแสดงออกที่บ้านมีค่าคะแนนการประเมินมากกว่าที่โรงเรียน";
+																			} else {
+																				echo "ค่าความฉลาดทางอารมณ์ทางด้านกล้าแสดงออกที่บ้านและที่โรงเรียนมีคะแนนการประเมินเท่ากัน";
+																			}
+																		} else if ($i == 7) {
+																			if (compare_score($teacher_guide_score, $parent_guide_score) == 1) {
+																				echo "ค่าความฉลาดทางอารมณ์ทางด้านพอใจในตนเองที่บ้านมีค่าคะแนนการประเมินน้อยกว่าที่โรงเรียน";
+																			} else if (compare_score($teacher_guide_score, $parent_guide_score) == 2){
+																				echo "ค่าความฉลาดทางอารมณ์ทางด้านพอใจในตนเองที่บ้านมีค่าคะแนนการประเมินมากกว่าที่โรงเรียน";
+																			} else {
+																				echo "ค่าความฉลาดทางอารมณ์ทางด้านพอใจในตนเองกที่บ้านและที่โรงเรียนมีคะแนนการประเมินเท่ากัน";
+																			}
+																		} else if ($i == 8) {
+																			if (compare_score($teacher_guide_score, $parent_guide_score) == 1) {
+																				echo "ค่าความฉลาดทางอารมณ์ทางด้านรู้จักปรับตัวที่บ้านมีค่าคะแนนการประเมินน้อยกว่าที่โรงเรียน";
+																			} else if (compare_score($teacher_guide_score, $parent_guide_score) == 2){
+																				echo "ค่าความฉลาดทางอารมณ์ทางด้านรู้จักปรับตัวที่บ้านมีค่าคะแนนการประเมินมากกว่าที่โรงเรียน";
+																			} else {
+																				echo "ค่าความฉลาดทางอารมณ์ทางด้านรู้จักปรับตัวที่บ้านและที่โรงเรียนมีคะแนนการประเมินเท่ากัน";
+																			}
+																		} else if ($i == 9) {
+																			if (compare_score($teacher_guide_score, $parent_guide_score) == 1) {
+																				echo "ค่าความฉลาดทางอารมณ์ทางด้านรื่นเริงเบิกบานที่บ้านมีค่าคะแนนการประเมินน้อยกว่าที่โรงเรียน";
+																			} else if (compare_score($teacher_guide_score, $parent_guide_score) == 2){
+																				echo "ค่าความฉลาดทางอารมณ์ทางด้านรื่นเริงเบิกบานที่บ้านมีค่าคะแนนการประเมินมากกว่าที่โรงเรียน";
+																			} else {
+																				echo "ค่าความฉลาดทางอารมณ์ทางด้านรื่นเริงเบิกบานที่บ้านและที่โรงเรียนมีคะแนนการประเมินเท่ากัน";
+																			}
+																		}
+																		?>
+																	</li>
+																</td>
+															</tr>
+															<?php
+														}
+														?>
+													</table>
+													<fieldset>
+														<legend>คำแนะนำ</legend>
+														<div class="panel panel-success">
+															<div class="panel-heading">
+																<h3 class="panel-title">เกณฑ์คะแนนทีตั้งแต่ 50 คะแนนขึ้นไป</h3>
+															</div>
+															<div class="panel-body">
+																บ่งบอกว่าเด็กมีความฉลาดทางอารมณ์อยู่ในเกณฑ์ที่ดี ควรส่งเสริมและรักษาคุณลักษณะนี้ให้คงไว้
+															</div>
+														</div>
+														<div class="panel panel-warning">
+															<div class="panel-heading">
+																<h3 class="panel-title">เกณฑ์คะแนนทีอยู่ในช่วง 40 ถึง 49 คะแนน</h3>
+															</div>
+															<div class="panel-body">
+																บ่งบอกว่าเด็กควรได้รับการพัฒนาความฉลาดทางอารมณ์ในด้านนั้นๆให้ดียิ่งขึ้น ผู้ใหญ่ควรร่วมกันส่งเสริมให้เด็กมีความฉลาดทางอารมณ์ในด้านนั้นๆ อย่างต่อเนื่อง
+															</div>
+														</div>
+														<div class="panel panel-danger">
+															<div class="panel-heading">
+																<h3 class="panel-title">เกณฑ์คะแนนทีต่ำกว่า 40 คะแนน</h3>
+															</div>
+															<div class="panel-body">
+																บ่งบอกว่าเด็กจำเป็นต้องได้รับการพัฒนาความฉลาดทางอารมณ์ในด้านนั้นๆ ให้ดียิ่งขึ้น ผู้ใหญ่จำเป็นต้องช่วยกันเอาใจใส่พัฒนาความฉลาดทางอารมณ์เด็กอย่างจริงจังและสม่ำเสมอ
+															</div>
+														</div>
+													</fieldset>
 												</div>
 											</div>
 										</div>
