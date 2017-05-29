@@ -2457,7 +2457,11 @@ $estimate_parent_tscore = get_estimate($student_fetch->Std_no, $student_fetch->T
 													</table>
 												</div>
 											</div>
-											<hr>
+											<div class="row">
+												<div class="col-md-9">
+													<hr>
+												</div>
+											</div>
 											<div class="row" id="compare-estimate_display_text">
 												<div class="col-md-9">
 													<h3>เปรียบเทียบผลการประเมิน</h3>
