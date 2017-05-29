@@ -40,12 +40,12 @@ if ($_SESSION["user_role"] < 8) {
 			<div class="col-md-3">
 				<div class="well">
 					<ul class="nav nav-pills nav-stacked">
-						<li role="presentation" class="active">
+						<li role="presentation" id="howto-form-link-active" class="active">
 							<a class="btn btn-default" id="howto-form-link" href="" role="button">
 								วิธีการนำเข้าข้อมูลนักเรียน<br>ด้วยไฟล์ CSV
 							</a>
 						</li>
-						<li role="presentation">
+						<li role="presentation" id="import-form-link-active">
 							<a class="btn btn-default" id="import-form-link" href="" role="button">
 								นำเข้าข้อมูลนักเรียนด้วยไฟล์ <br> CSV
 							</a>
@@ -144,6 +144,8 @@ if ($_SESSION["user_role"] < 8) {
 				$("#student-import_form").fadeOut(100);
 				$(this).addClass('active');
 				$("#import-form-link").removeClass('active');
+				$("#howto-form-link-active").addClass('active');
+				$("#import-form-link-active").removeClass('active');
 				e.preventDefault();
 			});
 			$('#import-form-link').click(function(e) {
@@ -151,6 +153,8 @@ if ($_SESSION["user_role"] < 8) {
 				$("#howto-form").fadeOut(100);
 				$(this).addClass('active');
 				$('#howto-form-link').removeClass('active');
+				$("#howto-form-link-active").removeClass('active');
+				$("#import-form-link-active").addClass('active');
 				e.preventDefault();
 			});
 		});
