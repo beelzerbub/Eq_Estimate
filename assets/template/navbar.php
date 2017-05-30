@@ -40,7 +40,7 @@
 								<li role="separator" class="divider"></li>
 								<li><a href="__import.php">นำเข้าข้อมูลนักเรียนด้วยไฟล์ CSV</a></li>
 								<li role="separator" class="divider"></li>
-								<li><a href="__export.php">ออกรายงาน</a></li>
+								<li><a href="__export.php">ส่งออกข้อมูล</a></li>
 								<?php
 							}
 							?>
