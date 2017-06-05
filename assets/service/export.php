@@ -46,19 +46,7 @@ if ($_POST["ExportStdBtn"]) {
 	$i=0;
 	foreach($classroom as $class_id) {
 		if ($i==0) {
-			$classroom_sql = "SELECT */*s.Std_no,
-			s.Std_id,
-			s.Std_name,
-			s.Std_surname,
-			cls.class_grade,
-			cls.class_number,
-			t.Term_year,
-			t.Term,
-			assessor.As_name,
-			assessor.As_surname,
-			assessor.As_type,
-			es.Es_score,
-			sg.Sg_name*/
+			$classroom_sql = "SELECT *
 			FROM student s JOIN term t ON t.Std_no = s.Std_no
 			JOIN classroom cls ON t.Class_id = cls.Class_id
 			JOIN estimate_time et ON et.Std_no = s.Std_no
@@ -75,6 +63,39 @@ if ($_POST["ExportStdBtn"]) {
 		}
 		$i++;
 	}
+} else if ($_POST["PrintRoomBtn"]) {
+	$action = "ข้อมูลนักเรียนสำหรับพิมพ์แบบประเมิน";
+	$year = $_POST["year_export"];
+	$term = $_POST["filter-term"];
+	$classroom = $_POST["classroom_select"];
+	$i=0;
+	foreach ($classroom as $class_id) {
+		if ($i==0){
+			$classroom_sql = "SELECT * FROM student s LEFT JOIN term t ON t.Std_no = s.Std_no
+			LEFT JOIN classroom cls ON t.Class_id = cls.Class_id 
+			WHERE t.Term_year = $year
+			AND t.Term = $term
+			AND cls.Class_id = $class_id";
+		} else {
+			$classroom_sql .= " OR cls.Class_id = $class_id ";
+		}
+		$i++;
+	}
+	$classroom_sql .= " GROUP BY s.Std_name, s.Std_surname ORDER BY cls.class_id ASC";
+} else if ($_POST["PrintStdBtn"]) {
+	$action = "ข้อมูลนักเรียนสำหรับพิมพ์แบบประเมิน";
+	$name = $_POST["input_name"];
+	$surname = $_POST["input_surname"];
+	$year = $_POST["year_export"];
+	$term = $_POST["filter-term"];
+	$classroom_sql = "SELECT * FROM student s LEFT JOIN term t ON t.Std_no = s.Std_no
+	LEFT JOIN classroom cls ON t.Class_id = cls.Class_id
+	WHERE t.Term_year = $year
+	AND t.Term = $term
+	AND s.Std_name = '$name'
+	AND s.Std_surname = '$surname'
+	GROUP BY s.Std_name, s.Std_surname ORDER BY cls.class_id ASC";
+	echo $classroom_sql;
 }
 $classroom_query = mysql_query($classroom_sql)or die(mysql_error());
 ?>
@@ -177,6 +198,34 @@ xmlns="http://www.w3.org/TR/REC-html40">
 						<td><?php echo $classroom_fetch["As_type"]; ?></td>
 						<td><?php echo $classroom_fetch["Es_score"]; ?></td>
 						<td><?php echo $classroom_fetch["Sg_name"]; ?></td>
+					</tr>
+					<?php
+				}
+			} else if($_POST["PrintRoomBtn"] || $_POST["PrintStdBtn"]) {
+				$i=0;
+				?>
+				<tr>
+					<td>ลำดับ</td>
+					<td>ชื่อ - นามสกุล</td>
+					<td>ห้องเรียน</td>
+					<td>ปีการศึกษา</td>
+				</tr>
+				<?php
+				while($classroom_fetch = mysql_fetch_array($classroom_query)) {
+					?>
+					<tr>
+						<td><?php echo ++$i; ?></td>
+						<td>
+							<?php 
+							if ($classroom_fetch["Std_gender"] == 1) {
+								echo "เด็กชาย";
+							} else {
+								echo "เด็กหญิง";
+							}
+							?> <?php echo $classroom_fetch["Std_name"].' '.$classroom_fetch["Std_surname"]; ?>
+						</td>
+						<td><?php echo $classroom_fetch["class_grade"].'/'.$classroom_fetch["class_number"]; ?></td>
+						<td><?php echo $term.'/'.$year; ?></td>
 					</tr>
 					<?php
 				}
