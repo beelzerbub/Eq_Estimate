@@ -54,6 +54,7 @@ if ($_POST["SaveBtn1"]) {
 	$term = $_POST['term'];
 	$std_no = $_POST['std_no'];
 
+	//check_assessor($es_id, $as_type, $year, $term, $std_no);
 	update_estimate_score($es_id, 1);
 	header("location:../../estimate_form.php?as_type=$as_type&std_no=$std_no&year=$year&term=$term&action=estimate_update_success&part=1");
 } else if ($_POST["SaveBtn2"]) {
@@ -233,6 +234,84 @@ function get_compare_estimate($std_no, $term, $year, $sg_id, $as_type) {
 		$estimate_fetch = mysql_fetch_object($estimate_query)or die(mysql_error());
 		return $estimate_fetch->Es_score;
 	} 
+}
+
+function get_average_estimate($std_no, $term, $year, $sg_id, $as_type) {
+	$classroom = "SELECT * FROM student std
+	JOIN term t
+	JOIN classroom cls
+	WHERE t.Std_no = std.Std_no
+	AND t.Class_id = cls.Class_id
+	AND t.Term_year = $year
+	AND t.Term = $term
+	AND std.Std_no = $std_no";
+	$classroom_query = mysql_query($classroom)or die(mysql_error());
+	$classroom_fetch = mysql_fetch_object($classroom_query);
+	
+	$estimate = "SELECT * FROM estimate_score es
+	JOIN estimate_time et
+	JOIN score_group sg
+	JOIN student std
+	JOIN assessor asses
+	JOIN term t
+	JOIN classroom cls
+	WHERE es.Es_id = et.Es_id
+	AND es.Sg_id = sg.Sg_id
+	AND sg.Sg_id = $sg_id
+	AND et.Es_year = $year
+	AND et.Es_term = $term
+	AND et.Std_no = std.Std_no
+	AND et.As_id = asses.As_id
+	AND asses.As_type = '$as_type'
+	AND std.Std_no = t.Std_no
+	AND t.class_id = cls.class_id
+	AND cls.class_id = $classroom_fetch->class_id
+	GROUP BY es.Ess_id";
+	$estimate_query = mysql_query($estimate)or die(mysql_error());
+	$total = mysql_num_rows($estimate_query)or die(mysql_error());
+	while($estimate_fetch = mysql_fetch_array($estimate_query)) {
+		$sum += $estimate_fetch[Es_score];
+	}
+	echo $sum/$total;
+}
+
+function get_average_t_score($std_no, $term, $year, $sg_id, $as_type) {
+	$classroom = "SELECT * FROM student std
+	JOIN term t
+	JOIN classroom cls
+	WHERE t.Std_no = std.Std_no
+	AND t.Class_id = cls.Class_id
+	AND t.Term_year = $year
+	AND t.Term = $term
+	AND std.Std_no = $std_no";
+	$classroom_query = mysql_query($classroom)or die(mysql_error());
+	$classroom_fetch = mysql_fetch_object($classroom_query);
+
+	$estimate = "SELECT * FROM estimate_score es
+	JOIN estimate_time et
+	JOIN score_group sg
+	JOIN student std
+	JOIN assessor asses
+	JOIN term t
+	JOIN classroom cls
+	WHERE es.Es_id = et.Es_id
+	AND es.Sg_id = sg.Sg_id
+	AND sg.Sg_id = $sg_id
+	AND et.Es_year = $year
+	AND et.Es_term = $term
+	AND et.Std_no = std.Std_no
+	AND et.As_id = asses.As_id
+	AND asses.As_type = '$as_type'
+	AND std.Std_no = t.Std_no
+	AND t.class_id = cls.class_id
+	AND cls.class_id = $classroom_fetch->class_id
+	GROUP BY es.Ess_id";
+	$estimate_query = mysql_query($estimate)or die(mysql_error());
+	$total = mysql_num_rows($estimate_query)or die(mysql_error());
+	while($estimate_fetch = mysql_fetch_array($estimate_query)) {
+		$sum += T_Score($estimate_fetch[Es_score], $sg_id);
+	}
+	echo $sum/$total;
 }
 
 function check_estimate($es_id, $sg_id) {
@@ -1232,5 +1311,9 @@ function compare_score($teacher_score, $parent_score) {
 	} else {
 		return 2;
 	}
+}
+
+function check_assessor($es_id, $as_type, $year, $term, $std_no) {
+	//header("location:../../estimate_form.php?as_type=$as_type&std_no=$std_no&year=$year&term=$term&action=estimate_update_fail");
 }
 ?>
