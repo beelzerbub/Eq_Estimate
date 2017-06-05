@@ -85,25 +85,16 @@ if ($_SESSION["user_role"] < 8) {
 							$classroom_query = mysql_query($classroom)or die(mysql_error());
 							$i=0;
 							while($classroom_fetch = mysql_fetch_array($classroom_query)) {
-								?>
-								<div class="col-md-3">
-									<div class="form-group">
-										<input type="checkbox" name="classroom_select[]" value="<?php echo $classroom_fetch["class_id"]; ?>">
-										<?php
-										if ($classroom_fetch["class_grade"] != "ไม่ระบุ") {
-											?>
+								if ($classroom_fetch["class_grade"] != "ไม่ระบุ") {
+									?>
+									<div class="col-md-3">
+										<div class="form-group">
+											<input type="checkbox" name="classroom_select[]" value="<?php echo $classroom_fetch["class_id"]; ?>">
 											<?php echo $classroom_fetch["class_grade"]."/".$classroom_fetch["class_number"]; ?>
-											<?php
-										} else {
-											?>
-											<?php echo $classroom_fetch["class_grade"]; ?>
-											<?php
-										}
-										?>
-
+										</div>
 									</div>
-								</div>
-								<?php
+									<?php
+								}
 								$i++;
 							}
 							?>
@@ -144,25 +135,16 @@ if ($_SESSION["user_role"] < 8) {
 							$classroom_query = mysql_query($classroom)or die(mysql_error());
 							$i=0;
 							while($classroom_fetch = mysql_fetch_array($classroom_query)) {
-								?>
-								<div class="col-md-3">
-									<div class="form-group">
-										<input type="checkbox" name="classroom_select[]" value="<?php echo $classroom_fetch["class_id"]; ?>">
-										<?php
-										if ($classroom_fetch["class_grade"] != "ไม่ระบุ") {
-											?>
+								if ($classroom_fetch["class_grade"] != "ไม่ระบุ") {
+									?>
+									<div class="col-md-3">
+										<div class="form-group">
+											<input type="checkbox" name="classroom_select[]" value="<?php echo $classroom_fetch["class_id"]; ?>">
 											<?php echo $classroom_fetch["class_grade"]."/".$classroom_fetch["class_number"]; ?>
-											<?php
-										} else {
-											?>
-											<?php echo $classroom_fetch["class_grade"]; ?>
-											<?php
-										}
-										?>
-
+										</div>
 									</div>
-								</div>
-								<?php
+									<?php
+								}
 								$i++;
 							}
 							?>
