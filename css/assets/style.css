@@ -326,3 +326,19 @@ legend.legend-form {
 .sidemenu, .content, .rightbar {
 	background: white;
 }
+
+li.compare_list {
+	font-size: 1.2em;
+}
+
+li.compare_list > span.compare_list-match {
+	color: #3c763d;
+}
+
+li.compare_list > span.compare_list-highest {
+	color: #8a6d3b;
+}
+
+li.compare_list > span.compare_list-lowest {
+	color:#FF6600;
+}
