@@ -131,7 +131,7 @@ if ($_SESSION["user_role"] < 8) {
 										<div class="form-group">
 											<div class="row">
 												<div class="col-md-6 col-md-offset-3">
-													<input type="submit" name="regBtn" id="regBtn" tabindex="4" class="form-control btn btn-register" value="สมัครสมาชิก">
+													<input type="submit" name="regBtn" id="regBtn" tabindex="4" class="form-control btn btn-register" value="เพิ่มข้อมูลผู้ใช้">
 												</div>
 											</div>
 										</div>
@@ -149,7 +149,7 @@ if ($_SESSION["user_role"] < 8) {
 								<th><p class="text-center">ชื่อผู้ใช้</p></th>
 								<th><p class="text-center">ชื่อ</p></th>
 								<th><p class="text-center">นามสกุล</p></th>
-								<th><p class="text-center">อีเมลล์</p></th>
+								<th><p class="text-center">อีเมล</p></th>
 								<th><p class="text-center">สิทธิ์ผู้ใช้</p></th>
 								<th><p class="text-center">ประเภทผู้ใช้</p></th>
 								<th><p class="text-center">แก้ไข</p></th>
