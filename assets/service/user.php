@@ -42,7 +42,7 @@ $year = date('Y') + 543;
 if ($_GET["action"] == "delete") {
 	delete_user($_GET["id"]);
 } else if ($_GET["action"] == "rollback") {
-	rollback($_GET["user"]);
+	rollback($_GET["id"]);
 } else if ($_POST["regBtn"]) {
 	$username 	= 	$_POST["reg_username"];
 	$password 	= 	$_POST["reg_password"];
@@ -110,25 +110,30 @@ function update_user ($id, $username, $password, $email, $name, $surname, $role)
 	header("location:../../user.php?action=update_success");
 }
 
-function delete_user($username) {
-	$find = "SELECT * FROM assessor join user 
-	WHERE user.user_name = assessor.As_name
-	AND user.user_surname = assessor.As_surname 
-	AND user.username = '$username'";
-	$query = mysql_query($find)or die(mysql_error());
-	if (mysql_num_rows($query) > 0) {
-		$sql = "UPDATE user SET user_role = -99 WHERE user.username = '".$username."'";
-		mysql_query($sql)or die(mysql_error());
-		header("location:../../user.php?action=user_delete_warning");
+function delete_user($id) {
+	if ($id != $_SESSION["user_id"]) {
+		$find = "SELECT * FROM assessor join user 
+		WHERE user.user_name = assessor.As_name
+		AND user.user_surname = assessor.As_surname 
+		AND user.user_id = $id";
+		$query = mysql_query($find)or die(mysql_error());
+		if (mysql_num_rows($query) > 0) {
+			$sql = "UPDATE user SET user_role = -99 WHERE user.username = '".$username."'";
+			mysql_query($sql)or die(mysql_error());
+			header("location:../../user.php?action=user_delete_warning");
+		} else {
+			$sql = "DELETE FROM user WHERE user.username = '".$username."'";
+			mysql_query($sql)or die(mysql_error());
+			header("location:../../user.php?action=delete_success");
+		}
 	} else {
-		$sql = "DELETE FROM user WHERE user.username = '".$username."'";
-		mysql_query($sql)or die(mysql_error());
-		header("location:../../user.php?action=delete_success");
+		header("location:../../user.php?action=delete_fail");
 	}
+	
 }
 
-function rollback($username) {
-	$sql = "UPDATE user SET user_role = 1";
+function rollback($id) {
+	$sql = "UPDATE user SET user_role = 1 WHERE user_id = $id";
 	mysql_query($sql)or die(mysql_query());
 	header("location:../../user.php?action=user_rollback-success");
 }

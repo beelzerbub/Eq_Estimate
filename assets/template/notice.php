@@ -54,6 +54,15 @@ if ($action ==  "forgot_fail") {
 		</button>
 	</div>
 	<?php
+} else if ($action == "delete_fail") {
+	?>
+	<div class="alert alert-danger" role="alert">
+		ไม่สามารถลบข้อมูลของตัวเองได้
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<?php
 } else if ($action == "user_delete_warning") {
 	?>
 	<div class="alert alert-danger" role="alert">
