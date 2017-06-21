@@ -92,16 +92,32 @@
 								<tr>
 									<td style="vertical-align: middle">ขั้นตอนที่ 2 <br> ทำแบบประเมิน</td>
 									<td class="site_content-menu_box">
-										<a href="" id="estimate_techer-link" data-toggle="modal" data-target="#estimate-teacher_edit_box" value="edit_estimate">
-											<img src="image/estimate-icon.png" class="img-responsive img-menu" alt="Image"><br>
-											ทำแบบประเมิน <br> (ครูประจำชั้น)
-										</a>
+										<?php
+										if (get_estimate_assessor($student_fetch->Std_no, $student_fetch->Term, $student_fetch->Term_year, "ครูประจำชั้น") > 0) {
+											?>
+											<a href="" id="estimate_techer-link" data-toggle="modal" data-target="#estimate-teacher_edit_box" value="edit_estimate">
+												<img src="image/estimate-icon.png" class="img-responsive img-menu" alt="Image"><br>
+												ทำแบบประเมิน <br> (ครูประจำชั้น)
+											</a>
+											<?php
+										} else {
+											echo "กรุณาทำส่วนที่ 1 ก่อน";
+										}
+										?>
 									</td>
 									<td class="site_content-menu_box">
-										<a href="" id="estimate_parent-link" data-toggle="modal" data-target="#estimate-parent_edit_box" value="edit_estimate">
-											<img src="image/estimate-icon.png" class="img-responsive img-menu" alt="Image"><br>
-											ทำแบบประเมิน <br> (ผู้ปกครอง)
-										</a>
+										<?php
+										if (get_estimate_assessor($student_fetch->Std_no, $student_fetch->Term, $student_fetch->Term_year, "ครูประจำชั้น") > 0) {
+											?>
+											<a href="" id="estimate_parent-link" data-toggle="modal" data-target="#estimate-parent_edit_box" value="edit_estimate">
+												<img src="image/estimate-icon.png" class="img-responsive img-menu" alt="Image"><br>
+												ทำแบบประเมิน <br> (ผู้ปกครอง)
+											</a>
+											<?php
+										} else {
+											echo "กรุณาทำส่วนที่ 1 ก่อน";
+										}
+										?>
 									</td>
 								</tr>
 								<tr>
