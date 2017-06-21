@@ -1,6 +1,7 @@
 <?php
 include_once("assets/database/connect.php");
 include_once("assets/service/estimate.php");
+include_once("assets/service/student.php");
 if ($_SESSION["user_role"] < 2) {
 	header("location:404.php");
 }
@@ -152,7 +153,18 @@ if ($_SESSION["user_role"] < 2) {
 										</td>
 										<td class="text-right"><?php echo $result[Std_age]; ?> ปี</td>
 										<td class="text-center"><?php echo $result[class_grade]; ?> ห้อง <?php echo $result[class_number];?></td>
-										<td class="text-center"><a href="estimate_form.php?std_no=<?php echo $result["Std_no"]; ?>&year=<?php echo $result[Term_year]; ?>&term=<?php echo $result[Term]; ?>">ทำแบบประเมิน</a></td>
+										<?php
+										$student_fetch = get_student($result[Std_no], $year, $term);
+										if (get_estimate_assessor($student_fetch->Std_no, $student_fetch->Term, $student_fetch->Term_year, "ครูประจำชั้น") > 0) {
+											?>
+											<td class="text-center"><a href="estimate_form.php?std_no=<?php echo $result["Std_no"]; ?>&year=<?php echo $result[Term_year]; ?>&term=<?php echo $result[Term]; ?>">มีการทำการประเมิน</a></td>
+											<?php
+										} else {
+											?>
+											<td class="text-center"><a href="estimate_form.php?std_no=<?php echo $result["Std_no"]; ?>&year=<?php echo $result[Term_year]; ?>&term=<?php echo $result[Term]; ?>">ทำแบบประเมิน</a></td>
+											<?php
+										}
+										?>
 									</tr>
 									<?php
 								}
