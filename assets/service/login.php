@@ -60,7 +60,7 @@ function authorization($username, $password) {
 	if (mysql_num_rows($results) > 0) {
 		while ($result = mysql_fetch_array($results)) {
 			$_SESSION["username"] 	= 	$result["username"];
-			$_SESSION["user_name"] 	= 	$result["user_name"];
+			$_SESSION["user_id"]	=	$result["user_id"];
 			$_SESSION["user_role"]	=	$result["user_role"];
 		}
 		?>
