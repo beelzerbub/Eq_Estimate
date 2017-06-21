@@ -214,6 +214,24 @@ function get_estimate($std_no, $term, $year, $as_type) {
 	return $estimate_query;
 }
 
+function get_estimate_assessor($std_no, $term, $year, $as_type) {
+	$estimate = "SELECT * FROM student std
+	JOIN estimate_score es
+	JOIN estimate_time et
+	JOIN assessor asses
+	WHERE std.Std_no = $std_no
+	AND et.Es_year = $year
+	AND et.Es_term = $term
+	AND et.Std_no = std.Std_no
+	AND et.As_id = asses.As_id
+	AND et.Es_id = es.Es_id
+	AND asses.As_type = '$as_type'
+	AND asses.As_name != ''
+	AND asses.As_surname != ''";
+	$estimate_query = mysql_query($estimate)or die(mysql_error());
+	return mysql_num_rows($estimate_query);
+}
+
 function get_compare_estimate($std_no, $term, $year, $sg_id, $as_type) {
 	$estimate = "SELECT * FROM student std
 	JOIN estimate_score es
