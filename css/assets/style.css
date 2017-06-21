@@ -342,3 +342,8 @@ li.compare_list > span.compare_list-highest {
 li.compare_list > span.compare_list-lowest {
 	color:#FF6600;
 }
+
+#classroom-table tr.deleted_classroom {
+	background-color: red;
+	color: white;
+}

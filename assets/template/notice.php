@@ -63,6 +63,33 @@ if ($action ==  "forgot_fail") {
 		</button>
 	</div>
 	<?php
+} else if ($action == "insert_class_success") {
+	?>
+	<div class="alert alert-success" role="alert">
+		เพิ่มข้อมูลห้องเรียนเรียบร้อยแล้ว
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<?php
+} else if ($action == "insert_class_warning") {
+	?>
+	<div class="alert alert-warning" role="alert">
+		มีข้อมูลห้องเรียนดังกล่าวอยู่แล้ว
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<?php
+} else if ($action == "delete_class_warning") {
+	?>
+	<div class="alert alert-danger" role="alert">
+		เนื่องจากห้องดังกล่าวมีข้อมูลีท่มีนักเรียนได้รับการประเมินแล้ว จึงไม่สามารถลบข้อมูลนี้ได้
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<?php
 } else if ($action == "user_delete_warning") {
 	?>
 	<div class="alert alert-danger" role="alert">
