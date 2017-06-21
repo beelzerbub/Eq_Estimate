@@ -255,15 +255,24 @@ if ($_SESSION["user_role"] < 8) {
 								<th><p class="text-center">รหัสบัตรประชาชน</p></th>
 								<th><p class="text-center">ชื่อ - นามสกุล</p></th>
 								<th><p class="text-center">อายุ</p></th>
-								<th><p class="text-center">ห้องเรียน</p></th>
 								<th><p class="text-center">แก้ไข</p></th>
 								<th><p class="text-center">ลบ</p></th>
 							</tr>
 						</thead>
 						<tbody>
 							<?php
+							$header = '';
 							if (mysql_num_rows($filter_query) > 0) {
 								while ($result = mysql_fetch_array($filter_query)) {
+									$classroom = $result[class_grade].'/'.$result[class_number];
+									if ($header != $classroom) {
+										$header = $result[class_grade].'/'.$result[class_number];
+										?>
+										<tr>
+											<td colspan='7'><h3><?php echo $header; ?></h3></td>
+										</tr>
+										<?php
+									}
 									?>
 									<tr>
 										<td class="text-center"><?php echo ++$counter; ?></td>
@@ -274,7 +283,6 @@ if ($_SESSION["user_role"] < 8) {
 											<?php echo $result[Std_surname]; ?>
 										</td>
 										<td class="text-right"><?php echo $result[Std_age]; ?> ปี</td>
-										<td class="text-center"><?php echo $result[class_grade]; ?> ห้อง <?php echo $result[class_number];?></td>
 										<td>
 											<p class="text-center">
 												<a href="_edit_student.php?id=<?php echo $result[Std_no]; ?>" class="btn btn-primary" id="student_edit-link">แก้ไข</a>

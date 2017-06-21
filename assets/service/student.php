@@ -51,7 +51,8 @@ if ($_GET["action"] == "delete") {
 	$class_number		= $_POST["classroom_number"];
 	$year_reg	= $_POST["year_reg"];
 	$term_reg	= $_POST["term_reg"];
-	insert_student($id, $name, $surname, $age, $gender, $classroom, $class_number, $year_reg, $term_reg);
+	$year 		= date('Y') + 543;
+	insert_student($id, $name, $surname, $age, $gender, $classroom, $class_number, $year_reg, $term_reg, $year);
 } else if ($_POST["updateBtn"]) {
 	$id 		= $_POST["id"];
 	$std_id 	= $_POST["std_id"];
@@ -141,34 +142,38 @@ function get_student_byPK($id) {
 	return $student_query;
 }
 
-function insert_student($id, $name, $surname, $age, $gender, $classroom, $class_number, $year_reg, $term_reg) {
-	if (check_classroom($classroom, $class_number)) {
-		$classroom = "SELECT * FROM classroom WHERE class_grade = '$classroom'
-		AND class_number = $class_number
-		AND class_status = 1";
-		$classroom_query = mysql_query($classroom)or die(mysql_error());
-		$classroom_fetch = mysql_fetch_object($classroom_query)or die(mysql_error());
-	}
+function insert_student($id, $name, $surname, $age, $gender, $classroom, $class_number, $year_reg, $term_reg, $year) {
+	if ($year_reg >= $year) {
+		if (check_classroom($classroom, $class_number)) {
+			$classroom = "SELECT * FROM classroom WHERE class_grade = '$classroom'
+			AND class_number = $class_number
+			AND class_status = 1";
+			$classroom_query = mysql_query($classroom)or die(mysql_error());
+			$classroom_fetch = mysql_fetch_object($classroom_query)or die(mysql_error());
+		}
 	// ตรวจสอบว่ามีข้อมูลนักเรียนคนนี้รึยัง โดยใช้ อายุ เป็นตัวกำหนด ความแตกต่างในแต่ละปี
-	if (check_student($id, $name, $surname, $age)) { 
+		if (check_student($id, $name, $surname, $age)) { 
 		// ตรวจสอบว่าเทอมนี้มีข้อมูลนักเรียนคนนีร้ึยัง โดยใช้ เทอม และปี เป็นตัวกำหนด
-		if (check_term($year_reg, $term_reg, $id)) { 
-			header("location:../../student.php?action=student_duplicate");
-		} 
-	} else {
-		$insert_std = "INSERT into student VALUES('', '$id', '$name', '$surname', $age, $gender)";
-		$insert_std_query = mysql_query($insert_std)or die(mysql_error());
-	}
-	$student = "SELECT * FROM student WHERE Std_id = '$id'
-	AND Std_name = '$name'
-	AND Std_surname = '$surname'
-	AND Std_age = $age";
-	$student_query = mysql_query($student)or die(mysql_error());
-	$student_fetch = mysql_fetch_object($student_query)or die(mysql_error());
+			if (check_term($year_reg, $term_reg, $id)) { 
+				header("location:../../student.php?action=student_duplicate");
+			} 
+		} else {
+			$insert_std = "INSERT into student VALUES('', '$id', '$name', '$surname', $age, $gender)";
+			$insert_std_query = mysql_query($insert_std)or die(mysql_error());
+		}
+		$student = "SELECT * FROM student WHERE Std_id = '$id'
+		AND Std_name = '$name'
+		AND Std_surname = '$surname'
+		AND Std_age = $age";
+		$student_query = mysql_query($student)or die(mysql_error());
+		$student_fetch = mysql_fetch_object($student_query)or die(mysql_error());
 
-	$insert_term = "INSERT INTO term VALUES('', $year_reg, $term_reg, $classroom_fetch->class_id, $student_fetch->Std_no)";
-	$insert_term_query = mysql_query($insert_term)or die(mysql_error());
-	header("location:../../student.php?action=insert_success");
+		$insert_term = "INSERT INTO term VALUES('', $year_reg, $term_reg, $classroom_fetch->class_id, $student_fetch->Std_no)";
+		$insert_term_query = mysql_query($insert_term)or die(mysql_error());
+		header("location:../../student.php?action=insert_success");
+	} else {
+		header("location:../../student.php?action=insert_old_date");
+	}
 }
 
 function update_student($id, $std_id, $name, $surname, $age, $gender, $classroom, $class_number, $year, $term) {
