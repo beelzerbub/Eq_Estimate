@@ -139,12 +139,9 @@ if ($_SESSION["user_role"] < 8) {
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label for="InputStdGender">เพศ</label>
-													<select class="form-control" name="std_gender" id="std_gender" required>
-														<option value="" disabled selected>กรุณาเลือก</option>
-														<option value="1">หญิง</option>
-														<option value="2">ชาย</option>
-													</select>
+													<label for="InputStdGender">เพศ</label><br>
+													<input type="radio" name="std_gender" id="std_gender" value="1" required> <label for="">หญิง</label>
+													<input type="radio" name="std_gender" id="std_gender" value="2" required> <label for="">ชาย</label>
 												</div>
 											</div>
 										</div>
@@ -184,13 +181,18 @@ if ($_SESSION["user_role"] < 8) {
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label for="InputTerm">ภาคเรียน</label>
-													<select name="term_reg" id="term_reg" class="form-control" required>
-														<option value="" disabled selected>กรุณาเลือก</option>
-														<option value="1">1</option>
-														<option value="2">2</option>
-														<option value="3">3</option>
-													</select>
+													<label for="InputTerm">ภาคเรียน</label><br>
+													<div class="row">
+														<div class="col-md-2">
+															<input type="radio" name="term_reg" id="term_reg" value="1" required> <label for="">1</label>
+														</div>
+														<div class="col-md-2">
+															<input type="radio" name="term_reg" id="term_reg" value="2" required> <label for="">2</label>
+														</div>
+														<div class="col-md-2">
+															<input type="radio" name="term_reg" id="term_reg" value="3" required> <label for="">3</label>
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>
