@@ -46,7 +46,8 @@ if ($_GET["action"] == "delete") {
 	$class_id	= $_POST["InputClassroom"];
 	$year_reg 	= $_POST["year_reg"];
 	$term_reg 	= $_POST["term_reg"];
-	insert_teacher($teacher_id, $class_id, $year_reg, $term_reg);
+	$year 		= date('Y') + 543;
+	insert_teacher($teacher_id, $class_id, $year_reg, $term_reg, $year);
 } else if ($_POST["updateBtn"]) {
 	$teacher_id = $_POST["teacher_id"];
 	$user_id 	= $_POST["user_id"];
@@ -78,36 +79,40 @@ function get_teacher_room($t_id, $year, $term) {
 	}
 }
 
-function insert_teacher($teacher_id, $class_id, $year_reg, $term_reg) {
-	$teacher = "SELECT * FROM user WHERE user_id = $teacher_id";
-	$teacher_query = mysql_query($teacher)or die(mysql_error());
-	$teacher_fetch = mysql_fetch_object($teacher_query)or die(mysql_error());
+function insert_teacher($teacher_id, $class_id, $year_reg, $term_reg, $year) {
+	if ($year_reg >= $year) {
+		$teacher = "SELECT * FROM user WHERE user_id = $teacher_id";
+		$teacher_query = mysql_query($teacher)or die(mysql_error());
+		$teacher_fetch = mysql_fetch_object($teacher_query)or die(mysql_error());
 
-	$classroom = "SELECT * FROM classroom WHERE class_id = $class_id";
-	$classroom_query = mysql_query($classroom)or die(mysql_error());
-	$classroom_fetch = mysql_fetch_object($classroom_query)or die(mysql_error());
+		$classroom = "SELECT * FROM classroom WHERE class_id = $class_id";
+		$classroom_query = mysql_query($classroom)or die(mysql_error());
+		$classroom_fetch = mysql_fetch_object($classroom_query)or die(mysql_error());
 
-	$check_teacher = "SELECT * FROM teacher WHERE t_name = '$teacher_fetch->user_name' AND t_surname = '$teacher_fetch->user_surname'";
-	$check_teacher_query = mysql_query($check_teacher)or die(mysql_error());
+		$check_teacher = "SELECT * FROM teacher WHERE t_name = '$teacher_fetch->user_name' AND t_surname = '$teacher_fetch->user_surname'";
+		$check_teacher_query = mysql_query($check_teacher)or die(mysql_error());
 
-	if (mysql_num_rows($check_teacher_query) == 0) {
-		$insert_teacher = "INSERT INTO teacher VALUES('', '$teacher_fetch->user_name', '$teacher_fetch->user_surname', 0, $teacher_id)";
-		mysql_query($insert_teacher)or die(mysql_error());
-		$t_id = mysql_insert_id();
+		if (mysql_num_rows($check_teacher_query) == 0) {
+			$insert_teacher = "INSERT INTO teacher VALUES('', '$teacher_fetch->user_name', '$teacher_fetch->user_surname', 0, $teacher_id)";
+			mysql_query($insert_teacher)or die(mysql_error());
+			$t_id = mysql_insert_id();
+		} else {
+			$check_teacher_fetch = mysql_fetch_object($check_teacher_query)or die(mysql_error());
+			$t_id = $check_teacher_fetch->t_id;
+		}
+
+		$check_work = "SELECT * FROM work_time WHERE t_id = $t_id AND wt_year = $year_reg AND wt_term = $term_reg";
+		$check_work_query = mysql_query($check_work)or die(mysql_error());
+		if (mysql_num_rows($check_work_query) == 0) {
+			$insert_worktime = "INSERT INTO work_time VALUES('', $year_reg, $term_reg, $t_id, $class_id)";
+			$insert_worktime_query = mysql_query($insert_worktime)or die(mysql_error());
+			header("location:../../teacher.php?action=insert_success");
+		} else {
+			$check_work_fetch = mysql_fetch_object($check_work_query);
+			header("location:../../teacher.php?action=insert_teacher_dupplicate&old=".$check_work_fetch->wt_id);
+		}
 	} else {
-		$check_teacher_fetch = mysql_fetch_object($check_teacher_query)or die(mysql_error());
-		$t_id = $check_teacher_fetch->t_id;
-	}
-
-	$check_work = "SELECT * FROM work_time WHERE t_id = $t_id AND wt_year = $year_reg AND wt_term = $term_reg";
-	$check_work_query = mysql_query($check_work)or die(mysql_error());
-	if (mysql_num_rows($check_work_query) == 0) {
-		$insert_worktime = "INSERT INTO work_time VALUES('', $year_reg, $term_reg, $t_id, $class_id)";
-		$insert_worktime_query = mysql_query($insert_worktime)or die(mysql_error());
-		header("location:../../teacher.php?action=insert_success");
-	} else {
-		$check_work_fetch = mysql_fetch_object($check_work_query);
-		header("location:../../teacher.php?action=insert_teacher_dupplicate&old=".$check_work_fetch->wt_id);
+		header("location:../../teacher.php?action=insert_old_date");
 	}
 }
 
@@ -141,7 +146,7 @@ function delete_teacher($id, $year, $term) {
 			$delete_worktime_query = mysql_query($delete_worktime)or die(mysql_error());
 			header("location:../../teacher.php?action=delete_success");
 		} else {
-			$delete_worktime = "DELETE FROM work_time WHERE t_id = $id AND wt_year = $year AND wt_yerm = $term";
+			$delete_worktime = "DELETE FROM work_time WHERE t_id = $id AND wt_year = $year AND wt_term = $term";
 			$delete_worktime_query = mysql_query($delete_worktime)or die(mysql_error());
 			header("location:../../teacher.php?action=delete_success");
 		}

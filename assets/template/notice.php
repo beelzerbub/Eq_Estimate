@@ -81,6 +81,15 @@ if ($action ==  "forgot_fail") {
 		</button>
 	</div>
 	<?php
+} else if ($action == "insert_old_date") {
+	?>
+	<div class="alert alert-warning" role="alert">
+		ไม่สามารถระบุข้อมูลย้อนหลังได้
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<?php
 } else if ($action == "delete_class_warning") {
 	?>
 	<div class="alert alert-danger" role="alert">
