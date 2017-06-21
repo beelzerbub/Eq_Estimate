@@ -37,6 +37,7 @@
 								?>
 								<li><a href="user.php">จัดการข้อมูลผู้ใช้</a></li>
 								<li><a href="teacher.php">จัดการข้อมูลครูประจำชั้น</a></li>
+								<li><a href="classroom.php">จัดการข้อมูลห้องเรียน</a></li>
 								<li role="separator" class="divider"></li>
 								<li><a href="__import.php">นำเข้าข้อมูลนักเรียนด้วยไฟล์ CSV</a></li>
 								<li role="separator" class="divider"></li>
